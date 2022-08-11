@@ -1,0 +1,21 @@
+$options: 'none', 'block', 'inline', 'inline-block', 'flex', 'inline-flex', 'table-cell';
+
+@each $option in $options {
+  .d-#{$option} {
+    display: #{$option} !important;
+  }
+}
+@include media-breakpoint-up(md) {
+  @each $option in $options {
+    .d-md-#{$option} {
+      display: #{$option} !important;
+    }
+  }
+}
+@include media-breakpoint-up(lg) {
+  @each $option in $options {
+    .d-lg-#{$option} {
+      display: #{$option} !important;
+    }
+  }
+}

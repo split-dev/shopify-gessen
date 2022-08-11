@@ -1,0 +1,40 @@
+button {
+  font-family: inherit;
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+.font-heading {
+  font-family: var(--font-heading-family);
+}
+
+.visually-hidden {
+  position: absolute!important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal!important;
+}
+
+.rte {
+  font-size: 0.875rem;
+
+  //@extend .lh-140;
+
+  @include media-breakpoint-up(md) {
+    font-size: 0.9375rem;
+  }
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

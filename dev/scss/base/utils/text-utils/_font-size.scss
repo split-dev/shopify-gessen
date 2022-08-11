@@ -1,0 +1,19 @@
+$values-mobile:  "0", "0.75", "0.875", "0.94", "1.125", "1.5", "2.25";
+$values-desktop:  "1", "0.9375", "1.375", "2.0625", "2.125", "2.1875", "2.8125";
+
+//@each $value in $values-mobile {
+//  $formatted-value: str-replace($value, ".", "\\.");
+//
+//  .text-#{$formatted-value} {
+//    font-size: #{$value}rem !important;
+//  }
+//}
+//@each $value in $values-desktop {
+//  $formatted-value: str-replace($value, ".", "\\.");
+//
+//  @include media-breakpoint-up(md) {
+//    .text-md-#{$formatted-value} {
+//      font-size: #{$value}rem !important;
+//    }
+//  }
+//}

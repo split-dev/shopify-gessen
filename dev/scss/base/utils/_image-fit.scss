@@ -1,0 +1,17 @@
+.fit-contain {
+  object-fit: contain !important;
+}
+.object-center {
+  object-position: center;
+}
+.object-bottom-center {
+  object-position: bottom center;
+}
+.fit-cover {
+  object-fit: cover;
+}
+@include media-breakpoint-up(md) {
+  .object-md-left {
+    object-position: left;
+  }
+}

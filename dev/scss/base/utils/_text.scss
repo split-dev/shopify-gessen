@@ -1,0 +1,106 @@
+$values: "0.75";
+//$values-desk: "1", "1.25", "1.125", "1.5";
+
+@each $value in $values {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  .text-#{$formatted-value} {
+    font-size: #{$value}rem !important;
+  }
+}
+//@include media-breakpoint-up(md) {
+//  @each $value in $values-desk {
+//    $formatted-value: str-replace($value, ".", "\\.");
+//
+//    .text-md-#{$formatted-value} {
+//      font-size: #{$value}rem !important;
+//    }
+//  }
+//}
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+@include media-breakpoint-up(md) {
+  .text-md-left {
+    text-align: left;
+  }
+
+  .text-md-center {
+    text-align: center;
+  }
+  .text-md-right {
+    text-align: right;
+  }
+  .text-md-uppercase {
+    text-transform: uppercase;
+  }
+}
+@include media-breakpoint-up(lg) {
+  .text-lg-left {
+    text-align: left;
+  }
+
+  .text-lg-center {
+    text-align: center;
+  }
+  .text-lg-right {
+    text-align: right;
+  }
+}
+
+// Font Weights
+.font-light {
+  font-weight: 300 !important;
+}
+.font-regular {
+  font-weight: 400 !important;
+}
+.font-medium {
+  font-weight: 500 !important;
+}
+.font-bold {
+  font-weight: 700 !important;
+}
+@include media-breakpoint-up(md) {
+  .font-md-bold {
+    font-weight: 700 !important;
+  }
+  .font-md-regular {
+    font-weight: 400 !important;
+  }
+}
+
+// Text Utils
+.no-underline {
+  text-decoration: none;
+}
+
+// List Utils
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+}
+.tt-n {
+  text-transform: none !important;
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.text-inherit {
+  font-size: inherit;
+  color: inherit;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-underline {
+  text-decoration: underline;
+}

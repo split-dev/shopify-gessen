@@ -8,3 +8,22 @@
 ehthumbs.db
 Thumbs.db
 .vscode
+# ignore all files starting with . or ~
+.*
+~*
+
+# ignore project files/directories
+node_modules/
+dev/node_modules
+dev/package-lock.json
+
+# -------------------------
+# BEGIN Whitelisted Files
+# -------------------------
+
+# track these files, if they exist
+!.gitignore
+!.editorconfig
+!README.md
+!CHANGELOG.md
+!composer.json

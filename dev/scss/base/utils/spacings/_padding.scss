@@ -1,0 +1,49 @@
+// Generate util margin classes
+// Example: .pt-1, .pb-md-2, .mr-md-0.75
+
+$values-y: "0";
+$values-x: "0";
+
+
+@each $value in $values-y {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  .pt-#{$formatted-value} {
+    padding-top: #{$value}rem;
+  }
+  .pb-#{$formatted-value} {
+    padding-bottom: #{$value}rem;
+  }
+}
+@each $value in $values-y {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  @include media-breakpoint-up(md) {
+    .pt-md-#{$formatted-value} {
+      padding-top: #{$value}rem;
+    }
+    .pb-md-#{$formatted-value} {
+      padding-bottom: #{$value}rem;
+    }
+  }
+}
+
+@each $value in $values-x {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  .pl-#{$formatted-value} {
+    padding-left: #{$value}rem;
+  }
+  .pr-#{$formatted-value} {
+    padding-right: #{$value}rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    .pl-md-#{$formatted-value} {
+      padding-left: #{$value}rem;
+    }
+    .pr-md-#{$formatted-value} {
+      padding-right: #{$value}rem;
+    }
+  }
+}

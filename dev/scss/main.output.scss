@@ -1,0 +1,44 @@
+// --------------------------------------------------
+// Variables (replace Bootstrap variable defaults)
+@import "base/functions";
+@import 'variables';
+
+// --------------------------------------------------
+// Bootstrap
+
+@import "../node_modules/bootstrap-scss/functions";
+@import "../node_modules/bootstrap-scss/variables";
+@import "../node_modules/bootstrap-scss/mixins";
+
+
+// --------------------------------------------------
+// Mixins
+
+@import "mixins/type";
+
+// --------------------------------------------------
+// Base
+
+@import "base/utils";
+@import "base/buttons";
+@import "type";
+
+// --------------------------------------------------
+// Vendors
+//@import "vendor/flickity-slider";
+
+// --------------------------------------------------
+// Components
+//@import "components/container";
+
+// --------------------------------------------------
+// Layout
+@import "layouts/header";
+@import "layouts/body";
+@import "layouts/footer";
+
+// --------------------------------------------------
+// Sections
+//@import "sections/announcment-bar";
+
+

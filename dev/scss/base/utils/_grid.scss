@@ -1,0 +1,64 @@
+$columns-xl: 3, 9;
+$columns-desk: 1, 4, 5, 8;
+$columns-tablet: 1, 3, 4, 5, 6, 7;
+$columns-mobile: 3, 6, 12;
+
+.row {
+  --bs-gutter-x: 1.25rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) * -.5);
+  margin-left: calc(var(--bs-gutter-x) * -.5);
+
+  > * {
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+    max-width: 100%;
+    width: 100%;
+
+    &[class*="col"] {
+      padding-right: calc(var(--bs-gutter-x) * .5);
+      padding-left: calc(var(--bs-gutter-x) * .5);
+      margin-top: var(--bs-gutter-y);
+      max-width: 100%;
+    }
+  }
+}
+
+@each $value in $columns-mobile {
+  $width: calc(100% / (12 / #{$value}));
+  .col-#{$value} {
+    flex: 0 0 auto;
+    width: $width;
+  }
+}
+@each $value in $columns-tablet {
+  @include media-breakpoint-up(md) {
+    .col-md-#{$value} {
+      $width: calc(100% / (12 / #{$value}));
+      flex: 0 0 auto;
+      width: $width;
+    }
+  }
+}
+@each $value in $columns-desk {
+  @include media-breakpoint-up(lg) {
+    .col-lg-#{$value} {
+      $width: calc(100% / (12 / #{$value}));
+      flex: 0 0 auto;
+      width: $width;
+    }
+  }
+}
+@each $value in $columns-xl {
+  @include media-breakpoint-up(xl) {
+    .col-xl-#{$value} {
+      $width: calc(100% / (12 / #{$value}));
+      flex: 0 0 auto;
+      width: $width;
+    }
+  }
+}

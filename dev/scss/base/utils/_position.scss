@@ -1,0 +1,30 @@
+// Position Utils
+.position-relative {
+  position: relative;
+}
+.position-sticky {
+  position: sticky;
+}
+.position-absolute {
+  position: absolute;
+}
+.position-fixed {
+  position: fixed;
+}
+
+.absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @extend .position-absolute;
+}
+.absolute-center-bottom {
+  bottom: 0;
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.absolute-fill {
+  inset: 0;
+  @extend .position-absolute;
+}

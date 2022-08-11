@@ -1,0 +1,19 @@
+$colors: "light", "body", "light-black", "light-grey", "red", "violet", "green", "grey";
+
+@each $color in $colors {
+  .text-#{$color} {
+    color: c_rgb(var(--color-#{$color})) !important;
+  }
+  .bg-#{$color} {
+    background-color: c_rgb(var(--color-#{$color})) !important;
+  }
+}
+:root {
+  --color-dark: 0, 0, 0;
+}
+.text-dark {
+  color: c_rgb(var(--color-dark)) !important;
+}
+.bg-transparent {
+  background: transparent;
+}

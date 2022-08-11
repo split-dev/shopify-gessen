@@ -1,0 +1,79 @@
+// Generate util margin classes
+// Example: .mt-1, .mb-md-2, .mr-md-0.75
+
+$values-y: "0";
+$values-x: "0";
+
+.mt-auto {
+  margin-top: auto;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.mr-auto {
+  margin-right: auto;
+}
+
+@each $value in $values-y {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  .mt-#{$formatted-value} {
+    margin-top: #{$value}rem;
+  }
+  .mb-#{$formatted-value} {
+    margin-bottom: #{$value}rem;
+  }
+}
+@include media-breakpoint-up(md) {
+  @each $value in $values-y {
+    $formatted-value: str-replace($value, ".", "\\.");
+
+    .mt-md-auto {
+      margin-top: auto;
+    }
+
+    .mt-md-#{$formatted-value} {
+      margin-top: #{$value}rem;
+    }
+    .mb-md-#{$formatted-value} {
+      margin-bottom: #{$value}rem;
+    }
+  }
+}
+@include media-breakpoint-up(sm) {
+  @each $value in $values-y {
+    $formatted-value: str-replace($value, ".", "\\.");
+    .mt-sm-#{$formatted-value} {
+      margin-top: #{$value}rem;
+    }
+  }
+}
+
+@each $value in $values-x {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  .ml-#{$formatted-value} {
+    margin-left: #{$value}rem;
+  }
+  .mr-#{$formatted-value} {
+    margin-right: #{$value}rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $value in $values-x {
+    $formatted-value: str-replace($value, ".", "\\.");
+
+    .ml-md-#{$formatted-value} {
+      margin-left: #{$value}rem;
+    }
+    .mr-md-#{$formatted-value} {
+      margin-right: #{$value}rem;
+    }
+  }
+}
+@include media-breakpoint-up(xl) {
+  .mt-lg-0 {
+    margin-top: 0;
+  }
+}
