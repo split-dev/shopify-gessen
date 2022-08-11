@@ -19,9 +19,11 @@
 // --------------------------------------------------
 // Base
 
+@import "reset";
+@import "base";
 @import "base/utils";
+@import "base/type";
 @import "base/buttons";
-@import "type";
 
 // --------------------------------------------------
 // Vendors

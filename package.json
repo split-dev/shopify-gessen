@@ -1,0 +1,11 @@
+{
+  "name": "gessen-theme",
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "shopify theme serve",
+    "push": "shopify theme push -l",
+    "pull": "shopify theme pull -d"
+  },
+  "repository": "git@github.com:split-dev/shopify-gessen.git",
+  "author": "vlad <vkravchenko@splitdev.pro>"
+}
