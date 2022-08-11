@@ -1,18 +1,19 @@
 @import "functions";
+@import "utils/spacing";
 @import "utils/grid";
 @import "utils/colors";
 @import "utils/text";
-@import "utils/spacing";
 @import "utils/text-utils/line-height";
 @import "utils/text-utils/font-size";
-@import "utils/sizings";
+//@import "utils/sizings";
 @import "utils/radius";
 @import "utils/image-fit";
 @import "utils/position";
 @import "utils/overflow";
-@import "utils/flex";
 @import "utils/display";
-@import "utils/opacity";
+@import "utils/flex";
+@import "utils/container";
+//@import "utils/opacity";
 @import "utils/z-index";
 
 .fit-contain {
@@ -24,10 +25,6 @@
 .fit-cover {
   object-fit: cover;
 }
-.rounded-circle {
-  border-radius: 50%;
-}
-
 .border-none {
   border: none !important;
 }

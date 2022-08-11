@@ -358,6 +358,10 @@
     }
   },
   "sections": {
+    "header": {
+      "name": "Header",
+      "settings": {}
+    },
     "all": {
       "padding": {
         "section_padding_heading": "Section padding",
@@ -397,34 +401,6 @@
         },
         "options__4": {
           "label": "Extra large"
-        }
-      }
-    },
-    "announcement-bar": {
-      "name": "Announcement bar",
-      "blocks": {
-        "announcement": {
-          "name": "Announcement",
-          "settings": {
-            "text": {
-              "label": "Text"
-            },
-            "text_alignment": {
-              "label": "Text alignment",
-              "options__1": {
-                "label": "Left"
-              },
-              "options__2": {
-                "label": "Center"
-              },
-              "options__3": {
-                "label": "Right"
-              }
-            },
-            "link": {
-              "label": "Link"
-            }
-          }
         }
       }
     },
@@ -936,68 +912,6 @@
         },
         "margin_top": {
           "label": "Top margin"
-        }
-      }
-    },
-    "header": {
-      "name": "Header",
-      "settings": {
-        "logo": {
-          "label": "Logo image"
-        },
-        "logo_width": {
-          "unit": "px",
-          "label": "Custom logo width"
-        },
-        "logo_position": {
-          "label": "Desktop logo position",
-          "options__1": {
-            "label": "Middle left"
-          },
-          "options__2": {
-            "label": "Top left"
-          },
-          "options__3": {
-            "label": "Top center"
-          },
-          "options__4": {
-            "label": "Middle center"
-          }
-        },
-        "menu": {
-          "label": "Menu"
-        },
-        "menu_type_desktop": {
-          "label": "Desktop menu type",
-          "info": "Menu type is automatically optimized for mobile.",
-          "options__1": {
-            "label": "Dropdown"
-          },
-          "options__2": {
-            "label": "Mega menu"
-          }
-        },
-        "show_line_separator": {
-          "label": "Show separator line"
-        },
-        "enable_sticky_header": {
-          "label": "Enable sticky header",
-          "info": "Header shows on the screen as customers scroll up."
-        },
-        "margin_bottom": {
-          "label": "Bottom margin"
-        },
-        "mobile_layout": {
-          "content": "Mobile layout"
-        },
-        "mobile_logo_position": {
-          "label": "Mobile logo position",
-          "options__1": {
-            "label": "Center"
-          },
-          "options__2": {
-            "label": "Left"
-          }
         }
       }
     },

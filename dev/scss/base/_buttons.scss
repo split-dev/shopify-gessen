@@ -6,3 +6,12 @@
   height: auto;
   clip: auto;
 }
+.link {
+  text-decoration: none;
+  color: inherit;
+  opacity: 1;
+  transition: var(--transition-default);
+  &:hover {
+    opacity: 0.5;
+  }
+}

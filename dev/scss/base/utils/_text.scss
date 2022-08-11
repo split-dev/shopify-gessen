@@ -68,14 +68,6 @@ $values: "0.75";
 .font-bold {
   font-weight: 700 !important;
 }
-@include media-breakpoint-up(md) {
-  .font-md-bold {
-    font-weight: 700 !important;
-  }
-  .font-md-regular {
-    font-weight: 400 !important;
-  }
-}
 
 // Text Utils
 .no-underline {

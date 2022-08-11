@@ -1,0 +1,12 @@
+.header {
+  top: 0;
+  &__logo {
+    svg {
+      display: block;
+    }
+  }
+  &__burger {
+    border: 2px solid currentColor;
+    border-radius: 50%;
+  }
+}

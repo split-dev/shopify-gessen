@@ -1,0 +1,8 @@
+{%- assign default_attributes = 'aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg"' -%}
+
+{%- case icon -%}
+  {%- when 'hamburger' -%}
+    <svg class="{{ class }}" width="25" height="12" viewBox="0 0 25 12" fill="none" {{ default_attributes }}><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M1 1h23M1 6h23M1 11h23"/></svg>
+  {%- when 'close' -%}
+    <svg class="{{ class }}" width="18" height="20" viewBox="0 0 18 20" fill="none" {{ default_attributes }}><path d="M1.07243 2.07404 16.6999 18.0424" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path transform="matrix(.69944 -.7147 .69944 .7147 1 19.357)" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M1-1h22.2858"/></svg>
+{%- endcase -%}
