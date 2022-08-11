@@ -899,3 +899,23 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+
+(() => {
+  const header = document.querySelector('header.header');
+
+  if (header === null) return;
+
+  const toggler = header.querySelector('[data-header-menu-toggle]'),
+        togglerWrapper = toggler.parentElement,
+        menu = header.querySelector('[data-header-menu]');
+
+  toggler.addEventListener('click',() => {
+    togglerWrapper.classList.toggle('open');
+
+    // menu.style.height
+    //   ? menu.style.height = null
+    //   : menu.style.height = menu.scrollHeight + 'px';
+
+    toggler.classList.toggle('btn--outline');
+  });
+})();

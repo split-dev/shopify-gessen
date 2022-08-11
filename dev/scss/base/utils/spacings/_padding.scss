@@ -2,7 +2,7 @@
 // Example: .pt-1, .pb-md-2, .mr-md-0.75
 
 $values-y: "0", "1";
-$values-x: "0", "1";
+$values-x: "0", "0.5", "1";
 
 
 @each $value in $values-y {

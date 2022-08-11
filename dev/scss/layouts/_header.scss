@@ -6,7 +6,49 @@
     }
   }
   &__burger {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    &:not(.btn--outline) {
+      background: transparent;
+    }
+    &__open {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    &__close {
+      transform: translate(-50%, -50%) scale(0);
+    }
+  }
+  &__nav {
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
     border: 2px solid currentColor;
-    border-radius: 50%;
+    border-radius: 20px;
+    > * {
+      opacity: 0;
+    }
+    &__wrapper {
+      padding: 2px;
+    }
+  }
+}
+.open {
+  .header__burger {
+    &__open {
+      transform: translate(-50%, -50%) scale(0);
+    }
+    &__close {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  .header__nav {
+    width: 358px;
+    height: 550px;
+    border-radius: 5px 20px 5px 5px;
+    > * {
+      opacity: 1;
+    }
   }
 }

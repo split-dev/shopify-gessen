@@ -21,11 +21,21 @@
       </a>
     </div>
     <div class="header__buttons ml-auto">
-      <div class="position-relative z-stack">
-        <button class="header__burger text-primary z-stack-2 tr" data-header-menu-toggle>
-          {% render 'icon' with 'hamburger', class: 'header__burger__open' %}
-          {% render 'icon' with 'close', class: 'header__burger__close' %}
+      <div class="header__nav__wrapper position-relative z-stack">
+        <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-menu-toggle>
+          {% render 'icon' with 'hamburger', class: 'header__burger__open absolute-center transition-default' %}
+          {% render 'icon' with 'close', class: 'header__burger__close absolute-center transition-default' %}
         </button>
+
+        <div class="header__nav position-absolute overflow-hidden bg-light z-behind transition-default" data-header-menu>
+          <ul class="list-unstyled pl-1 pr-1 pt-1 pb-1" role="list">
+            {% for link in section.settings.menu.links %}
+              <li>
+                <a href="{{ link.url }}" class="link d-block h4 font-bold lh-130">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -75,7 +85,7 @@
 {
   "name": "t:sections.header.name",
   "tag": "header",
-  "class": "header pt-1 pb-1 position-sticky",
+  "class": "header bg-light pt-1 pb-1 position-sticky",
   "settings": [
     {
       "type": "header",
