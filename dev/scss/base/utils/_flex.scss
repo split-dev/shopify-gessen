@@ -20,14 +20,6 @@
 .align-items-center {
   align-items: center;
 }
-@include media-breakpoint-up(md) {
-  .align-items-md-start {
-    align-items: start;
-  }
-  .align-items-md-end {
-    align-items: flex-end;
-  }
-}
 .align-items-baseline {
   align-items: baseline;
 }
@@ -53,6 +45,12 @@
   align-self: flex-start;
 }
 @include media-breakpoint-up(md) {
+  .align-items-md-start {
+    align-items: start;
+  }
+  .align-items-md-end {
+    align-items: flex-end;
+  }
   .align-self-md-end {
     align-self: flex-end;
   }
@@ -68,6 +66,11 @@
 }
 @include media-breakpoint-up(sm) {
   .justify-content-sm-end {
+    justify-content: end;
+  }
+}
+@include media-breakpoint-up(lg) {
+  .justify-content-lg-end {
     justify-content: end;
   }
 }

@@ -58,4 +58,9 @@
       background-color: rgb(var(--color-primary));
     }
   }
+  &--circle {
+    width: 54px;
+    height: 54px;
+    @extend .rounded-circle, .flex-center;
+  }
 }

@@ -5,3 +5,8 @@
   border-width: 2px;
   border-style: solid;
 }
+.border {
+  border-color: rgb(var(--color-primary));
+  border-radius: 5px;
+  @extend .border-2;
+}

@@ -6,5 +6,7 @@
   {%- when 'close' -%}
     <svg class="{{ class }}" width="18" height="20" viewBox="0 0 18 20" fill="none" {{ default_attributes }}><path d="M1.07243 2.07404 16.6999 18.0424" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path transform="matrix(.69944 -.7147 .69944 .7147 1 19.357)" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M1-1h22.2858"/></svg>
   {%- when 'chevron-down' -%}
-    <svg class="{{ class }}" width="13" height="8" viewBox="0 0 13 8" fill="none"><path d="m1 1 5.5 5.5L12 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg class="{{ class }}" width="13" height="8" viewBox="0 0 13 8" fill="none" {{ default_attributes }}><path d="m1 1 5.5 5.5L12 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  {%- when 'arrow-right' -%}
+    <svg class="{{ class }}" width="25" height="16"  viewBox="0 0 25 16" fill="none" {{ default_attributes }}><path d="M24.4053 8.70711c.3906-.39053.3906-1.02369 0-1.41422L18.0414.928932c-.3905-.390525-1.0237-.390525-1.4142 0-.3905.390528-.3905 1.023688 0 1.414218L22.284 8l-5.6568 5.6569c-.3906.3905-.3906 1.0236 0 1.4142.3905.3905 1.0237.3905 1.4142 0l6.3639-6.36399ZM1.28315 7C.730862 7 .283146 7.44771.283146 8c0 .55228.447716 1 1.000004 1V7ZM23.6982 7H1.28315v2H23.6982V7Z" fill="currentColor"/></svg>
 {%- endcase -%}

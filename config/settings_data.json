@@ -121,7 +121,40 @@
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "bd506b0e-3466-4793-8882-e436f4644850": {
+            "type": "newsletter",
+            "settings": {
+              "hide_on_mobile": false,
+              "heading": "Keep In Touch",
+              "content": "<p>Sign up to our newsletter lorem ipsum dolor sit amet, consectetur adipiscing elit.<\/p>",
+              "content_max_width": 310,
+              "placeholder": "Enter your Email"
+            }
+          },
+          "dd812cb1-4e16-4adc-a72d-e73ece0af2c4": {
+            "type": "text",
+            "settings": {
+              "hide_on_mobile": true,
+              "heading": "About us",
+              "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus.<\/p>",
+              "content_max_width": 550,
+              "url": "#"
+            }
+          }
+        },
+        "block_order": [
+          "bd506b0e-3466-4793-8882-e436f4644850",
+          "dd812cb1-4e16-4adc-a72d-e73ece0af2c4"
+        ],
         "settings": {
+          "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. <\/p>",
+          "copyrights": "<p>© Gessen 2022<\/p>",
+          "show_social": true,
+          "menu_primary": "main-menu",
+          "menu_primary_hide": true,
+          "menu_secondary": "footer",
+          "menu_secondary_hide": false
         }
       },
       "main-password-header": {
