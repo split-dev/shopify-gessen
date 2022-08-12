@@ -45,6 +45,12 @@
     }
   }
 }
+[data-header-logo] {
+  bottom: 0;
+  left: 0;
+
+  width: calc(var(--progress) * 1vw - 2rem);
+}
 .open {
   .header__burger {
     &__open {

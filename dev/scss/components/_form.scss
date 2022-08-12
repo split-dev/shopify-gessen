@@ -1,0 +1,18 @@
+.form {
+  &__input {
+    padding: 14px 4rem 15px 1.5rem;
+    border-radius: 100px;
+    &::placeholder {
+      font-family: inherit;
+      font-size: inherit;
+      color: rgba(var(--color-primary), 0.4);
+    }
+    &:focus-visible {
+      outline: rgb(var(--color-dark));
+    }
+  }
+  &__submit {
+    right: 0;
+    top: 0;
+  }
+}

@@ -701,6 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function headerHeight() {
       let headerTemp = document.querySelector('.header');
+      window.headerHeight = headerTemp.scrollHeight;
       document.documentElement.style
         .setProperty('--header-height', `${headerTemp.scrollHeight}px`)
     }
@@ -718,6 +719,41 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })
 
+  })();
+
+  // Header desktop
+  (() => {
+    if (document.querySelector('.preheader') === null) return;
+
+    const headerScroll = {
+      selectors: {
+        header: document.querySelector('.header'),
+        logo: document.querySelector('[data-header-logo]'),
+        navigation: document.querySelector('.header__buttons')
+      },
+      handle: () => {
+        let width = `${100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100)}`;
+        headerScroll.selectors.header.style.setProperty('--progress', width);
+
+        if (width >= 1) {
+          headerScroll.selectors.navigation.classList.add('transparent-0', 'events-none')
+        } else if (width <= 1) {
+          headerScroll.selectors.navigation.classList.remove('transparent-0', 'events-none')
+        }
+      },
+      eventListeners: () => {
+        document.addEventListener('scroll', headerScroll.handle);
+      },
+      init: () => {
+        headerScroll.options = {
+          desktopOffset: headerScroll.selectors.logo.dataset.widthDesktop,
+          mobileOffset: headerScroll.selectors.logo.dataset.widthDesktop
+        };
+        headerScroll.handle();
+        headerScroll.eventListeners();
+      }
+    };
+    headerScroll.init();
   })();
 
   // FadeIn on content load

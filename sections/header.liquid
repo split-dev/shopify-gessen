@@ -1,10 +1,12 @@
 <style>
-  .header__logo svg {
-    width: {{ section.settings.logo_width_mobile }}px;
+  .header__logo svg,
+  [data-header-logo] {
+    min-width: {{ section.settings.logo_width_mobile }}px;
   }
   @media (min-width: 767px) {
-    .header__logo svg {
-      width: {{ section.settings.logo_width_desktop }}px;
+    .header__logo svg,
+    [data-header-logo] {
+      min-width: {{ section.settings.logo_width_desktop }}px;
     }
   }
 </style>
@@ -15,15 +17,28 @@
 <div class="container">
     <div class="d-flex align-items-center justify-content-between">
       <div class="header__logo">
-        <a href="{{ routes.root_url }}" class="link d-block">
+        <a href="{{ routes.root_url }}" class="d-block position-relative">
           {% if section.settings.logo != blank %}
-            {{ section.settings.logo }}
+            {% if request.page_type == 'index' %}
+              <span class="d-block transparent-0">
+                {{ section.settings.logo }}
+              </span>
+              <span class="position-absolute"
+                    data-header-logo
+                    data-width-mobile="{{ section.settings.logo_width_mobile }}"
+                    data-width-desktop="{{ section.settings.logo_width_desktop }}"
+              >
+                {{ section.settings.logo }}
+              </span>
+            {% else %}
+              {{ section.settings.logo }}
+            {% endif %}
           {% else %}
             <span class="h2">{{ shop.name }}</span>
           {% endif %}
         </a>
       </div>
-      <div class="header__buttons ml-auto">
+      <div class="header__buttons ml-auto transition-default">
         <div class="header__nav__wrapper position-relative z-stack">
           <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
             {% render 'icon' with 'hamburger', class: 'header__burger__open absolute-center transition-default' %}
