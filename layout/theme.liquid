@@ -38,7 +38,7 @@
     </script>
   </head>
 
-  <body>
+  <body class="transition-default" style="opacity: 0;">
     <a class="skip-to-content-link visually-hidden" href="#MainContent">
       {{ "accessibility.skip_to_text" | t }}
     </a>
@@ -49,6 +49,8 @@
 
     {% section 'header' %}
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+
       <div class="container">
         <div>
           <button class="btn btn--primary text-uppercase">Load more</button>
@@ -68,7 +70,6 @@
           </div>
         </div>
       </div>
-      {{ content_for_layout }}
     </main>
 
     {% section 'footer' %}
