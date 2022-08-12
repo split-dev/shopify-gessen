@@ -1,8 +1,8 @@
-$values:  "130";
+$values:  "100", "130", "150";
 $percent: "%";
 
-//@each $value in $values {
-//  .lh-#{$value} {
-//    line-height: #{$value + $percent} !important;
-//  }
-//}
+@each $value in $values {
+  .lh-#{$value} {
+    line-height: #{$value + $percent} !important;
+  }
+}

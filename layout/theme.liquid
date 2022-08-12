@@ -47,29 +47,13 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
+    {% if request.page_type == 'index' %}
+      {% section 'preheader' %}
+    {% endif %}
     {% section 'header' %}
+
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
-
-      <div class="container">
-        <div>
-          <button class="btn btn--primary text-uppercase">Load more</button>
-          <button class="btn btn--outline text-uppercase">Load more</button>
-          <button class="btn btn--outline text-uppercase" disabled>Sold out</button>
-        </div>
-        <div>
-          <h1>h1 Heading</h1>
-          <h2>h2 Heading</h2>
-          <h3>h3 Heading</h3>
-          <h4>h4 Heading</h4>
-          <h5>h5 Heading</h5>
-          <h6>h6 Heading</h6>
-          <div class="rte">
-            <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eos est itaque, minima, necessitatibus nemo odit porro quas quisquam rem sequi temporibus tenetur ut vel voluptatem? Beatae nisi quo rem.</span><span>Adipisci consectetur ducimus facere fugiat libero modi molestiae perspiciatis porro recusandae sint suscipit temporibus, veritatis. Blanditiis consequuntur doloribus eaque magni nesciunt quasi repellat reprehenderit similique tempora, vel veritatis voluptate voluptatibus.</span><span>Culpa, mollitia tenetur. Animi cumque delectus dolor doloribus dolorum facilis fugit harum nostrum repellendus vitae. Architecto aspernatur commodi debitis dolore eius, illum inventore maxime natus porro quaerat quos repellendus sit?</span><span>Accusantium consequatur deserunt dolor, error eveniet ipsam, itaque labore minima natus nemo reprehenderit vel voluptates! Aperiam assumenda molestiae necessitatibus nihil nulla, odit pariatur possimus quidem, rem saepe temporibus totam voluptates.</span><span>Atque, consectetur deleniti dolore dolorem earum, eius eveniet facere fuga harum illo in iste molestiae necessitatibus nulla obcaecati odio perspiciatis quibusdam vel? Accusamus beatae laudantium nam natus totam vel vitae!</span><span>Alias fugit libero maiores, nemo temporibus vel? Animi asperiores consequuntur deserunt ea facere hic impedit laudantium magnam molestiae nemo nulla quo, quos rem similique vel. Asperiores magni natus unde veniam!</span><span>Aut blanditiis consequuntur earum facilis repudiandae! Aliquam architecto autem consequatur dignissimos eius eos, eveniet ex fugiat illo in magnam non odio pariatur porro provident sequi ut voluptas. Autem blanditiis, maxime.</span><span>Ab, accusamus architecto asperiores aspernatur at culpa cupiditate delectus dolore eius eveniet ex excepturi facere, harum illo in itaque natus neque nesciunt nobis nostrum odit quaerat quis quisquam veritatis voluptatem?</span><span>Aut blanditiis, consequuntur deleniti doloremque doloribus eaque enim est exercitationem fugiat hic incidunt maiores maxime nam quasi quis rem repellat rerum sed sit suscipit tempore totam vel voluptate voluptates, voluptatum!</span><span>Animi debitis deserunt enim est et mollitia, neque odit omnis quidem, quo reiciendis rerum sint totam! Animi eaque, fugiat impedit itaque molestiae, nemo, nulla numquam quis sed sit soluta ullam.</span></p>
-            <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eos est itaque, minima, necessitatibus nemo odit porro quas quisquam rem sequi temporibus tenetur ut vel voluptatem? Beatae nisi quo rem.</span><span>Adipisci consectetur ducimus facere fugiat libero modi molestiae perspiciatis porro recusandae sint suscipit temporibus, veritatis. Blanditiis consequuntur doloribus eaque magni nesciunt quasi repellat reprehenderit similique tempora, vel veritatis voluptate voluptatibus.</span><span>Culpa, mollitia tenetur. Animi cumque delectus dolor doloribus dolorum facilis fugit harum nostrum repellendus vitae. Architecto aspernatur commodi debitis dolore eius, illum inventore maxime natus porro quaerat quos repellendus sit?</span><span>Accusantium consequatur deserunt dolor, error eveniet ipsam, itaque labore minima natus nemo reprehenderit vel voluptates! Aperiam assumenda molestiae necessitatibus nihil nulla, odit pariatur possimus quidem, rem saepe temporibus totam voluptates.</span><span>Atque, consectetur deleniti dolore dolorem earum, eius eveniet facere fuga harum illo in iste molestiae necessitatibus nulla obcaecati odio perspiciatis quibusdam vel? Accusamus beatae laudantium nam natus totam vel vitae!</span><span>Alias fugit libero maiores, nemo temporibus vel? Animi asperiores consequuntur deserunt ea facere hic impedit laudantium magnam molestiae nemo nulla quo, quos rem similique vel. Asperiores magni natus unde veniam!</span><span>Aut blanditiis consequuntur earum facilis repudiandae! Aliquam architecto autem consequatur dignissimos eius eos, eveniet ex fugiat illo in magnam non odio pariatur porro provident sequi ut voluptas. Autem blanditiis, maxime.</span><span>Ab, accusamus architecto asperiores aspernatur at culpa cupiditate delectus dolore eius eveniet ex excepturi facere, harum illo in itaque natus neque nesciunt nobis nostrum odit quaerat quis quisquam veritatis voluptatem?</span><span>Aut blanditiis, consequuntur deleniti doloremque doloribus eaque enim est exercitationem fugiat hic incidunt maiores maxime nam quasi quis rem repellat rerum sed sit suscipit tempore totam vel voluptate voluptates, voluptatum!</span><span>Animi debitis deserunt enim est et mollitia, neque odit omnis quidem, quo reiciendis rerum sint totam! Animi eaque, fugiat impedit itaque molestiae, nemo, nulla numquam quis sed sit soluta ullam.</span></p>
-          </div>
-        </div>
-      </div>
     </main>
 
     {% section 'footer' %}

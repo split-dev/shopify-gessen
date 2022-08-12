@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row">
-    {% for single_product in section.settings.collection.products %}
+  <div class="card-product__wrapper row">
+    {% for single_product in section.settings.collection.products limit: 16 %}
       <div class="col-12 col-md-6 col-lg-4 col-xl-3">
         {% render 'card-product' card_product:single_product %}
       </div>

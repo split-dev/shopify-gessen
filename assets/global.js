@@ -481,6 +481,23 @@ class ModalDialog extends HTMLElement {
 }
 customElements.define('modal-dialog', ModalDialog);
 
+class Overlay extends HTMLElement {
+  constructor() {
+    super();
+
+    this.options = {
+      toggleClass: 'hidden'
+    }
+  }
+  _show() {
+    this.classList.remove(this.options.toggleClass);
+  }
+  _hide() {
+    this.classList.add(this.options.toggleClass);
+  }
+}
+customElements.define('custom-overlay', Overlay);
+
 class ModalOpener extends HTMLElement {
   constructor() {
     super();
@@ -516,7 +533,6 @@ class DeferredMedia extends HTMLElement {
     }
   }
 }
-
 customElements.define('deferred-media', DeferredMedia);
 
 class VariantSelects extends HTMLElement {
@@ -679,21 +695,32 @@ customElements.define('variant-radios', VariantRadios);
 document.addEventListener('DOMContentLoaded', () => {
   // Header Action
   (() => {
-    const header = document.querySelector('header.header');
+    const header = document.querySelector('.header');
 
     if (header === null) return;
 
-    const toggler = header.querySelector('[data-header-menu-toggle]'),
-      togglerWrapper = toggler.parentElement,
-      menu = header.querySelector('[data-header-menu]');
+    function headerHeight() {
+      let headerTemp = document.querySelector('.header');
+      document.documentElement.style
+        .setProperty('--header-height', `${headerTemp.scrollHeight}px`)
+    }
+    headerHeight();
+    window.addEventListener('resize', headerHeight);
 
-    toggler.addEventListener('click',() => {
-      togglerWrapper.classList.toggle('open');
+    const btns = header.querySelectorAll('[data-header-toggle]');
 
-      toggler.classList.toggle('btn--outline');
-    });
+    btns.forEach(btn => {
+      let btnWrapper = btn.parentElement;
+      btn.addEventListener('click',() => {
+        btnWrapper.classList.toggle('open');
+        btn.classList.toggle('btn--outline');
+        document.body.classList.toggle('overflow-hidden');
+      });
+    })
+
   })();
 
+  // FadeIn on content load
   (() => {
     setTimeout(() => {
       document.body.style.opacity = 1;

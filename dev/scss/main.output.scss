@@ -31,6 +31,9 @@
 
 // --------------------------------------------------
 // Components
+@import "components/price";
+@import "components/social-list";
+@import "components/card-product";
 @import "components/loading-overlay";
 
 // --------------------------------------------------
@@ -41,6 +44,6 @@
 
 // --------------------------------------------------
 // Sections
-//@import "sections/announcment-bar";
+@import "sections/preheader";
 
 

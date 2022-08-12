@@ -1,0 +1,21 @@
+.card-product {
+  border: 2px solid currentColor;
+  border-radius: 5px;
+  &__wrapper {
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 2rem;
+  }
+  &__media {
+    img {
+      transition: var(--transition-default);
+      + img {
+        opacity: 0;
+      }
+    }
+  }
+  &:hover {
+    img + img {
+      opacity: 1;
+    }
+  }
+}

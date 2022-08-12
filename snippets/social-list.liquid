@@ -1,0 +1,16 @@
+<ul class="social-list d-flex justify-content-start list-unstyled text-0.625 lh-100" role="list">
+  {% if settings.social_instagram_link != blank %}
+    <li class="{{ spacing }}">
+      <a href="{{ setting.social_instagram_link }}" target="_blank" class="social-list__link border-2 btn--outline flex-center rounded-circle no-underline">
+        <span>IG</span>
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_facebook_link != blank %}
+    <li class="{{ spacing }}">
+      <a href="{{ setting.social_facebook_link }}" target="_blank" class="social-list__link border-2 btn--outline flex-center rounded-circle no-underline">
+        <span>FB</span>
+      </a>
+    </li>
+  {% endif %}
+</ul>

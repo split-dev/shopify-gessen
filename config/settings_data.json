@@ -3,6 +3,9 @@
     "override_with_studio_pro": true,
     "type_header_font": "assistant_n4",
     "type_body_font": "assistant_n4",
+    "currency_code_enabled": false,
+    "social_facebook_link": "#",
+    "social_instagram_link": "#",
     "favicon": "shopify:\/\/shop_images\/favicon.png",
     "page_width": 1200,
     "spacing_sections": 0,
@@ -29,17 +32,6 @@
     "inputs_shadow_horizontal_offset": 0,
     "inputs_shadow_vertical_offset": 4,
     "inputs_shadow_blur": 5,
-    "card_style": "standard",
-    "card_image_padding": 0,
-    "card_text_alignment": "left",
-    "card_color_scheme": "background-2",
-    "card_border_thickness": 0,
-    "card_border_opacity": 10,
-    "card_corner_radius": 0,
-    "card_shadow_opacity": 0,
-    "card_shadow_horizontal_offset": 0,
-    "card_shadow_vertical_offset": 4,
-    "card_shadow_blur": 5,
     "collection_card_style": "standard",
     "collection_card_image_padding": 0,
     "collection_card_text_alignment": "left",
@@ -94,19 +86,27 @@
     "sale_badge_color_scheme": "accent-2",
     "sold_out_badge_color_scheme": "inverse",
     "accent_icons": "text",
+    "predictive_search_enabled": true,
+    "predictive_search_show_vendor": false,
+    "predictive_search_show_price": false,
     "social_twitter_link": "",
-    "social_facebook_link": "",
     "social_pinterest_link": "",
-    "social_instagram_link": "",
     "social_tiktok_link": "",
     "social_tumblr_link": "",
     "social_snapchat_link": "",
     "social_youtube_link": "",
     "social_vimeo_link": "",
-    "predictive_search_enabled": true,
-    "predictive_search_show_vendor": false,
-    "predictive_search_show_price": false,
-    "currency_code_enabled": true,
+    "card_style": "standard",
+    "card_image_padding": 0,
+    "card_text_alignment": "left",
+    "card_color_scheme": "background-2",
+    "card_border_thickness": 0,
+    "card_border_opacity": 10,
+    "card_corner_radius": 0,
+    "card_shadow_opacity": 0,
+    "card_shadow_horizontal_offset": 0,
+    "card_shadow_vertical_offset": 4,
+    "card_shadow_blur": 5,
     "body_scale": 100,
     "sections": {
       "header": {
@@ -116,7 +116,7 @@
           "logo_width_mobile": 160,
           "logo_width_desktop": 210,
           "menu": "main-menu",
-          "show_social": false
+          "show_social": true
         }
       },
       "footer": {
@@ -134,6 +134,14 @@
         "type": "main-password-footer",
         "settings": {
           "color_scheme": "background-1"
+        }
+      },
+      "preheader": {
+        "type": "preheader",
+        "settings": {
+          "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus pellentesque habitant morbi.<\/p>",
+          "anchor_url": "#shopify-section-template--14315903189125__1660285776a2a0e2a4",
+          "anchor_label": "Go to shop"
         }
       }
     },

@@ -1,19 +1,19 @@
-$values-mobile:  "0";
-$values-desktop:  "1";
+$values-mobile: "0.625", "0.875", "1.25";
+$values-desktop:  "1", "1.5";
 
-//@each $value in $values-mobile {
-//  $formatted-value: str-replace($value, ".", "\\.");
-//
-//  .text-#{$formatted-value} {
-//    font-size: #{$value}rem !important;
-//  }
-//}
-//@each $value in $values-desktop {
-//  $formatted-value: str-replace($value, ".", "\\.");
-//
-//  @include media-breakpoint-up(md) {
-//    .text-md-#{$formatted-value} {
-//      font-size: #{$value}rem !important;
-//    }
-//  }
-//}
+@each $value in $values-mobile {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  .text-#{$formatted-value} {
+    font-size: #{$value}rem !important;
+  }
+}
+@each $value in $values-desktop {
+  $formatted-value: str-replace($value, ".", "\\.");
+
+  @include media-breakpoint-up(md) {
+    .text-md-#{$formatted-value} {
+      font-size: #{$value}rem !important;
+    }
+  }
+}

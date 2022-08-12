@@ -1,5 +1,6 @@
 .header {
   top: 0;
+  z-index: 1000;
   &__logo {
     svg {
       display: block;
@@ -17,6 +18,16 @@
     }
     &__close {
       transform: translate(-50%, -50%) scale(0);
+    }
+    &:after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: rgba(var(--color-primary), 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-default);
+      z-index: -1;
     }
   }
   &__nav {
@@ -41,6 +52,10 @@
     }
     &__close {
       transform: translate(-50%, -50%) scale(1);
+    }
+    &:after {
+      opacity: 1;
+      pointer-events: auto;
     }
   }
   .header__nav {

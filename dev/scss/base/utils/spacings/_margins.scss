@@ -1,8 +1,8 @@
 // Generate util margin classes
 // Example: .mt-1, .mb-md-2, .mr-md-0.75
 
-$values-y: "0";
-$values-x: "0";
+$values-y: "0", "1";
+$values-x: "0", "0.5", "1";
 
 .mt-auto {
   margin-top: auto;
