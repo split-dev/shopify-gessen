@@ -1,11 +1,28 @@
+{% liquid
+  assign section_collection = section.settings.collection
+  assign initail_count = 16
+%}
+
 <div class="container">
-  <div class="card-product__wrapper row">
-    {% for single_product in section.settings.collection.products limit: 16 %}
+  <div class="card-product__wrapper row" id="{{ section.id }}-{{ section_collection.handle }}">
+    {% for single_product in section_collection.products limit: initail_count %}
       <div class="col-12 col-md-6 col-lg-4 col-xl-3">
         {% render 'card-product' card_product:single_product %}
       </div>
     {% endfor %}
   </div>
+
+  {% if section_collection.products.size > initail_count %}
+    <div class="text-center mt-5 mb-5 mt-md-7.5 mb-md-7.5">
+      <load-more class="btn btn--outline text-uppercase position-relative"
+              data-paginate="{{ section_collection.handle }}"
+              data-paginate-collection-container="#{{ section.id }}-{{ section_collection.handle }}"
+              tabindex="0">
+        <span>Load more</span>
+        <span class="absolute-center loading-overlay__spinner spinner"> </span>
+      </load-more>
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -17,6 +34,13 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dynamic_loading",
+      "label": "Enable dynamic loading",
+      "default": true,
+      "info": "Works if collection contains more products then initial count. Button will load 8 more products, if available."
     }
   ],
   "presets": [

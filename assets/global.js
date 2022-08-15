@@ -797,4 +797,45 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   })();
+
+  // Custom load more
+  class LoadMore extends HTMLElement {
+    constructor() {
+      super();
+    }
+    connectedCallback() {
+      this.options = {
+        collection: this.dataset.paginate,
+        container: this.dataset.paginateCollectionContainer,
+        // Section renders 16 products. AJAX only 8. So offset for ajax is 3.
+        page: 3
+      };
+
+      this.parsedUrl = `collections/${this.options.collection}?view=ajax-8&page=${this.options.page}`;
+
+      this._bindEevents();
+    }
+    _bindEevents() {
+      this.addEventListener('click', this._loadHandle)
+    }
+    _loadHandle() {
+      this.classList.add('loading')
+
+      fetch(this.parsedUrl, {
+        method: 'GET',
+      }).then(res => {
+        return res.text()
+      }).then(res => {
+        let dom = new DOMParser().parseFromString(res, 'text/html');
+
+        // End of pagination
+        if (!dom.querySelector('[data-pagination-next]'))
+          this.classList.add('d-none');
+
+        document.querySelector(this.options.container).innerHTML += dom.body.innerHTML;
+        this.options.page += 1;
+      });
+    }
+  }
+  customElements.define('load-more', LoadMore);
 });

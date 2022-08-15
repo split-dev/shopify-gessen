@@ -1,0 +1,12 @@
+{% layout none %}
+{% paginate collection.products by 8 %}
+  {% for product in collection.products %}
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      {% render 'card-product' card_product:product %}
+    </div>
+  {% endfor %}
+
+  {%- if paginate.next -%}
+    <div class="d-none" data-pagination-next></div>
+  {%- endif -%}
+{% endpaginate %}
