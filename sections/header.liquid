@@ -35,7 +35,19 @@
           {% endif %}
         </a>
       </div>
-      <div class="header__buttons ml-auto transition-default">
+      <div class="header__buttons d-flex ml-auto transition-default">
+        <div class="header__nav__wrapper mr-1 position-relative z-stack">
+          <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
+            <span class="header__burger__open absolute-center transition-default">{{ cart.item_count }}</span>
+            {% render 'icon' with 'close', class: 'header__burger__close absolute-center transition-default' %}
+          </button>
+
+          <div class="header__nav position-absolute overflow-hidden bg-light z-behind transition-default">
+            <div class="d-flex flex-column justify-content-start h-100 pl-1 pr-1 pt-1 pb-1">
+              Cart content
+            </div>
+          </div>
+        </div>
         <div class="header__nav__wrapper position-relative z-stack">
           <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
             {% render 'icon' with 'hamburger', class: 'header__burger__open absolute-center transition-default' %}

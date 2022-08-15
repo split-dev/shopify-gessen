@@ -698,6 +698,14 @@ class VariantRadios extends VariantSelects {
 customElements.define('variant-radios', VariantRadios);
 
 document.addEventListener('DOMContentLoaded', () => {
+  (() => {
+    function calcVh() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    calcVh();
+    window.addEventListener('resize', calcVh);
+  })();
   // Header Action
   (() => {
     const header = document.querySelector('.header');
