@@ -5,6 +5,11 @@ function getFocusableElements(container) {
     )
   );
 }
+function detectBrowser() {
+  if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+    return 'safari';
+  }
+}
 
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');
@@ -761,5 +766,35 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.body.style.opacity = 1;
     }, 200);
+  })();
+
+  // Init anchor links
+  (() => {
+    const links = document.querySelectorAll('a[href]')
+
+    if (links.length < 1) return;
+
+    // Safari polyfill
+    if (window.detectBrowser() === 'safari') {
+      let url = 'https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js';
+      let script = document.createElement('script');
+      script.src = url;
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    links.forEach(link => {
+      let href = link.getAttribute('href')
+      if (href[0] === '#' && href.length > 1) {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          let target = document.querySelector(`${link.getAttribute('href')}`);
+          window.scroll({
+            top: target.getBoundingClientRect().top + window.pageYOffset,
+            left: 0,
+            behavior: "smooth"
+          });
+        })
+      }
+    });
   })();
 });

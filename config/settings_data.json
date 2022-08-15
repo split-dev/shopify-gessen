@@ -1,118 +1,23 @@
 {
   "current": {
     "override_with_studio_pro": true,
-    "type_header_font": "assistant_n4",
-    "type_body_font": "assistant_n4",
     "currency_code_enabled": false,
     "social_facebook_link": "#",
     "social_instagram_link": "#",
     "favicon": "shopify:\/\/shop_images\/favicon.png",
-    "page_width": 1200,
-    "spacing_sections": 0,
-    "spacing_grid_horizontal": 8,
-    "spacing_grid_vertical": 8,
-    "buttons_border_thickness": 1,
-    "buttons_border_opacity": 100,
-    "buttons_radius": 0,
-    "buttons_shadow_opacity": 0,
-    "buttons_shadow_horizontal_offset": 0,
-    "buttons_shadow_vertical_offset": 4,
-    "buttons_shadow_blur": 5,
-    "variant_pills_border_thickness": 1,
-    "variant_pills_border_opacity": 55,
-    "variant_pills_radius": 40,
-    "variant_pills_shadow_opacity": 0,
-    "variant_pills_shadow_horizontal_offset": 0,
-    "variant_pills_shadow_vertical_offset": 4,
-    "variant_pills_shadow_blur": 5,
-    "inputs_border_thickness": 1,
-    "inputs_border_opacity": 55,
-    "inputs_radius": 0,
-    "inputs_shadow_opacity": 0,
-    "inputs_shadow_horizontal_offset": 0,
-    "inputs_shadow_vertical_offset": 4,
-    "inputs_shadow_blur": 5,
-    "collection_card_style": "standard",
-    "collection_card_image_padding": 0,
-    "collection_card_text_alignment": "left",
-    "collection_card_color_scheme": "background-2",
-    "collection_card_border_thickness": 0,
-    "collection_card_border_opacity": 10,
-    "collection_card_corner_radius": 0,
-    "collection_card_shadow_opacity": 0,
-    "collection_card_shadow_horizontal_offset": 0,
-    "collection_card_shadow_vertical_offset": 4,
-    "collection_card_shadow_blur": 5,
-    "blog_card_style": "standard",
-    "blog_card_image_padding": 0,
-    "blog_card_text_alignment": "left",
-    "blog_card_color_scheme": "background-2",
-    "blog_card_border_thickness": 0,
-    "blog_card_border_opacity": 10,
-    "blog_card_corner_radius": 0,
-    "blog_card_shadow_opacity": 0,
-    "blog_card_shadow_horizontal_offset": 0,
-    "blog_card_shadow_vertical_offset": 4,
-    "blog_card_shadow_blur": 5,
-    "text_boxes_border_thickness": 0,
-    "text_boxes_border_opacity": 10,
-    "text_boxes_radius": 0,
-    "text_boxes_shadow_opacity": 0,
-    "text_boxes_shadow_horizontal_offset": 0,
-    "text_boxes_shadow_vertical_offset": 4,
-    "text_boxes_shadow_blur": 5,
-    "media_border_thickness": 1,
-    "media_border_opacity": 5,
-    "media_radius": 0,
-    "media_shadow_opacity": 0,
-    "media_shadow_horizontal_offset": 0,
-    "media_shadow_vertical_offset": 4,
-    "media_shadow_blur": 5,
-    "popup_border_thickness": 1,
-    "popup_border_opacity": 10,
-    "popup_corner_radius": 0,
-    "popup_shadow_opacity": 0,
-    "popup_shadow_horizontal_offset": 0,
-    "popup_shadow_vertical_offset": 4,
-    "popup_shadow_blur": 5,
-    "drawer_border_thickness": 1,
-    "drawer_border_opacity": 10,
-    "drawer_shadow_opacity": 0,
-    "drawer_shadow_horizontal_offset": 0,
-    "drawer_shadow_vertical_offset": 4,
-    "drawer_shadow_blur": 5,
-    "badge_position": "bottom left",
-    "badge_corner_radius": 40,
-    "sale_badge_color_scheme": "accent-2",
-    "sold_out_badge_color_scheme": "inverse",
-    "accent_icons": "text",
-    "predictive_search_enabled": true,
-    "predictive_search_show_vendor": false,
-    "predictive_search_show_price": false,
-    "social_twitter_link": "",
-    "social_pinterest_link": "",
-    "social_tiktok_link": "",
-    "social_tumblr_link": "",
-    "social_snapchat_link": "",
-    "social_youtube_link": "",
-    "social_vimeo_link": "",
-    "card_style": "standard",
-    "card_image_padding": 0,
-    "card_text_alignment": "left",
-    "card_color_scheme": "background-2",
-    "card_border_thickness": 0,
-    "card_border_opacity": 10,
-    "card_corner_radius": 0,
-    "card_shadow_opacity": 0,
-    "card_shadow_horizontal_offset": 0,
-    "card_shadow_vertical_offset": 4,
-    "card_shadow_blur": 5,
-    "body_scale": 100,
     "sections": {
+      "preheader": {
+        "type": "preheader",
+        "settings": {
+          "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus pellentesque habitant morbi.<\/p>",
+          "anchor_url": "#shopify-section-header",
+          "anchor_label": "Go to shop"
+        }
+      },
       "header": {
         "type": "header",
         "settings": {
-          "logo": "<svg viewbox=\"0 0 209 42\" fill=\"none\"><g fill=\"#000\"><path d=\"M0 20.9409C0 8.39803 7.80816 0 19.5751 0c9.4394 0 16.2131 5.24754 17.7051 13.2616.1094.6104-.3481 1.1913-.9748 1.1913h-6.2266c-.4774 0-.8654-.3348-.9748-.7975-1.0543-4.48944-4.7048-6.99014-9.519-6.99014-7.1317 0-11.36903 5.71024-11.36903 14.27564 0 9.0183 4.52573 14.3938 11.65753 14.3938 5.9979 0 9.8472-3.3572 10.2451-8.398v-.5612H20.0824c-.5471 0-.9947-.443-.9947-.9845v-4.3024c0-.5415.4476-.9845.9947-.9845H36.763c.5471 0 .9947.443.9947.9845v4.1646C37.4195 35.2757 30.2877 42 19.8735 42 7.80816 42 0 33.602 0 20.9409ZM41.7861.561279h26.2493c.5471 0 .9947.443041.9947.984531v4.52883c0 .54149-.4476.98453-.9947.98453H49.7136c-.5471 0-.9947.44304-.9947.98453v7.7778c0 .5415.4476.9845.9947.9845H66.056c.5471 0 .9947.443.9947.9845v4.5289c0 .5415-.4476.9845-.9947.9845H49.7136c-.5471 0-.9947.443-.9947.9845v9.5106c0 .5415.4476.9845.9947.9845h18.6102c.5471 0 .9947.443.9947.9845v4.6962c0 .5415-.4476.9846-.9947.9846H41.796c-.5471 0-.9947-.4431-.9947-.9846V1.54581c0-.54149.4476-.984531.9947-.984531h-.0099ZM71.2383 27.9507h7.0621c.5172 0 .9549.384.9847.8959.2785 4.1941 3.3421 6.4979 7.7883 6.4979 5.033 0 7.4103-1.9592 7.4103-4.8734s-2.0391-4.1449-9.2803-6.1041c-6.6245-1.7918-13.8657-3.9184-13.8657-12.3164 0-6.66531 5.8885-12.04083438 15.1687-12.04083438 9.2803 0 15.0696 4.81434438 15.6266 11.73553438.049.5809-.408 1.083-.995 1.083h-6.8035c-.4973 0-.9251-.3544-.9847-.8467-.4079-3.43597-3.0238-5.31642-6.8434-5.31642-4.0184 0-6.6742 2.01829-6.6742 4.70602 0 3.1899 2.2082 4.204 7.9773 5.8284 8.5442 2.3531 15.4475 3.3081 15.4475 12.4346 0 7.3348-6.7342 12.3756-16.1836 12.3756-10.0959 0-16.3325-5.2082-16.8298-13.045-.0398-.5514.4376-1.0141.9947-1.0141ZM105.644 27.9507h7.062c.517 0 .955.384.985.8959.288 4.1941 3.342 6.4979 7.788 6.4979 5.033 0 7.41-1.9592 7.41-4.8734s-2.039-4.1449-9.28-6.1041c-6.624-1.7918-13.866-3.9184-13.866-12.3164 0-6.66531 5.889-12.04083438 15.169-12.04083438 9.28 0 15.069 4.81434438 15.626 11.73553438.05.5809-.408 1.083-.994 1.083h-6.804c-.497 0-.925-.3544-.975-.8467-.408-3.43597-3.024-5.31642-6.853-5.31642-4.018 0-6.674 2.01829-6.674 4.70602 0 3.1899 2.208 4.204 7.977 5.8284 8.544 2.3531 15.447 3.3081 15.447 12.4346 0 7.3348-6.734 12.3756-16.183 12.3756-10.096 0-16.332-5.2082-16.83-13.045-.04-.5514.438-1.0141.995-1.0141ZM141.87.561279h26.249c.547 0 .995.443041.995.984531v4.52883c0 .54149-.448.98453-.995.98453h-18.322c-.547 0-.994.44304-.994.98453v7.7778c0 .5415.447.9845.994.9845h16.343c.547 0 .994.443.994.9845v4.5289c0 .5415-.447.9845-.994.9845h-16.343c-.547 0-.994.443-.994.9845v9.5106c0 .5415.447.9845.994.9845h18.611c.547 0 .994.443.994.9845v4.6962c0 .5415-.447.9846-.994.9846H141.88c-.547 0-.995-.4431-.995-.9846V1.54581c0-.54149.448-.984531.995-.984531h-.01ZM174.008.561279h8.056c.349 0 .677.177215.856.482421l13.398 22.0928c4.188 6.8327 4.695 9.0774 4.695 9.0774h.169l-.109-30.65825c0-.54149.447-.984525.994-.984525h5.928c.547 0 .995.443035.995.984525V40.4544c0 .5415-.448.9845-.995.9845h-8.116c-.348 0-.667-.1772-.856-.4726L185.108 18.204c-3.223-5.2672-4.078-8.45707-4.078-8.45707h-.109V40.4642c0 .5415-.448.9846-.995.9846h-5.928c-.547 0-.995-.4431-.995-.9846V1.54581c0-.54149.448-.984531.995-.984531h.01Z\"><\/path><\/g><\/svg>",
+          "logo": "<svg viewbox=\"0 0 1408 286\" fill=\"none\"><g fill=\"rgb(var(--color-dark))\"><path d=\"M0 142.598C0 57.1866 52.6023 0 131.874 0 195.466 0 241.1 35.7332 251.151 90.3052c.737 4.1566-2.345 8.1121-6.567 8.1121h-41.948c-3.216 0-5.83-2.2795-6.567-5.4304-7.103-30.5711-31.695-47.5997-64.128-47.5997-48.0453 0-76.5913 38.8843-76.5913 97.2108 0 61.41 30.4893 98.015 78.5353 98.015 40.406 0 66.339-22.861 69.019-57.187v-3.821h-67.612c-3.686 0-6.701-3.017-6.701-6.704v-29.298c0-3.687 3.015-6.704 6.701-6.704h112.374c3.686 0 6.701 3.017 6.701 6.704v28.359C252.089 240.211 204.043 286 133.885 286 52.6023 286 0 228.813 0 142.598ZM281.506 3.82138h176.838c3.685 0 6.701 3.01688 6.701 6.70422v30.8391c0 3.6873-3.016 6.7042-6.701 6.7042H334.913c-3.686 0-6.701 3.0169-6.701 6.7042v52.9629c0 3.687 3.015 6.704 6.701 6.704h110.096c3.685 0 6.701 3.017 6.701 6.704v30.84c0 3.687-3.016 6.704-6.701 6.704H334.913c-3.686 0-6.701 3.017-6.701 6.704v64.762c0 3.688 3.015 6.704 6.701 6.704h125.374c3.686 0 6.701 3.017 6.701 6.705v31.978c0 3.688-3.015 6.705-6.701 6.705H281.573c-3.685 0-6.701-3.017-6.701-6.705V10.5256c0-3.68734 3.016-6.70422 6.701-6.70422h-.067ZM479.921 190.331h47.576c3.485 0 6.433 2.615 6.634 6.101 1.877 28.56 22.515 44.248 52.469 44.248 33.906 0 49.922-13.342 49.922-33.186s-13.737-28.224-62.52-41.566c-44.628-12.201-93.411-26.682-93.411-83.8689C480.591 36.6718 520.26.0670419 582.78.0670419c62.52 0 101.519 32.7833581 105.272 79.9137581.335 3.9554-2.748 7.3746-6.701 7.3746h-45.835c-3.35 0-6.231-2.4135-6.633-5.7656-2.748-23.3976-20.371-36.2026-46.103-36.2026-27.072 0-44.963 13.7436-44.963 32.046 0 21.7215 14.876 28.6268 53.741 39.6888 57.561 16.023 104.066 22.526 104.066 84.674 0 49.946-45.365 84.271-109.024 84.271-68.015 0-110.03-35.465-113.38-88.83-.268-3.755 2.948-6.906 6.701-6.906ZM711.706 190.331h47.577c3.484 0 6.433 2.615 6.634 6.101 1.943 28.56 22.515 44.248 52.468 44.248 33.907 0 49.922-13.342 49.922-33.186s-13.737-28.224-62.52-41.566c-44.628-12.201-93.411-26.682-93.411-83.8689 0-45.3873 39.67-81.9920581 102.189-81.9920581 62.52 0 101.52 32.7833581 105.272 79.9137581.335 3.9554-2.747 7.3746-6.701 7.3746h-45.834c-3.351 0-6.232-2.4135-6.567-5.7656-2.748-23.3976-20.371-36.2026-46.17-36.2026-27.071 0-44.963 13.7436-44.963 32.046 0 21.7215 14.876 28.6268 53.742 39.6888 57.561 16.023 104.065 22.526 104.065 84.674 0 49.946-45.365 84.271-109.024 84.271-68.015 0-110.029-35.465-113.38-88.83-.268-3.755 2.949-6.906 6.701-6.906ZM955.754 3.82138h176.836c3.69 0 6.7 3.01688 6.7 6.70422v30.8391c0 3.6873-3.01 6.7042-6.7 6.7042h-123.43c-3.68 0-6.7 3.0169-6.7 6.7042v52.9629c0 3.687 3.02 6.704 6.7 6.704h110.1c3.68 0 6.7 3.017 6.7 6.704v30.84c0 3.687-3.02 6.704-6.7 6.704h-110.1c-3.68 0-6.7 3.017-6.7 6.704v64.762c0 3.688 3.02 6.704 6.7 6.704h125.37c3.69 0 6.71 3.017 6.71 6.705v31.978c0 3.688-3.02 6.705-6.71 6.705H955.821c-3.685 0-6.701-3.017-6.701-6.705V10.5256c0-3.68734 3.016-6.70422 6.701-6.70422h-.067ZM1172.26 3.82138h54.28c2.34 0 4.56 1.20675 5.76 3.28504l90.26 150.44158c28.21 46.527 31.63 61.813 31.63 61.813h1.14l-.74-208.7684c0-3.6873 3.02-6.70418 6.7-6.70418h39.94c3.69 0 6.7 3.01688 6.7 6.70418V275.474c0 3.688-3.01 6.705-6.7 6.705h-54.68c-2.34 0-4.49-1.207-5.76-3.218l-93.75-155.001c-21.71-35.8672-27.47-57.5887-27.47-57.5887h-.74V275.541c0 3.688-3.01 6.705-6.7 6.705h-39.94c-3.68 0-6.7-3.017-6.7-6.705V10.5256c0-3.68734 3.02-6.70422 6.7-6.70422h.07Z\"><\/path><\/g><\/svg>",
           "logo_width_mobile": 160,
           "logo_width_desktop": 210,
           "menu": "main-menu",
@@ -122,30 +27,30 @@
       "footer": {
         "type": "footer",
         "blocks": {
-          "bd506b0e-3466-4793-8882-e436f4644850": {
+          "d9415642-c23e-43cb-8b60-f08fe4d53d30": {
             "type": "newsletter",
             "settings": {
               "hide_on_mobile": false,
               "heading": "Keep In Touch",
               "content": "<p>Sign up to our newsletter lorem ipsum dolor sit amet, consectetur adipiscing elit.<\/p>",
-              "content_max_width": 310,
+              "content_max_width": 450,
               "placeholder": "Enter your Email"
             }
           },
-          "dd812cb1-4e16-4adc-a72d-e73ece0af2c4": {
+          "57c5dbc9-ca4e-4c03-aaa3-5382c86cc9f0": {
             "type": "text",
             "settings": {
               "hide_on_mobile": true,
               "heading": "About us",
               "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus.<\/p>",
-              "content_max_width": 550,
+              "content_max_width": 450,
               "url": "#"
             }
           }
         },
         "block_order": [
-          "bd506b0e-3466-4793-8882-e436f4644850",
-          "dd812cb1-4e16-4adc-a72d-e73ece0af2c4"
+          "d9415642-c23e-43cb-8b60-f08fe4d53d30",
+          "57c5dbc9-ca4e-4c03-aaa3-5382c86cc9f0"
         ],
         "settings": {
           "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. <\/p>",
@@ -156,210 +61,10 @@
           "menu_secondary": "footer",
           "menu_secondary_hide": false
         }
-      },
-      "main-password-header": {
-        "type": "main-password-header",
-        "settings": {
-          "logo": "<svg width=\"209\" height=\"42\" viewbox=\"0 0 209 42\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\"> <g clip-path=\"url(#clip0_323_283)\"> <path d=\"M0 20.9409C0 8.39803 7.80816 0 19.5751 0C29.0145 0 35.7882 5.24754 37.2802 13.2616C37.3896 13.872 36.9321 14.4529 36.3054 14.4529H30.0788C29.6014 14.4529 29.2134 14.1181 29.104 13.6554C28.0497 9.16596 24.3992 6.66526 19.585 6.66526C12.4533 6.66526 8.21597 12.3755 8.21597 20.9409C8.21597 29.9592 12.7417 35.3347 19.8735 35.3347C25.8714 35.3347 29.7207 31.9775 30.1186 26.9367V26.3755H20.0824C19.5353 26.3755 19.0877 25.9325 19.0877 25.391V21.0886C19.0877 20.5471 19.5353 20.1041 20.0824 20.1041H36.763C37.3101 20.1041 37.7577 20.5471 37.7577 21.0886V25.2532C37.4195 35.2757 30.2877 42 19.8735 42C7.80816 42 0 33.602 0 20.9409Z\" fill=\"black\"><\/path> <path d=\"M41.7861 0.561279H68.0354C68.5825 0.561279 69.0301 1.00432 69.0301 1.54581V6.07464C69.0301 6.61613 68.5825 7.05917 68.0354 7.05917H49.7136C49.1665 7.05917 48.7189 7.50221 48.7189 8.0437V15.8215C48.7189 16.363 49.1665 16.806 49.7136 16.806H66.056C66.6031 16.806 67.0507 17.249 67.0507 17.7905V22.3194C67.0507 22.8609 66.6031 23.3039 66.056 23.3039H49.7136C49.1665 23.3039 48.7189 23.7469 48.7189 24.2884V33.799C48.7189 34.3405 49.1665 34.7835 49.7136 34.7835H68.3238C68.8709 34.7835 69.3185 35.2265 69.3185 35.768V40.4642C69.3185 41.0057 68.8709 41.4488 68.3238 41.4488H41.796C41.2489 41.4488 40.8013 41.0057 40.8013 40.4642V1.54581C40.8013 1.00432 41.2489 0.561279 41.796 0.561279H41.7861Z\" fill=\"black\"><\/path> <path d=\"M71.2383 27.9507H78.3004C78.8176 27.9507 79.2553 28.3347 79.2851 28.8466C79.5636 33.0407 82.6272 35.3445 87.0734 35.3445C92.1064 35.3445 94.4837 33.3853 94.4837 30.4711C94.4837 27.5569 92.4446 26.3262 85.2034 24.367C78.5789 22.5752 71.3377 20.4486 71.3377 12.0506C71.3377 5.38529 77.2262 0.00976562 86.5064 0.00976562C95.7867 0.00976562 101.576 4.82411 102.133 11.7453C102.182 12.3262 101.725 12.8283 101.138 12.8283H94.3345C93.8372 12.8283 93.4094 12.4739 93.3498 11.9816C92.9419 8.54563 90.326 6.66518 86.5064 6.66518C82.488 6.66518 79.8322 8.68347 79.8322 11.3712C79.8322 14.5611 82.0404 15.5752 87.8095 17.1996C96.3537 19.5527 103.257 20.5077 103.257 29.6342C103.257 36.969 96.5228 42.0098 87.0734 42.0098C76.9775 42.0098 70.7409 36.8016 70.2436 28.9648C70.2038 28.4134 70.6812 27.9507 71.2383 27.9507Z\" fill=\"black\"><\/path> <path d=\"M105.644 27.9507H112.706C113.223 27.9507 113.661 28.3347 113.691 28.8466C113.979 33.0407 117.033 35.3445 121.479 35.3445C126.512 35.3445 128.889 33.3853 128.889 30.4711C128.889 27.5569 126.85 26.3262 119.609 24.367C112.985 22.5752 105.743 20.4486 105.743 12.0506C105.743 5.38529 111.632 0.00976562 120.912 0.00976562C130.192 0.00976562 135.981 4.82411 136.538 11.7453C136.588 12.3262 136.13 12.8283 135.544 12.8283H128.74C128.243 12.8283 127.815 12.4739 127.765 11.9816C127.357 8.54563 124.741 6.66518 120.912 6.66518C116.894 6.66518 114.238 8.68347 114.238 11.3712C114.238 14.5611 116.446 15.5752 122.215 17.1996C130.759 19.5527 137.662 20.5077 137.662 29.6342C137.662 36.969 130.928 42.0098 121.479 42.0098C111.383 42.0098 105.147 36.8016 104.649 28.9648C104.609 28.4134 105.087 27.9507 105.644 27.9507Z\" fill=\"black\"><\/path> <path d=\"M141.87 0.561279H168.119C168.666 0.561279 169.114 1.00432 169.114 1.54581V6.07464C169.114 6.61613 168.666 7.05917 168.119 7.05917H149.797C149.25 7.05917 148.803 7.50221 148.803 8.0437V15.8215C148.803 16.363 149.25 16.806 149.797 16.806H166.14C166.687 16.806 167.134 17.249 167.134 17.7905V22.3194C167.134 22.8609 166.687 23.3039 166.14 23.3039H149.797C149.25 23.3039 148.803 23.7469 148.803 24.2884V33.799C148.803 34.3405 149.25 34.7835 149.797 34.7835H168.408C168.955 34.7835 169.402 35.2265 169.402 35.768V40.4642C169.402 41.0057 168.955 41.4488 168.408 41.4488H141.88C141.333 41.4488 140.885 41.0057 140.885 40.4642V1.54581C140.885 1.00432 141.333 0.561279 141.88 0.561279H141.87Z\" fill=\"black\"><\/path> <path d=\"M174.008 0.561279H182.064C182.413 0.561279 182.741 0.738494 182.92 1.0437L196.318 23.1365C200.506 29.9692 201.013 32.2139 201.013 32.2139H201.182L201.073 1.55565C201.073 1.01416 201.52 0.571125 202.067 0.571125H207.995C208.542 0.571125 208.99 1.01416 208.99 1.55565V40.4544C208.99 40.9959 208.542 41.4389 207.995 41.4389H199.879C199.531 41.4389 199.212 41.2617 199.023 40.9663L185.108 18.204C181.885 12.9368 181.03 9.74693 181.03 9.74693H180.921V40.4642C180.921 41.0057 180.473 41.4488 179.926 41.4488H173.998C173.451 41.4488 173.003 41.0057 173.003 40.4642V1.54581C173.003 1.00432 173.451 0.561279 173.998 0.561279H174.008Z\" fill=\"black\"><\/path> <\/g> <defs> <clippath id=\"clip0_323_283\"> <rect width=\"209\" height=\"42\" fill=\"white\"><\/rect> <\/clippath> <\/defs> <\/svg>"
-        }
-      },
-      "main-password-footer": {
-        "type": "main-password-footer",
-        "settings": {
-          "color_scheme": "background-1"
-        }
-      },
-      "preheader": {
-        "type": "preheader",
-        "settings": {
-          "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus pellentesque habitant morbi.<\/p>",
-          "anchor_url": "#shopify-section-template--14315903189125__1660285776a2a0e2a4",
-          "anchor_label": "Go to shop"
-        }
       }
     },
     "content_for_index": [
 
     ]
-  },
-  "presets": {
-    "Default": {
-      "gradient_accent_2": "",
-      "colors_text": "#121212",
-      "colors_outline_button_labels": "#121212",
-      "gradient_background_1": "",
-      "gradient_background_2": "",
-      "type_header_font": "assistant_n4",
-      "heading_scale": 100,
-      "type_body_font": "assistant_n4",
-      "body_scale": 100,
-      "page_width": 1200,
-      "spacing_sections": 0,
-      "spacing_grid_horizontal": 8,
-      "spacing_grid_vertical": 8,
-      "buttons_border_thickness": 1,
-      "buttons_border_opacity": 100,
-      "buttons_radius": 0,
-      "buttons_shadow_opacity": 0,
-      "buttons_shadow_horizontal_offset": 0,
-      "buttons_shadow_vertical_offset": 4,
-      "buttons_shadow_blur": 5,
-      "variant_pills_border_thickness": 1,
-      "variant_pills_border_opacity": 55,
-      "variant_pills_radius": 40,
-      "variant_pills_shadow_opacity": 0,
-      "variant_pills_shadow_horizontal_offset": 0,
-      "variant_pills_shadow_vertical_offset": 4,
-      "variant_pills_shadow_blur": 5,
-      "inputs_border_thickness": 1,
-      "inputs_border_opacity": 55,
-      "inputs_radius": 0,
-      "inputs_shadow_opacity": 0,
-      "inputs_shadow_horizontal_offset": 0,
-      "inputs_shadow_vertical_offset": 4,
-      "inputs_shadow_blur": 5,
-      "card_style": "standard",
-      "card_image_padding": 0,
-      "card_text_alignment": "left",
-      "card_color_scheme": "background-2",
-      "card_border_thickness": 0,
-      "card_border_opacity": 10,
-      "card_corner_radius": 0,
-      "card_shadow_opacity": 0,
-      "card_shadow_horizontal_offset": 0,
-      "card_shadow_vertical_offset": 4,
-      "card_shadow_blur": 5,
-      "collection_card_style": "standard",
-      "collection_card_image_padding": 0,
-      "collection_card_text_alignment": "left",
-      "collection_card_color_scheme": "background-2",
-      "collection_card_border_thickness": 0,
-      "collection_card_border_opacity": 10,
-      "collection_card_corner_radius": 0,
-      "collection_card_shadow_opacity": 0,
-      "collection_card_shadow_horizontal_offset": 0,
-      "collection_card_shadow_vertical_offset": 4,
-      "collection_card_shadow_blur": 5,
-      "blog_card_style": "standard",
-      "blog_card_image_padding": 0,
-      "blog_card_text_alignment": "left",
-      "blog_card_color_scheme": "background-2",
-      "blog_card_border_thickness": 0,
-      "blog_card_border_opacity": 10,
-      "blog_card_corner_radius": 0,
-      "blog_card_shadow_opacity": 0,
-      "blog_card_shadow_horizontal_offset": 0,
-      "blog_card_shadow_vertical_offset": 4,
-      "blog_card_shadow_blur": 5,
-      "text_boxes_border_thickness": 0,
-      "text_boxes_border_opacity": 10,
-      "text_boxes_radius": 0,
-      "text_boxes_shadow_opacity": 0,
-      "text_boxes_shadow_horizontal_offset": 0,
-      "text_boxes_shadow_vertical_offset": 4,
-      "text_boxes_shadow_blur": 5,
-      "media_border_thickness": 1,
-      "media_border_opacity": 5,
-      "media_radius": 0,
-      "media_shadow_opacity": 0,
-      "media_shadow_horizontal_offset": 0,
-      "media_shadow_vertical_offset": 4,
-      "media_shadow_blur": 5,
-      "popup_border_thickness": 1,
-      "popup_border_opacity": 10,
-      "popup_corner_radius": 0,
-      "popup_shadow_opacity": 0,
-      "popup_shadow_horizontal_offset": 0,
-      "popup_shadow_vertical_offset": 4,
-      "popup_shadow_blur": 5,
-      "drawer_border_thickness": 1,
-      "drawer_border_opacity": 10,
-      "drawer_shadow_opacity": 0,
-      "drawer_shadow_horizontal_offset": 0,
-      "drawer_shadow_vertical_offset": 4,
-      "drawer_shadow_blur": 5,
-      "badge_position": "bottom left",
-      "badge_corner_radius": 40,
-      "sale_badge_color_scheme": "accent-2",
-      "sold_out_badge_color_scheme": "inverse",
-      "accent_icons": "text",
-      "social_twitter_link": "",
-      "social_facebook_link": "",
-      "social_pinterest_link": "",
-      "social_instagram_link": "",
-      "social_tiktok_link": "",
-      "social_tumblr_link": "",
-      "social_snapchat_link": "",
-      "social_youtube_link": "",
-      "social_vimeo_link": "",
-      "predictive_search_enabled": true,
-      "predictive_search_show_vendor": false,
-      "predictive_search_show_price": false,
-      "currency_code_enabled": true,
-      "sections": {
-        "header": {
-          "type": "header",
-          "settings": {
-            "menu": "main-menu"
-          }
-        },
-        "footer": {
-          "type": "footer",
-          "blocks": {
-            "footer-0": {
-              "type": "link_list",
-              "settings": {
-                "heading": "Quick links",
-                "menu": "footer"
-              }
-            },
-            "footer-1": {
-              "type": "link_list",
-              "settings": {
-                "heading": "Info",
-                "menu": "footer"
-              }
-            },
-            "footer-2": {
-              "type": "text",
-              "settings": {
-                "heading": "Our mission",
-                "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
-              }
-            }
-          },
-          "block_order": [
-            "footer-0",
-            "footer-1",
-            "footer-2"
-          ],
-          "settings": {
-            "color_scheme": "background-1",
-            "newsletter_enable": true,
-            "newsletter_heading": "Subscribe to our emails",
-            "show_social": true,
-            "enable_country_selector": false,
-            "enable_language_selector": false,
-            "payment_enable": true,
-            "margin_top": 48,
-            "padding_top": 36,
-            "padding_bottom": 36
-          }
-        },
-        "main-password-header": {
-          "type": "main-password-header",
-          "settings": {
-            "logo_max_width": 100,
-            "color_scheme": "background-1"
-          }
-        },
-        "main-password-footer": {
-          "type": "main-password-footer",
-          "settings": {
-            "color_scheme": "background-1"
-          }
-        }
-      }
-    }
   }
 }
