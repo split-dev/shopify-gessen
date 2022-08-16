@@ -12,7 +12,7 @@
         </style>
         <div class="col-lg-6{% if block.settings.hide_on_mobile %} d-none d-lg-block{% endif %}" {{ block.attributes }}>
           <div class="border pt-1 pb-1 pl-1 pr-1 h-100">
-            <h3 class="mb-0.5 text-0.875">{{ block.settings.heading }}</h3>
+            <h3 class="mb-0.5 text-primary text-0.875 lh-150">{{ block.settings.heading }}</h3>
             <div class="rte transparent-0.4" data-block-id="{{ block.id }}">
               {{ block.settings.content }}
             </div>
@@ -21,7 +21,7 @@
               {%- when 'text' -%}
                 {% if block.settings.url != blank %}
                   <div class="mt-2 d-flex justify-content-end">
-                    <a href="{{ block.settings.url }}" class="btn--circle border-2 btn--outline">
+                    <a href="{{ block.settings.url }}" class="btn--circle border-2 btn--outline btn--outline--dark">
                       {% render 'icon' with 'arrow-right' %}
                     </a>
                   </div>
@@ -55,7 +55,7 @@
                           placeholder="{{ block.settings.placeholder }}"
                           required
                         >
-                        <button type="submit" class="form__submit btn--circle btn--outline border-2 position-absolute" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
+                        <button type="submit" class="form__submit btn--circle btn--outline btn--outline--dark border-2 position-absolute" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
                           {% render 'icon' with 'arrow-right' %}
                         </button>
                       </div>
@@ -78,7 +78,7 @@
   <div class="footer__bottom mt-1 mt-md-2 pt-1 pb-1 pl-1 pr-1 border">
     <div class="row">
       <div class="col-lg-6">
-        <div class="rte">
+        <div class="rte text-dark">
           {{ section.settings.content }}
         </div>
 
@@ -102,7 +102,7 @@
             <ul class="list-unstyled rte d-flex flex-wrap mb-n1">
               {% for link in section.settings.menu_primary.links %}
                 <li class="mb-1{% unless forloop.last %} mr-1{% endunless %}">
-                  <a href="{{ link.url }}" class="link">{{ link.title }}</a>
+                  <a href="{{ link.url }}" class="link text-dark">{{ link.title }}</a>
                 </li>
               {% endfor %}
             </ul>
@@ -113,7 +113,7 @@
             <ul class="list-unstyled rte d-flex flex-wrap justify-content-lg-end mb-n1">
               {% for link in section.settings.menu_secondary.links %}
                 <li class="mb-1{% unless forloop.last %} mr-1{% endunless %}">
-                  <a href="{{ link.url }}" class="link">{{ link.title }}</a>
+                  <a href="{{ link.url }}" class="link text-dark">{{ link.title }}</a>
                 </li>
               {% endfor %}
             </ul>

@@ -44,18 +44,26 @@
     border-color: rgb(var(--color-primary));
     transition: var(--transition-default);
 
-    &:hover:not([disabled]) {
+    &:hover:not([disabled]),
+    &:active,
+    &:focus {
       color: rgb(var(--color-primary));
       background-color: rgb(var(--color-light));
     }
   }
   &--outline {
     color: rgb(var(--color-primary));
-    background-color: rgb(var(--color-light));
+    //background-color: rgb(var(--color-light));
+    background-color: transparent;
     border-color: rgb(var(--color-primary));
     transition: var(--transition-default);
+    &--dark {
+      color: rgb(var(--color-dark));
+    }
 
-    &:hover:not([disabled]) {
+    &:hover:not([disabled]),
+    &:active,
+    &:focus {
       color: rgb(var(--color-light));
       background-color: rgb(var(--color-primary));
     }

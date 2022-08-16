@@ -10,6 +10,7 @@ function detectBrowser() {
     return 'safari';
   }
 }
+if (detectBrowser() === 'safari') document.documentElement.classList.add('safari');
 
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');

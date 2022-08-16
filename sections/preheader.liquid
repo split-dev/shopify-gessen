@@ -1,12 +1,12 @@
 <div class="container">
   <div class="preheader__inner d-flex flex-column justify-content-start pt-1">
     <div>
-      <div class="preheader__inner__content rte text-1.25 text-md-1.5">
+      <div class="preheader__inner__content rte text-1.25 lh-120 text-md-1.5">
         {{ section.settings.content }}
       </div>
       <div class="mt-1">
         <a href="{{ section.settings.anchor_url }}" class="d-flex align-items-center rte no-underline">
-          <span class="btn--outline border-2 rounded-circle flex-center flex-shrink-0 mr-1" style="width: 25px; height: 25px; padding-top: 2px">
+          <span class="btn--outline btn--outline--dark border-2 rounded-circle flex-center flex-shrink-0 mr-1" style="width: 25px; height: 25px; padding-top: 2px">
             {% render 'icon' with 'chevron-down' %}
           </span>
           <span class="text-dark">{{ section.settings.anchor_label }}</span>

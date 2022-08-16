@@ -1,6 +1,14 @@
 .social-list {
   &__link {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  &--desk-sm {
+    .social-list__link {
+      @include media-breakpoint-up(md) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
   }
 }

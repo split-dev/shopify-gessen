@@ -1,5 +1,5 @@
-$values-mobile: "0.625", "0.875", "1.125", "1.25";
-$values-desktop:  "1", "1.5";
+$values-mobile: "0.625", "0.875", "1", "1.125", "1.25";
+$values-desktop: "0.625", "1", "1.5";
 
 @each $value in $values-mobile {
   $formatted-value: str-replace($value, ".", "\\.");

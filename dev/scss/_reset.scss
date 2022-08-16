@@ -1,3 +1,13 @@
+:focus {
+  outline: none;
+}
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
 a:empty,
 ul:empty,
 dl:empty,
@@ -14,6 +24,10 @@ h6:empty {
   display: none;
 }
 
+a,
+button {
+  text-decoration-color: rgb(var(--color-primary)) ;
+}
 button {
   font-family: inherit;
   &:not([disabled]) {
