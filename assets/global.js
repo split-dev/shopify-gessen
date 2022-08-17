@@ -807,6 +807,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  // window.initItemAnimation = () => {
+    // const animateItems = document.querySelectorAll('[data-item-wrapper]');
+    // const animationFrame = -175;
+    //
+    // const elementInView = (el, scrollOffset = 50) => {
+    //   const elementTop = el.getBoundingClientRect().top;
+    //
+    //   let calcValue = elementTop - ((window.innerHeight || document.documentElement.clientHeight) - scrollOffset)
+    //
+    //   if (calcValue > 0) {
+    //     el.style.setProperty('--progress', `0`);
+    //   } else if (calcValue <= animationFrame) {
+    //     el.style.setProperty('--progress', '1');
+    //   } else {
+    //     el.style.setProperty('--progress', `${calcValue / 100 * -1}`);
+    //   }
+    // };
+    // function scrollHandle () {
+    //   animateItems.forEach(item => {
+    //     elementInView(item)
+    //   });
+    // }
+    // scrollHandle();
+    // document.addEventListener('resize', scrollHandle);
+    // document.addEventListener('scroll', scrollHandle);
+  // }
+  // window.initItemAnimation();
+  AOS.init();
+
   // Custom load more
   class LoadMore extends HTMLElement {
     constructor() {
@@ -843,6 +872,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelector(this.options.container).innerHTML += dom.body.innerHTML;
         this.options.page += 1;
+        AOS.refreshHard();
       });
     }
   }

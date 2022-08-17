@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row" data-mansory-grid>
       {% for block in section.blocks %}
-        <div class="col-12 col-md-6 col-lg-3{% if block.settings.hide_on_mobile %} d-none d-md-block{% endif %}" data-mansory-grid-item>
+        <div class="col-12 col-md-6 col-lg-3{% if block.settings.hide_on_mobile %} d-none d-md-block{% endif %}" data-mansory-grid-item data-item-wrapper>
           {%- assign image = block.settings.image -%}
 
           {%- capture cycle_content -%}
@@ -16,7 +16,7 @@
           {%- endif -%}
 
           {% if image != blank %}
-            <div>
+            <div data-aos="zoom-in-up">
               <div class="border position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
                 <img srcset="{%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
                   {%- if image.width >= 360 -%}{{ image | image_url: width: 360 }} 360w,{%- endif -%}
@@ -46,9 +46,11 @@
   document.addEventListener('DOMContentLoaded', () => {
     const selector = document.querySelector('#shopify-section-{{ section.id }} [data-mansory-grid]');
 
-    const masonry = new Masonry(selector, {
+    new Masonry(selector, {
       itemSelector: '[data-mansory-grid-item]'
     });
+
+    masonry.on('layoutComplete', AOS.refreshHard)
 
     // document.addEventListener('shopify:section:load', () => {
     //   masonry.reloadItems()
