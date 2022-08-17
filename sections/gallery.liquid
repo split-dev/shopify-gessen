@@ -16,7 +16,7 @@
           {%- endif -%}
 
           {% if image != blank %}
-            <div data-aos="zoom-in-up">
+            <div data-aos>
               <div class="border position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
                 <img srcset="{%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
                   {%- if image.width >= 360 -%}{{ image | image_url: width: 360 }} 360w,{%- endif -%}

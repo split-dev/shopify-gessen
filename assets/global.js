@@ -729,6 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click',() => {
         btnWrapper.classList.toggle('open');
         btn.classList.toggle('btn--outline');
+        btn.classList.toggle('text-primary');
         document.body.classList.toggle('overflow-hidden');
       });
     })
