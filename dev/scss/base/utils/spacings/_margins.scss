@@ -1,7 +1,7 @@
 // Generate util margin classes
 // Example: .mt-1, .mb-md-2, .mr-md-0.75
 
-$values-y: "0", "0.5", "1", "2", "5", "7.5";
+$values-y: "0", "0.5", "1", "1.5", "2", "5", "7.5";
 $values-x: "0", "0.5", "1";
 
 .mt-auto {
@@ -79,4 +79,9 @@ $values-x: "0", "0.5", "1";
 }
 .mb-n1 {
   margin-bottom: -1rem;
+}
+@include media-breakpoint-up(md) {
+  .mt-md-n0\.5 {
+    margin-top: -0.5rem;
+  }
 }

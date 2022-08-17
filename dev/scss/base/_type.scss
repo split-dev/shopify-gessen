@@ -89,7 +89,9 @@ h6,
 .rte {
   font-size: 0.875rem;
   line-height: 155%;
-
+  a {
+    @extend .link;
+  }
   p {
     margin-bottom: 2rem;
     &:first-child {
@@ -97,6 +99,23 @@ h6,
     }
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+  h2 {
+    @include media-breakpoint-up(md) {
+      line-height: 100%;
+    }
+  }
+  h4 {
+    @include media-breakpoint-down(sm) {
+      line-height: 130%;
+    }
+  }
+  h4,
+  h5,
+  h6 {
+    @include media-breakpoint-up(md) {
+      margin-bottom: 1.4rem;
     }
   }
 }
