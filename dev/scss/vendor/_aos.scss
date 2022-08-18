@@ -1,37 +1,36 @@
-@keyframes zoomInUp {
-  0% {
-    transform: translateY(75px) scale(0);
-    border-radius: 50%;
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(calc(25vw / 3 * -1)) scale(0.3);
-    border-radius: 50%;
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    border-radius: 5px;
-    opacity: 1;
-  }
-}
+//@keyframes zoomInUp {
+//  0% {
+//    transform: translateY(75px) scale(0);
+//    border-radius: 50%;
+//    opacity: 0;
+//  }
+//  50% {
+//    transform: translateY(calc(25vw / 3 * -1)) scale(0.3);
+//    border-radius: 50%;
+//    opacity: 0.7;
+//  }
+//  100% {
+//    transform: translateY(0) scale(1);
+//    border-radius: 5px;
+//    opacity: 1;
+//  }
+//}
 
 [data-aos] {
   //transform: translateY(75px) scale(0);
   //border-radius: 50%;
   opacity: 0;
   transition: var(--transition-default);
+  @include media-breakpoint-up(md) {
+    transition-delay: var(--animation-delay);
+  }
   &.aos-animate {
-    animation-iteration-count: 1;
-    animation-name: zoomInUp;
-    animation-duration: 400ms;
+    //animation-iteration-count: 1;
+    //animation-name: zoomInUp;
+    //animation-duration: 400ms;
     //animation-fill-mode: forwards;
 
-    transition-delay: var(--transition-default);
+    //transition-delay: var(--transition-default);
     opacity: 1;
-
-    @include media-breakpoint-up(md) {
-      animation-delay: var(--animation-delay);
-    }
   }
 }
