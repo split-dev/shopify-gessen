@@ -1,0 +1,20 @@
+.product {
+  &__media {
+    &__badge {
+      width: 30px;
+      bottom: 1rem;
+      left: 1rem;
+      @include media-breakpoint-up(md) {
+        width: 54px;
+      }
+    }
+    &__nav {
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+}
+
+model-viewer::part(default-ar-button) {
+  display: none !important;
+}

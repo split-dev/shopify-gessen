@@ -1,6 +1,6 @@
 <div class="mt-1 mb-1">
   <div class="container">
-    <div class="row" data-mansory-grid>
+    <div class="row row--sm overflow-hidden" data-mansory-grid>
       {% for block in section.blocks %}
         <div class="col-12 col-md-6 col-lg-3{% if block.settings.hide_on_mobile %} d-none d-md-block{% endif %}" data-mansory-grid-item data-item-wrapper>
           {%- assign image = block.settings.image -%}

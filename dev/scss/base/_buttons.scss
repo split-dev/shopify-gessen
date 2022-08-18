@@ -44,11 +44,11 @@
     border-color: rgb(var(--color-primary));
     transition: var(--transition-default);
 
-    &:hover:not([disabled]),
-    &:active,
-    &:focus {
-      color: rgb(var(--color-primary));
-      background-color: rgb(var(--color-light));
+    &:hover:not([disabled]) {
+      @include media-breakpoint-up(md) {
+        color: rgb(var(--color-primary));
+        background-color: rgb(var(--color-light));
+      }
     }
   }
   &--outline {
@@ -61,11 +61,11 @@
       color: rgb(var(--color-dark));
     }
 
-    &:hover:not([disabled]),
-    &:active,
-    &:focus {
-      color: rgb(var(--color-light));
-      background-color: rgb(var(--color-primary));
+    &:hover:not([disabled]) {
+      @include media-breakpoint-up(md) {
+        color: rgb(var(--color-light));
+        background-color: rgb(var(--color-primary));
+      }
     }
   }
   &--circle {

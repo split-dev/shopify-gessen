@@ -748,7 +748,10 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       handle: () => {
         let width = `${100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100)}`;
-        headerScroll.selectors.header.style.setProperty('--progress', width);
+
+        requestAnimationFrame(() => {
+          headerScroll.selectors.header.style.setProperty('--progress', width);
+        });
 
         if (width >= 1) {
           headerScroll.selectors.navigation.classList.add('transparent-0', 'events-none')
@@ -808,33 +811,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // window.initItemAnimation = () => {
-    // const animateItems = document.querySelectorAll('[data-item-wrapper]');
-    // const animationFrame = -175;
-    //
-    // const elementInView = (el, scrollOffset = 50) => {
-    //   const elementTop = el.getBoundingClientRect().top;
-    //
-    //   let calcValue = elementTop - ((window.innerHeight || document.documentElement.clientHeight) - scrollOffset)
-    //
-    //   if (calcValue > 0) {
-    //     el.style.setProperty('--progress', `0`);
-    //   } else if (calcValue <= animationFrame) {
-    //     el.style.setProperty('--progress', '1');
-    //   } else {
-    //     el.style.setProperty('--progress', `${calcValue / 100 * -1}`);
-    //   }
-    // };
-    // function scrollHandle () {
-    //   animateItems.forEach(item => {
-    //     elementInView(item)
-    //   });
-    // }
-    // scrollHandle();
-    // document.addEventListener('resize', scrollHandle);
-    // document.addEventListener('scroll', scrollHandle);
-  // }
-  // window.initItemAnimation();
+  // PDP Media
+  (() => {
+    const btns = document.querySelectorAll('[data-product-media-nav]'),
+          slideDOM = document.querySelector('[data-product-media]');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        let slider = Flickity.data(slideDOM);
+
+        btn.dataset.productMediaNav === 'next'
+          ? slider.next()
+          : slider.previous();
+      });
+    });
+  })();
+
   AOS.init();
 
   // Custom load more

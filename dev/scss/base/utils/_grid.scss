@@ -26,6 +26,11 @@ $columns-mobile: 3, 6, 12;
       max-width: 100%;
     }
   }
+  @include media-breakpoint-down(sm) {
+    &--sm {
+      --bs-gutter-y: 1rem;
+    }
+  }
 }
 
 @each $value in $columns-mobile {

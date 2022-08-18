@@ -27,7 +27,7 @@
 
 // --------------------------------------------------
 // Vendors
-//@import "vendor/flickity-slider";
+@import "vendor/flickity";
 @import "vendor/aos";
 
 // --------------------------------------------------
@@ -37,6 +37,7 @@
 @import "components/social-list";
 @import "components/card-product";
 @import "components/loading-overlay";
+@import "components/breadcrumbs";
 
 // --------------------------------------------------
 // Layout
@@ -47,6 +48,7 @@
 // --------------------------------------------------
 // Sections
 @import "sections/preheader";
+@import "sections/main-product";
 @import "sections/main-contact";
 
 

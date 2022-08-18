@@ -41,9 +41,7 @@ h5,
 h6 {
   margin-top: 0;
   margin-bottom: 2rem;
-  @include media-breakpoint-up(md) {
-    margin-bottom: 2.57rem;
-  }
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -104,6 +102,7 @@ h6,
   h2 {
     @include media-breakpoint-up(md) {
       line-height: 100%;
+      font-size: 4rem;
     }
   }
   h4 {

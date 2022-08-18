@@ -21,7 +21,7 @@
      data-aos
      style="--animation-delay: {{- anim_delay -}}ms">
   <div class="card-product__media">
-    {% assign featured_media = card_product.featured_media %}
+    {% assign featured_media = card_product.images[0] %}
     {% if featured_media != blank %}
       <div class="position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%">
         {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
@@ -43,22 +43,22 @@
         >
         {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
-        {%- if card_product.media[1] != nil and settings.card_show_secondary_image -%}
+        {%- if card_product.images[1] != nil and settings.card_show_secondary_image -%}
           <img
-            srcset="{%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
-                  {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
-                  {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
-                  {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
-                  {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
-                  {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
-                  {{ card_product.media[1] | image_url }} {{ card_product.media[1].width }}w"
-            src="{{ card_product.media[1] | image_url: width: 533 }}"
+            srcset="{%- if card_product.images[1].width >= 165 -%}{{ card_product.images[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if card_product.images[1].width >= 360 -%}{{ card_product.images[1] | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if card_product.images[1].width >= 533 -%}{{ card_product.images[1] | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if card_product.images[1].width >= 720 -%}{{ card_product.images[1] | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if card_product.images[1].width >= 940 -%}{{ card_product.images[1] | image_url: width: 940 }} 940w,{%- endif -%}
+                  {%- if card_product.images[1].width >= 1066 -%}{{ card_product.images[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
+                  {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
+            src="{{ card_product.images[1] | image_url: width: 533 }}"
             sizes="(min-width: 1199px) calc((100vw - 4rem) / 4), (min-width: 990px) calc((100vw - 4rem) / 3), (min-width: 750px) calc((100vw - 4rem) / 2), calc(100vw - 4rem)"
             alt=""
             class="absolute-fill fit-cover w-100 h-100 motion-reduce"
             loading="lazy"
-            width="{{ card_product.media[1].width }}"
-            height="{{ card_product.media[1].height }}"
+            width="{{ card_product.images[1].width }}"
+            height="{{ card_product.images[1].height }}"
           >
         {%- endif -%}
       </div>
