@@ -11,4 +11,8 @@
     <svg class="{{ class }}" width="25" height="16"  viewBox="0 0 25 16" fill="none" {{ default_attributes }}><path d="M24.4053 8.70711c.3906-.39053.3906-1.02369 0-1.41422L18.0414.928932c-.3905-.390525-1.0237-.390525-1.4142 0-.3905.390528-.3905 1.023688 0 1.414218L22.284 8l-5.6568 5.6569c-.3906.3905-.3906 1.0236 0 1.4142.3905.3905 1.0237.3905 1.4142 0l6.3639-6.36399ZM1.28315 7C.730862 7 .283146 7.44771.283146 8c0 .55228.447716 1 1.000004 1V7ZM23.6982 7H1.28315v2H23.6982V7Z" fill="currentColor"/></svg>
   {%- when 'arrow-left' -%}
     <svg class="{{ class }}" width="25" height="16" viewBox="0 0 25 16" fill="none" {{ default_attributes }}><path d="M.678178 7.29289c-.390525.39053-.390525 1.02369 0 1.41422L7.04214 15.0711c.39052.3905 1.02369.3905 1.41421 0 .39053-.3906.39053-1.0237 0-1.4142L2.7995 8l5.65685-5.65685c.39053-.39053.39053-1.02369 0-1.414217-.39052-.390524-1.02369-.390524-1.41421 0L.678178 7.29289ZM23.9151 9c.5523 0 1-.44771 1-1 0-.55228-.4477-1-1-1v2ZM1.38528 9H23.9151V7H1.38528v2Z" fill="currentColor"/></svg>
+  {%- when 'plus' -%}
+    <svg class="{{ class }}" width="13" height="13" viewBox="0 0 13 13" fill="none" {{ default_attributes }}><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6.49031 1v11M12 6.62158H1"/></svg>
+  {%- when 'minus' -%}
+    <svg class="{{ class }}" width="13" height="3" viewBox="0 0 13 3" fill="none" {{ default_attributes }}><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 1.62158H1"/></svg>
 {%- endcase -%}

@@ -13,8 +13,25 @@
       right: 1rem;
     }
   }
-}
+  &__form {
+    &__submit {
 
+    }
+    @include media-breakpoint-down(sm) {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      &__submit {
+        width: 100%;
+      }
+    }
+  }
+}
+input:checked + label.btn--outline {
+  background-color: rgb(var(--color-primary));
+  color: rgb(var(--color-light));
+}
 model-viewer::part(default-ar-button) {
   display: none !important;
 }

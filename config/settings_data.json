@@ -4,7 +4,7 @@
     "currency_code_enabled": false,
     "social_facebook_link": "#",
     "social_instagram_link": "#",
-    "favicon": "shopify:\/\/shop_images\/favicon_dc1b4385-dd28-4021-9e88-b64c7a57b5b9.png",
+    "favicon": "shopify:\/\/shop_images\/favicon_6abae0a1-4118-4b3d-8469-671c6888ca4d.png",
     "sections": {
       "preheader": {
         "type": "preheader",
@@ -21,7 +21,11 @@
           "logo_width_mobile": 160,
           "logo_width_desktop": 210,
           "menu": "main-menu",
-          "show_social": true
+          "show_social": true,
+          "footer_link_1_url": "#",
+          "footer_link_1_label": "Return Policy",
+          "footer_link_2_url": "mailto:support@studiogessen.com",
+          "footer_link_2_label": "support@studiogessen.com"
         }
       },
       "footer": {

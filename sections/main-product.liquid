@@ -85,7 +85,7 @@
       <div class="col-12 col-md-6">
         <div
           id="ProductInfo-{{ section.id }}"
-          class="product__info-container"
+          class="d-flex flex-column justify-content-start h-100"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
@@ -98,60 +98,79 @@
                 <h1 class="mb-0 text-1.125 font-bold text-dark">{{ product.title | escape }}</h1>
                 <span class="ml-0.5 mr-0.5"> - </span>
                 <span data-price>
-                  {% if product.available %}
-                    {% if settings.currency_code_enabled %}
-                      {{ product.selected_or_first_available_variant.price | money_with_currency }}
-                    {% else %}
-                      {{ product.selected_or_first_available_variant.price | money }}
-                    {% endif %}
+                  {% if settings.currency_code_enabled %}
+                    {{ product.selected_or_first_available_variant.price | money_with_currency }}
                   {% else %}
-                    <span>Sold out</span>
+                    {{ product.selected_or_first_available_variant.price | money }}
                   {% endif %}
                 </span>
               </div>
             {%- when 'description' -%}
               {%- if product.description != blank -%}
-              <div class="md-1 rte text-dark transparent-0.6">
+              <div class="mb-1 rte text-dark transparent-0.6"  {{ block.shopify_attributes }}>
                 {{ product.description }}
               </div>
               {%- endif -%}
             {%- when 'custom_liquid' -%}
               {{ block.settings.custom_liquid }}
+            {%- when 'accordion' -%}
+               <div class="mb-1" {{ block.shopify_attributes }}>
+                 <div class="accordion text-0.875 lh-150" data-accordion>
+                   <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
+                           data-accordion-toggle>
+                     <span class="accordion__icon border rounded-circle mr-1 position-relative">
+                       {% render 'icon' with 'plus', class: 'accordion__icon--plus transition-default absolute-center' %}
+                       {% render 'icon' with 'minus', class: 'accordion__icon--minus transition-default absolute-center' %}
+                     </span>
+
+                     <span>
+                       {{ block.settings.heading }}
+                     </span>
+                   </button>
+                   <div class="accordion__content overflow-hidden" id="content_{{ forloop.index }}" aria-labelledby="button_{{ forloop.index }}"
+                        data-accordion-content>
+                     <div class="mt-1 rte text-dark transparent-0.6">{{ block.settings.content }}</div>
+                   </div>
+                 </div>
+               </div>
             {%- when 'variant_picker' -%}
             {%- unless product.has_only_default_variant -%}
               {%- if block.settings.picker_type == 'button' -%}
-              <variant-radios
-                class="no-js-hidden"
-                data-section="{{ section.id }}"
-                data-url="{{ product.url }}"
-                {{ block.shopify_attributes }}
-              >
-                {%- for option in product.options_with_values -%}
-                  <fieldset class="js product-form__input">
-                    <legend class="form__label">{{ option.name }}</legend>
-                    {%- for value in option.values -%}
-                      <input
-                        type="radio"
-                        id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                        name="{{ option.name }}"
-                        value="{{ value | escape }}"
-                        form="{{ product_form_id }}"
-                        {% if option.selected_value == value %}
-                          checked
-                        {% endif %}
-                      >
-                      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-                        {{ value }}
-                      </label>
-                    {%- endfor -%}
-                  </fieldset>
-                {%- endfor -%}
-                <script type="application/json">
-                      {{ product.variants | json }}
-                    </script>
-              </variant-radios>
+                <variant-radios
+                  class="no-js-hidden mt-1 mb-2 mt-md-0"
+                  data-section="{{ section.id }}"
+                  data-url="{{ product.url }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- for option in product.options_with_values -%}
+                    <fieldset class="d-flex js border-none pt-0 pr-0 pb-0 pl-0 mt-0 mr-0 mb-0 ml-0{% unless forloop.last %} mb-2{% endunless %}">
+                      <div class="mb-n1">
+                        {%- for value in option.values -%}
+                          <input
+                            type="radio"
+                            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                            name="{{ option.name }}"
+                            value="{{ value | escape }}"
+                            form="{{ product_form_id }}"
+                            class="visually-hidden"
+                            {% if option.selected_value == value %}
+                              checked
+                            {% endif %}
+                          >
+                          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                 class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
+                            {{ value }}
+                          </label>
+                        {%- endfor -%}
+                      </div>
+                    </fieldset>
+                  {%- endfor -%}
+                  <script type="application/json">
+                        {{ product.variants | json }}
+                      </script>
+                </variant-radios>
               {%- else -%}
-              <variant-selects
+                <variant-selects
                 class="no-js-hidden"
                 data-section="{{ section.id }}"
                 data-url="{{ product.url }}"
@@ -180,7 +199,6 @@
                           </option>
                         {%- endfor -%}
                       </select>
-                      {% render 'icon-caret' %}
                     </div>
                   </div>
                 {%- endfor -%}
@@ -191,58 +209,9 @@
               </variant-selects>
               {%- endif -%}
             {%- endunless -%}
-
-              <noscript class="product-form__noscript-wrapper-{{ section.id }}">
-                <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-                  <label class="form__label" for="Variants-{{ section.id }}">
-                    {{- 'products.product.product_variants' | t -}}
-                  </label>
-                  <div class="select">
-                    <select
-                      name="id"
-                      id="Variants-{{ section.id }}"
-                      class="select__select"
-                      form="{{ product_form_id }}"
-                    >
-                      {%- for variant in product.variants -%}
-                        <option
-                          {% if variant == product.selected_or_first_available_variant %}
-                            selected="selected"
-                          {% endif %}
-                          {% if variant.available == false %}
-                            disabled
-                          {% endif %}
-                          value="{{ variant.id }}"
-                        >
-                          {{ variant.title }}
-                          {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
-                          - {{ variant.price | money | strip_html }}
-                        </option>
-                      {%- endfor -%}
-                    </select>
-                    {% render 'icon-caret' %}
-                  </div>
-                </div>
-              </noscript>
             {%- when 'buy_buttons' -%}
-              <div {{ block.shopify_attributes }}>
-                <product-form class="product-form">
-                  <div class="product-form__error-message-wrapper" role="alert" hidden>
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      role="presentation"
-                      class="icon icon-error"
-                      viewBox="0 0 13 13"
-                    >
-                      <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
-                      <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
-                      <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
-                      <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
-                    </svg>
-                    <span class="product-form__error-message"></span>
-                  </div>
-
+              <div class="mt-auto" {{ block.shopify_attributes }}>
+                <product-form class="product__form d-block">
                   {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                     <input
                       type="hidden"
@@ -250,11 +219,11 @@
                       value="{{ product.selected_or_first_available_variant.id }}"
                       disabled
                     >
-                    <div class="product-form__buttons">
+                    <div>
                       <button
                         type="submit"
                         name="add"
-                        class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+                        class="btn btn--primary font-regular text-uppercase text-1.25 lh-110"
                         {% if product.selected_or_first_available_variant.available == false %}
                           disabled
                         {% endif %}
@@ -266,21 +235,12 @@
                             {{ 'products.product.sold_out' | t }}
                           {%- endif -%}
                         </span>
-                        <div class="loading-overlay__spinner hidden">
-                          <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            role="presentation"
-                            class="spinner"
-                            viewBox="0 0 66 66"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                          </svg>
-                        </div>
+
                       </button>
                       {%- if block.settings.show_dynamic_checkout -%}
-                        {{ form | payment_button }}
+                        <div class="mt-0.5">
+                          {{ form | payment_button }}
+                        </div>
                       {%- endif -%}
                     </div>
                   {%- endform -%}
@@ -455,6 +415,27 @@
           "id": "custom_liquid",
           "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label",
           "info": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "page",
+          "id": "content_page",
+          "label": "Page"
         }
       ]
     }

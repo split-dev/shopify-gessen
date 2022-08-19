@@ -38,6 +38,9 @@
     font-weight: 400;
     opacity: 0.6;
   }
+  &--sm {
+    padding: 5px 1.25rem 6px;
+  }
   &--primary {
     color: rgb(var(--color-light));
     background-color: rgb(var(--color-primary));

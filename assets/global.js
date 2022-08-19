@@ -552,7 +552,6 @@ class VariantSelects extends HTMLElement {
     this.updateMasterId();
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
-    this.removeErrorMessage();
 
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
@@ -621,14 +620,6 @@ class VariantSelects extends HTMLElement {
       pickUpAvailability.removeAttribute('available');
       pickUpAvailability.innerHTML = '';
     }
-  }
-
-  removeErrorMessage() {
-    const section = this.closest('section');
-    if (!section) return;
-
-    const productForm = section.querySelector('product-form');
-    if (productForm) productForm.handleErrorMessage();
   }
 
   renderProductInfo() {
@@ -870,4 +861,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   customElements.define('load-more', LoadMore);
+
+  // Accordion
+  (() => {
+    const accordions = document.querySelectorAll('[data-accordion]');
+
+    accordions.forEach(accordion => {
+      let btn = accordion.querySelector('[data-accordion-toggle]'),
+          content = accordion.querySelector('[data-accordion-content]');
+
+      btn.addEventListener('click', () => {
+        content.style.maxHeight
+            ? (content.style.maxHeight = null, btn.setAttribute('aria-expanded', 'false'))
+            : (content.style.maxHeight = content.scrollHeight + 'px', btn.setAttribute('aria-expanded', 'true'));
+      });
+    });
+  })();
 });

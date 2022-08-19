@@ -115,7 +115,9 @@
     }
   }
   + .header__nav__wrapper {
-    opacity: 0;
-    pointer-events: none;
+    @include media-breakpoint-down(md) {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 }

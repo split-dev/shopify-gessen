@@ -1,0 +1,29 @@
+.accordion {
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    &--plus {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    &--minus {
+      transform: translate(-50%, -50%) scale(0);
+    }
+  }
+  &__content {
+    max-height: 0;
+    transition: max-height var(--transition-default);
+  }
+  [aria-expanded="true"] {
+    .accordion__content {
+      max-height: 3000px;
+    }
+    .accordion__icon {
+        &--plus {
+          transform: translate(-50%, -50%) scale(0);
+        }
+        &--minus {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+  }
+}

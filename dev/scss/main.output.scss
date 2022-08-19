@@ -32,17 +32,19 @@
 
 // --------------------------------------------------
 // Components
-@import "components/price";
+//@import "components/price";
 @import "components/form";
 @import "components/social-list";
 @import "components/card-product";
 @import "components/loading-overlay";
 @import "components/breadcrumbs";
+@import "components/accordion";
 
 // --------------------------------------------------
 // Layout
 @import "layouts/header";
 @import "layouts/body";
+@import "layouts/cart";
 @import "layouts/footer";
 @import "layouts/challenlge";
 
