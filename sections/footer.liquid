@@ -29,42 +29,43 @@
               {%- when 'newsletter' -%}
                 <div class="mt-2">
                   {% form 'customer' %}
-                    <input type="hidden" name="contact[tags]" value="newsletter">
-                    <div class="newsletter-form__field-wrapper">
-                      <div class="position-relative">
-                        <label class="visually-hidden" for="NewsletterForm--{{ section.id }}">
-                          {{ 'newsletter.label' | t }}
-                        </label>
-                        <input
-                          id="NewsletterForm--{{ section.id }}"
-                          type="email"
-                          name="contact[email]"
-                          class="form__input border w-100 text-1.125"
-                          value="{{ form.email }}"
-                          aria-required="true"
-                          autocorrect="off"
-                          autocapitalize="off"
-                          autocomplete="email"
-                          {% if form.errors %}
-                            autofocus
-                            aria-invalid="true"
-                            aria-describedby="Newsletter-error--{{ section.id }}"
-                            {% elsif form.posted_successfully? %}
-                            aria-describedby="Newsletter-success--{{ section.id }}"
-                          {% endif %}
-                          placeholder="{{ block.settings.placeholder }}"
-                          required
-                        >
-                        <button type="submit" class="form__submit btn--circle btn--outline btn--outline--dark border-2 position-absolute" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
-                          {% render 'icon' with 'arrow-right' %}
-                        </button>
-                      </div>
-                      {%- if form.errors -%}
-                        <p class="text-0.875 mb-0" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
-                      {%- endif -%}
-                    </div>
                     {%- if form.posted_successfully? -%}
                       <h3 class="text-0.875 mb-0" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
+                    {% else %}
+                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      <div class="newsletter-form__field-wrapper">
+                        <div class="position-relative">
+                          <label class="visually-hidden" for="NewsletterForm--{{ section.id }}">
+                            {{ 'newsletter.label' | t }}
+                          </label>
+                          <input
+                            id="NewsletterForm--{{ section.id }}"
+                            type="email"
+                            name="contact[email]"
+                            class="form__input border w-100 text-1.125"
+                            value="{{ form.email }}"
+                            aria-required="true"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            autocomplete="email"
+                            {% if form.errors %}
+                              autofocus
+                              aria-invalid="true"
+                              aria-describedby="Newsletter-error--{{ section.id }}"
+                              {% elsif form.posted_successfully? %}
+                              aria-describedby="Newsletter-success--{{ section.id }}"
+                            {% endif %}
+                            placeholder="{{ block.settings.placeholder }}"
+                            required
+                          >
+                          <button type="submit" class="form__submit btn--circle btn--outline btn--outline--dark border-2 position-absolute" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
+                            {% render 'icon' with 'arrow-right' %}
+                          </button>
+                        </div>
+                        {%- if form.errors -%}
+                          <p class="text-0.875 mb-0" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+                        {%- endif -%}
+                      </div>
                     {%- endif -%}
                   {% endform %}
                 </div>

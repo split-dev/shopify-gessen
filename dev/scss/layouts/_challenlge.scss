@@ -1,0 +1,10 @@
+.shopify-challenge__container .shopify-challenge__button {
+  margin-top: 2rem;
+  background: transparent;
+  transition: var(--transition-default);
+  &:hover {
+    border-color: rgb(var(--color-primary));
+    background-color: rgb(var(--color-primary));
+    color: rgb(var(--color-light));
+  }
+}
