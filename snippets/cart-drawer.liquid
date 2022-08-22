@@ -48,7 +48,7 @@
                     {%- if item.product.has_only_default_variant == false -%}
                       {%- for option in item.options_with_values -%}
                         <div>
-                          <dd class="ml-0">{{ option.value }}{% unless forloop.last %}, {% endunless %}</dd>
+                          <dd class="ml-0">{{ option.value }}</dd>
                         </div>
                       {%- endfor -%}
                     {%- endif -%}

@@ -16,7 +16,6 @@
         "994d1c7f-8f65-449f-9152-9fee08cf5f78": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
           }
         },
         "8e4b4e12-11d4-44b6-8893-30d16647b44c": {
@@ -60,6 +59,8 @@
         "3c6466b8-0b92-488c-ae00-12e80b49b53d"
       ],
       "settings": {
+        "notification_heading": "Lorem ipsum",
+        "notification_content": "<p>lorem ipsum dolor sit amet, consectetur <br\/>adipiscing elit.<\/p>"
       }
     },
     "product-recommendations": {

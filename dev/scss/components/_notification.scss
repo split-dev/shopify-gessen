@@ -1,0 +1,15 @@
+.notification {
+  inset: 0;
+  &__inner {
+    max-width: 689px;
+  }
+  &__button {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+  .header__burger:after {
+    @include media-breakpoint-down(md) {
+      background-color: rgba(var(--color-primary), 0.25);
+    }
+  }
+}

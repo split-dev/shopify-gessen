@@ -635,6 +635,21 @@ class VariantSelects extends HTMLElement {
 
         if (price) price.classList.remove('visibility-hidden');
         this.toggleAddButton(!this.currentVariant.available, window.variantStrings.soldOut);
+
+        const addButton = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[name="add"]');
+        const notification = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[data-notification]');
+        if (!this.currentVariant.available) {
+          if (window.innerWidth > 768) {
+            addButton.classList.remove('btn', 'btn--primary');
+            addButton.classList.add('pl-0', 'pr-0', 'text-primary', 'border-none', 'bg-transparent', 'transparent-0.6');
+          }
+          notification.classList.remove('d-none')
+        } else {
+          addButton.classList.add('btn', 'btn--primary');
+          addButton.classList.remove('pl-0', 'pr-0', 'text-primary', 'border-none', 'bg-transparent', 'transparent-0.6');
+
+          notification.classList.add('d-none');
+        }
       });
   }
 
@@ -652,8 +667,6 @@ class VariantSelects extends HTMLElement {
       addButton.removeAttribute('disabled');
       addButtonText.textContent = window.variantStrings.addToCart;
     }
-
-    if (!modifyClass) return;
   }
 
   setUnavailable() {
@@ -661,8 +674,11 @@ class VariantSelects extends HTMLElement {
     const addButton = button.querySelector('[name="add"]');
     const addButtonText = button.querySelector('[name="add"] > span');
     const price = document.getElementById(`price-${this.dataset.section}`);
+
     if (!addButton) return;
     addButtonText.textContent = window.variantStrings.unavailable;
+    addButton.classList.remove('btn', 'btn--primary');
+
     if (price) price.classList.add('visibility-hidden');
   }
 
@@ -876,5 +892,20 @@ document.addEventListener('DOMContentLoaded', () => {
             : (content.style.maxHeight = content.scrollHeight + 'px', btn.setAttribute('aria-expanded', 'true'));
       });
     });
+  })();
+
+  // Notification
+  (() => {
+    const notification = document.querySelectorAll('[data-notification]');
+
+    if (!notification) return;
+
+    const notificationModal = document.querySelector('#notification_modal').parentElement;
+
+    notification.forEach(btn => {
+      btn.addEventListener('click', () => {
+        notificationModal.classList.toggle('d-none');
+      });
+    })
   })();
 });

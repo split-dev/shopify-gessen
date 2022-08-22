@@ -1,0 +1,16 @@
+.option-color {
+  width: 25px;
+  height: 25px;
+
+  cursor: pointer;
+  border-width: 1px !important;
+
+  img {
+    margin: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+  }
+}
+input:checked + .option-color {
+  border-width: 2px !important;
+}
