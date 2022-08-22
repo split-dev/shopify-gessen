@@ -11,7 +11,7 @@
           }
         </style>
         <div class="col-lg-6{% if block.settings.hide_on_mobile %} d-none d-lg-block{% endif %}" {{ block.attributes }}>
-          <div class="border pt-1 pb-1 pl-1 pr-1 h-100">
+          <div class="d-flex flex-column align-items-start border pt-1 pb-1 pl-1 pr-1 h-100">
             <h3 class="mb-0.5 text-primary text-0.875 lh-150">{{ block.settings.heading }}</h3>
             <div class="rte transparent-0.4" data-block-id="{{ block.id }}">
               {{ block.settings.content }}
@@ -20,14 +20,14 @@
             {%- case block.type -%}
               {%- when 'text' -%}
                 {% if block.settings.url != blank %}
-                  <div class="mt-2 d-flex justify-content-end">
+                  <div class="pt-2 mt-auto d-flex justify-content-end w-100">
                     <a href="{{ block.settings.url }}" class="btn--circle border-2 btn--outline btn--outline--dark">
                       {% render 'icon' with 'arrow-right' %}
                     </a>
                   </div>
                 {% endif %}
               {%- when 'newsletter' -%}
-                <div class="mt-2">
+                <div class="pt-2 mt-auto w-100">
                   {% form 'customer' %}
                     {%- if form.posted_successfully? -%}
                       <h3 class="text-0.875 mb-0" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>

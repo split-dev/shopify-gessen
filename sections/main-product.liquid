@@ -165,7 +165,7 @@
                                  sizes="25px 1x, 50px 2x"
                                  src="{{ icon_name | asset_img_url: '1x1' }}"
                                  loading="lazy"
-                                 class="d-block absolute-fill fit-cover"
+                                 class="d-block fit-cover"
                                  alt="{{ value }}">
                           </label>
                         {% else %}
@@ -254,7 +254,9 @@
             {%- if form.posted_successfully? -%}
               <h3 class="text-0.875 mb-0" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
             {% else %}
-              <input type="hidden" name="contact[notification]" value="{{ product.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="contact[product]"
+                     data-notification-product
+                     value="{{ shop.url }}{{ product.selected_or_first_available_variant.url }}">
               <div class="newsletter-form__field-wrapper">
                 <div class="position-relative">
                   <label class="visually-hidden" for="NewsletterForm--{{ section.id }}">

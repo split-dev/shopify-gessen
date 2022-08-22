@@ -547,6 +547,10 @@ class VariantSelects extends HTMLElement {
     this.addEventListener('change', this.onVariantChange);
   }
 
+  connectedCallback() {
+    this.onVariantChange();
+  }
+
   onVariantChange() {
     this.updateOptions();
     this.updateMasterId();
@@ -593,6 +597,7 @@ class VariantSelects extends HTMLElement {
   updateURL() {
     if (!this.currentVariant || this.dataset.updateUrl === 'false') return;
     window.history.replaceState({ }, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+    document.querySelector('[data-notification-product]').value = window.location.href;
   }
 
   updateShareUrl() {
