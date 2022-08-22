@@ -116,7 +116,7 @@
             {%- when 'accordion' -%}
                <div class="mb-1" {{ block.shopify_attributes }}>
                  <div class="accordion text-0.875 lh-150" data-accordion>
-                   <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
+                   <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-dark text-0.875" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
                            data-accordion-toggle>
                      <span class="accordion__icon border rounded-circle mr-1 position-relative">
                        {% render 'icon' with 'plus', class: 'accordion__icon--plus transition-default absolute-center' %}
@@ -235,7 +235,7 @@
   </div>
 
   <div class="d-none">
-    <div class="notification flex-center pl-1 pt-2 pr-1 pb-1 open position-fixed" id="notification_modal" aria-labelledby="notification_button">
+    <div class="notification flex-center pl-1 pt-2 pr-1 pb-1 open position-fixed z-stack" id="notification_modal" aria-labelledby="notification_button">
       <div class="notification__inner w-100 pt-1 pb-1 pl-1 pr-1 border bg-light position-relative">
         <div class="notification__button position-absolute">
           <div class="position-relative">
@@ -251,9 +251,6 @@
         </div>
         <div>
           {% form 'customer' %}
-            {%- if form.posted_successfully? -%}
-              <h3 class="text-0.875 mb-0" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
-            {% else %}
               <input type="hidden" name="contact[product]"
                      data-notification-product
                      value="{{ shop.url }}{{ product.selected_or_first_available_variant.url }}">
@@ -279,7 +276,7 @@
                       {% elsif form.posted_successfully? %}
                       aria-describedby="Newsletter-success--{{ section.id }}"
                     {% endif %}
-                    placeholder="{{ block.settings.placeholder }}"
+                    placeholder="Enter your Email"
                     required
                   >
                   <button type="submit" class="form__submit btn--circle btn--outline btn--outline--dark border-2 position-absolute" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
@@ -290,7 +287,6 @@
                   <p class="text-0.875 mb-0" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
                 {%- endif -%}
               </div>
-            {%- endif -%}
           {% endform %}
         </div>
       </div>

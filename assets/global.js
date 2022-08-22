@@ -909,6 +909,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     notification.forEach(btn => {
       btn.addEventListener('click', () => {
+        document.body.classList.toggle('overflow-hidden');
         notificationModal.classList.toggle('d-none');
       });
     })
