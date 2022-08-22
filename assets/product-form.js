@@ -27,10 +27,6 @@ if (!customElements.get('product-form')) {
       formData.append('sections_url', window.location.pathname);
       config.body = formData;
 
-      for (var pair of config.body) {
-        console.log(pair[0]+ ', ' + pair[1]);
-      }
-
       fetch(`${routes.cart_add_url}`, config)
         .then((response) => response.json())
         .then((response) => {
@@ -52,7 +48,7 @@ if (!customElements.get('product-form')) {
 
           // Update bubble
           document.querySelectorAll('[data-cart-bubble]').forEach(bubble => {
-            bubble.innerHTML = `( ${dom.querySelector('[data-cart-bubble]').innerHTML} )`
+            bubble.innerHTML = `${dom.querySelector('[data-cart-bubble]').innerHTML}`
           });
 
           // Update inner cart
@@ -64,7 +60,8 @@ if (!customElements.get('product-form')) {
             document.querySelector('.header__cart-wrapper').classList.add('open');
             document.querySelector('[data-header-toggle]').classList.toggle('text-primary');
             document.querySelector('[data-header-toggle]').classList.toggle('btn--outline');
-          })
+          }, 250);
+
         })
         .catch((e) => {
           console.error(e);

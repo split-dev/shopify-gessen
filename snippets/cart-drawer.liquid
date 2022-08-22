@@ -1,9 +1,9 @@
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
-<cart-drawer-items class="cart d-block h-100">
+<cart-drawer-items class="cart d-block h-100 w-100">
   <form action="{{ routes.cart_url }}" id="CartDrawer-Form" data-id="{{ section.id }}" method="post" class="d-flex flex-column h-100">
-    <div id="CartDrawer-CartItems" class="js-contents">
+    <div id="CartDrawer-CartItems" class="cart__inner js-contents">
       {%- for item in cart.items -%}
         <div id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart__item d-flex align-items-center{% unless forloop.last %} mb-2{% endunless %}">
           <div class="cart__item__media position-relative">
@@ -18,11 +18,11 @@
                   >
               </div>
             {% else %}
-              <div class="position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%">
+              <div class="position-relative border overflow-hidden" style="padding-bottom: 100%">
                 {{ 'product-1' | placeholder_svg_tag: "absolute-fill w-100 h-100" }}
               </div>
             {% endif %}
-            <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+            <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}" data-qty="{{ item.quantity }}">
               <a href="{{ item.url_to_remove }}" class="cart__item__remove flex-center btn--outline btn--outline--dark rounded-circle position-absolute lh-120 text-uppercase border overflow-hidden">
                 <span class="cart__item__bubble d-block position-relative">
                   <span class="absolute-center">
@@ -31,8 +31,8 @@
                 </span>
               </a>
             </cart-remove-button>
-            <span class="cart__item__qty flex-center rounded-circle position-absolute text-dark lh-120 text-uppercase bg-light border">
-              <span class="cart__item__bubble d-block position-relative">
+            <span class="cart__item__qty flex-center rounded-circle position-absolute text-primary lh-120 text-uppercase bg-light border">
+              <span class="cart__item__bubble d-block position-relative lh-100">
                 <span class="absolute-center">{{ item.quantity }}</span>
               </span>
             </span>

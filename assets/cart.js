@@ -1,10 +1,11 @@
 class CartRemoveButton extends HTMLElement {
   constructor() {
     super();
+    this.qty = 1 * this.dataset.qty;
     this.addEventListener('click', (event) => {
       event.preventDefault();
       const cartItems = this.closest('cart-items') || this.closest('cart-drawer-items');
-      cartItems.updateQuantity(this.dataset.index, 0);
+      cartItems.updateQuantity(this.dataset.index, this.qty - 1);
     });
   }
 }
@@ -58,12 +59,26 @@ class CartItems extends HTMLElement {
       .then((state) => {
         const parsedState = JSON.parse(state);
 
-        this.getSectionsToRender().forEach((section => {
-          const elementToReplace =
-            document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-          elementToReplace.innerHTML =
-            this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
-        }));
+        let dom = new DOMParser()
+            .parseFromString(parsedState.sections['header'], 'text/html');
+
+        // Update bubble
+        document.querySelectorAll('[data-cart-bubble]').forEach(bubble => {
+          bubble.innerHTML = `${dom.querySelector('[data-cart-bubble]').innerHTML}`
+        });
+
+        // Update inner cart
+        document.querySelector('#CartDrawer-Form').innerHTML = dom.querySelector('#CartDrawer-Form').innerHTML;
+
+        // Close cart
+        if(parsedState.item_count === 0) {
+          document.querySelector('.header__cart-wrapper').classList.remove('open');
+          document.querySelector('[data-header-toggle]').classList.toggle('text-primary');
+          document.querySelector('[data-header-toggle]').classList.toggle('btn--outline');
+          setTimeout(() => {
+            document.querySelector('.header__cart-wrapper').classList.add('d-none');
+          }, 250);
+        }
 
         // this.updateLiveRegions(line, parsedState.item_count);
         this.disableLoading();

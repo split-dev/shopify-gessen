@@ -48,7 +48,7 @@
 
           <div class="header__nav position-absolute overflow-hidden z-behind transition-default">
             <div class="d-flex flex-column align-items-start pl-1 pr-1 pt-1 pb-1 h-100">
-              <h5 class="font-bold">Cart <span class="cart__heading__bubble" data-cart-bubble>( {{ cart.item_count }} )</span></h5>
+              <h5 class="font-bold">Cart (<span class="cart__heading__bubble" data-cart-bubble>{{ cart.item_count }}</span>)</h5>
 
               {% render 'cart-drawer', section: section %}
             </div>
