@@ -22,6 +22,9 @@
 .events-none {
   pointer-events: none;
 }
+.events-all {
+  pointer-events: all;
+}
 .fit-cover {
   object-fit: cover;
 }

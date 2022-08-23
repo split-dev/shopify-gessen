@@ -1,7 +1,7 @@
 .product {
   &__media {
     &__badge {
-      width: 30px;
+      width: 39px;
       bottom: 1rem;
       left: 1rem;
       @include media-breakpoint-up(md) {
@@ -11,20 +11,31 @@
     &__nav {
       bottom: 1rem;
       right: 1rem;
+
+      @include media-breakpoint-down(sm) {
+        .btn--circle {
+          width: 39px;
+          height: 39px;
+
+          svg {
+            width: 22px;
+          }
+        }
+      }
     }
   }
   &__form {
-    &__submit {
-
+    @include media-breakpoint-down(sm) {
+      [type="submit"] {
+        width: 100%;
+      }
     }
+
     @include media-breakpoint-down(sm) {
       position: fixed;
       bottom: 1rem;
       left: 1rem;
       right: 1rem;
-      &__submit {
-        width: 100%;
-      }
     }
   }
 }

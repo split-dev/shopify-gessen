@@ -184,7 +184,7 @@
               </variant-radios>
             {%- when 'buy_buttons' -%}
               <div class="mt-auto" {{ block.shopify_attributes }}>
-                <product-form class="product__form d-block z-stack">
+                <product-form class="{% if product.selected_or_first_available_variant.available %}product__form {% endif %}d-block z-stack">
                   {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                     <input
                       type="hidden"
@@ -193,7 +193,7 @@
                       disabled
                     >
                     <div>
-                      <div class="d-flex flex-column flex-md-row align-items-center">
+                      <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-1 mt-md-0">
                         <button
                           type="submit"
                           name="add"

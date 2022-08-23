@@ -644,15 +644,14 @@ class VariantSelects extends HTMLElement {
         const addButton = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[name="add"]');
         const notification = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[data-notification]');
         if (!this.currentVariant.available) {
-          if (window.innerWidth > 768) {
-            addButton.classList.remove('btn', 'btn--primary');
-            addButton.classList.add('pl-0', 'pr-0', 'text-primary', 'border-none', 'bg-transparent', 'transparent-0.6');
-          }
+          addButton.closest('product-form').classList.remove('product__form');
+          addButton.classList.remove('btn', 'btn--primary');
+          addButton.classList.add('pl-0', 'pr-0', 'text-primary', 'border-none', 'bg-transparent', 'transparent-0.6');
           notification.classList.remove('d-none')
         } else {
+          addButton.closest('product-form').classList.add('product__form');
           addButton.classList.add('btn', 'btn--primary');
           addButton.classList.remove('pl-0', 'pr-0', 'text-primary', 'border-none', 'bg-transparent', 'transparent-0.6');
-
           notification.classList.add('d-none');
         }
       });
@@ -903,7 +902,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (() => {
     const notification = document.querySelectorAll('[data-notification]');
 
-    if (!notification) return;
+    if (notification.length < 1) return;
 
     const notificationModal = document.querySelector('#notification_modal').parentElement;
 
