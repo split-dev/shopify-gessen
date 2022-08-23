@@ -10,7 +10,7 @@
         "type": "preheader",
         "settings": {
           "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus pellentesque habitant morbi.<\/p>",
-          "anchor_url": "#shopify-section-header",
+          "anchor_url": "#shop",
           "anchor_label": "Go to shop"
         }
       },

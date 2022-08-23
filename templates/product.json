@@ -59,7 +59,7 @@
         "3c6466b8-0b92-488c-ae00-12e80b49b53d"
       ],
       "settings": {
-        "notification_heading": "Lorem ipsum",
+        "notification_heading": "Lorem ipsum - {{ product.title }}",
         "notification_content": "<p>lorem ipsum dolor sit amet, consectetur <br\/>adipiscing elit.<\/p>"
       }
     },

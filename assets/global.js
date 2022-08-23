@@ -597,7 +597,7 @@ class VariantSelects extends HTMLElement {
   updateURL() {
     if (!this.currentVariant || this.dataset.updateUrl === 'false') return;
     window.history.replaceState({ }, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
-    document.querySelector('[data-notification-product]').value = window.location.href;
+    // document.querySelector('[data-notification-product]').value = window.location.href;
   }
 
   updateShareUrl() {
@@ -807,17 +807,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     links.forEach(link => {
-      let href = link.getAttribute('href')
+      let href = link.getAttribute('href');
+      // if ((href[0] === '#' && href.length > 1) || (href[1] === '#' && href.length > 2)) {
       if (href[0] === '#' && href.length > 1) {
         link.addEventListener('click', e => {
           e.preventDefault();
+
+          document.body.classList.remove('overflow-hidden');
+          let wrapper = link.closest('.header__nav__wrapper');
+          if (wrapper) {
+            wrapper.classList.remove('open');
+            wrapper.querySelector('[data-header-toggle]').classList.add('btn--outline');
+            wrapper.querySelector('[data-header-toggle]').classList.remove('text-primary');
+          }
+
           let target = document.querySelector(`${link.getAttribute('href')}`);
-          window.scroll({
-            top: target.getBoundingClientRect().top + window.pageYOffset,
-            left: 0,
-            behavior: "smooth"
+
+          setTimeout(() => {
+            window.scroll({
+              top: target.getBoundingClientRect().top + window.pageYOffset,
+              left: 0,
+              behavior: "smooth"
+            });
           });
-        })
+        });
       }
     });
   })();
@@ -898,19 +911,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // Notification
-  (() => {
-    const notification = document.querySelectorAll('[data-notification]');
+  //  // Notification
+  // (() => {
+  //   const notification = document.querySelectorAll('[data-notification]');
 
-    if (notification.length < 1) return;
-
-    const notificationModal = document.querySelector('#notification_modal').parentElement;
-
-    notification.forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.body.classList.toggle('overflow-hidden');
-        notificationModal.classList.toggle('d-none');
-      });
-    })
-  })();
+  //   if (notification.length < 1) return;
+  //
+  //   const notificationModal = document.querySelector('#notification_modal').parentElement;
+  //
+  //   notification.forEach(btn => {
+  //     btn.addEventListener('click', () => {
+  //       document.body.classList.toggle('overflow-hidden');
+  //       notificationModal.classList.toggle('d-none');
+  //     });
+  //   })
+  // })();
 });

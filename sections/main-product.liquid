@@ -214,7 +214,7 @@
 
                         <div class="{%- if product.selected_or_first_available_variant.available -%}d-none{% endif %}" data-notification>
                           <div class="mt-1 mt-md-0 ml-md-2">
-                            <button class="pl-0 pr-0 border-none bg-transparent text-underline transparent-0.6 text-primary" id="notification_button" aria-controls="notification_modal">get notified when it’s back in stock</button>
+                            <button class="pl-0 pr-0 border-none bg-transparent text-underline transparent-0.6 text-primary klaviyo-bis-trigger">get notified when it’s back in stock</button>
                           </div>
                         </div>
                       </div>
@@ -234,65 +234,6 @@
     </div>
   </div>
 
-  <div class="d-none">
-    <div class="notification flex-center pl-1 pt-2 pr-1 pb-1 open position-fixed z-stack" id="notification_modal" aria-labelledby="notification_button">
-      <div class="notification__inner w-100 pt-1 pb-1 pl-1 pr-1 border bg-light position-relative">
-        <div class="notification__button position-absolute">
-          <div class="position-relative">
-            <button class=" header__burger flex-center rounded-circle border-none z-stack-2" data-notification>
-              {% render 'icon' with 'close', class: 'header__burger__close absolute-center text-primary transition-default' %}
-            </button>
-          </div>
-        </div>
-
-        <p class="text-0.875 lh-150">{{ section.settings.notification_heading }}</p>
-        <div class="rte transparent-0.4 mb-2">
-          {{ section.settings.notification_content }}
-        </div>
-        <div>
-          {% form 'customer' %}
-              <input type="hidden" name="contact[product]"
-                     data-notification-product
-                     value="{{ shop.url }}{{ product.selected_or_first_available_variant.url }}">
-              <div class="newsletter-form__field-wrapper">
-                <div class="position-relative">
-                  <label class="visually-hidden" for="NewsletterForm--{{ section.id }}">
-                    {{ 'newsletter.label' | t }}
-                  </label>
-                  <input
-                    id="NewsletterForm--{{ section.id }}"
-                    type="email"
-                    name="contact[email]"
-                    class="form__input border w-100 text-1.125"
-                    value="{{ form.email }}"
-                    aria-required="true"
-                    autocorrect="off"
-                    autocapitalize="off"
-                    autocomplete="email"
-                    {% if form.errors %}
-                      autofocus
-                      aria-invalid="true"
-                      aria-describedby="Newsletter-error--{{ section.id }}"
-                      {% elsif form.posted_successfully? %}
-                      aria-describedby="Newsletter-success--{{ section.id }}"
-                    {% endif %}
-                    placeholder="Enter your Email"
-                    required
-                  >
-                  <button type="submit" class="form__submit btn--circle btn--outline btn--outline--dark border-2 position-absolute" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
-                    {% render 'icon' with 'arrow-right' %}
-                  </button>
-                </div>
-                {%- if form.errors -%}
-                  <p class="text-0.875 mb-0" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
-                {%- endif -%}
-              </div>
-          {% endform %}
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   {%- if first_3d_model -%}
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
@@ -300,6 +241,42 @@
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'flickity.pkgd.min.js' | asset_url }}"></script>
   <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
+
+  <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+  <script>
+      var klaviyo = klaviyo || [];
+      klaviyo.init({
+          account: "U9irXF",
+          platform: "shopify"
+      });
+      klaviyo.enable("backinstock",{
+          trigger: {
+              product_page_text: "Notify Me When Available",
+              product_page_class: "btn",
+              product_page_text_align: "center",
+              product_page_margin: "0px",
+              replace_anchor: false
+          },
+          modal: {
+              headline: "{{ section.settings.notification_heading }}",
+              body_content: "{{ section.settings.notification_content }}",
+              email_field_label: "Enter your Email",
+              button_label: "{{ section.settings.notification_btn }}",
+              subscription_success_label: "You're in! We'll let you know when it's back.",
+              footer_content: '',
+              drop_background_color: "{{ settings.color_primary | hex_to_rgba: 0.6 }}",
+              background_color: "{{ settings.color_light }}",
+              text_color: "{{ settings.color_primary }}",
+              button_text_color: "{{ settings.color_light }}",
+              button_background_color: "{{ settings.color_primary }}",
+              close_button_color: "{{ settings.color_primary }}",
+              error_background_color: "{{ settings.color_light }}",
+              error_text_color: "#C72E2F",
+              success_background_color: "{{ settings.color_light }}",
+              success_text_color: "#1B9500"
+          }
+      });
+  </script>
 
   <script>
     new Flickity('[data-product-media]', {
@@ -478,6 +455,12 @@
       "type": "richtext",
       "id": "notification_content",
       "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "notification_btn",
+      "label": "Button label",
+      "default": "Notify when available"
     }
   ]
 }
