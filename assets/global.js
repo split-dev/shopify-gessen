@@ -758,31 +758,44 @@ document.addEventListener('DOMContentLoaded', () => {
         navigation: document.querySelector('.header__buttons')
       },
       handle: () => {
-        let width = `${100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100)}`;
-
         requestAnimationFrame(() => {
-          headerScroll.selectors.header.style.setProperty('--progress', width);
-        });
+          let width = `${100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100)}`;
 
-        if (width >= 1) {
-          headerScroll.selectors.navigation.classList.add('transparent-0', 'events-none')
-        } else if (width <= 1) {
-          headerScroll.selectors.navigation.classList.remove('transparent-0', 'events-none')
-        }
+          // if (headerScroll.option.isFirstLoad && parseInt(width) < 75) {
+          //   document.querySelector('[href="#shop"]').click();
+          //   headerScroll.option.isFirstLoad = false;
+          // }
+  
+          if (headerScroll.option.isSafari) {
+            document.querySelector('[data-header-logo]').style.width = `calc(100% + ${width} * 1vw - 2rem)`
+          } else {
+            headerScroll.selectors.header.style.setProperty('--progress', width);
+          }
+  
+          if (width >= 1) {
+            headerScroll.selectors.navigation.classList.add('transparent-0', 'events-none')
+          } else if (width <= 1) {
+            headerScroll.selectors.navigation.classList.remove('transparent-0', 'events-none')
+          }
+        })
       },
       eventListeners: () => {
         document.addEventListener('scroll', headerScroll.handle);
       },
       init: () => {
-        headerScroll.options = {
+        headerScroll.option = {
           desktopOffset: headerScroll.selectors.logo.dataset.widthDesktop,
-          mobileOffset: headerScroll.selectors.logo.dataset.widthDesktop
+          mobileOffset: headerScroll.selectors.logo.dataset.widthDesktop,
+          isFirstLoad: true,
+          isSafari: window.detectBrowser() === 'safari'
         };
         headerScroll.handle();
         headerScroll.eventListeners();
       }
     };
     headerScroll.init();
+
+    window.headerScroll = headerScroll;
   })();
 
   // FadeIn on content load
@@ -824,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let target = document.querySelector(`${link.getAttribute('href')}`);
 
           setTimeout(() => {
-            window.scroll({
+            window.scrollTo({
               top: target.getBoundingClientRect().top + window.pageYOffset,
               left: 0,
               behavior: "smooth"

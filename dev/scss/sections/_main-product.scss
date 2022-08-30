@@ -4,6 +4,7 @@
       width: 39px;
       bottom: 1rem;
       left: 1rem;
+      box-sizing: border-box;
       @include media-breakpoint-up(md) {
         width: 54px;
       }

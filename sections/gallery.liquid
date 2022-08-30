@@ -3,17 +3,19 @@
     <div class="row row--sm overflow-hidden" data-mansory-grid>
       {% for block in section.blocks %}
         <div class="col-12 col-md-6 col-lg-3{% if block.settings.hide_on_mobile %} d-none d-md-block{% endif %}" data-mansory-grid-item data-item-wrapper>
-          {%- assign image = block.settings.image -%}
+          {%- liquid
+            assign image = block.settings.image
 
-          {%- capture cycle_content -%}
-          {% cycle '0.656', '0.7961165', '0.5974499', '0.53947368', '0.7387387', '0.54214876', '0.61654135', '0.76995305', '0.51330203', '0.67213114', '0.67908902', '0.71929824', '0.656', '0.87234042', '0.754023', '0.56747404' %}
-          {%- endcapture -%}
+            capture cycle_content
+              cycle '0.656', '0.7961165', '0.5974499', '0.53947368', '0.7387387', '0.54214876', '0.61654135', '0.76995305', '0.51330203', '0.67213114', '0.67908902', '0.71929824', '0.656', '0.87234042', '0.754023', '0.56747404'
+            endcapture
 
-          {%- if section.settings.gallery_layout == 'fixed' -%}
-            {%- assign ratio = cycle_content -%}
-          {%- else -%}
-            {%- assign ratio = image.aspect_ratio -%}
-          {%- endif -%}
+            if section.settings.gallery_layout == 'fixed'
+              assign ratio = cycle_content
+            else
+              assign ratio = image.aspect_ratio
+            endif
+          -%}
 
           {% if image != blank %}
             <div data-aos>

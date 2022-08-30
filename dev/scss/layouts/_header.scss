@@ -69,11 +69,11 @@
 
   width: calc(100% + (var(--progress) * 1vw - 2rem));
   max-width: calc(100vw - 2rem);
-  //transition: 0.11s;
+  // transition: 10ms;
 
   svg {
     width: 100% !important;
-    //transition: 0.11s;
+    // transition: 10ms;
   }
 }
 .open {

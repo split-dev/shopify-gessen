@@ -13,7 +13,7 @@
         <div class="position-relative">
           <div data-product-media>
             {% for media in product.media %}
-              <div class="w-100">
+              <div class="w-100" data-product-media-slide="{{ forloop.index0 }}">
                 <div>
                   {%- case media.media_type -%}
                   {%- when 'model' -%}
@@ -22,25 +22,29 @@
                       <model-viewer class="absolute-fill w-100 h-100"
                                     alt="{{ media.alt }}"
                                     src="{{ model_src.url }}"
+                                    ios-src="{{ model_src.url }}"
                                     loading="lazy"
-                                    ar ar-modes="webxr scene-viewer quick-look"
-                                    poster="{{ media.preview_image | img_url: 'master' }}"
+                                    ar
+                                    ar-scale="fixed" 
+                                    ar-modes="webxr scene-viewer quick-look"
+                                    xr-environment
+                                    poster="{{ media.preview_image | image_url }}"
                                     shadow-intensity="1"
                                     camera-controls
-                                    touch-action="pan-y"></model-viewer>
-
-                      <div class="product__media__badge position-absolute border rounded-circle">
-                        <div class="position-relative" style="padding-bottom: 100%;">
-                          <img
-                            class="absolute-fill w-100 h-100 fit-contain"
-                            src="{{ 'ar-icon.png' | asset_img_url: '120x' }}"
-                            sizes="(min-width: 768px) 54px 1x 108px 2x, 30px 1x 60px 2x"
-                            loading="lazy"
-                            width="30"
-                            height="30"
-                            alt="AR Icon">
-                        </div>
-                      </div>
+                                    touch-action="pan-y">
+                        <button slot="ar-button" class="product__media__badge pl-0 pr-0 pt-0 pb-0 bg-transparent position-absolute border rounded-circle">
+                          <span class="d-block position-relative" style="padding-bottom: 100%;">
+                            <img
+                              class="absolute-fill w-100 h-100 fit-contain"
+                              src="{{ 'ar-icon.png' | asset_img_url: '120x' }}"
+                              sizes="(min-width: 768px) 54px 1x 108px 2x, 30px 1x 60px 2x"
+                              loading="lazy"
+                              width="30"
+                              height="30"
+                              alt="AR Icon">
+                          </span>
+                        </button>
+                      </model-viewer>
                     </div>
                   {%- when 'image' -%}
                     <div class="position-relative border overflow-hidden" style="padding-bottom: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%">
@@ -55,7 +59,7 @@
                       {{ media | image_url }} {{ media.width }}w"
                         sizes="(min-width: 768px) calc(50vw - 2rem), calc(100vw - 2rem)"
                         loading="lazy"
-                        src="{{ media | img_url: '500x' }}"
+                        src="{{ media | image_url: width: 500 }}"
                         width="{{ media.width }}"
                         height="{{ media.height }}"
                         alt="{{ media.alt }}">
@@ -165,6 +169,8 @@
                                  sizes="25px 1x, 50px 2x"
                                  src="{{ icon_name | asset_img_url: '1x1' }}"
                                  loading="lazy"
+                                 width="25"
+                                 height="25"
                                  class="d-block fit-cover"
                                  alt="{{ value }}">
                           </label>
@@ -264,7 +270,7 @@
               button_label: "{{ section.settings.notification_btn }}",
               subscription_success_label: "You're in! We'll let you know when it's back.",
               footer_content: '',
-              drop_background_color: "{{ settings.color_primary | hex_to_rgba: 0.6 }}",
+              drop_background_color: "{{ settings.color_primary | color_to_rgb: 0.6 }}",
               background_color: "{{ settings.color_light }}",
               text_color: "{{ settings.color_primary }}",
               button_text_color: "{{ settings.color_light }}",
@@ -279,15 +285,20 @@
   </script>
 
   <script>
-    new Flickity('[data-product-media]', {
+    var slider = new Flickity('[data-product-media]', {
       cellAlign: "left",
       contain: true,
       pageDots: false,
       prevNextButtons: false,
       adaptiveHeight: true,
       wrapAround: true,
-      draggable: false,
-      fade: true
+      fade: true,
+      on: {
+        change: (index) => {
+          let modelViewer = document.querySelector(`[data-product-media-slide="${index}"]`).querySelector('model-viewer');
+          slider.isDraggable = modelViewer === null;
+        } 
+      }
     });
   </script>
 
