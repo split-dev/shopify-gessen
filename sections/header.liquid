@@ -41,7 +41,7 @@
       </div>
       <div class="header__buttons d-flex ml-auto events-all transition-default">
         <div class="header__nav__wrapper header__cart-wrapper mr-1 position-relative z-stack{% if cart.item_count == 0 %} d-none{% endif %}">
-          <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
+          <button class="header__burger btn--outline bg-light flex-center rounded-circle border-none z-stack-2" data-header-toggle>
             <span class="header__burger__open font-bold transition-default" data-cart-bubble>{{ cart.item_count }}</span>
             {% render 'icon' with 'close', class: 'header__burger__close absolute-center text-primary transition-default' %}
           </button>
@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="header__nav__wrapper position-relative z-stack">
-          <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
+          <button class="header__burger btn--outline bg-light flex-center rounded-circle border-none z-stack-2" data-header-toggle>
             {% render 'icon' with 'hamburger', class: 'header__burger__open transition-default' %}
             {% render 'icon' with 'close', class: 'header__burger__close absolute-center text-primary transition-default' %}
           </button>
