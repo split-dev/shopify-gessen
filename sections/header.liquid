@@ -16,7 +16,7 @@
 {% endstyle %}
 
 <div class="container">
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="header__inner d-flex align-items-center justify-content-between">
       <div class="header__logo events-all">
         <a href="{{ routes.root_url }}" class="d-block position-relative">
           {% if section.settings.logo != blank %}
@@ -40,13 +40,13 @@
         </a>
       </div>
       <div class="header__buttons d-flex ml-auto events-all transition-default">
-        <div class="header__nav__wrapper header__cart-wrapper mr-1 position-relative z-stack{% if cart.item_count == 0 %} d-none{% endif %}">
-          <button class="header__burger btn--outline bg-light flex-center rounded-circle border-none z-stack-2" data-header-toggle>
+        <div class="header__cart-wrapper mr-1 position-relative z-stack{% if cart.item_count == 0 %} d-none{% endif %}">
+          <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
             <span class="header__burger__open font-bold transition-default" data-cart-bubble>{{ cart.item_count }}</span>
             {% render 'icon' with 'close', class: 'header__burger__close absolute-center text-primary transition-default' %}
           </button>
 
-          <div class="header__nav position-absolute overflow-hidden z-behind transition-default">
+          <div class="header__nav bg-light position-absolute overflow-hidden z-behind transition-default">
             <div class="d-flex flex-column align-items-start pl-1 pr-1 pt-1 pb-1 h-100">
               <h5 class="font-bold">Cart (<span class="cart__heading__bubble" data-cart-bubble>{{ cart.item_count }}</span>)</h5>
 
@@ -54,13 +54,17 @@
             </div>
           </div>
         </div>
-        <div class="header__nav__wrapper position-relative z-stack">
-          <button class="header__burger btn--outline bg-light flex-center rounded-circle border-none z-stack-2" data-header-toggle>
-            {% render 'icon' with 'hamburger', class: 'header__burger__open transition-default' %}
-            {% render 'icon' with 'close', class: 'header__burger__close absolute-center text-primary transition-default' %}
+        <div class="position-relative z-stack">
+          <button class="header__burger header__burger--menu btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
+            <span class="position-relative w-100 h-100">
+              <span class="header__burger__line position-absolute overflow-hidden transition-default"></span>
+              <span class="header__burger__line position-absolute overflow-hidden transition-default"></span>
+              <span class="header__burger__line position-absolute overflow-hidden transition-default"></span>
+              <span class="header__burger__line position-absolute overflow-hidden transition-default"></span>
+            </span>
           </button>
 
-          <div class="header__nav position-absolute overflow-hidden z-behind transition-default">
+          <div class="header__nav bg-light position-absolute overflow-hidden z-behind transition-default">
             <div class="d-flex flex-column justify-content-start h-100 pl-1 pr-1 pt-1 pb-1">
               <ul class="list-unstyled" role="list">
                 {% for link in section.settings.menu.links %}

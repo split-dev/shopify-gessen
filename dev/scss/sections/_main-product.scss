@@ -17,10 +17,6 @@
         .btn--circle {
           width: 39px;
           height: 39px;
-
-          svg {
-            width: 22px;
-          }
         }
       }
     }
@@ -46,4 +42,9 @@ input:checked + label.btn--outline {
 }
 model-viewer::part(default-ar-button) {
   display: none !important;
+}
+.device-no-camera {
+  .product__media__badge {
+    display: none !important;
+  }
 }

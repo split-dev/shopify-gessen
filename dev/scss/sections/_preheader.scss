@@ -1,6 +1,6 @@
 .preheader {
   &__inner {
-    height: calc(var(--vh, 1vh) * 100 - 2rem - var(--header-height));
+    height: calc(var(--vh, 1vh) * 100 - var(--header-height));
     &__content {
       max-width: 49.375rem;
     }

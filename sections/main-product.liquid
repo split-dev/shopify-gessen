@@ -22,7 +22,6 @@
                       <model-viewer class="absolute-fill w-100 h-100"
                                     alt="{{ media.alt }}"
                                     src="{{ model_src.url }}"
-                                    ios-src="{{ model_src.url }}"
                                     loading="lazy"
                                     ar
                                     ar-scale="fixed" 
@@ -285,6 +284,9 @@
   </script>
 
   <script>
+    // Check if first slide item is ModelVier
+    let modelViewer = document.querySelector(`[data-product-media-slide="0"]`).querySelector('model-viewer')
+
     var slider = new Flickity('[data-product-media]', {
       cellAlign: "left",
       contain: true,
@@ -293,6 +295,7 @@
       adaptiveHeight: true,
       wrapAround: true,
       fade: true,
+      draggable: modelViewer === null,
       on: {
         change: (index) => {
           let modelViewer = document.querySelector(`[data-product-media-slide="${index}"]`).querySelector('model-viewer');
@@ -300,6 +303,20 @@
         } 
       }
     });
+
+    // Check if camera is available
+    (() => {
+      if (navigator.mediaDevices?.enumerateDevices) {
+        document.documentElement.classList.add('device-no-camera');
+        navigator.mediaDevices.enumerateDevices()
+        .then((devices) => {
+          devices.forEach((device) => {
+            if (device.kind === 'videoinput') 
+              document.documentElement.classList.remove('device-no-camera');
+          });
+      })
+      }
+    })();
   </script>
 
   <script>

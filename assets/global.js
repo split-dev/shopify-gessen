@@ -737,10 +737,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btns.forEach(btn => {
       let btnWrapper = btn.parentElement;
-      btn.addEventListener('click',() => {
-        btnWrapper.classList.toggle('open');
+
+      let toggleBtns = (btn) => {
         btn.classList.toggle('btn--outline');
         btn.classList.toggle('text-primary');
+      }
+
+      btn.addEventListener('click',() => {
+        let isOpened = btnWrapper.classList.contains('open');
+        btnWrapper.classList.toggle('open');
+        isOpened
+         ? setTimeout(() => {
+          toggleBtns(btn)
+         }, 450)
+         : toggleBtns(btn);
         document.body.classList.toggle('overflow-hidden');
       });
     })
@@ -917,6 +927,12 @@ document.addEventListener('DOMContentLoaded', () => {
           content = accordion.querySelector('[data-accordion-content]');
 
       btn.addEventListener('click', () => {
+        let active = document.querySelector('.accordion [aria-expanded="true"]');
+        if (active) {
+          active.setAttribute('aria-expanded', 'false');
+          active.nextElementSibling.style.maxHeight = null;
+        }
+
         content.style.maxHeight
             ? (content.style.maxHeight = null, btn.setAttribute('aria-expanded', 'false'))
             : (content.style.maxHeight = content.scrollHeight + 'px', btn.setAttribute('aria-expanded', 'true'));

@@ -3,15 +3,15 @@
   height: 25px;
 
   cursor: pointer;
-  border-width: 1px !important;
+  border-width: 0px !important;
 
-  img {
-    margin: -1px;
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
-  }
+  // img {
+  //   margin: -1px;
+  //   width: calc(100% + 2px);
+  //   height: calc(100% + 2px);
+  // }
 }
 
 input:checked + .option-color {
-  border-width: 3px !important;
+  border-width: 2px !important;
 }
