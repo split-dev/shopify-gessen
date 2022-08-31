@@ -171,6 +171,15 @@ function debounce(fn, wait) {
     t = setTimeout(() => fn.apply(this, args), wait);
   };
 }
+function debounceCustom(fn, wait, i, iMax) {
+  let t;
+  if (i > iMax) return;
+  return (...args) => {
+    clearTimeout(t);
+    i++;
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
 
 function fetchConfig(type = 'json') {
   return {
@@ -790,7 +799,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       },
       eventListeners: () => {
-        document.addEventListener('scroll', headerScroll.handle);
+        // document.addEventListener('scroll', debounce(headerScroll.handle, 25));
+        document.addEventListener('scroll', (e) => {
+          debounceCustom(headerScroll.handle(), 15, 0, 10)
+        });
       },
       init: () => {
         headerScroll.option = {
