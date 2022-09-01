@@ -58,6 +58,7 @@ if (!customElements.get('product-form')) {
           // Open cart
           document.querySelector('.header__cart-wrapper').classList.remove('d-none');
           setTimeout(() => {
+            document.querySelector('.header__cart-wrapper').classList.toggle('z-stack-2')
             document.querySelector('.header__cart-wrapper').classList.add('open');
             document.querySelector('[data-header-toggle]').classList.toggle('text-primary');
             document.querySelector('[data-header-toggle]').classList.toggle('btn--outline');

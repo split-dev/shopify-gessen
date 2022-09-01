@@ -41,9 +41,16 @@
       </div>
       <div class="header__buttons d-flex ml-auto events-all transition-default">
         <div class="header__cart-wrapper mr-1 position-relative z-stack{% if cart.item_count == 0 %} d-none{% endif %}">
-          <button class="header__burger btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
-            <span class="header__burger__open font-bold transition-default" data-cart-bubble>{{ cart.item_count }}</span>
-            {% render 'icon' with 'close', class: 'header__burger__close absolute-center text-primary transition-default' %}
+          <button class="header__burger header__burger--cart btn--outline flex-center rounded-circle border-none z-stack-2" data-header-toggle>
+            <span class="position-relative w-100 h-100">
+              <span class="header__burger__line d-none position-absolute overflow-hidden transition-default"></span>
+              <span class="header__burger__line position-absolute overflow-hidden transition-default"></span>
+              <span class="header__burger__line position-absolute overflow-hidden transition-default"></span>
+              <span class="header__burger__line d-none position-absolute overflow-hidden transition-default"></span>
+
+              <span class="header__burger__open absolute-center font-bold transition-default" 
+                    data-cart-bubble>{{ cart.item_count }}</span>
+            </span>
           </button>
 
           <div class="header__nav bg-light position-absolute overflow-hidden z-behind transition-default">

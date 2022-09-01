@@ -1,11 +1,8 @@
 .cart {
-  //width: calc(100vw - 4rem - 4px);
-  //@include media-breakpoint-up(lg) {
-  //  width: calc(358px - 2rem);
-  //}
   &__heading {
     &__bubble {
       letter-spacing: -2px;
+      padding-right: 3px;
     }
   }
   &__inner {

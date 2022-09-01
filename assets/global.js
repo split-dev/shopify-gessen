@@ -748,6 +748,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let btnWrapper = btn.parentElement;
 
       let toggleBtns = (btn) => {
+        btnWrapper.classList.toggle('z-stack-2')
+
         btn.classList.toggle('btn--outline');
         btn.classList.toggle('text-primary');
       }
@@ -755,6 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click',() => {
         let isOpened = btnWrapper.classList.contains('open');
         btnWrapper.classList.toggle('open');
+
         isOpened
          ? setTimeout(() => {
           toggleBtns(btn)
@@ -777,40 +780,57 @@ document.addEventListener('DOMContentLoaded', () => {
         navigation: document.querySelector('.header__buttons')
       },
       handle: () => {
-        requestAnimationFrame(() => {
-          let width = `${100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100)}`;
+          let percent = 100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100),
+              width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
+        
+          requestAnimationFrame(() => {
+            document.querySelector('[data-header-logo]').style.width = `${width}px`;
+          })
 
-          // if (headerScroll.option.isFirstLoad && parseInt(width) < 75) {
-          //   document.querySelector('[href="#shop"]').click();
-          //   headerScroll.option.isFirstLoad = false;
+
+          // let width = `${100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100)}`;
+
+          if (headerScroll.option.isFirstLoad && parseInt(percent) < 75) {
+            document.querySelector('[href="#shop"]').click();
+            headerScroll.option.isFirstLoad = false;
+          }
+  
+          // if (headerScroll.option.isSafari) {
+            // document.querySelector('[data-header-logo]').style.width = `calc(100% + ${width} * 1vw - 2rem)`
+          // } else {
+          //   headerScroll.selectors.header.style.setProperty('--progress', width);
           // }
   
-          if (headerScroll.option.isSafari) {
-            document.querySelector('[data-header-logo]').style.width = `calc(100% + ${width} * 1vw - 2rem)`
-          } else {
-            headerScroll.selectors.header.style.setProperty('--progress', width);
-          }
-  
-          if (width >= 1) {
+          if (percent >= 1) {
             headerScroll.selectors.navigation.classList.add('transparent-0', 'events-none')
-          } else if (width <= 1) {
+          } else if (percent <= 1) {
             headerScroll.selectors.navigation.classList.remove('transparent-0', 'events-none')
           }
-        })
       },
       eventListeners: () => {
-        // document.addEventListener('scroll', debounce(headerScroll.handle, 25));
-        document.addEventListener('scroll', (e) => {
-          debounceCustom(headerScroll.handle(), 15, 0, 10)
-        });
+        document.addEventListener('scroll', debounce(headerScroll.handle, 10));
+        // document.addEventListener('scroll', () => {
+        //   debounce(() => headerScroll.handle, 100)
+        // });
+        // window.addEventListener('resize', () => {
+        //   headerScroll.vars = {
+        //     headerWidth: headerScroll.selectors.logo.scrollWidth,
+        //     // 32 - 2rem container margin + 4px*2 gaps
+        //     step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
+        //   };
+        // })
       },
       init: () => {
         headerScroll.option = {
-          desktopOffset: headerScroll.selectors.logo.dataset.widthDesktop,
-          mobileOffset: headerScroll.selectors.logo.dataset.widthDesktop,
           isFirstLoad: true,
           isSafari: window.detectBrowser() === 'safari'
         };
+        headerScroll.vars = {
+          headerWidth: headerScroll.selectors.logo.scrollWidth,
+          // 32 - 2rem container margin + 4px*2 gaps
+          step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
+        };
+        console.log(headerScroll.selectors.logo.scrollWidth);
         headerScroll.handle();
         headerScroll.eventListeners();
       }
