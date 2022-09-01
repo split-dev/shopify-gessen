@@ -132,8 +132,8 @@
   }
   .header__nav {
     top: 0;
-    right: 0;
-    width: calc(100vw - 2rem - 4px);
+    right: -2px;
+    width: calc(100vw - 2rem);
     height: calc(var(--vh, 1vh) * 100 - 2rem);
     border-radius: 5px 20px 5px 5px;
 
@@ -141,6 +141,7 @@
     @include media-breakpoint-up(lg) {
       width: 358px;
       height: 550px;
+      right: 0;
     }
     > * {
       opacity: 1;
