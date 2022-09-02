@@ -171,15 +171,6 @@ function debounce(fn, wait) {
     t = setTimeout(() => fn.apply(this, args), wait);
   };
 }
-function debounceCustom(fn, wait, i, iMax) {
-  let t;
-  if (i > iMax) return;
-  return (...args) => {
-    clearTimeout(t);
-    i++;
-    t = setTimeout(() => fn.apply(this, args), wait);
-  };
-}
 
 function fetchConfig(type = 'json') {
   return {
@@ -780,45 +771,31 @@ document.addEventListener('DOMContentLoaded', () => {
         navigation: document.querySelector('.header__buttons')
       },
       handle: () => {
-          let percent = 100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100),
+          let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00),
               width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
-        
+
           requestAnimationFrame(() => {
             document.querySelector('[data-header-logo]').style.width = `${width}px`;
           })
-
-
-          // let width = `${100 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100)}`;
 
           if (headerScroll.option.isFirstLoad && parseInt(percent) < 75) {
             document.querySelector('[href="#shop"]').click();
             headerScroll.option.isFirstLoad = false;
           }
-  
-          // if (headerScroll.option.isSafari) {
-            // document.querySelector('[data-header-logo]').style.width = `calc(100% + ${width} * 1vw - 2rem)`
-          // } else {
-          //   headerScroll.selectors.header.style.setProperty('--progress', width);
-          // }
-  
+
           if (percent >= 1) {
             headerScroll.selectors.navigation.classList.add('transparent-0', 'events-none')
           } else if (percent <= 1) {
             headerScroll.selectors.navigation.classList.remove('transparent-0', 'events-none')
           }
+
+          (headerScroll.selectors.header.offsetTop + 10) > window.innerHeight 
+            ? document.querySelector('.header').classList.remove('header--fixed')
+            : document.querySelector('.header').classList.add('header--fixed');
+
       },
       eventListeners: () => {
         document.addEventListener('scroll', debounce(headerScroll.handle, 10));
-        // document.addEventListener('scroll', () => {
-        //   debounce(() => headerScroll.handle, 100)
-        // });
-        // window.addEventListener('resize', () => {
-        //   headerScroll.vars = {
-        //     headerWidth: headerScroll.selectors.logo.scrollWidth,
-        //     // 32 - 2rem container margin + 4px*2 gaps
-        //     step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
-        //   };
-        // })
       },
       init: () => {
         headerScroll.option = {
@@ -830,7 +807,6 @@ document.addEventListener('DOMContentLoaded', () => {
           // 32 - 2rem container margin + 4px*2 gaps
           step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
         };
-        console.log(headerScroll.selectors.logo.scrollWidth);
         headerScroll.handle();
         headerScroll.eventListeners();
       }
@@ -906,7 +882,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  AOS.init();
+  (() => {
+    AOS.init({
+      once: true
+    });
+    window.addEventListener('resize', () => {
+      AOS.refresh();
+    })
+    new Headroom(document.querySelector('.header')).init();
+  })();
 
   // Custom load more
   class LoadMore extends HTMLElement {
