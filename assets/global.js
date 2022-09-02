@@ -739,7 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let btnWrapper = btn.parentElement;
 
       let toggleBtns = (btn) => {
-        btnWrapper.classList.toggle('z-stack-2')
+        btnWrapper.classList.toggle('z-stack-2');
 
         btn.classList.toggle('btn--outline');
         btn.classList.toggle('text-primary');
@@ -747,17 +747,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btn.addEventListener('click',() => {
         let isOpened = btnWrapper.classList.contains('open');
-        btnWrapper.classList.toggle('open');
+        header.classList.remove('headroom--unpinned');
+        
+        !isOpened 
+          ? header.classList.add('header--fixed') 
+          : btnWrapper.classList.toggle('open');
 
-        isOpened
-         ? setTimeout(() => {
-          toggleBtns(btn)
-         }, 450)
-         : toggleBtns(btn);
+        setTimeout(() => {
+          isOpened 
+            ? header.classList.remove('header--fixed') 
+            : btnWrapper.classList.toggle('open');
+
+          isOpened
+            ? setTimeout(() => {
+            toggleBtns(btn)
+            }, 450)
+            : toggleBtns(btn);
+        }, 250);
+
         document.body.classList.toggle('overflow-hidden');
       });
     })
-
   })();
 
   // Header desktop
@@ -845,7 +855,7 @@ document.addEventListener('DOMContentLoaded', () => {
           e.preventDefault();
 
           document.body.classList.remove('overflow-hidden');
-          let wrapper = link.closest('.header__nav__wrapper');
+          let wrapper = link.closest('[data-header-nav]');
           if (wrapper) {
             wrapper.classList.remove('open');
             wrapper.querySelector('[data-header-toggle]').classList.add('btn--outline');

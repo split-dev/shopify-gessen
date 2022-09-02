@@ -72,6 +72,8 @@ class CartItems extends HTMLElement {
 
         // Close cart
         if(parsedState.item_count === 0) {
+          document.querySelector('.header').classList.remove('headroom--unpinned');
+          document.querySelector('.header').classList.remove('header--fixed');
           document.body.classList.remove('overflow-hidden');
           document.querySelector('.header__cart-wrapper').classList.remove('open');
           document.querySelector('.header__cart-wrapper').classList.remove('z-stack-2');
@@ -80,7 +82,7 @@ class CartItems extends HTMLElement {
           
           setTimeout(() => {
             document.querySelector('.header__cart-wrapper').classList.add('d-none');
-          }, 450);
+          }, 600);
         }
 
         // this.updateLiveRegions(line, parsedState.item_count);
