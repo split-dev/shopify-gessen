@@ -25,6 +25,9 @@
   @include media-breakpoint-up(md) {
     transition-delay: var(--animation-delay);
   }
+  @include media-breakpoint-down(md) {
+    opacity: 1;
+  }
   &.aos-animate {
     //animation-iteration-count: 1;
     //animation-name: zoomInUp;
@@ -32,6 +35,8 @@
     //animation-fill-mode: forwards;
 
     //transition-delay: var(--transition-default);
-    opacity: 1;
+    @include media-breakpoint-up(lg) {
+      opacity: 1;
+    }
   }
 }
