@@ -137,56 +137,61 @@
                  </div>
                </div>
             {%- when 'variant_picker' -%}
-              <variant-radios
-                class="no-js-hidden mt-1 mb-2 mt-md-0"
-                data-section="{{ section.id }}"
-                data-url="{{ product.url }}"
-                {{ block.shopify_attributes }}
-              >
-                {%- for option in product.options_with_values -%}
-                  <fieldset class="js border-none pt-0 pr-0 pb-0 pl-0 mt-0 mr-0 mb-0 ml-0{% unless forloop.last %} mb-2{% endunless %}">
-                    <div class="d-flex flex-wrap mb-n1">
-                      {%- for value in option.values -%}
-                        <input
-                          type="radio"
-                          id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                          name="{{ option.name }}"
-                          value="{{ value | escape }}"
-                          form="{{ product_form_id }}"
-                          class="visually-hidden"
-                          {% if option.selected_value == value %}
-                            checked
-                          {% endif %}
-                        >
-                        {% if option.name == 'Color' %}
-                          {% assign variant_name = value | handle | replace: '-', '_' %}
-                          {% assign icon_name = 'icon-' | append: variant_name | append: '.jpg' %}
+              {%- unless product.has_only_default_variant -%}
+                <variant-radios
+                  class="no-js-hidden mt-1 mb-2 mt-md-0"
+                  data-section="{{ section.id }}"
+                  data-url="{{ product.url }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- for option in product.options_with_values -%}
+                      <fieldset class="js border-none pt-0 pr-0 pb-0 pl-0 mt-0 mr-0 mb-0 ml-0{% unless forloop.last %} mb-2{% endunless %}">
+                        <div class="d-flex flex-wrap mb-n1">
+                          {%- for value in option.values -%}
+                            <input
+                              type="radio"
+                              id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                              name="{{ option.name }}"
+                              value="{{ value | escape }}"
+                              form="{{ product_form_id }}"
+                              class="visually-hidden"
+                              {% if option.selected_value == value %}
+                                checked
+                              {% endif %}
+                            >
+                            {% if option.name == 'Color' %}
+                              {% liquid
+                                assign colors = product.metafields.option.colors.value
+                                assign current_color = colors[forloop.index0]
+                              %}
 
-                          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                                 class="option-color d-block {% unless forloop.last %} mr-0.75{% endunless %} mb-1 rounded-circle border transition-default position-relative overflow-hidden">
-                            <img srcset="{{ icon_name | asset_img_url: '25x25' }}"
-                                 sizes="25px 1x, 50px 2x"
-                                 src="{{ icon_name | asset_img_url: '1x1' }}"
-                                 loading="lazy"
-                                 width="25"
-                                 height="25"
-                                 class="d-block fit-cover"
-                                 alt="{{ value }}">
-                          </label>
-                        {% else %}
-                          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                                 class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
-                            {{ value }}
-                          </label>
-                        {% endif %}
-                      {%- endfor -%}
-                    </div>
-                  </fieldset>
-                {%- endfor -%}
-                <script type="application/json">
-                      {{ product.variants | json }}
-                    </script>
-              </variant-radios>
+                              {% if colors != blank %}
+                                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                  class="option-color d-block {% unless forloop.last %} mr-0.75{% endunless %} mb-1 rounded-circle border transition-default position-relative overflow-hidden" 
+                                  style="background-color: {{ current_color }};">
+                          
+                                </label>
+                              {% else %}
+                                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                  class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
+                                  {{ value }}
+                                </label>
+                              {% endif %}
+                            {% else %}
+                              <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                    class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
+                                {{ value }}
+                              </label>
+                            {% endif %}
+                          {%- endfor -%}
+                        </div>
+                      </fieldset>
+                  {%- endfor -%}
+                  <script type="application/json">
+                        {{ product.variants | json }}
+                      </script>
+                </variant-radios>
+              {% endunless %}
             {%- when 'buy_buttons' -%}
               <div class="mt-auto" {{ block.shopify_attributes }}>
                 <product-form class="{% if product.selected_or_first_available_variant.available %}product__form {% endif %}d-block z-stack">
@@ -284,25 +289,29 @@
   </script>
 
   <script>
-    // Check if first slide item is ModelVier
-    let modelViewer = document.querySelector(`[data-product-media-slide="0"]`).querySelector('model-viewer')
-
-    var slider = new Flickity('[data-product-media]', {
-      cellAlign: "left",
-      contain: true,
-      pageDots: false,
-      prevNextButtons: false,
-      adaptiveHeight: true,
-      wrapAround: true,
-      fade: true,
-      draggable: modelViewer === null,
-      on: {
-        change: (index) => {
-          let modelViewer = document.querySelector(`[data-product-media-slide="${index}"]`).querySelector('model-viewer');
-          slider.isDraggable = modelViewer === null;
-        } 
-      }
-    });
+    (() => {
+      // Check if first slide item is ModelVier
+      let firstSlide = document.querySelector(`[data-product-media-slide="0"]`);
+      if (firstSlide === null) return;
+      let modelViewer = firstSlide.querySelector('model-viewer');
+      
+      var slider = new Flickity('[data-product-media]', {
+        cellAlign: "left",
+        contain: true,
+        pageDots: false,
+        prevNextButtons: false,
+        adaptiveHeight: true,
+        wrapAround: true,
+        fade: true,
+        draggable: modelViewer === null,
+        on: {
+          change: (index) => {
+            let modelViewer = document.querySelector(`[data-product-media-slide="${index}"]`).querySelector('model-viewer');
+            slider.isDraggable = modelViewer === null;
+          } 
+        }
+      });
+    })();
 
     // Check if camera is available
     (() => {
