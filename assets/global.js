@@ -784,9 +784,6 @@ document.addEventListener('DOMContentLoaded', () => {
           })
 
           if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
-            window.scrollTo({
-              top: 0,
-            });
             document.querySelector('[href="#shop"]').click();
             headerScroll.option.isFirstLoad = false;
           } else if (parseInt(percent) > 99) {
