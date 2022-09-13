@@ -783,9 +783,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('[data-header-logo]').style.width = `${width}px`;
           })
 
-          if (headerScroll.option.isFirstLoad && parseInt(percent) < 75) {
+          if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
+            window.scrollTo({
+              top: 0,
+            });
             document.querySelector('[href="#shop"]').click();
             headerScroll.option.isFirstLoad = false;
+          } else if (parseInt(percent) > 99) {
+            headerScroll.option.isFirstLoad = true;
           }
 
           if (percent >= 1) {
@@ -800,7 +805,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       },
       eventListeners: () => {
-        document.addEventListener('scroll', debounce(headerScroll.handle, 10));
+        document.addEventListener('scroll', debounce(headerScroll.handle, 15));
       },
       init: () => {
         headerScroll.option = {
@@ -842,6 +847,23 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementsByTagName('head')[0].appendChild(script);
     }
 
+    function scrollTo(offset, callback) {
+        const fixedOffset = offset.toFixed();
+        const onScroll = function () {
+                if (window.pageYOffset.toFixed() === fixedOffset) {
+                    window.removeEventListener('scroll', onScroll)
+                    callback()
+                }
+            }
+    
+        window.addEventListener('scroll', onScroll)
+        onScroll()
+        window.scrollTo({
+            top: offset,
+            behavior: 'smooth'
+        })
+    }
+
     links.forEach(link => {
       let href = link.getAttribute('href');
       // if ((href[0] === '#' && href.length > 1) || (href[1] === '#' && href.length > 2)) {
@@ -860,11 +882,20 @@ document.addEventListener('DOMContentLoaded', () => {
           let target = document.querySelector(`${link.getAttribute('href')}`);
 
           setTimeout(() => {
-            window.scrollTo({
-              top: target.getBoundingClientRect().top + window.pageYOffset,
-              left: 0,
-              behavior: "smooth"
-            });
+            if (window.innerWidth > 768) {
+              window.scrollTo({
+                top: target.getBoundingClientRect().top + window.pageYOffset,
+                behavior: 'smooth'
+              }) 
+            } else {
+              scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
+                let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
+                window.scrollTo({
+                  top: target.getBoundingClientRect().top + window.pageYOffset,
+                  behavior: 'smooth'
+                }) 
+              })  
+            }       
           });
         });
       }
@@ -949,7 +980,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btn.addEventListener('click', () => {
         let active = document.querySelector('.accordion [aria-expanded="true"]');
-        if (active) {
+        if (active && (btn !== active)) {
           active.setAttribute('aria-expanded', 'false');
           active.nextElementSibling.style.maxHeight = null;
         }

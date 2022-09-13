@@ -2,7 +2,7 @@
   &__media {
     &__badge {
       width: 39px;
-      bottom: calc(1rem - 5px);
+      bottom: calc(1rem - 2px);
       left: calc(1rem - 2px);
       box-sizing: border-box;
       @include media-breakpoint-up(md) {
