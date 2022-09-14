@@ -78,8 +78,8 @@
     height: 40px;
     border: 2px solid currentColor;
     border-radius: 20px;
-
-    transition-delay: 0.25s;
+    // transition-delay: 0.25s;
+    
     > * {
       opacity: 0;
       transition: 0.35s;
@@ -153,7 +153,7 @@
     height: calc(var(--vh, 1vh) * 100 - 2rem);
     border-radius: 5px 20px 5px 5px;
 
-    transition-delay: 0s;
+    // transition-delay: 0s;
     @include media-breakpoint-up(lg) {
       width: 358px;
       height: 550px;
@@ -161,7 +161,7 @@
     }
     > * {
       opacity: 1;
-      transition-delay: 0.2s;
+      transition-delay: 0.1s;
     }
   }
   &.header__cart-wrapper {
