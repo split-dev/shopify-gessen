@@ -62,6 +62,7 @@ if (!customElements.get('product-form')) {
           document.querySelector('.header__cart-wrapper').classList.toggle('z-stack-2');
           document.querySelector('[data-header-toggle]').classList.toggle('text-primary');
           document.querySelector('[data-header-toggle]').classList.toggle('btn--outline');
+          document.querySelector('[data-cart-bubble]').classList.toggle('d-none');
 
           setTimeout(() => {
             document.querySelector('.header__cart-wrapper').classList.add('open');

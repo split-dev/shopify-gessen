@@ -738,6 +738,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btn.classList.toggle('btn--outline');
         btn.classList.toggle('text-primary');
+
+        if (btn.classList.contains('header__burger--cart')) {
+          // setTimeout(() => {
+            btn.querySelector('.header__burger__open').classList.toggle('d-none')
+          // });
+          
+        }
       }
 
       btn.addEventListener('click',() => {
@@ -756,9 +763,9 @@ document.addEventListener('DOMContentLoaded', () => {
           isOpened
             ? setTimeout(() => {
             toggleBtns(btn)
-            }, 450)
+            }, 400)
             : toggleBtns(btn);
-        }, 250);
+        });
 
         document.body.classList.toggle('overflow-hidden');
       });
@@ -888,7 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
               scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
                 let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
                 window.scrollTo({
-                  top: target.getBoundingClientRect().top + window.pageYOffset,
+                  top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
                   behavior: 'smooth'
                 }) 
               })  

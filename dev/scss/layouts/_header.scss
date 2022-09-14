@@ -3,6 +3,7 @@
   z-index: 1000;
   &--fixed {
     transform: none !important;
+    transition: none !important;
   }
   &__logo {
     svg {
@@ -78,10 +79,10 @@
     border: 2px solid currentColor;
     border-radius: 20px;
 
-    transition-delay: 0.2s;
+    transition-delay: 0.25s;
     > * {
       opacity: 0;
-      transition: 0.2s;
+      transition: 0.35s;
       transition-delay: 0s;
     }
   }
@@ -122,6 +123,19 @@
         top: 11px;
         width: 0%;
         left: calc(50% - 6px);
+      }
+    }
+    &--cart {
+      // Add additional clickable area
+      @include media-breakpoint-down(md) {
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: calc(250%);
+        }
       }
     }
     &__open {
@@ -175,13 +189,13 @@
   // }
 }
 
-.headroom {
-  // will-change: transform;
-  transition: transform 200ms linear;
-}
-.headroom--pinned {
-  transform: translateY(0%);
-}
-.headroom--unpinned {
-  transform: translateY(-100%);
-}
+// .headroom {
+//   // will-change: transform;
+//   transition: transform 200ms linear;
+// }
+// .headroom--pinned {
+//   transform: translateY(0%);
+// }
+// .headroom--unpinned {
+//   transform: translateY(-100%);
+// }

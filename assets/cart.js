@@ -79,6 +79,7 @@ class CartItems extends HTMLElement {
           document.querySelector('.header__cart-wrapper').classList.remove('z-stack-2');
           document.querySelector('[data-header-toggle]').classList.toggle('text-primary');
           document.querySelector('[data-header-toggle]').classList.toggle('btn--outline');
+          document.querySelector('[data-cart-bubble]').classList.toggle('d-none');
           
           setTimeout(() => {
             document.querySelector('.header__cart-wrapper').classList.add('d-none');
