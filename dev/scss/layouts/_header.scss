@@ -35,9 +35,9 @@
       transform: rotate(0deg);
       background-color: currentColor;
 
-      @include media-breakpoint-down(md) {
-        transition-delay: 0.25s;
-      }
+      // @include media-breakpoint-down(md) {
+      //   transition-delay: 0.25s;
+      // }
 
       &:nth-child(1) {
         top: 0px;
@@ -53,9 +53,9 @@
     &--cart {
       .header__burger__line {
         opacity: 0;
-        @include media-breakpoint-down(md) {
-          transition-delay: 0.25s;
-        }
+        // @include media-breakpoint-down(md) {
+        //   transition-delay: 0.25s;
+        // }
       }
     }
     &:after {

@@ -1,7 +1,7 @@
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
-<cart-drawer-items class="cart d-block h-100 w-100">
+<cart-drawer-items class="cart d-block w-100">
   <form action="{{ routes.cart_url }}" id="CartDrawer-Form" data-id="{{ section.id }}" method="post" class="d-flex flex-column h-100">
     <div id="CartDrawer-CartItems" class="cart__inner js-contents">
       {%- for item in cart.items -%}

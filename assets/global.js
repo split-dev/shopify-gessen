@@ -705,14 +705,6 @@ class VariantRadios extends VariantSelects {
 customElements.define('variant-radios', VariantRadios);
 
 document.addEventListener('DOMContentLoaded', () => {
-  (() => {
-    function calcVh() {
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-    calcVh();
-    window.addEventListener('resize', calcVh);
-  })();
   // Header Action
   (() => {
     const header = document.querySelector('.header');
@@ -771,6 +763,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })
   })();
+  (() => {
+    let vh;
+    function calcVh() {
+      vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    calcVh();
+    window.addEventListener('resize', calcVh);
+    
+    const preheader = document.querySelector('.preheader__inner');
+    if (preheader) preheader.style.height = `${vh * 100 - window.headerHeight}px`
+  })();
 
   // Header desktop
   (() => {
@@ -786,9 +790,11 @@ document.addEventListener('DOMContentLoaded', () => {
           let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00),
               width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
 
-          requestAnimationFrame(() => {
-            document.querySelector('[data-header-logo]').style.width = `${width}px`;
-          })
+          if (percent !== 0) {
+            requestAnimationFrame(() => {
+              document.querySelector('[data-header-logo]').style.width = `${width}px`;
+            })
+          }
 
           if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
             document.querySelector('[href="#shop"]').click();
@@ -878,9 +884,11 @@ document.addEventListener('DOMContentLoaded', () => {
           document.body.classList.remove('overflow-hidden');
           let wrapper = link.closest('[data-header-nav]');
           if (wrapper) {
+            let toggle = wrapper.querySelector('[data-header-toggle]');
             wrapper.classList.remove('open');
-            wrapper.querySelector('[data-header-toggle]').classList.add('btn--outline');
-            wrapper.querySelector('[data-header-toggle]').classList.remove('text-primary');
+            toggle.classList.add('btn--outline');
+            toggle.classList.remove('text-primary');
+            toggle.classList.toggle('z-stack-2');
           }
 
           let target = document.querySelector(`${link.getAttribute('href')}`);
