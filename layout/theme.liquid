@@ -25,6 +25,9 @@
 
     {% render 'meta-tags' %}
 
+    <script>
+      window.firstLoad = true;
+    </script>
     <script src="{{ 'aos.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'headroom.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>

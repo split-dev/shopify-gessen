@@ -788,12 +788,34 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       handle: () => {
           let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00),
-              width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
+              width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent),
+              isBreak = window.pageYOffset > window.innerHeight;
 
-          if (percent !== 0) {
+          if (percent >= 1) {
+
+            if (isBreak) return;
+
+            console.log('Scroll is happenning');
+
             requestAnimationFrame(() => {
+              if (width < headerScroll.option.minMobile) width = headerScroll.option.minMobile;
               document.querySelector('[data-header-logo]').style.width = `${width}px`;
             })
+          } 
+          // } else if (window.innerWidth < 768) {
+            // requestAnimationFrame(() => {
+              // headerScroll.selectors.logo.style.width = `${headerScroll.selectors.logo.dataset.widthMobile}px`;
+            // })
+          // }
+
+          // On page redirect logo HACK FIX
+          if (window.firstLoad) {
+            setTimeout(() => {
+              percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
+              width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
+
+              document.querySelector('[data-header-logo]').style.width = `${width}px`;
+            }, 100)
           }
 
           if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
@@ -820,7 +842,8 @@ document.addEventListener('DOMContentLoaded', () => {
       init: () => {
         headerScroll.option = {
           isFirstLoad: true,
-          isSafari: window.detectBrowser() === 'safari'
+          isSafari: window.detectBrowser() === 'safari',
+          minMobile: parseInt(headerScroll.selectors.logo.dataset.widthMobile)
         };
         headerScroll.vars = {
           headerWidth: headerScroll.selectors.logo.scrollWidth,
@@ -886,9 +909,9 @@ document.addEventListener('DOMContentLoaded', () => {
           if (wrapper) {
             let toggle = wrapper.querySelector('[data-header-toggle]');
             wrapper.classList.remove('open');
+            wrapper.classList.remove('z-stack-2');
             toggle.classList.add('btn--outline');
             toggle.classList.remove('text-primary');
-            toggle.classList.toggle('z-stack-2');
           }
 
           let target = document.querySelector(`${link.getAttribute('href')}`);
@@ -1019,4 +1042,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //     });
   //   })
   // })();
+
+  window.firstLoad = false;
 });
