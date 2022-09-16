@@ -1,6 +1,7 @@
 .card-product {
   height: 100%;
   &__media {
+    border-radius: 5px;
     img {
       transition: var(--transition-default);
       + img {

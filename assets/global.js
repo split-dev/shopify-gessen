@@ -10,7 +10,7 @@ function detectBrowser() {
     return 'safari';
   }
 }
-if (detectBrowser() === 'safari') document.documentElement.classList.add('safari');
+// if (detectBrowser() === 'safari') document.documentElement.classList.add('safari');
 
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');
@@ -795,18 +795,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isBreak) return;
 
-            console.log('Scroll is happenning');
-
             requestAnimationFrame(() => {
               if (width < headerScroll.option.minMobile) width = headerScroll.option.minMobile;
               document.querySelector('[data-header-logo]').style.width = `${width}px`;
             })
           } 
-          // } else if (window.innerWidth < 768) {
-            // requestAnimationFrame(() => {
-              // headerScroll.selectors.logo.style.width = `${headerScroll.selectors.logo.dataset.widthMobile}px`;
-            // })
-          // }
 
           // On page redirect logo HACK FIX
           if (window.firstLoad) {
@@ -1042,6 +1035,19 @@ document.addEventListener('DOMContentLoaded', () => {
   //     });
   //   })
   // })();
+
+  (() => {
+    let isOpenCart = window.sessionStorage.getItem('open_cart') === 'true';
+
+    if (isOpenCart) {
+      console.log('WTF?????');
+      setTimeout(() => {
+        document.body.classList.add('overflow-hidden');
+      }, 200);
+      document.querySelector('[data-header-toggle].header__burger--cart').click();
+    }
+    window.sessionStorage.removeItem('open_cart')
+  })();
 
   window.firstLoad = false;
 });

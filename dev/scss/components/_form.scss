@@ -13,11 +13,12 @@
   }
   &__submit {
     right: 0;
-    top: 0;
+    top: 50%;
+    transform:translateY(-50%);
   }
 }
-.safari {
-  .form__submit {
-    top: 2px;
-  }
-}
+// .safari {
+//   .form__submit {
+//     top: 2px;
+//   }
+// }

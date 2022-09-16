@@ -78,7 +78,7 @@
     height: 40px;
     border: 2px solid currentColor;
     border-radius: 20px;
-    // transition-delay: 0.25s;
+    transition-delay: 0.1s;
     
     > * {
       opacity: 0;
@@ -152,6 +152,7 @@
     width: calc(100vw - 2rem);
     height: calc(var(--vh, 1vh) * 100 - 2rem);
     border-radius: 5px 20px 5px 5px;
+    transition-delay: 0s;
 
     // transition-delay: 0s;
     @include media-breakpoint-up(lg) {

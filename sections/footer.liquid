@@ -3,13 +3,13 @@
   <div class="footer__top">
     <div class="row">
       {% for block in section.blocks %}
-        <style>
+        {% style %}
           @media (min-width: 992px) {
             [data-block-id="{{ block.id }}"] {
               max-width: {{ block.settings.content_max_width }}px;
             }
           }
-        </style>
+        {% endstyle %}
         <div class="col-lg-6{% if block.settings.hide_on_mobile %} d-none d-lg-block{% endif %}" {{ block.attributes }}>
           <div class="d-flex flex-column align-items-start border pt-1 pb-1 pl-1 pr-1 h-100">
             <h3 class="mb-0.5 text-primary text-0.875 lh-150">{{ block.settings.heading }}</h3>

@@ -31,7 +31,7 @@
                                     shadow-intensity="1"
                                     camera-controls
                                     touch-action="pan-y">
-                        <button slot="ar-button" class="product__media__badge pl-0 pr-0 pt-0 pb-0 bg-transparent position-absolute border rounded-circle">
+                        <button slot="ar-button" class="product__media__badge pl-0 pr-0 pt-0 pb-0 bg-transparent position-absolute border rounded-circle active-state">
                           <span class="d-block position-relative" style="padding-bottom: 100%;">
                             <img
                               class="absolute-fill w-100 h-100 fit-contain"
@@ -48,7 +48,7 @@
                   {%- when 'image' -%}
                     <div class="position-relative border overflow-hidden" style="padding-bottom: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%">
                       <img
-                        class="absolute-fill fit-cover w-100 h-100"
+                        class="absolute-fill fit-cover w-100 h-100 text-light"
                         srcset="{%- if media.width >= 165 -%}{{ media | image_url: width: 165 }} 165w,{%- endif -%}
                       {%- if media.width >= 360 -%}{{ media | image_url: width: 360 }} 360w,{%- endif -%}
                       {%- if media.width >= 533 -%}{{ media | image_url: width: 533 }} 533w,{%- endif -%}
@@ -119,7 +119,7 @@
             {%- when 'accordion' -%}
                <div class="mb-1" {{ block.shopify_attributes }}>
                  <div class="accordion text-0.875 lh-150" data-accordion>
-                   <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-dark text-0.875" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
+                   <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-dark text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
                            data-accordion-toggle>
                      <span class="accordion__icon border rounded-circle mr-1 position-relative">
                        {% render 'icon' with 'plus', class: 'accordion__icon--plus transition-default absolute-center' %}
@@ -167,7 +167,7 @@
 
                               {% if colors != blank %}
                                 <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                                  class="option-color d-block {% unless forloop.last %} mr-0.75{% endunless %} mb-1 rounded-circle border transition-default position-relative overflow-hidden" 
+                                  class="option-color d-block {% unless forloop.last %} mr-0.75{% endunless %} mb-1 rounded-circle border transition-default position-relative overflow-hidden active-state" 
                                   style="background-color: {{ current_color }};">
                           
                                 </label>
@@ -224,7 +224,7 @@
 
                         <div class="{%- if product.selected_or_first_available_variant.available -%}d-none{% endif %}" data-notification>
                           <div class="mt-1 mt-md-0 ml-md-2">
-                            <button class="pl-0 pr-0 border-none bg-transparent text-underline transparent-0.6 text-primary klaviyo-bis-trigger">get notified when it’s back in stock</button>
+                            <button class="pl-0 pr-0 border-none bg-transparent text-underline transparent-0.6 text-primary klaviyo-bis-trigger active-state">get notified when it’s back in stock</button>
                           </div>
                         </div>
                       </div>

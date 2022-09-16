@@ -77,3 +77,14 @@
     @extend .rounded-circle, .flex-center;
   }
 }
+@include media-breakpoint-down(md) {
+  .active-state,
+  .link,
+  .btn,
+  .btn--outline,
+  .btn--primary {
+    &:active {
+      opacity: 0.5 !important;
+    }
+  }
+}

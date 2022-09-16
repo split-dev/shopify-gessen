@@ -17,10 +17,10 @@
   endif
 -%}
 
-<div class="card-product pt-1 pb-1 pl-1 pr-1 position-relative border overflow-hidden z-stack"
+<div class="card-product pt-1 pb-1 pl-1 pr-1 position-relative border overflow-hidden active-state z-stack"
      data-aos
      style="--animation-delay: {{- anim_delay -}}ms">
-  <div class="card-product__media">
+  <div class="card-product__media overflow-hidden">
     {% assign featured_media = card_product.images[0] %}
     {% if featured_media != blank %}
       <div class="position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%">
@@ -36,7 +36,7 @@
           src="{{ featured_media | image_url: width: 533 }}"
           sizes="(min-width: 1199px) calc((100vw - 4rem) / 4), (min-width: 990px) calc((100vw - 4rem) / 3), (min-width: 750px) calc((100vw - 4rem) / 2), calc(100vw - 4rem)"
           alt="{{ featured_media.alt | escape }}"
-          class="absolute-fill fit-cover w-100 h-100 motion-reduce"
+          class="absolute-fill fit-cover w-100 h-100 motion-reduce text-light"
           {% unless lazy_load == false %}loading="lazy"{% endunless %}
           width="{{ featured_media.width }}"
           height="{{ featured_media.height }}"
