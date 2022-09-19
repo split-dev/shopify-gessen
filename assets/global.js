@@ -1036,18 +1036,5 @@ document.addEventListener('DOMContentLoaded', () => {
   //   })
   // })();
 
-  (() => {
-    let isOpenCart = window.sessionStorage.getItem('open_cart') === 'true';
-
-    if (isOpenCart) {
-      console.log('WTF?????');
-      setTimeout(() => {
-        document.body.classList.add('overflow-hidden');
-      }, 200);
-      document.querySelector('[data-header-toggle].header__burger--cart').click();
-    }
-    window.sessionStorage.removeItem('open_cart')
-  })();
-
   window.firstLoad = false;
 });

@@ -78,7 +78,7 @@
     height: 40px;
     border: 2px solid currentColor;
     border-radius: 20px;
-    transition-delay: 0.1s;
+    transition-delay: 0.15s;
     
     > * {
       opacity: 0;
@@ -162,7 +162,7 @@
     }
     > * {
       opacity: 1;
-      transition-delay: 0.1s;
+      transition-delay: 0.15s;
     }
   }
   &.header__cart-wrapper {
