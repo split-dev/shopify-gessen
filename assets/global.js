@@ -705,6 +705,24 @@ class VariantRadios extends VariantSelects {
 customElements.define('variant-radios', VariantRadios);
 
 document.addEventListener('DOMContentLoaded', () => {
+  (() => {
+    window.iosTapIndicator = () => {
+      if (detectBrowser() === 'safari') {
+        console.log('Init');
+        document.documentElement.classList.add('isSafari');
+        document.querySelectorAll('.active-state, .link, .btn, .btn--outline, .btn--primary').forEach(el => {
+          el.addEventListener('touchstart', () => {
+            el.classList.add('active-state--active')
+          })
+          el.addEventListener('touchend', () => {
+            el.classList.remove('active-state--active')
+          })
+        })
+      }
+    }
+    window.iosTapIndicator();
+  })();
+
   // Header Action
   (() => {
     const header = document.querySelector('.header');

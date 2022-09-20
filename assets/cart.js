@@ -69,6 +69,11 @@ class CartItems extends HTMLElement {
         // Update inner cart
         document.querySelector('#CartDrawer-Form').innerHTML = dom.querySelector('#CartDrawer-Form').innerHTML;
 
+        // Update CSS effect
+        setTimeout(() => {
+          window.iosTapIndicator();
+        }, 100);
+
         // Close cart
         if(parsedState.item_count === 0) {
           document.querySelector('.header').classList.remove('headroom--unpinned');

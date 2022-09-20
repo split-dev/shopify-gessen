@@ -55,6 +55,11 @@ if (!customElements.get('product-form')) {
           // Update inner cart
           document.querySelector('#CartDrawer-Form').innerHTML = dom.querySelector('#CartDrawer-Form').innerHTML;
 
+          // Update CSS effect
+          setTimeout(() => {
+            window.iosTapIndicator();
+          }, 100);
+
           // Open cart
           document.querySelector('.header__cart-wrapper').classList.remove('d-none');
           document.querySelector('.header').classList.remove('headroom--unpinned');

@@ -87,4 +87,22 @@
       opacity: 0.5 !important;
     }
   }
+  .isSafari {
+    @media (hover: hover) {
+      .active-state,
+      .link,
+      .btn,
+      .btn--outline,
+      .btn--primary {
+        opacity: 1;
+        transition: 0.2s;
+        &:hover {
+          opacity: 0.5 !important;
+        }
+      }
+    }
+    .active-state--active {
+      opacity: 0.5 !important;
+    }
+  }
 }
