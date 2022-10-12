@@ -22,7 +22,8 @@
                 {{ 'product-1' | placeholder_svg_tag: "absolute-fill w-100 h-100" }}
               </div>
             {% endif %}
-            <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}" data-qty="{{ item.quantity }}">
+
+            <cart-remove-button class="d-none" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}" data-qty="{{ item.quantity }}">
               <a href="{{ item.url_to_remove }}" class="cart__item__remove flex-center btn--outline btn--outline--dark rounded-circle position-absolute lh-120 text-uppercase border overflow-hidden">
                 <span class="cart__item__bubble d-block position-relative">
                   <span class="absolute-center">
@@ -31,11 +32,12 @@
                 </span>
               </a>
             </cart-remove-button>
-            <span class="cart__item__qty flex-center rounded-circle position-absolute text-primary lh-120 text-uppercase bg-light border">
+            <span class="cart__item__qty d-none rounded-circle position-absolute text-primary lh-120 text-uppercase bg-light border">
               <span class="cart__item__bubble d-block position-relative lh-100">
                 <span class="absolute-center">{{ item.quantity }}</span>
               </span>
             </span>
+
           </div>
 
           <div class="pl-1 w-100">
@@ -44,11 +46,11 @@
             <div class="d-flex justify-content-between">
               <div>
                 {%- if item.product.has_only_default_variant == false or item.properties.size != 0 or item.selling_plan_allocation != nil -%}
-                  <dl class="mt-0.25 mb-0 text-0.875 lh-150 text-dark transparent-0.6">
+                  <dl class="d-flex flex-wrap mt-0.25 mb-0 text-0.875 lh-150 text-dark transparent-0.6">
                     {%- if item.product.has_only_default_variant == false -%}
                       {%- for option in item.options_with_values -%}
                         <div>
-                          <dd class="ml-0">{{ option.value }}</dd>
+                          <dd class="ml-0">{{ option.value }}{% unless forloop.last %},{% endunless %}&nbsp;</dd>
                         </div>
                       {%- endfor -%}
                     {%- endif -%}
@@ -75,41 +77,86 @@
                   <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                 {%- endif -%}
               </div>
-              <div class="text-primary text-0.875 lh-150">
-                {%- if item.original_line_price != item.final_line_price -%}
-                  <div>
+
+            </div>
+              <div class="d-flex justify-content-between align-items-end mt-0.5">
+                  <div class="cart-item__quantity">
+                      <div class="cart-item__quantity-wrapper">
+                          <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                              {{ 'products.product.quantity.label' | t }}
+                          </label>
+                          <quantity-input class="quantity">
+                              <button class="quantity__button no-js-hidden" name="minus" type="button">
+                                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+                                  {% render 'icon-minus' %}
+                              </button>
+                              <input class="quantity__input"
+                                     type="number"
+                                     name="updates[]"
+                                     value="{{ item.quantity }}"
+                                     min="0"
+                                     aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                                     id="Quantity-{{ item.index | plus: 1 }}"
+                                     data-index="{{ item.index | plus: 1 }}"
+                              >
+                              <button class="quantity__button no-js-hidden" name="plus" type="button">
+                                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+                                  {% render 'icon-plus' %}
+                              </button>
+                          </quantity-input>
+
+                          <cart-remove-button class="d-none" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                              <a href="{{ item.url_to_remove }}" class="button button--tertiary" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+                                  {% render 'icon-remove' %}
+                              </a>
+                          </cart-remove-button>
+                      </div>
+                      <div class="d-none cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                          <small class="cart-item__error-text"></small>
+                          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                              <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                              <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                              <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                              <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                          </svg>
+                      </div>
+                  </div>
+                  <div class="text-primary text-0.875 lh-150">
+                      {%- if item.original_line_price != item.final_line_price -%}
+                          <div>
                     <span class="visually-hidden">
                       {{ 'products.product.price.regular_price' | t }}
                     </span>
-                    <s>
-                      {% if settings.currency_code_enabled %}
-                        {{ item.original_line_price | money_with_currency }}
-                      {% else %}
-                        {{ item.original_line_price | money }}
-                      {% endif %}
-                    </s>
-                    <span class="visually-hidden">
+                              <s>
+                                  {% if settings.currency_code_enabled %}
+                                      {{ item.original_line_price | money_with_currency }}
+                                  {% else %}
+                                      {{ item.original_line_price | money }}
+                                  {% endif %}
+                              </s>
+                              <span class="visually-hidden">
                       {{ 'products.product.price.sale_price' | t }}
                     </span>
-                    <span>
+                              <span>
                       {% if settings.currency_code_enabled %}
-                        {{ item.final_line_price | money_with_currency }}
+                          {{ item.final_line_price | money_with_currency }}
                       {% else %}
-                        {{ item.final_line_price | money }}
+                          {{ item.final_line_price | money }}
                       {% endif %}
                     </span>
-                  </div>
-                {%- else -%}
-                  <span>
+                          </div>
+                      {%- else -%}
+                          <span>
                     {% if settings.currency_code_enabled %}
-                      {{ item.original_line_price | money_with_currency }}
+                        {{ item.original_line_price | money_with_currency }}
                     {% else %}
-                      {{ item.original_line_price | money }}
+                        {{ item.original_line_price | money }}
                     {% endif %}
                   </span>
-                {%- endif -%}
+                      {%- endif -%}
+                  </div>
               </div>
-            </div>
+
           </div>
         </div>
       {%- endfor -%}
@@ -134,13 +181,13 @@
         <p class="mt-0 mb-0 text-dark transparent-0.4 text-0.75 lh-150">Shipping and Taxes are caculated at checkout</p>
       </div>
 
-      <button type="submit" id="checkout" name="checkout" class="btn btn--primary mt-1 w-100 text-1.125 font-bold lh-120 text-uppercase active-state">
-        Check Out
+      <button type="submit" id="checkout" name="checkout" class="btn btn--primary mt-1 w-100 text-1.125 font-regular lh-120 text-uppercase active-state">
+        Checkout
       </button>
 
       <div class="mt-0.5 d-flex align-items-center justify-content-between">
-        <a href="{{ section.settings.footer_link_1_url }}" class="mr-1 link text-dark transparent-0.4 text-0.75 lh-150">{{ section.settings.footer_link_1_label }}</a>
-        <a href="{{ section.settings.footer_link_2_url }}" class="link text-dark transparent-0.4 text-0.75 lh-150 text-right">{{ section.settings.footer_link_2_label }}</a>
+        <a href="{{ section.settings.footer_link_1_url }}" class="mr-1 link text-dark  text-0.75 lh-150">{{ section.settings.footer_link_1_label }}</a>
+        <a href="{{ section.settings.footer_link_2_url }}" class="link text-dark  text-0.75 lh-150 text-right">{{ section.settings.footer_link_2_label }}</a>
       </div>
     </div>
   </form>
