@@ -4,6 +4,7 @@
 %}
 
 <div class="featured-collection container" id="shop">
+
   <div class="card-product__wrapper row" id="{{ section.id }}-{{ section_collection.handle }}">
     {% for single_product in section_collection.products limit: initail_count %}
       {% for variant in single_product.variants %}
