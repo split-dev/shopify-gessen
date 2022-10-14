@@ -1,3 +1,25 @@
 .footer {
   margin-top: 5rem;
+  &__nav-list {
+    @include media-breakpoint-down(sm) {
+      flex-direction: column !important;
+      align-items: flex-end !important;
+    }
+    li {
+      text-align: end;
+    }
+  }
+  .form__input {
+    font-size: 14px;
+    height: 40px;
+  }
+  .form__submit {
+    height: 40px !important;
+    width: 40px !important;
+  }
+  .form-section__title {
+    @include media-breakpoint-down(md) {
+      padding-top: 0 !important;
+    }
+  }
 }

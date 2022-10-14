@@ -200,3 +200,20 @@
 // .headroom--unpinned {
 //   transform: translateY(-100%);
 // }
+
+.template-index {
+  .header__buttons,
+  .header__logo {
+    opacity: 0;
+    transition: var(--transition-default);
+    transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
+    pointer-events: none;
+    &.header-animate {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  .header__translate-animate {
+    transform: translateY(-60%);
+  }
+}

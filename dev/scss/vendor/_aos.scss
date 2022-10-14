@@ -21,7 +21,8 @@
   //border-radius: 50%;
   opacity: 0;
   transition: var(--transition-default);
-  
+  transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
+
   @include media-breakpoint-up(md) {
     transition-delay: var(--animation-delay);
   }
@@ -40,16 +41,81 @@
     }
   }
 }
-[data-aos="slide-up"] {
-  transform: translate3d(0,-200%,0);
+[data-aos="slide-up-logo"] {
+  transform: translate3d(0,100px,0);
   opacity: 0;
   transition: var(--transition-default);
+  transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
+  @include media-breakpoint-down(md) {
+    transform: translate3d(0,-100px,0);
+  }
+  &.aos-animate {
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+}
+[data-aos="slide-up-form"] {
+  transform: translate3d(0, 100px,0);
+  opacity: 0;
+  transition: var(--transition-default);
+  transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
+  transition-delay: 300ms;
+  @include media-breakpoint-down(md) {
+    transform: translate3d(0, 0,0);
+  }
+  &.aos-animate {
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+}
+
+[data-aos="slide-logo"] {
+  transform: translate3d(0,-100%,0);
+  opacity: 0;
+  transition: var(--transition-default);
+  transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
   @include media-breakpoint-down(md) {
     transform: translate3d(0,-100%,0);
   }
   &.aos-animate {
     transform: translate3d(0,0,0);
     opacity: 1;
-    transition-timing-function: cubic-bezier(0.55,0.05,0.35,0.95) !important;
+
+  }
+}
+
+[data-aos="slide-up-hero-text"] {
+  transform: translate3d(0, 100px,0);
+  opacity: 0;
+  transition: var(--transition-default);
+  transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
+  transition-delay: 400ms;
+  @include media-breakpoint-down(md) {
+    transform: translate3d(0, 0,0);
+  }
+  &:nth-child(2) {
+    transition-delay: 700ms;
+  }
+  &:nth-child(3) {
+    transition-delay: 1000ms;
+  }
+  &:nth-child(4) {
+    transition-delay: 1300ms;
+  }
+  &:nth-child(5) {
+    transition-delay: 1600ms;
+  }
+  &:nth-child(6) {
+    transition-delay: 1900ms;
+  }
+  &:nth-child(7) {
+    transition-delay: 2200ms;
+  }
+  &:last-child {
+    transform: translate3d(0, 20px,0);
+  }
+  &.aos-animate {
+    transform: translate3d(0,0,0);
+    opacity: 1;
   }
 }

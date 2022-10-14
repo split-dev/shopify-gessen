@@ -17,14 +17,14 @@
 
 <div class="container">
     <div class="header__inner d-flex align-items-center justify-content-between">
-      <div class="header__logo events-all">
+      <div class="header__logo header__translate-animate d-flex events-all transition-default">
         <a href="{{ routes.root_url }}" class="d-block position-relative">
           {% if section.settings.logo != blank %}
             {% if request.page_type == 'index' %}
-              <span class="d-block transparent-0">
+              <span class="d-block">
                 {{ section.settings.logo }}
               </span>
-              <span class="position-absolute"
+              <span class="d-none position-absolute"
                     data-header-logo
                     data-width-mobile="{{ section.settings.logo_width_mobile }}"
                     data-width-desktop="{{ section.settings.logo_width_desktop }}"
@@ -39,7 +39,7 @@
           {% endif %}
         </a>
       </div>
-      <div class="header__buttons d-flex ml-auto events-all transition-default">
+      <div class="header__buttons header__translate-animate d-flex ml-auto events-all transition-default">
         <div class="header__cart-wrapper mr-1 position-relative z-stack{% if cart.item_count == 0 %} d-none{% endif %}">
           <button class="header__burger header__burger--cart btn--outline flex-center rounded-circle border-none z-stack-2 active-state" data-header-toggle>
             <span class="position-relative w-100 h-100">

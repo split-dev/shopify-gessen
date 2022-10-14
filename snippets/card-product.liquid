@@ -69,10 +69,15 @@
     {% endif %}
   </div>
   <div class="d-flex align-items-center justify-content-between mt-1">
-    <h3 class="mb-0 text-primary text-0.875 lh-150{% unless card_product.available %} text-crossed{% endunless %}">
-      {{ card_product.title | escape }}
-    </h3>
+      <div class="d-flex flex-wrap">
+          <h3 class="mb-0 mr-0.5 text-primary text-0.875 lh-150{% unless card_product.available %} text-crossed{% endunless %}">
+              {{ card_product.title | escape }}
+          </h3>
+          {% if variant.title != blank and variant.title != 'Default Title' %}
+              <h4 class="mb-0 text-primary mr-0.5 text-0.875 lh-150 transparent-0.4">{{ variant.title | replace: " /", "," }}</h4>
+          {% endif %}
 
+      </div>
     <div class="text-right text-0.875 lh-150">
       {% if card_product.available %}
         {% if settings.currency_code_enabled %}
@@ -86,5 +91,5 @@
     </div>
   </div>
 
-  <a href="{{ card_product.url }}" class="link--full z-stack"> </a>
+  <a href="{{ variant.url }}" class="link--full z-stack"> </a>
 </div>

@@ -1,8 +1,15 @@
 .preheader {
   &__inner {
+    padding-bottom: 30px;
     // height: calc(var(--vh, 1vh) * 100 - var(--header-height));
     &__content {
       max-width: 49.375rem;
+    }
+  }
+  &__inner--line {
+    margin: 0 !important;
+    @include media-breakpoint-down(md) {
+      display: inline;
     }
   }
 }

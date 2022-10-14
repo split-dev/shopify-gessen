@@ -12,10 +12,7 @@
         {% endstyle %}
         <div class="col-lg-6{% if block.settings.hide_on_mobile %} d-none d-lg-block{% endif %}" {{ block.attributes }}>
           <div class="d-flex flex-column align-items-start border pt-1 pb-1 pl-1 pr-1 h-100">
-            <h3 class="mb-0.5 text-primary text-0.875 lh-150">{{ block.settings.heading }}</h3>
-            <div class="rte transparent-0.4" data-block-id="{{ block.id }}">
-              {{ block.settings.content }}
-            </div>
+            <h3 class="mb-0 text-primary text-0.875 lh-150">{{ block.settings.heading }}</h3>
 
             {%- case block.type -%}
               {%- when 'text' -%}
@@ -27,11 +24,14 @@
                   </div>
                 {% endif %}
               {%- when 'newsletter' -%}
-                <div class="pt-2 mt-auto w-100">
+                <div class="form-section__title pt-2 mt-auto w-100">
                   {% form 'customer' %}
                     {%- if form.posted_successfully? -%}
                       <h3 class="text-0.875 mb-0" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
                     {% else %}
+                      <div class="main-password-section__label rte transparent-0.4" data-block-id="{{ block.id }}">
+                        {{ block.settings.content }}
+                      </div>
                       <input type="hidden" name="contact[tags]" value="newsletter">
                       <div class="newsletter-form__field-wrapper">
                         <div class="position-relative">
@@ -42,7 +42,7 @@
                             id="NewsletterForm--{{ section.id }}"
                             type="email"
                             name="contact[email]"
-                            class="form__input border w-100 text-1.125"
+                            class="form__input border w-100"
                             value="{{ form.email }}"
                             aria-required="true"
                             autocorrect="off"
@@ -73,53 +73,55 @@
           </div>
         </div>
       {% endfor %}
-    </div>
-  </div>
-
-  <div class="footer__bottom mt-1 mt-md-2 pt-1 pb-1 pl-1 pr-1 border">
-    <div class="row">
       <div class="col-lg-6">
-        <div class="rte text-dark">
-          {{ section.settings.content }}
-        </div>
+        <div class="footer__bottom h-100 pt-1 pb-1 pl-1 pr-1 border d-flex flex-column justify-content-between">
+          <div class="row">
+            <div class="col-6">
+              <div class="rte text-dark">
+                {{ section.settings.content }}
+              </div>
+            </div>
+            <div class="col-6 d-block">
+              <div class="rte text-right transparent-0.4">
+                {{ section.settings.copyrights }}
+              </div>
+            </div>
+          </div>
 
-        {% if section.settings.show_social %}
-          <div class="mt-2 mt-md-1">
-            {% render 'social-list', spacing: 'mr-1' %}
+          <div class="mt-2">
+            <div class="row">
+              <div class="col-6 d-flex align-items-end">
+                {% if section.settings.show_social %}
+                  <div class="mt-2 mt-md-1">
+                    {% render 'social-list', spacing: 'mr-1' %}
+                  </div>
+                {% endif %}
+              </div>
+              {% if section.settings.menu_primary != blank %}
+                <div class="col-lg-6{% if section.settings.menu_primary_hide %} d-none d-lg-block{% endif %}">
+                  <ul class="list-unstyled rte d-flex flex-wrap mb-n1">
+                    {% for link in section.settings.menu_primary.links %}
+                      <li class="mb-1{% unless forloop.last %} mr-1{% endunless %}">
+                        <a href="{{ link.url }}" class="link text-dark">{{ link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+              {% if section.settings.menu_secondary != blank %}
+                <div class="d-flex justify-content-end align-items-end col-6{% if section.settings.menu_secondary_hide %} d-none d-lg-block{% endif %}">
+                  <ul class="footer__nav-list list-unstyled rte d-flex flex-wrap justify-content-lg-end mb-0">
+                    {% for link in section.settings.menu_secondary.links %}
+                      <li class="mt-1 ml-1">
+                        <a href="{{ link.url }}" class="link text-dark">{{ link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
           </div>
-        {% endif %}
-      </div>
-      <div class="col-lg-6 d-none d-lg-block">
-        <div class="rte text-right transparent-0.4">
-          {{ section.settings.copyrights }}
         </div>
-      </div>
-    </div>
-
-    <div class="mt-2">
-      <div class="row">
-        {% if section.settings.menu_primary != blank %}
-          <div class="col-lg-6{% if section.settings.menu_primary_hide %} d-none d-lg-block{% endif %}">
-            <ul class="list-unstyled rte d-flex flex-wrap mb-n1">
-              {% for link in section.settings.menu_primary.links %}
-                <li class="mb-1{% unless forloop.last %} mr-1{% endunless %}">
-                  <a href="{{ link.url }}" class="link text-dark">{{ link.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-        {% if section.settings.menu_secondary != blank %}
-          <div class="col-lg-6{% if section.settings.menu_secondary_hide %} d-none d-lg-block{% endif %}">
-            <ul class="list-unstyled rte d-flex flex-wrap justify-content-lg-end mb-n1">
-              {% for link in section.settings.menu_secondary.links %}
-                <li class="mb-1{% unless forloop.last %} mr-1{% endunless %}">
-                  <a href="{{ link.url }}" class="link text-dark">{{ link.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
       </div>
     </div>
   </div>
@@ -154,16 +156,6 @@
     {
       "type": "header",
       "content": "Navigation"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_primary",
-      "label": "Primary menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "menu_primary_hide",
-      "label": "Hide on mobile"
     },
     {
       "type": "link_list",

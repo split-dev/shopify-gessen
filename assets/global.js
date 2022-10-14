@@ -802,7 +802,8 @@ document.addEventListener('DOMContentLoaded', () => {
       selectors: {
         header: document.querySelector('.header'),
         logo: document.querySelector('[data-header-logo]'),
-        navigation: document.querySelector('.header__buttons')
+        navigation: document.querySelector('.header__buttons'),
+        newLogo: document.querySelector('.header__logo')
       },
       handle: () => {
           let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00),
@@ -837,9 +838,17 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           if (percent >= 1) {
-            headerScroll.selectors.navigation.classList.add('transparent-0', 'events-none')
+            headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
+            headerScroll.selectors.navigation.classList.remove('header-animate', 'events-none')
+            headerScroll.selectors.newLogo.classList.add('header__translate-animate')
+            headerScroll.selectors.navigation.classList.add('header__translate-animate')
+
           } else if (percent <= 1) {
-            headerScroll.selectors.navigation.classList.remove('transparent-0', 'events-none')
+            headerScroll.selectors.newLogo.classList.add('header-animate', 'events-none')
+            headerScroll.selectors.navigation.classList.add('header-animate', 'events-none')
+            headerScroll.selectors.newLogo.classList.remove('header__translate-animate')
+            headerScroll.selectors.navigation.classList.remove('header__translate-animate')
+
           }
 
           (headerScroll.selectors.header.offsetTop + 10) > window.innerHeight 
@@ -966,7 +975,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   (() => {
     AOS.init({
-      once: true
+      once: false
     });
     window.addEventListener('resize', () => {
       AOS.refresh();
