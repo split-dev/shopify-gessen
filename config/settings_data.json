@@ -74,8 +74,6 @@
           "content": "<p>Information<\/p>",
           "copyrights": "<p>© Gessen 2022<\/p>",
           "show_social": true,
-          "menu_primary": "",
-          "menu_primary_hide": true,
           "menu_secondary": "footer",
           "menu_secondary_hide": false
         }
