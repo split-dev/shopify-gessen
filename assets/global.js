@@ -976,7 +976,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   (() => {
     AOS.init({
-      mirror: true,
       once: false
     });
     window.addEventListener('resize', () => {
