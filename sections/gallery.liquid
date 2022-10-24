@@ -42,42 +42,34 @@
     </div>
   </div>
 
-  <div id="ModalGallery" class="modal-gallery w-100 h-100 position-fixed events-none z-behind">
-    <div class="h-100 events-none">
-      <div class="position-relative ml-auto mr-auto events-all" data-slider-wrapper>
-        <span class="close text-right" data-modal-close>
-          <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.07249 2.07395L16.6999 18.0423" stroke="#1A1919" stroke-width="2" stroke-linecap="round"/>
-            <line x1="1" y1="-1" x2="23.2858" y2="-1" transform="matrix(0.699437 -0.714694 0.699437 0.714694 1 19.3569)" stroke="#1A1919" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <div class="main-carousel">
-          {% for block in section.blocks %}
-          <div class="carousel-cell flex-center">
-            <div>
-              <img
-                class="modal-gallery__image border overflow-hidden d-block w-100 fit-contain motion-reduce text-light"
-                src="{{ block.settings.image | image_url: width: 934 }}"
-                loading="lazy" 
-                alt="{{ block.settings.image.alt }}">
-            </div>
+  <div id="ModalGallery" class="modal-gallery">
+    <div class="modal-gallery-content position-relative">
+      <span class="close text-right" data-modal-close>
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.07249 2.07395L16.6999 18.0423" stroke="#1A1919" stroke-width="2" stroke-linecap="round"/>
+          <line x1="1" y1="-1" x2="23.2858" y2="-1" transform="matrix(0.699437 -0.714694 0.699437 0.714694 1 19.3569)" stroke="#1A1919" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <div class="main-carousel">
+        {% for block in section.blocks %}
+          <div class="carousel-cell w-100">
+            <img src="{{ block.settings.image | img_url: '934x' }}" alt="{{ block.settings.img.alt }}">
           </div>
-          {% endfor %}
-        </div>
-        <div id="modal-gallery-prev"></div>
-        <div id="modal-gallery-next"></div>
-        <div class="product__media__nav d-flex position-absolute">
-          <button  class="mr-0.75 mr-md-1 btn--circle border-2 btn--outline btn--outline--dark"
-                  data-gallery-nav="prev"
-                  aria-controls="Previous slide">
-            {% render 'icon' with 'arrow-left' %}
-          </button>
-          <button class="btn--circle border-2 btn--outline btn--outline--dark"
-                  data-gallery-nav="next"
-                  aria-controls="Next slide">
-            {% render 'icon' with 'arrow-right' %}
-          </button>
-        </div>
+        {% endfor %}
+      </div>
+      <div id="modal-gallery-prev" ></div>
+      <div id="modal-gallery-next" ></div>
+      <div class="product__media__nav d-flex position-absolute">
+        <button  class="mr-0.75 mr-md-1 btn--circle border-2 btn--outline btn--outline--dark"
+                 data-gallery-nav="prev"
+                 aria-controls="Previous slide">
+          {% render 'icon' with 'arrow-left' %}
+        </button>
+        <button class="btn--circle border-2 btn--outline btn--outline--dark"
+                data-gallery-nav="next"
+                aria-controls="Next slide">
+          {% render 'icon' with 'arrow-right' %}
+        </button>
       </div>
     </div>
   </div>
@@ -117,8 +109,9 @@
     cellAlign: "left",
     contain: true,
     pageDots: false,
+    imagesLoaded: true,
     prevNextButtons: false,
-    adaptiveHeight: false,
+    adaptiveHeight: true,
     wrapAround: true,
     fade: true,
     draggable: true,

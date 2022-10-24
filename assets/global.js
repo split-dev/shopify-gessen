@@ -791,7 +791,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', calcVh);
     
     const preheader = document.querySelector('.preheader__inner');
-    if (preheader) preheader.style.height = `${vh * 100 - window.headerHeight}px`
+    if (preheader) preheader.style.height = `${vh * 100 }px`
   })();
 
   // Header desktop

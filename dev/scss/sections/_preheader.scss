@@ -1,10 +1,20 @@
+@keyframes move-img {
+  0% { transform: translateY(-3px); }
+  50% { transform: translateY(1px); }
+  100% { transform: translateY(-3px); }
+}
+
 .preheader {
   &__inner {
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     // height: calc(var(--vh, 1vh) * 100 - var(--header-height));
     &__content {
       max-width: 49.375rem;
-      transform: translateY(80px);
+      margin-bottom: 90px;
+      transform: translateY(90px);
+      .btn--outline.rounded-circle {
+        animation: move-img 3s infinite ease-in-out;
+      }
     }
   }
   &__inner--line {
