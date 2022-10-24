@@ -91,12 +91,15 @@ h6,
     @extend .link;
   }
   p {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     &:first-child {
       margin-top: 0;
     }
     &:last-child {
       margin-bottom: 0;
+    }
+    @include media-breakpoint-up(md) {
+      margin-bottom: 2rem;
     }
   }
   h2 {

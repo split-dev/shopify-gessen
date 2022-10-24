@@ -1,0 +1,71 @@
+.modal-gallery {
+  opacity: 0;
+  left: 0;
+  top: 0;
+  overflow: auto;
+
+  padding: 5vh;
+
+  background-color: rgba(0,0,0,0.3);
+
+  // &__content {
+  //     background-color: transparent;
+  //     border: none;
+  //     width: 80%; /* Could be more or less, depending on screen size */
+  //     max-width: 934px;
+  //     max-height: 934px;
+  //     border-radius: 5px;
+  // }
+
+  &__image {
+    max-height: 90vh;
+  }
+
+  .btn--circle {
+    width: 40px;
+    height: 40px;
+  }
+  .product__media__nav {
+    z-index: 3;
+  }
+  #modal-gallery-prev,
+  #modal-gallery-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    display: block !important;
+    z-index: 2;
+    cursor: pointer;
+    @include media-breakpoint-down(md) {
+      display: none !important;
+    }
+  }
+  #modal-gallery-prev {
+    left: 0;
+  }
+  #modal-gallery-next {
+    right: 0;
+  }
+}
+
+/* The Close Button */
+.close {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  z-index: 3;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+[data-open-modal] {
+  cursor: pointer;
+}

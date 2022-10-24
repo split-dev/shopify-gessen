@@ -6,37 +6,22 @@
         "59b5137f-b1d5-4426-aa7c-ae845f2f3d02": {
           "type": "richtext",
           "settings": {
-            "heading": "Support",
-            "content": "<p><a href=\"mailto:support@studiogessen.com\" title=\"mailto:support@studiogessen.com\">support@studiogessen.com<\/a><\/p>",
-            "content_type": "light"
+            "heading": "",
+            "content": "<p>General Inquiries<br\/>info@studiogessen.com<\/p>",
+            "content_type": "regular"
           }
         },
         "4eb99472-d25b-4f70-9d4b-50260d617f78": {
           "type": "richtext",
           "settings": {
-            "heading": "Sales",
-            "content": "<p><a href=\"mailto:sales@studiogessen.com\" title=\"mailto:sales@studiogessen.com\">sales@studiogessen.com<\/a><\/p>",
-            "content_type": "light"
-          }
-        },
-        "2b67b6d9-0df4-4f42-a49f-c4731bba9aa0": {
-          "type": "richtext",
-          "settings": {
-            "heading": "Press",
-            "content": "<p><a href=\"mailto:press@studiogessen.com\" title=\"mailto:press@studiogessen.com\">press@studiogessen.com<\/a><\/p>",
-            "content_type": "light"
-          }
-        },
-        "6c5f917e-4b04-446d-87e1-407eb8bfb73e": {
-          "type": "richtext",
-          "settings": {
             "heading": "",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus. Pellentesque habitant.<\/p>",
-            "content_type": "dark"
+            "content": "<p>Customer Service<br\/>orders@studiogessen.com<\/p>",
+            "content_type": "regular"
           }
         },
         "b2ae7928-599f-4a35-bf4e-fb5efb15b3f8": {
           "type": "social",
+          "disabled": true,
           "settings": {
           }
         }
@@ -44,12 +29,11 @@
       "block_order": [
         "59b5137f-b1d5-4426-aa7c-ae845f2f3d02",
         "4eb99472-d25b-4f70-9d4b-50260d617f78",
-        "2b67b6d9-0df4-4f42-a49f-c4731bba9aa0",
-        "6c5f917e-4b04-446d-87e1-407eb8bfb73e",
         "b2ae7928-599f-4a35-bf4e-fb5efb15b3f8"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/4B-scaled_1.png"
+        "image": "shopify:\/\/shop_images\/Wave_Tumbler_1_1_e4f3579f-c932-4b63-ab7d-23a8fe7076c7.jpg",
+        "size": "large"
       }
     }
   },

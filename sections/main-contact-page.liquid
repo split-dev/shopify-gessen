@@ -1,10 +1,21 @@
 <div class="container">
   <div class="row">
     {% if section.settings.image != blank -%}
-      {%- assign image = section.settings.image %}
-      {%- assign ratio = image.aspect_ratio | default: 0.833333333 -%}
+      {% liquid
+        assign image = section.settings.image
+        assign ratio = image.aspect_ratio | default: 0.833333333
 
-      <div class="col-12 col-lg-4">
+        assign col_left = 'col-lg-4'
+        assign col_right = 'col-lg-8'
+
+        if section.settings.size == 'large'
+          assign col_left = 'col-lg-7'
+          assign col_right = 'col-lg-5'
+        endif
+      %}
+
+
+      <div class="col-12 {{ col_left }} order-1 order-lg-0">
         <div class="position-sticky" style="top: var(--header-height);">
           <div class="border position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
             <img srcset="{%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
@@ -25,7 +36,7 @@
         </div>
       </div>
     {% endif %}
-    <div class="col-12 col-lg-8">
+    <div class="col-12 {{ col_right }}">
         <div class="main-contact__blocks mb-n1">
         {% for block in section.blocks %}
           {% case block.type %}
@@ -57,7 +68,23 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
-    }
+    },
+   {
+     "type": "select",
+     "id": "size",
+     "label": "Size",
+     "options": [
+       {
+         "value": "small",
+         "label": "Small"
+       },
+       {
+        "value": "large",
+        "label": "Large"
+      }
+    ],
+    "default": "large"
+   }
   ],
   "blocks": [
     {
