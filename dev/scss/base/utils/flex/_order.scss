@@ -1,29 +1,11 @@
-$values-mobile:  "1", "2";
-$values-desktop:  "1", "2";
-
-@each $value in $values-mobile {
-  .order-#{$value} {
-    order: #{$value};
-  }
-}
 .order-n1 {
     order: -1;
 }
-@each $value in $values-desktop {
-    @include media-breakpoint-up(md) {
-      .order-md-#{$value} {
-        order: #{$value};
-      }
-    }
-  }  
 @include media-breakpoint-up(lg) {
     .order-lg-1 {
         order: 1;
     }
     .order-lg-n1 {
         order: -1;
-    }
-    .order-lg-0 {
-        order: 0;
     }
 }

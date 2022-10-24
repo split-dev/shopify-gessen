@@ -15,7 +15,7 @@
       %}
 
 
-      <div class="col-12 {{ col_left }} order-1 order-lg-0">
+      <div class="col-12 {{ col_left }}">
         <div class="position-sticky" style="top: var(--header-height);">
           <div class="border position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
             <img srcset="{%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
