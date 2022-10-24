@@ -9,13 +9,7 @@
           <div class="cart__item__media position-relative">
             {% if item.image %}
               <div class="position-relative border overflow-hidden" style="padding-bottom: {{ 1 | divided_by: item.image.aspect_ratio | times: 100 }}%">
-                <img class="absolute-fill fit-cover w-100 h-100"
-                     src="{{ item.image | image_url: width: 300 }}"
-                     alt="{{ item.image.alt | escape }}"
-                     loading="lazy"
-                     width="150"
-                     height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
-                  >
+                <img class="absolute-fill fit-cover w-100 h-100" src="{{ item.image | image_url: width: 300 }}" alt="{{ item.image.alt | escape }}" loading="lazy" width="150" height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}">
               </div>
             {% else %}
               <div class="position-relative border overflow-hidden" style="padding-bottom: 100%">
@@ -34,14 +28,16 @@
             </cart-remove-button>
             <span class="cart__item__qty d-none rounded-circle position-absolute text-primary lh-120 text-uppercase bg-light border">
               <span class="cart__item__bubble d-block position-relative lh-100">
-                <span class="absolute-center">{{ item.quantity }}</span>
+                <span class="absolute-center">{{ item.quantity }}
+                </span>
               </span>
             </span>
 
           </div>
 
           <div class="pl-1 w-100">
-            <a href="{{ item.url }}" class="link text-0.875 lh-150">{{ item.product.title | escape }}</a>
+            <a href="{{ item.url }}" class="link text-0.875 lh-150">{{ item.product.title | escape }}
+            </a>
 
             <div class="d-flex justify-content-between">
               <div>
@@ -50,7 +46,8 @@
                     {%- if item.product.has_only_default_variant == false -%}
                       {%- for option in item.options_with_values -%}
                         <div>
-                          <dd class="ml-0">{{ option.value }}{% unless forloop.last %},{% endunless %}&nbsp;</dd>
+                          <dd class="ml-0">{{ option.value }}
+                            {% unless forloop.last %},{% endunless %}&nbsp;</dd>
                         </div>
                       {%- endfor -%}
                     {%- endif -%}
@@ -59,7 +56,9 @@
                       {%- assign property_first_char = property.first | slice: 0 -%}
                       {%- if property.last != blank and property_first_char != '_' -%}
                         <div>
-                          <dt>{{ property.first }}: </dt>
+                          <dt>{{ property.first }}
+                            :
+                          </dt>
                           <dd class="ml-0">
                             {%- if property.last contains '/uploads/' -%}
                               <a href="{{ property.last }}" class="link" target="_blank" aria-describedby="a11y-new-window-message">
@@ -74,95 +73,91 @@
                     {%- endfor -%}
                   </dl>
 
-                  <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                  <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}
+                  </p>
                 {%- endif -%}
               </div>
 
             </div>
-              <div class="d-flex justify-content-between align-items-end mt-0.5">
-                  <div class="cart-item__quantity">
-                      <div class="cart-item__quantity-wrapper">
-                          <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
-                              {{ 'products.product.quantity.label' | t }}
-                          </label>
-                          <quantity-input class="quantity">
-                              <button class="quantity__button no-js-hidden" name="minus" type="button">
-                                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
-                                  {% render 'icon-minus' %}
-                              </button>
-                              <input class="quantity__input"
-                                     type="number"
-                                     name="updates[]"
-                                     value="{{ item.quantity }}"
-                                     min="0"
-                                     aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
-                                     id="Quantity-{{ item.index | plus: 1 }}"
-                                     data-index="{{ item.index | plus: 1 }}"
-                              >
-                              <button class="quantity__button no-js-hidden" name="plus" type="button">
-                                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
-                                  {% render 'icon-plus' %}
-                              </button>
-                          </quantity-input>
+            <div class="d-flex justify-content-between align-items-end mt-0.5">
+              <div class="cart-item__quantity">
+                <div class="cart-item__quantity-wrapper">
+                  <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+                    {{ 'products.product.quantity.label' | t }}
+                  </label>
+                  <quantity-input class="quantity">
+                    <button class="quantity__button no-js-hidden text-primary" name="minus" type="button">
+                      <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}
+                      </span>
+                      {% render 'icon-minus' %}
+                    </button>
+                    <input class="quantity__input" type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}" id="Quantity-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                    <button class="quantity__button no-js-hidden text-primary" name="plus" type="button">
+                      <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}
+                      </span>
+                      {% render 'icon-plus' %}
+                    </button>
+                  </quantity-input>
 
-                          <cart-remove-button class="d-none" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
-                              <a href="{{ item.url_to_remove }}" class="button button--tertiary" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
-                                  {% render 'icon-remove' %}
-                              </a>
-                          </cart-remove-button>
-                      </div>
-                      <div class="d-none cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
-                          <small class="cart-item__error-text"></small>
-                          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
-                              <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
-                              <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
-                              <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
-                              <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
-                          </svg>
-                      </div>
-                  </div>
-                  <div class="text-primary text-0.875 lh-150">
-                      {%- if item.original_line_price != item.final_line_price -%}
-                          <div>
+                  <cart-remove-button class="d-none" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                    <a href="{{ item.url_to_remove }}" class="button button--tertiary" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+                      {% render 'icon-remove' %}
+                    </a>
+                  </cart-remove-button>
+                </div>
+                <div class="d-none cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                  <small class="cart-item__error-text"></small>
+                  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                    <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                    <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                    <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                    <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                  </svg>
+                </div>
+              </div>
+              <div class="text-primary text-0.875 lh-150">
+                {%- if item.original_line_price != item.final_line_price -%}
+                  <div>
                     <span class="visually-hidden">
                       {{ 'products.product.price.regular_price' | t }}
                     </span>
-                              <s>
-                                  {% if settings.currency_code_enabled %}
-                                      {{ item.original_line_price | money_with_currency }}
-                                  {% else %}
-                                      {{ item.original_line_price | money }}
-                                  {% endif %}
-                              </s>
-                              <span class="visually-hidden">
+                    <s>
+                      {% if settings.currency_code_enabled %}
+                        {{ item.original_line_price | money_with_currency }}
+                      {% else %}
+                        {{ item.original_line_price | money }}
+                      {% endif %}
+                    </s>
+                    <span class="visually-hidden">
                       {{ 'products.product.price.sale_price' | t }}
                     </span>
-                              <span>
+                    <span>
                       {% if settings.currency_code_enabled %}
-                          {{ item.final_line_price | money_with_currency }}
+                        {{ item.final_line_price | money_with_currency }}
                       {% else %}
-                          {{ item.final_line_price | money }}
+                        {{ item.final_line_price | money }}
                       {% endif %}
                     </span>
-                          </div>
-                      {%- else -%}
-                          <span>
+                  </div>
+                {%- else -%}
+                  <span>
                     {% if settings.currency_code_enabled %}
-                        {{ item.original_line_price | money_with_currency }}
+                      {{ item.original_line_price | money_with_currency }}
                     {% else %}
-                        {{ item.original_line_price | money }}
+                      {{ item.original_line_price | money }}
                     {% endif %}
                   </span>
-                      {%- endif -%}
-                  </div>
+                {%- endif -%}
               </div>
+            </div>
 
           </div>
         </div>
       {%- endfor -%}
 
       <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
-      <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">{{ 'accessibility.loading' | t }}</p>
+      <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">{{ 'accessibility.loading' | t }}
+      </p>
     </div>
     <div id="CartDrawer-CartErrors" class="mt-1" role="alert"></div>
 
@@ -186,10 +181,11 @@
       </button>
 
       <div class="mt-0.5 d-flex align-items-center justify-content-between">
-        <a href="{{ section.settings.footer_link_1_url }}" class="mr-1 link text-dark  text-0.75 lh-150">{{ section.settings.footer_link_1_label }}</a>
-        <a href="{{ section.settings.footer_link_2_url }}" class="link text-dark  text-0.75 lh-150 text-right">{{ section.settings.footer_link_2_label }}</a>
+        <a href="{{ section.settings.footer_link_1_url }}" class="mr-1 link text-dark  text-0.75 lh-150">{{ section.settings.footer_link_1_label }}
+        </a>
+        <a href="{{ section.settings.footer_link_2_url }}" class="link text-dark  text-0.75 lh-150 text-right">{{ section.settings.footer_link_2_label }}
+        </a>
       </div>
     </div>
   </form>
 </cart-drawer-items>
-

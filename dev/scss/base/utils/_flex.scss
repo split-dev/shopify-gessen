@@ -97,19 +97,3 @@
 .flex-shrink-0 {
   flex-shrink: 0;
 }
-
-$values-mobile:  "1", "2";
-$values-desktop:  "1", "2";
-
-@each $value in $values-mobile {
-  .order-#{$value} {
-    order: #{$value};
-  }
-}
-@each $value in $values-desktop {
-  @include media-breakpoint-up(md) {
-    .order-md-#{$value} {
-      order: #{$value};
-    }
-  }
-}
