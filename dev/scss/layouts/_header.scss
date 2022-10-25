@@ -21,6 +21,10 @@
     border-color: transparent !important;
     border-radius: 20px !important;
     background: transparent;
+    > span {
+      min-height: 13px;
+      padding-top: 1px;
+    }
     &__open {
       transform: translate(-50%, -50%) scale(1);
       @include media-breakpoint-down(md) {
