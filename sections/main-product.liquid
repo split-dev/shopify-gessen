@@ -145,8 +145,8 @@
                   {%- for item in product.metafields.product.related_products.value -%}
                     {%- assign swatch_image = item.metafields.product.swatch_image -%}
                     {%- assign swatch_color = item.metafields.product.swatch_color -%}
-                    <a href="{{ item.url }}" class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1">
-                      <span aria-hidden="true" class="option-color a d-block rounded-circle border{% if item.url == product.url %} active-product{% endif %} transition-default position-relative overflow-hidden active-state" style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"></span>
+                    <a href="{{ item.url }}" class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1{% if item.url == product.url %} active-product{% endif %}">
+                      <span aria-hidden="true" class="option-color a d-block rounded-circle border transition-default position-relative overflow-hidden active-state" style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"></span>
                     </a>
                   {%- endfor -%}
                 </div>

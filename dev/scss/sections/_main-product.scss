@@ -39,7 +39,10 @@
     display: flex;
     flex-wrap: wrap;
     .active-product {
-      border-width: 2px !important;
+      pointer-events: none;
+      .option-color {
+        border-width: 2px !important;
+      }
     }
   }
 }
