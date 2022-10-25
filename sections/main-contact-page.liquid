@@ -45,7 +45,7 @@
               {% if block.settings.heading != blank %}
                 <h2 class="mb-0.5 text-0.875 lh-150 text-primary">{{ block.settings.heading }}</h2>
               {% endif %}
-              <div class="rte {% if block.settings.content_type == 'light' %} transparent-0.4{% elsif block.settings.content_type == 'dark' %} text-dark{% endif %}">
+              <div class="rte" style="color: rgba(var(--color-primary), 0.8)">
                 {{ block.settings.content }}
               </div>
             </div>
@@ -100,17 +100,6 @@
           "type": "richtext",
           "id": "content",
           "label": "Content"
-        },
-        {
-          "type": "select",
-          "id": "content_type",
-          "options": [
-            {"value": "light", "label": "Light"},
-            {"value": "dark", "label": "Dark"},
-            {"value": "regular", "label": "Regular"}
-          ],
-          "default": "regular",
-          "label": "Style"
         }
       ]
     },

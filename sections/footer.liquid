@@ -26,9 +26,18 @@
               {%- when 'newsletter' -%}
                 <div class="form-section__title pt-2 mt-auto w-100">
                   {% form 'customer' %}
-                    {%- if form.posted_successfully? -%}
-                      <h3 class="text-0.875 mb-0" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
-                    {% else %}
+                      <h3 class="text-0.875 mb-0 d-none" data-alert="status" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus></h3>
+                    	<!-- 2019 Honeypot / Checkbox Placeholder -->
+                      <div class="checkbox captcha"><input type="text" class="honeypot" autocomplete="off" style="display:none;"></div>
+
+                      <script type="application/json" class="form-alerts">
+                        {
+                          "error": "Error",
+                          "success": "{{ 'newsletter.success' | t }}"
+                        }
+                      </script>
+
+                    <div data-form-inner>
                       <div class="main-password-section__label rte transparent-0.4" data-block-id="{{ block.id }}">
                         {{ block.settings.content }}
                       </div>
@@ -66,7 +75,7 @@
                           <p class="text-0.875 mb-0" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
                         {%- endif -%}
                       </div>
-                    {%- endif -%}
+                    </div>
                   {% endform %}
                 </div>
             {%- endcase -%}

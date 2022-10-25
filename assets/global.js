@@ -1064,6 +1064,71 @@ document.addEventListener('DOMContentLoaded', () => {
   //   })
   // })();
 
+  // Contact form submit
+  (() => {
+    function formToJSON(elements) {
+      return [].reduce.call(elements, function (data, element) {
+        data[element.name] = element.value;
+        return data;
+      }, {});
+    }
+    
+    function ajaxFormInit(form) {
+      var form_type = form.querySelector("[name=form_type]").value,
+        form_inner = form.querySelector('[data-form-inner]'),
+        alert = form.querySelector('[data-alert="status"]'),
+        alert_msgs = form.querySelector('.form-alerts');
+    
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+    
+        var action = form.getAttribute("action");
+    
+        if (alert_msgs) {
+          var alert_msg = JSON.parse(alert_msgs.innerHTML)
+        }
+    
+        console.log("Form Action: " + action);
+        console.log("Submitting " + form_type + " form...");
+    
+        fetch(action, {
+          method: 'POST',
+          body: new FormData(form)
+        }).then(function(response) {
+          console.log(response);
+          console.log(response.status);
+    
+          if (response.redirected) {
+            alert.classList.remove('d-none');
+            form_inner.classList.add('d-none');
+            alert.innerHTML = alert_msg.error;
+
+            // window.location.href = 
+
+            return;
+          }
+
+          alert.classList.remove('d-none');
+          form_inner.classList.add('d-none');
+          alert.innerHTML = alert_msg.success;
+        }).catch(function(err) {
+          console.error(err);
+
+          alert.classList.remove('d-none');
+          form_inner.classList.add('d-none');
+          alert.innerHTML = alert_msg.error;
+        });
+      });
+    }
+    
+    // Init Shopify Forms
+    document.querySelectorAll("[name=form_type]").forEach(function(el) {
+      if (el.value !== 'customer') return;
+
+      ajaxFormInit(el.closest("form"));
+    });
+  })();
+
   window.firstLoad = false;
 });
 

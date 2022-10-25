@@ -8,6 +8,7 @@
 ehthumbs.db
 Thumbs.db
 .vscode
+.idea
 # ignore all files starting with . or ~
 .*
 ~*
@@ -24,6 +25,7 @@ dev/package-lock.json
 # track these files, if they exist
 !.gitignore
 !.editorconfig
+!.shopifyignore
 !README.md
 !CHANGELOG.md
 !composer.json
