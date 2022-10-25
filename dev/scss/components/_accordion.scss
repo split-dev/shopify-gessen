@@ -12,6 +12,12 @@
   &__content {
     max-height: 0;
     transition: max-height var(--transition-default);
+    .page-content {
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
   }
   [aria-expanded="true"] {
     .accordion__content {

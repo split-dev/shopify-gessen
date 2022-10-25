@@ -106,3 +106,8 @@
     }
   }
 }
+
+button[name="add"]:not(.loading) .btn-adding-name,
+button[name="add"].loading .btn-name {
+  display: none !important;
+}

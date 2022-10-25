@@ -35,6 +35,13 @@
       right: 1rem;
     }
   }
+  &__related {
+    display: flex;
+    flex-wrap: wrap;
+    .active-product {
+      border-width: 2px !important;
+    }
+  }
 }
 input:checked + label.btn--outline {
   background-color: rgb(var(--color-primary));

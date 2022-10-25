@@ -18,6 +18,11 @@
           "settings": {
           }
         },
+        "3bd1725b-66e0-4ed9-bb47-bdc43daae8c6": {
+          "type": "related_products",
+          "settings": {
+          }
+        },
         "8e4b4e12-11d4-44b6-8893-30d16647b44c": {
           "type": "accordion",
           "settings": {
@@ -42,6 +47,14 @@
             "content_page": ""
           }
         },
+        "7d1a3eab-ff4c-42d3-b28e-544f57034b2e": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Images",
+            "content": "",
+            "content_page": "accordion-images"
+          }
+        },
         "3c6466b8-0b92-488c-ae00-12e80b49b53d": {
           "type": "buy_buttons",
           "settings": {
@@ -53,14 +66,17 @@
         "title",
         "e5983410-5fd0-43a3-a180-2e62e2ce7f66",
         "994d1c7f-8f65-449f-9152-9fee08cf5f78",
+        "3bd1725b-66e0-4ed9-bb47-bdc43daae8c6",
         "8e4b4e12-11d4-44b6-8893-30d16647b44c",
         "d92fabe0-b82c-49d0-a1f4-94d998cfc2fc",
         "b00b466e-d063-4a5a-af2d-59c869e15dd2",
+        "7d1a3eab-ff4c-42d3-b28e-544f57034b2e",
         "3c6466b8-0b92-488c-ae00-12e80b49b53d"
       ],
       "settings": {
         "notification_heading": "Lorem ipsum - {{ product.title }}",
-        "notification_content": "<p>lorem ipsum dolor sit amet, consectetur <br\/>adipiscing elit.<\/p>"
+        "notification_content": "<p>lorem ipsum dolor sit amet, consectetur <br\/>adipiscing elit.<\/p>",
+        "notification_btn": "Notify when available"
       }
     },
     "product-recommendations": {

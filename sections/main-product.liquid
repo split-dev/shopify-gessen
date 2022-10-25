@@ -133,9 +133,24 @@
                    <div class="accordion__content overflow-hidden" id="content_{{ forloop.index }}" aria-labelledby="button_{{ forloop.index }}"
                         data-accordion-content>
                      <div class="mt-1 rte transparent-0.6">{{ block.settings.content }}</div>
+                     {%- if block.settings.content_page != blank -%}
+                        <div class="mt-1 rte page-content">{{ block.settings.content_page.content }}</div>
+                     {%- endif -%}
                    </div>
                  </div>
                </div>
+            {%- when 'related_products' -%}
+               {%- if product.metafields.product.related_products != blank -%}
+                <div class="product__related">
+                  {%- for item in product.metafields.product.related_products.value -%}
+                    {%- assign swatch_image = item.metafields.product.swatch_image -%}
+                    {%- assign swatch_color = item.metafields.product.swatch_color -%}
+                    <a href="{{ item.url }}" class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1">
+                      <span aria-hidden="true" class="option-color a d-block rounded-circle border{% if item.url == product.url %} active-product{% endif %} transition-default position-relative overflow-hidden active-state" style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"></span>
+                    </a>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
             {%- when 'variant_picker' -%}
               {%- unless product.has_only_default_variant -%}
                 <variant-radios
@@ -212,13 +227,14 @@
                             disabled
                           {% endif %}
                         >
-                        <span>
+                        <span class="btn-name">
                           {%- if product.selected_or_first_available_variant.available -%}
                             {{ 'products.product.add_to_cart' | t }}
                           {%- else -%}
                             {{ 'products.product.sold_out' | t }}
                           {%- endif -%}
                         </span>
+                        <span class="btn-adding-name">Adding</span>
 
                         </button>
 
@@ -422,6 +438,11 @@
     {
       "type": "variant_picker",
       "name": "t:sections.main-product.blocks.variant_picker.name",
+      "limit": 1
+    },
+    {
+      "type": "related_products",
+      "name": "Related products",
       "limit": 1
     },
     {
