@@ -1103,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form_inner.classList.add('d-none');
             alert.innerHTML = alert_msg.error;
 
-            // window.location.href = 
+            window.location.href = response.url;
 
             return;
           }
