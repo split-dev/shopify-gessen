@@ -18,12 +18,14 @@
         {% for block in section.blocks %}
           <p data-aos="slide-up-hero-text" class="preheader__inner--line">{{ block.settings.text }}</p>
         {% endfor %}
-        <div data-aos="slide-up-hero-text" class="mt-1">
+        <div class="mt-1">
           <a href="{{ section.settings.anchor_url }}" class="d-flex align-items-center rte no-underline active-state">
-          <span class="btn--outline btn--outline--dark border-2 rounded-circle flex-center flex-shrink-0 mr-1" style="width: 25px; height: 25px; padding-top: 2px">
-            {% render 'icon' with 'chevron-down' %}
-          </span>
-            <span class="text-dark">{{ section.settings.anchor_label }}</span>
+            <span data-aos="slide-left-hero-text" class="mr-1">
+              <span class="btn--outline btn--outline--dark flex-center flex-shrink-0 border-2 rounded-circle" style="width: 25px; height: 25px; padding-top: 2px">
+                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" {{ default_attributes }}><path d="m1 1 5.5 5.5L12 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+            <span data-aos="slide-left-hero-text" class="text-dark">{{ section.settings.anchor_label }}</span>
           </a>
         </div>
       </div>
@@ -34,41 +36,39 @@
 
 
 {% schema %}
-{
-  "name": "Homepage pre-header",
-  "tag": "section",
-  "class": "preheader",
-  "blocks": [
-    {
-      "name": "Line Item",
-      "type": "text",
-      "limit": 6,
-      "settings": [
-        {
+  {
+    "name": "Homepage pre-header",
+    "tag": "section",
+    "class": "preheader",
+    "blocks": [
+      {
+        "name": "Line Item",
         "type": "text",
-        "id": "text",
-        "label": "Text"
-        }
-      ]
-    }
-  ],
-  "settings": [
-    {
-      "type": "text",
-      "id": "logo",
-      "label": "Vector image SVG code",
-      "info": "Add SVG code starting with <svg..."
-    },
-    {
-      "type": "text",
-      "id": "anchor_url",
-      "label": "Anchor URL"
-    },
-    {
-      "type": "text",
-      "id": "anchor_label",
-      "label": "Anchor label"
-    }
-  ]
-}
+        "limit": 6,
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "logo",
+        "label": "Vector image SVG code",
+        "info": "Add SVG code starting with <svg..."
+      }, {
+        "type": "text",
+        "id": "anchor_url",
+        "label": "Anchor URL"
+      }, {
+        "type": "text",
+        "id": "anchor_label",
+        "label": "Anchor label"
+      }
+    ]
+  }
 {% endschema %}
