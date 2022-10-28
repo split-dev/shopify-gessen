@@ -16,7 +16,10 @@
   }
   &--full {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }
 
@@ -71,10 +74,22 @@
       }
     }
   }
+  &--underline {
+    cursor: pointer;
+  }
   &--circle {
     width: 54px;
     height: 54px;
     @extend .rounded-circle, .flex-center;
+  }
+  &--launch {
+    padding: 0.4rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.light {
+      background-color: unset;
+    }
   }
 }
 @include media-breakpoint-down(md) {
@@ -93,6 +108,7 @@
       .link,
       .btn,
       .btn--outline,
+      .btn--underline,
       .btn--primary {
         opacity: 1;
         transition: 0.2s;

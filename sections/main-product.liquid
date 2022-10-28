@@ -1,3 +1,19 @@
+<style>
+  /* enable Flickity by default */
+  [data-product-media]:after {
+    content: 'flickity';
+    display: none;
+  }
+  {%- if section.settings.media_desktop_view == 'list' -%}
+    @media screen and (min-width: 768px) {
+      /* disable Flickity for large devices */
+      [data-product-media]:after {
+        content: '';
+      }
+    }
+  {%- endif -%}
+</style>
+
 <section
   id="MainProduct-{{ section.id }}"
   class="pt-1"
@@ -9,9 +25,9 @@
       {% render 'breadcrumbs' %}
     </div>
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 product__media-wrapper{% if section.settings.media_desktop_size == 'larger' %} media-xl-larger{%- endif -%}">
         <div class="position-relative">
-          <div data-product-media>
+          <div {% if section.settings.media_desktop_view == 'list' %}class="product__media-list" {% endif %}data-product-media>
             {% for media in product.media %}
               <div class="w-100" data-product-media-slide="{{ forloop.index0 }}">
                 <div>
@@ -31,7 +47,7 @@
                                     shadow-intensity="1"
                                     camera-controls
                                     touch-action="pan-y">
-                        <button slot="ar-button" class="product__media__badge pl-0 pr-0 pt-0 pb-0 bg-transparent position-absolute border rounded-circle active-state">
+                        <button slot="ar-button" style="opacity: 0;" class="product__media__badge pl-0 pr-0 pt-0 pb-0 bg-transparent position-absolute border rounded-circle active-state">
                           <span class="d-block position-relative" style="padding-bottom: 100%;">
                             <img
                               class="absolute-fill w-100 h-100 fit-contain"
@@ -70,7 +86,7 @@
           </div>
 
           {% if product.media.size > 1 %}
-            <div class="product__media__nav d-flex position-absolute">
+            <div class="product__media__nav d-flex position-absolute{% if section.settings.media_desktop_view == 'list' %} d-md-none{% endif %}">
               <button class="mr-0.75 mr-md-1 btn--circle border-2 btn--outline btn--outline--dark"
                       data-product-media-nav="prev"
                       aria-controls="Previous slide">
@@ -85,10 +101,10 @@
           {% endif %}
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 product__info-wrapper{% if section.settings.media_desktop_size == 'larger' %} media-xl-larger{%- endif -%}">
         <div
           id="ProductInfo-{{ section.id }}"
-          class="d-flex flex-column justify-content-start h-100"
+          class="d-flex flex-column justify-content-start product__info{% if section.settings.media_desktop_view == 'list' %} md-sticky{% else %} h-100{% endif %}{% if section.settings.media_desktop_size == 'larger' %} media-xl-larger{%- endif -%}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
@@ -97,31 +113,33 @@
             {%- when '@app' -%}
               {% render block %}
             {%- when 'title' -%}
-              <div class="mb-1 d-flex align-items-center text-1.125 font-bold text-dark" {{ block.shopify_attributes }}>
-                <h1 class="mb-0 text-1.125 font-bold text-dark">{{ product.title | escape }}</h1>
+              <div class="d-flex align-items-center text-1.125 font-bold" {{ block.shopify_attributes }}>
+                <h1 class="mb-0 text-1.125 font-bold">{{ product.title | escape }}</h1>
+                {%- comment -%}
                 <span class="ml-0.5 mr-0.5"> - </span>
-                <span data-price>
+                <span>
                   {% if settings.currency_code_enabled %}
                     {{ product.selected_or_first_available_variant.price | money_with_currency }}
                   {% else %}
                     {{ product.selected_or_first_available_variant.price | money }}
                   {% endif %}
                 </span>
+                {%- endcomment -%}
               </div>
             {%- when 'description' -%}
               {%- if product.description != blank -%}
-              <div class="mb-1 rte transparent-0.6"  {{ block.shopify_attributes }}>
+              <div class="mb-2 rte"  {{ block.shopify_attributes }}>
                 {{ product.description }}
               </div>
               {%- endif -%}
             {%- when 'custom_liquid' -%}
               {{ block.settings.custom_liquid }}
             {%- when 'accordion' -%}
-               <div class="mb-1" {{ block.shopify_attributes }}>
+               <div {% unless forloop.last %}class="mb-0.5" {% endunless %}{{ block.shopify_attributes }}>
                  <div class="accordion text-0.875 lh-150" data-accordion>
-                   <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-dark text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
+                   <button class="accordion__button link d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
                            data-accordion-toggle>
-                     <span class="accordion__icon border rounded-circle mr-1 position-relative">
+                     <span class="accordion__icon mr-1 position-relative">
                        {% render 'icon' with 'plus', class: 'accordion__icon--plus transition-default absolute-center' %}
                        {% render 'icon' with 'minus', class: 'accordion__icon--minus transition-default absolute-center' %}
                      </span>
@@ -141,12 +159,15 @@
                </div>
             {%- when 'related_products' -%}
                {%- if product.metafields.product.related_products != blank -%}
-                <div class="product__related">
+                <div class="product__option-name text-0.875 lh-150">
+                  <span>Color </span><span class="transparent-0.6">{{ product.title }}</span>
+                </div>
+                <div class="product__related mb-1">
                   {%- for item in product.metafields.product.related_products.value -%}
                     {%- assign swatch_image = item.metafields.product.swatch_image -%}
                     {%- assign swatch_color = item.metafields.product.swatch_color -%}
                     <a href="{{ item.url }}" class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1{% if item.url == product.url %} active-product{% endif %}">
-                      <span aria-hidden="true" class="option-color a d-block rounded-circle border transition-default position-relative overflow-hidden active-state" style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"></span>
+                      <span aria-hidden="true" class="option-color a d-block rounded-circle border-hover transition-default position-relative overflow-hidden active-state" style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"></span>
                     </a>
                   {%- endfor -%}
                 </div>
@@ -154,13 +175,16 @@
             {%- when 'variant_picker' -%}
               {%- unless product.has_only_default_variant -%}
                 <variant-radios
-                  class="no-js-hidden mt-1 mb-2 mt-md-0"
+                  class="no-js-hidden mb-2 mt-md-0"
                   data-section="{{ section.id }}"
                   data-url="{{ product.url }}"
                   {{ block.shopify_attributes }}
                 >
                   {%- for option in product.options_with_values -%}
                       <fieldset class="js border-none pt-0 pr-0 pb-0 pl-0 mt-0 mr-0 mb-0 ml-0{% unless forloop.last %} mb-2{% endunless %}">
+                        <div class="product__option-name text-0.875 lh-150">
+                          <span>{{ option.name }} </span><span class="transparent-0.6">{%- for value in option.values -%}{% if option.selected_value == value %}{{ value | escape }}{% endif %}{%- endfor -%}</span>
+                        </div>
                         <div class="d-flex flex-wrap mb-n1">
                           {%- for value in option.values -%}
                             <input
@@ -169,7 +193,7 @@
                               name="{{ option.name }}"
                               value="{{ value | escape }}"
                               form="{{ product_form_id }}"
-                              class="visually-hidden"
+                              class="visually-hidden option-select-listener"
                               {% if option.selected_value == value %}
                                 checked
                               {% endif %}
@@ -194,7 +218,7 @@
                               {% endif %}
                             {% else %}
                               <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                                    class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
+                                    class="btn--underline{% unless forloop.last %} mr-2{% endunless %} mb-1 font-regular text-0.875 lh-150">
                                 {{ value }}
                               </label>
                             {% endif %}
@@ -208,7 +232,7 @@
                 </variant-radios>
               {% endunless %}
             {%- when 'buy_buttons' -%}
-              <div class="mt-auto" {{ block.shopify_attributes }}>
+              <div class="mb-md-2" {{ block.shopify_attributes }}>
                 <product-form class="{% if product.selected_or_first_available_variant.available %}product__form {% endif %}d-block z-stack">
                   {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                     <input
@@ -219,17 +243,18 @@
                     >
                     <div>
                       <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-1 mt-md-0">
+                        {%- if product.selected_or_first_available_variant.available -%}
                         <button
                           type="submit"
                           name="add"
-                          class="{% if product.selected_or_first_available_variant.available %}btn btn--primary{% else %} pl-0 pr-0 text-primary border-none bg-transparent transparent-0.6{% endif %} product__form__submit font-regular text-uppercase text-1.25 lh-110"
+                          class="{% if product.selected_or_first_available_variant.available %}btn btn--primary{% else %} pl-0 pr-0 text-primary border-none bg-transparent transparent-0.6{% endif %} product__form__submit font-regular text-uppercase text-0.875 lh-130 w-100"
                           {% if product.selected_or_first_available_variant.available == false %}
                             disabled
                           {% endif %}
                         >
                         <span class="btn-name">
                           {%- if product.selected_or_first_available_variant.available -%}
-                            {{ 'products.product.add_to_cart' | t }}
+                            {{ product.selected_or_first_available_variant.price | money }} - {{ 'products.product.add_to_cart' | t }}
                           {%- else -%}
                             {{ 'products.product.sold_out' | t }}
                           {%- endif -%}
@@ -237,12 +262,13 @@
                         <span class="btn-adding-name">Adding</span>
 
                         </button>
+                        {%- endif -%}
 
-                        <div class="{%- if product.selected_or_first_available_variant.available -%}d-none{% endif %}" data-notification>
+                        {%- comment -%} <div class="{%- if product.selected_or_first_available_variant.available -%}d-none{% endif %}" data-notification>
                           <div class="mt-1 mt-md-0 ml-md-2">
                             <button class="pl-0 pr-0 border-none bg-transparent text-underline transparent-0.6 text-primary klaviyo-bis-trigger active-state">get notified when it’s back in stock</button>
                           </div>
-                        </div>
+                        </div> {%- endcomment -%}
                       </div>
                       {%- if block.settings.show_dynamic_checkout -%}
                         <div class="mt-0.5">
@@ -252,6 +278,38 @@
                     </div>
                   {%- endform -%}
                 </product-form>
+              </div>
+            {%- when 'launch_ar_button' -%}
+              <button class="{% unless forloop.last %}mb-2 {% endunless %}btn btn--secondary d-md-none btn--launch light font-regular text-uppercase text-0.875 lh-130 w-100">
+                <span>Launch AR</span>
+                <img
+                  class="fit-contain ml-0.5"
+                  src="{{ 'ar-icon.png' | asset_img_url: '120x' }}"
+                  sizes="(min-width: 768px) 54px 1x 108px 2x, 30px 1x 60px 2x"
+                  loading="lazy"
+                  width="25"
+                  height="25"
+                  alt="AR Icon">
+              </button>
+              <div class="product__launch-popup d-md-none">
+                <button class="popup-close">{% render 'icon-close-popup' %}</button>
+                {%- if block.settings.launch_popup_title != blank -%}
+                <h5 class="mb-1.5 text-dark font-bold lh-130">{{ block.settings.launch_popup_title }}</h5>
+                {%- endif -%}
+                <div class="popup-text text-0.875 lh-150">
+                  {{ block.settings.launch_popup_text }}
+                </div>
+                <button class="btn btn--primary go-to-launch mt-auto btn--launch font-regular text-uppercase text-0.875 lh-130 w-100">
+                  <span>Launch AR</span>
+                  <img
+                    class="fit-contain ml-0.5"
+                    src="{{ 'ar-icon-light.png' | asset_img_url: '120x' }}"
+                    sizes="(min-width: 768px) 54px 1x 108px 2x, 30px 1x 60px 2x"
+                    loading="lazy"
+                    width="25"
+                    height="25"
+                    alt="AR Icon">
+                </button>
               </div>
             {%- endcase -%}
           {%- endfor -%}
@@ -277,8 +335,8 @@
       });
       klaviyo.enable("backinstock",{
           trigger: {
-              product_page_text: "Notify Me When Available",
-              product_page_class: "btn",
+              product_page_text: "Notify When Available",
+              product_page_class: "btn btn--primary link product__form__submit font-regular text-uppercase text-0.875 lh-130 w-100",
               product_page_text_align: "center",
               product_page_margin: "0px",
               replace_anchor: false
@@ -320,6 +378,7 @@
         wrapAround: true,
         fade: true,
         draggable: modelViewer === null,
+        watchCSS: true,
         on: {
           change: (index) => {
             let modelViewer = document.querySelector(`[data-product-media-slide="${index}"]`).querySelector('model-viewer');
@@ -421,6 +480,39 @@
   </script>
 </section>
 
+<script>
+  const variantInput = document.querySelectorAll('.option-select-listener');
+  variantInput.forEach(input => {
+    input.addEventListener('click', () => {
+      let optionValue = input.getAttribute('value'),
+      optionLabel = input.closest('fieldset').firstElementChild.lastElementChild;
+      optionLabel.textContent = optionValue;
+    });
+  });
+
+  const launchBtn = document.querySelectorAll('.btn--launch'),
+  launchBtnClose = document.querySelectorAll('.popup-close'),
+  launchPopup = document.querySelector('.product__launch-popup');
+  launchBtn.forEach(btn => {
+    btn.addEventListener('click', () =>{
+      launchPopup.classList.add('popup-visible');
+    });
+  });
+  launchBtnClose.forEach(btnClose => {
+    btnClose.addEventListener('click', () =>{
+      launchPopup.classList.remove('popup-visible');
+    });
+  });
+
+
+  const goLaunchBtn = document.querySelector('.go-to-launch'),
+  mediaBadges = document.querySelectorAll('.product__media__badge');
+  goLaunchBtn.addEventListener('click', () => {
+    launchPopup.classList.remove('popup-visible');
+    mediaBadges[0].click();
+  });
+</script>
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -444,6 +536,24 @@
       "type": "related_products",
       "name": "Related products",
       "limit": 1
+    },
+    {
+      "type": "launch_ar_button",
+      "name": "Launch AR button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "launch_popup_title",
+          "label": "Launch popup heading",
+          "default": "AR Visualiser"
+        },
+        {
+          "type": "richtext",
+          "id": "launch_popup_text",
+          "label": "Launch popup text"
+        }
+      ]
     },
     {
       "type": "buy_buttons",
@@ -499,6 +609,42 @@
     }
   ],
   "settings": [
+    {
+      "type": "header",
+      "content": "Media Settings"
+    },
+    {
+      "type": "radio",
+      "id": "media_desktop_view",
+      "label": "Media desktop view",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "radio",
+      "id": "media_desktop_size",
+      "label": "Media desktop size",
+      "options": [
+        {
+          "value": "usual",
+          "label": "Usual"
+        },
+        {
+          "value": "larger",
+          "label": "Larger"
+        }
+      ],
+      "default": "larger"
+    },
     {
       "type": "header",
       "content": "Notification"

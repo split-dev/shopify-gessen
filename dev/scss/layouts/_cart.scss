@@ -38,14 +38,17 @@
       right: -0.25rem;
     }
     &__media {
-      width: 76px;
-      @include media-breakpoint-up(md) {
-        width: 80px;
-      }
+      width: 80px;
       > div {
-        min-width: 78px;
-        min-height: 86px;
+        min-width: 80px;
+        min-height: 80px;
       }
+    }
+    .product-option {
+      margin: 0;
+    }
+    dl {
+      margin-top: 3px;
     }
   }
 }
@@ -55,7 +58,7 @@ quantity-input.quantity {
   display: flex;
   border: 2px solid #000;
   border-radius: 5px;
-  height: 32px;
+  height: 28px;
   button {
     background: transparent;
     border: none;

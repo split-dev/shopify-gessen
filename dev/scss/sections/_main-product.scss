@@ -20,6 +20,43 @@
         }
       }
     }
+    &-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 12px;
+    }
+  }
+  &__media-wrapper {
+    &.media-xl-larger {
+      @include media-breakpoint-up(xl) {
+        width: 58.6vw;
+      }
+    }
+  }
+  &__info-wrapper {
+    &.media-xl-larger {
+      @include media-breakpoint-up(xl) {
+        width: 41.4vw;
+      }
+    }
+  }
+  &__info {
+    &.media-xl-larger {
+      @include media-breakpoint-up(xl) {
+        max-width: 450px;
+      }
+    }
+    &.md-sticky {
+      @include media-breakpoint-up(md) {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 9.3vw;
+      }
+    }
+    h1 {
+      color: var(--color-primary);
+      margin-bottom: 6px;
+    }
   }
   &__form {
     @include media-breakpoint-down(sm) {
@@ -34,6 +71,10 @@
       left: 1rem;
       right: 1rem;
     }
+
+    &__submit {
+      min-height: 41px;
+    }
   }
   &__related {
     display: flex;
@@ -41,7 +82,53 @@
     .active-product {
       pointer-events: none;
       .option-color {
+        border-style: solid;
+        border-color: rgba(var(--color-primary));
+        border-radius: 5px;
         border-width: 2px !important;
+      }
+    }
+  }
+  &__option-name {
+    margin-bottom: 6px;
+  }
+  &__launch-popup {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 48px;
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    padding: 16px 16px 25px 16px;
+    border: 2px solid rgba(var(--color-primary));
+    border-radius: 5px;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    transition: 300ms;
+    &.popup-visible {
+      opacity: 1;
+      visibility: visible;
+      z-index: 1000;
+    }
+    .popup-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 16px;
+      background: unset;
+      border: none;
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    .popup-text {
+      p {
+        margin-top: 0;
+        margin-bottom: 2rem;
       }
     }
   }
@@ -49,6 +136,18 @@
 input:checked + label.btn--outline {
   background-color: rgb(var(--color-primary));
   color: rgb(var(--color-light));
+}
+input:checked + label.btn--underline {
+  position: relative;
+  &::after {
+    position: absolute;
+    right: -4px;
+    bottom: -2px;
+    left: -4px;
+    height: 2px;
+    background-color: rgb(var(--color-primary));
+    content: '';
+  }
 }
 model-viewer::part(default-ar-button) {
   display: none !important;

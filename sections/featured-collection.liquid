@@ -10,9 +10,9 @@
       {% for variant in single_product.variants %}
         <div class="col-12 col-md-6 col-lg-3">
           {%- capture anim_delay -%}
-            {%- cycle '600', '700', '800', '900' -%}
+            {%- cycle '500', '600', '700', '800' -%}
           {%- endcapture -%}
-          {% render 'card-product' card_product:single_product, anim_delay: anim_delay, variant: variant %}
+          {% render 'card-product' card_product: single_product, anim_delay: anim_delay, variant: variant %}
         </div>
       {% endfor %}
     {% endfor %}

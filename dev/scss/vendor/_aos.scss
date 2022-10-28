@@ -120,12 +120,12 @@
   }
 }
 
-[data-aos="slide-ttt-hero-text"] {
-  transform: translate3d(10px, 0,0);
+[data-aos="slide-up-header"] {
+  transform: translate3d(0, 10px,0);
   opacity: 0;
   transition: var(--transition-default);
   transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
-  transition-delay: 1300ms;
+  transition-delay: 600ms;
   @include media-breakpoint-down(md) {
     transform: translate3d(0, 0,0);
   }
