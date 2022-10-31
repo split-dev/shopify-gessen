@@ -18,12 +18,30 @@
           "settings": {
           }
         },
-        "8e4b4e12-11d4-44b6-8893-30d16647b44c": {
+        "3bd1725b-66e0-4ed9-bb47-bdc43daae8c6": {
+          "type": "related_products",
+          "settings": {
+          }
+        },
+        "3c6466b8-0b92-488c-ae00-12e80b49b53d": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        },
+        "d0e7b78a-4d5d-45c0-a930-93c255498761": {
+          "type": "launch_ar_button",
+          "settings": {
+            "launch_popup_title": "AR Visualiser",
+            "launch_popup_text": "<p>The augmented reality feature is intended to be used as a guide, so you can see how a Gessen Syrup Bowl would look in your home.<\/p><p>The size and colour of the bowl are not 100% accurate, and is intended to be a guide only. For dimensions please refer to the dimensions information.<\/p><p>Enjoy!<\/p>"
+          }
+        },
+        "da6456db-a179-44d0-b1b9-580d41dadc26": {
           "type": "accordion",
           "settings": {
-            "heading": "Sizing Details",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus learn more.<\/p>",
-            "content_page": ""
+            "heading": "Shipping",
+            "content": "",
+            "content_page": "shipping"
           }
         },
         "d92fabe0-b82c-49d0-a1f4-94d998cfc2fc": {
@@ -37,15 +55,17 @@
         "b00b466e-d063-4a5a-af2d-59c869e15dd2": {
           "type": "accordion",
           "settings": {
-            "heading": "Care Instructions",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus learn more.<\/p>",
+            "heading": "Care",
+            "content": "<p>Care<br\/><br\/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur at purus lobortis, ullamcorper lectus in, porttitor risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur at purus lobortis, ullamcorper lectus in, porttitor risus.<br\/><br\/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur at purus lobortis, ullamcorper lectus in, porttitor risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur at purus lobortis, ullamcorper lectus in, porttitor risus.<br\/><br\/><\/p>",
             "content_page": ""
           }
         },
-        "3c6466b8-0b92-488c-ae00-12e80b49b53d": {
-          "type": "buy_buttons",
+        "7d1a3eab-ff4c-42d3-b28e-544f57034b2e": {
+          "type": "accordion",
           "settings": {
-            "show_dynamic_checkout": false
+            "heading": "Images",
+            "content": "",
+            "content_page": "accordion-images"
           }
         }
       },
@@ -53,14 +73,20 @@
         "title",
         "e5983410-5fd0-43a3-a180-2e62e2ce7f66",
         "994d1c7f-8f65-449f-9152-9fee08cf5f78",
-        "8e4b4e12-11d4-44b6-8893-30d16647b44c",
+        "3bd1725b-66e0-4ed9-bb47-bdc43daae8c6",
+        "3c6466b8-0b92-488c-ae00-12e80b49b53d",
+        "d0e7b78a-4d5d-45c0-a930-93c255498761",
+        "da6456db-a179-44d0-b1b9-580d41dadc26",
         "d92fabe0-b82c-49d0-a1f4-94d998cfc2fc",
         "b00b466e-d063-4a5a-af2d-59c869e15dd2",
-        "3c6466b8-0b92-488c-ae00-12e80b49b53d"
+        "7d1a3eab-ff4c-42d3-b28e-544f57034b2e"
       ],
       "settings": {
+        "media_desktop_view": "list",
+        "media_desktop_size": "larger",
         "notification_heading": "Lorem ipsum - {{ product.title }}",
-        "notification_content": "<p>lorem ipsum dolor sit amet, consectetur <br\/>adipiscing elit.<\/p>"
+        "notification_content": "<p>lorem ipsum dolor sit amet, consectetur <br\/>adipiscing elit.<\/p>",
+        "notification_btn": "Notify when available"
       }
     },
     "product-recommendations": {

@@ -115,6 +115,8 @@
     wrapAround: true,
     fade: true,
     draggable: true,
+    selectedAttraction: 0.8,
+    friction: 0.95
   });
 
   window.sliderGallery = sliderGallery;
@@ -159,7 +161,7 @@
   })
 </script>
 
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const selector = document.querySelector('#shopify-section-{{ section.id }} [data-mansory-grid]');

@@ -639,14 +639,8 @@ class VariantSelects extends HTMLElement {
         const addButton = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[name="add"]');
         const notification = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[data-notification]');
         if (!this.currentVariant.available) {
-          addButton.closest('product-form').classList.remove('product__form');
-          addButton.classList.remove('btn', 'btn--primary');
-          addButton.classList.add('pl-0', 'pr-0', 'text-primary', 'border-none', 'bg-transparent', 'transparent-0.6');
           notification.classList.remove('d-none')
         } else {
-          addButton.closest('product-form').classList.add('product__form');
-          addButton.classList.add('btn', 'btn--primary');
-          addButton.classList.remove('pl-0', 'pr-0', 'text-primary', 'border-none', 'bg-transparent', 'transparent-0.6');
           notification.classList.add('d-none');
         }
       });
@@ -1066,21 +1060,22 @@ document.addEventListener('DOMContentLoaded', () => {
             let jqueryScript = document.createElement('script');
             jqueryScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
             jqueryScript.crossorigin = 'anonymous';
-            jqueryScript.onload = () => {
-              console.log('Loaded');
-            }
+            // jqueryScript.onload = () => {
+            //   console.log('Loaded');
+            // }
             document.head.prepend(jqueryScript);
           })();
         });
 
         notificationSubmit.addEventListener('click', () => {
+          let getActiveVariant = notificationTrigger.closest('form').querySelector('[name="id"]').value;
           $.ajax({
             type: "POST",
             url: "https://a.klaviyo.com/onsite/components/back-in-stock/subscribe",
             data: {
                 a: "U9irXF",
                 email: notificationInput.value,
-                variant: "39854213955717",
+                variant: getActiveVariant,
                 platform: "api"
             },
             success: function(response){
@@ -1115,9 +1110,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (alert_msgs) {
           var alert_msg = JSON.parse(alert_msgs.innerHTML)
         }
-    
-        console.log("Form Action: " + action);
-        console.log("Submitting " + form_type + " form...");
     
         fetch(action, {
           method: 'POST',

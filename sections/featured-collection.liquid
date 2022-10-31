@@ -8,51 +8,47 @@
   <div class="card-product__wrapper row" id="{{ section.id }}-{{ section_collection.handle }}">
     {% for single_product in section_collection.products limit: initail_count %}
       {% for variant in single_product.variants %}
-      <div class="col-12 col-md-6 col-lg-3">
-        {%- capture anim_delay -%}
-        {%- cycle '0', '100', '200', '300' -%}
-        {%- endcapture -%}
-        {% render 'card-product' card_product:single_product, anim_delay: anim_delay, variant: variant %}
-      </div>
-    {% endfor %}
+        <div class="col-12 col-md-6 col-lg-3">
+          {%- capture anim_delay -%}
+            {%- cycle '500', '600', '700', '800' -%}
+          {%- endcapture -%}
+          {% render 'card-product' card_product: single_product, anim_delay: anim_delay, variant: variant %}
+        </div>
+      {% endfor %}
     {% endfor %}
   </div>
 
   {% if section_collection.products.size > initail_count %}
     <div class="text-center mt-5 mb-5 mt-md-7.5 mb-md-7.5">
-      <load-more class="btn btn--outline text-uppercase position-relative"
-              data-paginate="{{ section_collection.handle }}"
-              data-paginate-collection-container="#{{ section.id }}-{{ section_collection.handle }}"
-              tabindex="0">
+      <load-more class="btn btn--outline text-uppercase position-relative" data-paginate="{{ section_collection.handle }}" data-paginate-collection-container="#{{ section.id }}-{{ section_collection.handle }}" tabindex="0">
         <span>Load more</span>
-        <span class="absolute-center loading-overlay__spinner spinner"> </span>
+        <span class="absolute-center loading-overlay__spinner spinner"></span>
       </load-more>
     </div>
   {% endif %}
 </div>
 
 {% schema %}
-{
-  "name": "t:sections.featured-collection.name",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_dynamic_loading",
-      "label": "Enable dynamic loading",
-      "default": true,
-      "info": "Works if collection contains more products then initial count. Button will load 8 more products, if available."
-    }
-  ],
-  "presets": [
-    {
-      "name": "t:sections.featured-collection.presets.name"
-    }
-  ]
-}
+  {
+    "name": "t:sections.featured-collection.name",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      }, {
+        "type": "checkbox",
+        "id": "enable_dynamic_loading",
+        "label": "Enable dynamic loading",
+        "default": true,
+        "info": "Works if collection contains more products then initial count. Button will load 8 more products, if available."
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.featured-collection.presets.name"
+      }
+    ]
+  }
 {% endschema %}
