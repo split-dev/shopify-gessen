@@ -21,6 +21,12 @@
       }
     }
   }
+  &__info {
+    @include media-breakpoint-up(lg) {
+      top: 1rem;
+      max-width: 450px;
+    }
+  }
   &__form {
     @include media-breakpoint-down(sm) {
       [type="submit"] {
@@ -33,6 +39,14 @@
       bottom: 1rem;
       left: 1rem;
       right: 1rem;
+    }
+    &__submit {
+      &:disabled {
+        display: none !important;
+      }
+    }
+    .footer.mt-0 {
+      margin-top: 0;
     }
   }
 }

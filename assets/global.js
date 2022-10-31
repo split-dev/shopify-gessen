@@ -1048,21 +1048,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  //  // Notification
-  // (() => {
-  //   const notification = document.querySelectorAll('[data-notification]');
+     // Notification
+     (() => {
+        const notificationTrigger = document.querySelector('[data-notification-trigger]'),
+              notificationWrapper = document.querySelector('[data-notification-wrapper]'),
+              notificationInput = document.querySelector('[data-notification-input]'),
+              notificationSubmit = document.querySelector('[data-notification-submit]'),
+              notificationStatus = document.querySelector('[data-notification-status]');
+    
+        
+        notificationTrigger.addEventListener('click', () => {
+          notificationTrigger.classList.toggle('d-none');
+          notificationWrapper.classList.toggle('d-none');
 
-  //   if (notification.length < 1) return;
-  //
-  //   const notificationModal = document.querySelector('#notification_modal').parentElement;
-  //
-  //   notification.forEach(btn => {
-  //     btn.addEventListener('click', () => {
-  //       document.body.classList.toggle('overflow-hidden');
-  //       notificationModal.classList.toggle('d-none');
-  //     });
-  //   })
-  // })();
+          // Load jQuery
+          (() => {
+            let jqueryScript = document.createElement('script');
+            jqueryScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
+            jqueryScript.crossorigin = 'anonymous';
+            jqueryScript.onload = () => {
+              console.log('Loaded');
+            }
+            document.head.prepend(jqueryScript);
+          })();
+        });
+
+        notificationSubmit.addEventListener('click', () => {
+          $.ajax({
+            type: "POST",
+            url: "https://a.klaviyo.com/onsite/components/back-in-stock/subscribe",
+            data: {
+                a: "U9irXF",
+                email: notificationInput.value,
+                variant: "39854213955717",
+                platform: "api"
+            },
+            success: function(response){
+              notificationWrapper.classList.add('d-none');
+              notificationStatus.classList.remove('d-none');
+              console.log(response) 
+            }
+          })
+        })
+      })();
 
   // Contact form submit
   (() => {

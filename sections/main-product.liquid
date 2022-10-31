@@ -1,8 +1,4 @@
-<section
-  id="MainProduct-{{ section.id }}"
-  class="pt-1"
-  data-section="{{ section.id }}"
->
+<section id="MainProduct-{{ section.id }}" class="pt-1" data-section="{{ section.id }}">
   <div class="container">
     {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
     <div class="d-none d-md-block mb-2">
@@ -16,53 +12,27 @@
               <div class="w-100" data-product-media-slide="{{ forloop.index0 }}">
                 <div>
                   {%- case media.media_type -%}
-                  {%- when 'model' -%}
-                  {%- assign model_src = media.sources[0] -%}
-                    <div class="position-relative border overflow-hidden" style="padding-bottom: {{ 1 | divided_by: first_3d_model.preview_image.aspect_ratio | times: 100 }}%">
-                      <model-viewer class="absolute-fill w-100 h-100"
-                                    alt="{{ media.alt }}"
-                                    src="{{ model_src.url }}"
-                                    loading="lazy"
-                                    ar
-                                    ar-scale="fixed" 
-                                    ar-modes="webxr scene-viewer quick-look"
-                                    xr-environment
-                                    poster="{{ media.preview_image | image_url }}"
-                                    shadow-intensity="1"
-                                    camera-controls
-                                    touch-action="pan-y">
-                        <button slot="ar-button" class="product__media__badge pl-0 pr-0 pt-0 pb-0 bg-transparent position-absolute border rounded-circle active-state">
-                          <span class="d-block position-relative" style="padding-bottom: 100%;">
-                            <img
-                              class="absolute-fill w-100 h-100 fit-contain"
-                              src="{{ 'ar-icon.png' | asset_img_url: '120x' }}"
-                              sizes="(min-width: 768px) 54px 1x 108px 2x, 30px 1x 60px 2x"
-                              loading="lazy"
-                              width="30"
-                              height="30"
-                              alt="AR Icon">
-                          </span>
-                        </button>
-                      </model-viewer>
-                    </div>
-                  {%- when 'image' -%}
-                    <div class="position-relative border overflow-hidden" style="padding-bottom: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%">
-                      <img
-                        class="absolute-fill fit-cover w-100 h-100 text-light"
-                        srcset="{%- if media.width >= 165 -%}{{ media | image_url: width: 165 }} 165w,{%- endif -%}
-                      {%- if media.width >= 360 -%}{{ media | image_url: width: 360 }} 360w,{%- endif -%}
-                      {%- if media.width >= 533 -%}{{ media | image_url: width: 533 }} 533w,{%- endif -%}
-                      {%- if media.width >= 720 -%}{{ media | image_url: width: 720 }} 720w,{%- endif -%}
-                      {%- if media.width >= 940 -%}{{ media | image_url: width: 940 }} 940w,{%- endif -%}
-                      {%- if media.width >= 1066 -%}{{ media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                      {{ media | image_url }} {{ media.width }}w"
-                        sizes="(min-width: 768px) calc(50vw - 2rem), calc(100vw - 2rem)"
-                        loading="lazy"
-                        src="{{ media | image_url: width: 500 }}"
-                        width="{{ media.width }}"
-                        height="{{ media.height }}"
-                        alt="{{ media.alt }}">
-                    </div>
+                    {%- when 'model' -%}
+                      {%- assign model_src = media.sources[0] -%}
+                      <div class="position-relative border overflow-hidden" style="padding-bottom: {{ 1 | divided_by: first_3d_model.preview_image.aspect_ratio | times: 100 }}%">
+                        <model-viewer class="absolute-fill w-100 h-100" alt="{{ media.alt }}" src="{{ model_src.url }}" loading="lazy" ar ar-scale="fixed" ar-modes="webxr scene-viewer quick-look" xr-environment poster="{{ media.preview_image | image_url }}" shadow-intensity="1" camera-controls touch-action="pan-y">
+                          <button slot="ar-button" class="product__media__badge pl-0 pr-0 pt-0 pb-0 bg-transparent position-absolute border rounded-circle active-state">
+                            <span class="d-block position-relative" style="padding-bottom: 100%;">
+                              <img class="absolute-fill w-100 h-100 fit-contain" src="{{ 'ar-icon.png' | asset_img_url: '120x' }}" sizes="(min-width: 768px) 54px 1x 108px 2x, 30px 1x 60px 2x" loading="lazy" width="30" height="30" alt="AR Icon">
+                            </span>
+                          </button>
+                        </model-viewer>
+                      </div>
+                    {%- when 'image' -%}
+                      <div class="position-relative border overflow-hidden" style="padding-bottom: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%">
+                        <img class="absolute-fill fit-cover w-100 h-100 text-light" srcset="{%- if media.width >= 165 -%}{{ media | image_url: width: 165 }} 165w,{%- endif -%}
+                                                {%- if media.width >= 360 -%}{{ media | image_url: width: 360 }} 360w,{%- endif -%}
+                                                {%- if media.width >= 533 -%}{{ media | image_url: width: 533 }} 533w,{%- endif -%}
+                                                {%- if media.width >= 720 -%}{{ media | image_url: width: 720 }} 720w,{%- endif -%}
+                                                {%- if media.width >= 940 -%}{{ media | image_url: width: 940 }} 940w,{%- endif -%}
+                                                {%- if media.width >= 1066 -%}{{ media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                                {{ media | image_url }} {{ media.width }}w" sizes="(min-width: 768px) calc(50vw - 2rem), calc(100vw - 2rem)" loading="lazy" src="{{ media | image_url: width: 500 }}" width="{{ media.width }}" height="{{ media.height }}" alt="{{ media.alt }}">
+                      </div>
                   {%- endcase -%}
                 </div>
               </div>
@@ -71,14 +41,10 @@
 
           {% if product.media.size > 1 %}
             <div class="product__media__nav d-flex position-absolute">
-              <button class="mr-0.75 mr-md-1 btn--circle border-2 btn--outline btn--outline--dark"
-                      data-product-media-nav="prev"
-                      aria-controls="Previous slide">
+              <button class="mr-0.75 mr-md-1 btn--circle border-2 btn--outline btn--outline--dark" data-product-media-nav="prev" aria-controls="Previous slide">
                 {% render 'icon' with 'arrow-left' %}
               </button>
-              <button class="btn--circle border-2 btn--outline btn--outline--dark"
-                      data-product-media-nav="next"
-                      aria-controls="Next slide">
+              <button class="btn--circle border-2 btn--outline btn--outline--dark" data-product-media-nav="next" aria-controls="Next slide">
                 {% render 'icon' with 'arrow-right' %}
               </button>
             </div>
@@ -86,79 +52,64 @@
         </div>
       </div>
       <div class="col-12 col-md-6">
-        <div
-          id="ProductInfo-{{ section.id }}"
-          class="d-flex flex-column justify-content-start h-100"
-        >
+        <div id="ProductInfo-{{ section.id }}" class="product__info position-sticky">
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
-            {%- when '@app' -%}
-              {% render block %}
-            {%- when 'title' -%}
-              <div class="mb-1 d-flex align-items-center text-1.125 font-bold text-dark" {{ block.shopify_attributes }}>
-                <h1 class="mb-0 text-1.125 font-bold text-dark">{{ product.title | escape }}</h1>
-                <span class="ml-0.5 mr-0.5"> - </span>
-                <span data-price>
-                  {% if settings.currency_code_enabled %}
-                    {{ product.selected_or_first_available_variant.price | money_with_currency }}
-                  {% else %}
-                    {{ product.selected_or_first_available_variant.price | money }}
-                  {% endif %}
-                </span>
-              </div>
-            {%- when 'description' -%}
-              {%- if product.description != blank -%}
-              <div class="mb-1 rte transparent-0.6"  {{ block.shopify_attributes }}>
-                {{ product.description }}
-              </div>
-              {%- endif -%}
-            {%- when 'custom_liquid' -%}
-              {{ block.settings.custom_liquid }}
-            {%- when 'accordion' -%}
-               <div class="mb-1" {{ block.shopify_attributes }}>
-                 <div class="accordion text-0.875 lh-150" data-accordion>
-                   <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-dark text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
-                           data-accordion-toggle>
-                     <span class="accordion__icon border rounded-circle mr-1 position-relative">
-                       {% render 'icon' with 'plus', class: 'accordion__icon--plus transition-default absolute-center' %}
-                       {% render 'icon' with 'minus', class: 'accordion__icon--minus transition-default absolute-center' %}
-                     </span>
+              {%- when '@app' -%}
+                {% render block %}
+              {%- when 'title' -%}
+                <div class="mb-1 d-flex align-items-center text-1.125 font-bold text-dark" {{ block.shopify_attributes }}>
+                  <h1 class="mb-0 text-1.125 font-bold text-dark">{{ product.title | escape }}</h1>
+                  <span class="ml-0.5 mr-0.5">
+                    -
+                  </span>
+                  <span data-price>
+                    {% if settings.currency_code_enabled %}
+                      {{ product.selected_or_first_available_variant.price | money_with_currency }}
+                    {% else %}
+                      {{ product.selected_or_first_available_variant.price | money }}
+                    {% endif %}
+                  </span>
+                </div>
+              {%- when 'description' -%}
+                {%- if product.description != blank -%}
+                  <div class="mb-1 rte transparent-0.6" {{ block.shopify_attributes }}>
+                    {{ product.description }}
+                  </div>
+                {%- endif -%}
+              {%- when 'custom_liquid' -%}
+                {{ block.settings.custom_liquid }}
+              {%- when 'accordion' -%}
+                <div class="mb-1" {{ block.shopify_attributes }}>
+                  <div class="accordion text-0.875 lh-150" data-accordion>
+                    <button class="accordion__button d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-dark text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}" data-accordion-toggle>
+                      <span class="accordion__icon border rounded-circle mr-1 position-relative">
+                        {% render 'icon' with 'plus', class: 'accordion__icon--plus transition-default absolute-center' %}
+                        {% render 'icon' with 'minus', class: 'accordion__icon--minus transition-default absolute-center' %}
+                      </span>
 
-                     <span>
-                       {{ block.settings.heading }}
-                     </span>
-                   </button>
-                   <div class="accordion__content overflow-hidden" id="content_{{ forloop.index }}" aria-labelledby="button_{{ forloop.index }}"
-                        data-accordion-content>
-                     <div class="mt-1 rte transparent-0.6">{{ block.settings.content }}</div>
-                   </div>
-                 </div>
-               </div>
-            {%- when 'variant_picker' -%}
-              {%- unless product.has_only_default_variant -%}
-                <variant-radios
-                  class="no-js-hidden mt-1 mb-2 mt-md-0"
-                  data-section="{{ section.id }}"
-                  data-url="{{ product.url }}"
-                  {{ block.shopify_attributes }}
-                >
-                  {%- for option in product.options_with_values -%}
+                      <span>
+                        {{ block.settings.heading }}
+                      </span>
+                    </button>
+                    <div class="accordion__content overflow-hidden" id="content_{{ forloop.index }}" aria-labelledby="button_{{ forloop.index }}" data-accordion-content>
+                      <div class="mt-1 rte transparent-0.6">{{ block.settings.content }}</div>
+                    </div>
+                  </div>
+                </div>
+              {%- when 'variant_picker' -%}
+                {%- unless product.has_only_default_variant -%}
+                  <variant-radios class="no-js-hidden mt-1 mb-2 mt-md-0" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
+                    {%- for option in product.options_with_values -%}
                       <fieldset class="js border-none pt-0 pr-0 pb-0 pl-0 mt-0 mr-0 mb-0 ml-0{% unless forloop.last %} mb-2{% endunless %}">
                         <div class="d-flex flex-wrap mb-n1">
                           {%- for value in option.values -%}
-                            <input
-                              type="radio"
-                              id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                              name="{{ option.name }}"
-                              value="{{ value | escape }}"
-                              form="{{ product_form_id }}"
-                              class="visually-hidden"
+                            <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}" class="visually-hidden"
                               {% if option.selected_value == value %}
-                                checked
-                              {% endif %}
-                            >
+                              checked
+                              {% endif %}>
                             {% if option.name == 'Color' %}
                               {% liquid
                                 assign colors = product.metafields.option.colors.value
@@ -166,77 +117,94 @@
                               %}
 
                               {% if colors != blank %}
-                                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                                  class="option-color d-block {% unless forloop.last %} mr-0.75{% endunless %} mb-1 rounded-circle border transition-default position-relative overflow-hidden active-state" 
-                                  style="background-color: {{ current_color }};">
-                          
-                                </label>
+                                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="option-color d-block {% unless forloop.last %} mr-0.75{% endunless %} mb-1 rounded-circle border transition-default position-relative overflow-hidden active-state" style="background-color: {{ current_color }};"></label>
                               {% else %}
-                                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                                  class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
+                                <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
                                   {{ value }}
                                 </label>
                               {% endif %}
                             {% else %}
-                              <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                                    class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
+                              <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="btn btn--sm btn--outline{% unless forloop.last %} mr-1{% endunless %} mb-1 font-regular text-0.875 lh-150">
                                 {{ value }}
                               </label>
                             {% endif %}
                           {%- endfor -%}
                         </div>
                       </fieldset>
-                  {%- endfor -%}
-                  <script type="application/json">
-                        {{ product.variants | json }}
-                      </script>
-                </variant-radios>
-              {% endunless %}
-            {%- when 'buy_buttons' -%}
-              <div class="mt-auto" {{ block.shopify_attributes }}>
-                <product-form class="{% if product.selected_or_first_available_variant.available %}product__form {% endif %}d-block z-stack">
-                  {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                    <input
-                      type="hidden"
-                      name="id"
-                      value="{{ product.selected_or_first_available_variant.id }}"
-                      disabled
-                    >
-                    <div>
-                      <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-1 mt-md-0">
-                        <button
-                          type="submit"
-                          name="add"
-                          class="{% if product.selected_or_first_available_variant.available %}btn btn--primary{% else %} pl-0 pr-0 text-primary border-none bg-transparent transparent-0.6{% endif %} product__form__submit font-regular text-uppercase text-1.25 lh-110"
-                          {% if product.selected_or_first_available_variant.available == false %}
+                    {%- endfor -%}
+                    <script type="application/json">
+                      {{ product.variants | json }}
+                    </script>
+                  </variant-radios>
+                {% endunless %}
+              {%- when 'buy_buttons' -%}
+                <div class="mt-1 mt-md-2" {{ block.shopify_attributes }}>
+                  <product-form class="{% if product.selected_or_first_available_variant.available %}product__form {% endif %}d-block z-stack">
+                    {%- form 'product', product, id: product_form_id, class: 'form product__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+                      <div>
+                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mt-1 mt-md-0">
+                          <button type="submit" name="add" class="{% if product.selected_or_first_available_variant.available %}btn btn--primary{% else %} pl-0 pr-0 text-primary border-none bg-transparent transparent-0.6{% endif %} product__form__submit font-regular text-uppercase text-1.25 lh-110"
+                            {% if product.selected_or_first_available_variant.available == false %}
                             disabled
-                          {% endif %}
-                        >
-                        <span>
-                          {%- if product.selected_or_first_available_variant.available -%}
-                            {{ 'products.product.add_to_cart' | t }}
-                          {%- else -%}
-                            {{ 'products.product.sold_out' | t }}
-                          {%- endif -%}
-                        </span>
+                            {% endif %}>
+                            <span>
+                              {%- if product.selected_or_first_available_variant.available -%}
+                                {{ 'products.product.add_to_cart' | t }}
+                              {%- else -%}
+                                {{ 'products.product.sold_out' | t }}
+                              {%- endif -%}
+                            </span>
+                          </button>
 
-                        </button>
+                          <div class="{%- if product.selected_or_first_available_variant.available -%}d-none{% endif %} w-100" data-notification>
+                            <button class="btn btn--primary font-regular text-uppercase text-0.875 lh-150 w-100" 
+                                type="button" 
+                                data-notification-trigger
+                              >
+                              NOTIFY WHEN AVAILABLE
+                            </button>
 
-                        <div class="{%- if product.selected_or_first_available_variant.available -%}d-none{% endif %}" data-notification>
-                          <div class="mt-1 mt-md-0 ml-md-2">
-                            <button class="pl-0 pr-0 border-none bg-transparent text-underline transparent-0.6 text-primary klaviyo-bis-trigger active-state">get notified when it’s back in stock</button>
+                            <div class="footer position-relative d-none mt-0" data-notification-wrapper>
+                              <label class="visually-hidden" for="BackInStock--{{ section.id }}">
+                                Back in Stock subscribe
+                              </label>
+                              <input
+                                id="BackInStock--{{ section.id }}"
+                                type="email"
+                                class="form__input border w-100"
+                                value="{{ form.email }}"
+                                aria-required="true"
+                                autocorrect="off"
+                                autocapitalize="off"
+                                autocomplete="email"
+                                placeholder="Enter your Email"
+                                data-notification-input
+                              >
+                              <button type="button" 
+                                class="form__submit btn--circle btn--outline btn--outline--dark border-2 position-absolute" 
+                                id="SubscribeBackInStock" 
+                                aria-label="SubscribeBackInStock"
+                                data-notification-submit
+                              >
+                                {% render 'icon' with 'arrow-right' %}
+                              </button>
+                            </div>
+                            <div class="rte d-none" data-notification-status>
+                              <p>Your notification has been registered.</p>
+                            </div>
                           </div>
                         </div>
+
+                        {%- if block.settings.show_dynamic_checkout -%}
+                          <div class="mt-0.5">
+                            {{ form | payment_button }}
+                          </div>
+                        {%- endif -%}
                       </div>
-                      {%- if block.settings.show_dynamic_checkout -%}
-                        <div class="mt-0.5">
-                          {{ form | payment_button }}
-                        </div>
-                      {%- endif -%}
-                    </div>
-                  {%- endform -%}
-                </product-form>
-              </div>
+                    {%- endform -%}
+                  </product-form>
+                </div>
             {%- endcase -%}
           {%- endfor -%}
         </div>
@@ -252,49 +220,49 @@
   <script src="{{ 'flickity.pkgd.min.js' | asset_url }}"></script>
   <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
 
-  <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+  {%- comment -%} <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
   <script>
-      var klaviyo = klaviyo || [];
-      klaviyo.init({
-          account: "U9irXF",
-          platform: "shopify"
-      });
-      klaviyo.enable("backinstock",{
-          trigger: {
-              product_page_text: "Notify Me When Available",
-              product_page_class: "btn",
-              product_page_text_align: "center",
-              product_page_margin: "0px",
-              replace_anchor: false
-          },
-          modal: {
-              headline: "{{ section.settings.notification_heading }}",
-              body_content: "{{ section.settings.notification_content }}",
-              email_field_label: "Enter your Email",
-              button_label: "{{ section.settings.notification_btn }}",
-              subscription_success_label: "You're in! We'll let you know when it's back.",
-              footer_content: '',
-              drop_background_color: "{{ settings.color_primary | color_to_rgb: 0.6 }}",
-              background_color: "{{ settings.color_light }}",
-              text_color: "{{ settings.color_primary }}",
-              button_text_color: "{{ settings.color_light }}",
-              button_background_color: "{{ settings.color_primary }}",
-              close_button_color: "{{ settings.color_primary }}",
-              error_background_color: "{{ settings.color_light }}",
-              error_text_color: "#C72E2F",
-              success_background_color: "{{ settings.color_light }}",
-              success_text_color: "#1B9500"
-          }
-      });
-  </script>
+    var klaviyo = klaviyo || [];
+    klaviyo.init({account: "U9irXF", platform: "shopify"});
+    klaviyo.enable("backinstock", {
+      trigger: {
+        product_page_text: "Notify Me When Available",
+        product_page_class: "btn",
+        product_page_text_align: "center",
+        product_page_margin: "0px",
+        replace_anchor: false
+      },
+      modal: {
+        headline: "{{ section.settings.notification_heading }}",
+        body_content: "{{ section.settings.notification_content }}",
+        email_field_label: "Enter your Email",
+        button_label: "{{ section.settings.notification_btn }}",
+        subscription_success_label: "You're in! We'll let you know when it's back.",
+        footer_content: '',
+        drop_background_color: "{{ settings.color_primary | color_to_rgb: 0.6 }}",
+        background_color: "{{ settings.color_light }}",
+        text_color: "{{ settings.color_primary }}",
+        button_text_color: "{{ settings.color_light }}",
+        button_background_color: "{{ settings.color_primary }}",
+        close_button_color: "{{ settings.color_primary }}",
+        error_background_color: "{{ settings.color_light }}",
+        error_text_color: "#C72E2F",
+        success_background_color: "{{ settings.color_light }}",
+        success_text_color: "#1B9500"
+      }
+    });
+  </script> {%- endcomment -%}
 
   <script>
     (() => {
+
       // Check if first slide item is ModelVier
       let firstSlide = document.querySelector(`[data-product-media-slide="0"]`);
-      if (firstSlide === null) return;
-      let modelViewer = firstSlide.querySelector('model-viewer');
+      if (firstSlide === null) 
+        return;
       
+      let modelViewer = firstSlide.querySelector('model-viewer');
+
       var slider = new Flickity('[data-product-media]', {
         cellAlign: "left",
         contain: true,
@@ -308,25 +276,26 @@
           change: (index) => {
             let modelViewer = document.querySelector(`[data-product-media-slide="${index}"]`).querySelector('model-viewer');
             slider.isDraggable = modelViewer === null;
-          } 
+          }
         }
       });
     })();
 
-    // Check if camera is available
+// Check if camera is available
     (() => {
-      if (navigator.mediaDevices?.enumerateDevices) {
+      if (navigator.mediaDevices ?. enumerateDevices) {
         document.documentElement.classList.add('device-no-camera');
-        navigator.mediaDevices.enumerateDevices()
-        .then((devices) => {
+        navigator.mediaDevices.enumerateDevices().then((devices) => {
           devices.forEach((device) => {
             if (device.kind === 'videoinput') 
               document.documentElement.classList.remove('device-no-camera');
+            
           });
-      })
+        })
       }
     })();
   </script>
+
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -335,17 +304,19 @@
         const msie = ua.indexOf('MSIE ');
         const trident = ua.indexOf('Trident/');
 
-        return (msie > 0 || trident > 0);
+        return(msie > 0 || trident > 0);
       }
 
-      if (!isIE()) return;
-      const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
+      if (! isIE()) 
+        return;
+      
+      const hiddenInput = document.querySelector('# {{ product_form_id }}input[name="id"]');
       const noScriptInputWrapper = document.createElement('div');
-      const variantSwitcher = document.querySelector('variant-radios[data-section="{{ section.id }}"]') || document.querySelector('variant-selects[data-section="{{ section.id }}"]');
-      noScriptInputWrapper.innerHTML = document.querySelector('.product-form__noscript-wrapper-{{ section.id }}').textContent;
+      const variantSwitcher = document.querySelector('variant-radios[data-section=" {{ section.id }}"]') || document.querySelector('variant-selects[data-section=" {{ section.id }}"]');
+      noScriptInputWrapper.innerHTML = document.querySelector('.product-form__noscript-wrapper- {{ section.id }}').textContent;
       variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
 
-      document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function(event) {
+      document.querySelector('#Variants- {{ section.id }}').addEventListener('change', function(event) {
         hiddenInput.value = event.currentTarget.value;
       });
     });
@@ -364,141 +335,127 @@
       "@context": "http://schema.org/",
       "@type": "Product",
       "name": {{ product.title | json }},
-      "url": {{ request.origin | append: product.url | json }},
-      {% if seo_media -%}
-        "image": [
-          {{ seo_media | image_url: width: seo_media.preview_image.width | prepend: "https:" | json }}
-        ],
-      {%- endif %}
-      "description": {{ product.description | strip_html | json }},
-      {% if product.selected_or_first_available_variant.sku != blank -%}
-        "sku": {{ product.selected_or_first_available_variant.sku | json }},
-      {%- endif %}
+      "url": {{ request.origin | append: product.url | json }},{% if seo_media -%}
+        "image" : [{{ seo_media | image_url: width: seo_media.preview_image.width | prepend: "https:" | json }}],{%- endif %}
+      "description": {{ product.description | strip_html | json }},{% if product.selected_or_first_available_variant.sku != blank -%}
+        "sku" : {{ product.selected_or_first_available_variant.sku | json }},{%- endif %}
       "brand": {
         "@type": "Brand",
         "name": {{ product.vendor | json }}
       },
-      "offers": [
-        {%- for variant in product.variants -%}
+      "offers": [{%- for variant in product.variants -%}
           {
-            "@type" : "Offer",
+            "@type": "Offer",
             {%- if variant.sku != blank -%}
-              "sku": {{ variant.sku | json }},
+              "sku" : {{ variant.sku | json }},
             {%- endif -%}
             {%- if variant.barcode.size == 12 -%}
-              "gtin12": {{ variant.barcode }},
+              "gtin12" : {{ variant.barcode }},
             {%- endif -%}
             {%- if variant.barcode.size == 13 -%}
-              "gtin13": {{ variant.barcode }},
+              "gtin13" : {{ variant.barcode }},
             {%- endif -%}
             {%- if variant.barcode.size == 14 -%}
-              "gtin14": {{ variant.barcode }},
+              "gtin14" : {{ variant.barcode }},
             {%- endif -%}
-            "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-            "price" : {{ variant.price | divided_by: 100.00 | json }},
-            "priceCurrency" : {{ cart.currency.iso_code | json }},
-            "url" : {{ request.origin | append: variant.url | json }}
-          }{% unless forloop.last %},{% endunless %}
-        {%- endfor -%}
-      ]
+            "availability": "http://schema.org/ {% if variant.available %}InStock
+            {% else %}
+              OutOfStock{% endif %}",
+            "price": {{ variant.price | divided_by: 100.00 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "url": {{ request.origin | append: variant.url | json }}
+          }
+          {% unless forloop.last %},{% endunless %}{%- endfor -%}]
     }
   </script>
 </section>
 
 {% schema %}
-{
-  "name": "t:sections.main-product.name",
-  "tag": "section",
-  "class": "section",
-  "blocks": [
-    {
-      "type": "@app"
-    },
-    {
-      "type": "title",
-      "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
-    },
-    {
-      "type": "variant_picker",
-      "name": "t:sections.main-product.blocks.variant_picker.name",
-      "limit": 1
-    },
-    {
-      "type": "buy_buttons",
-      "name": "t:sections.main-product.blocks.buy_buttons.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_dynamic_checkout",
-          "default": true,
-          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
-        }
-      ]
-    },
-    {
-      "type": "description",
-      "name": "t:sections.main-product.blocks.description.name",
-      "limit": 1
-    },
-    {
-      "type": "custom_liquid",
-      "name": "t:sections.main-product.blocks.custom_liquid.name",
-      "settings": [
-        {
-          "type": "liquid",
-          "id": "custom_liquid",
-          "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label",
-          "info": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.info"
-        }
-      ]
-    },
-    {
-      "type": "accordion",
-      "name": "Accordion",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading"
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content"
-        },
-        {
-          "type": "page",
-          "id": "content_page",
-          "label": "Page"
-        }
-      ]
-    }
-  ],
-  "settings": [
-    {
-      "type": "header",
-      "content": "Notification"
-    },
-    {
-      "type": "text",
-      "id": "notification_heading",
-      "label": "Heading",
-      "default": "Lorem ipsum"
-    },
-    {
-      "type": "richtext",
-      "id": "notification_content",
-      "label": "Content"
-    },
-    {
-      "type": "text",
-      "id": "notification_btn",
-      "label": "Button label",
-      "default": "Notify when available"
-    }
-  ]
-}
+  {
+    "name": "t:sections.main-product.name",
+    "tag": "section",
+    "class": "section",
+    "blocks": [
+      {
+        "type": "@app"
+      },
+      {
+        "type": "title",
+        "name": "t:sections.main-product.blocks.title.name",
+        "limit": 1
+      },
+      {
+        "type": "variant_picker",
+        "name": "t:sections.main-product.blocks.variant_picker.name",
+        "limit": 1
+      },
+      {
+        "type": "buy_buttons",
+        "name": "t:sections.main-product.blocks.buy_buttons.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_dynamic_checkout",
+            "default": true,
+            "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+            "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+          }
+        ]
+      }, {
+        "type": "description",
+        "name": "t:sections.main-product.blocks.description.name",
+        "limit": 1
+      }, {
+        "type": "custom_liquid",
+        "name": "t:sections.main-product.blocks.custom_liquid.name",
+        "settings": [
+          {
+            "type": "liquid",
+            "id": "custom_liquid",
+            "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label",
+            "info": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.info"
+          }
+        ]
+      }, {
+        "type": "accordion",
+        "name": "Accordion",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }, {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content"
+          }, {
+            "type": "page",
+            "id": "content_page",
+            "label": "Page"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "header",
+        "content": "Notification"
+      }, {
+        "type": "text",
+        "id": "notification_heading",
+        "label": "Heading",
+        "default": "Lorem ipsum"
+      }, {
+        "type": "richtext",
+        "id": "notification_content",
+        "label": "Content"
+      }, {
+        "type": "text",
+        "id": "notification_btn",
+        "label": "Button label",
+        "default": "Notify when available"
+      }
+    ]
+  }
 {% endschema %}

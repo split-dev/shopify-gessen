@@ -7,16 +7,14 @@
           "type": "richtext",
           "settings": {
             "heading": "",
-            "content": "<p>General Inquiries<br\/>info@studiogessen.com<\/p>",
-            "content_type": "regular"
+            "content": "<p>General Inquiries<br\/>info@studiogessen.com<\/p>"
           }
         },
         "4eb99472-d25b-4f70-9d4b-50260d617f78": {
           "type": "richtext",
           "settings": {
             "heading": "",
-            "content": "<p>Customer Service<br\/>orders@studiogessen.com<\/p>",
-            "content_type": "regular"
+            "content": "<p>Customer Service<br\/>orders@studiogessen.com<\/p>"
           }
         },
         "b2ae7928-599f-4a35-bf4e-fb5efb15b3f8": {
