@@ -1,11 +1,11 @@
 {% comment %}
-    Renders a product card
+  Renders a product card
 
-    Accepts:
-    - card_product: {Object} Product Liquid object (optional)
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
 
-    Usage:
-    {% render 'card-product', show_vendor: section.settings.show_vendor %}
+  Usage:
+  {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
 {%- liquid
@@ -17,49 +17,30 @@
   endif
 -%}
 
-<div class="card-product pt-1 pb-1 pl-1 pr-1 position-relative border overflow-hidden active-state z-stack"
-     data-aos="slide-up-product-card"
-     style="--animation-delay: {{- anim_delay -}}ms">
+<div class="card-product pt-1 pb-1 pl-1 pr-1 position-relative border overflow-hidden active-state z-stack" data-aos="slide-up-product-card" style="--animation-delay: {{- anim_delay -}}ms">
   <div class="card-product__media overflow-hidden">
     {% assign featured_media = card_product.images[0] %}
     {% if featured_media != blank %}
       <div class="position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%">
         {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-        <img
-          srcset="{%- if featured_media.width >= 165 -%}{{ featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                {%- if featured_media.width >= 360 -%}{{ featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                {%- if featured_media.width >= 533 -%}{{ featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                {%- if featured_media.width >= 720 -%}{{ featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                {%- if featured_media.width >= 940 -%}{{ featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                {%- if featured_media.width >= 1066 -%}{{ featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                {{ featured_media | image_url }} {{ featured_media.width }}w"
-          src="{{ featured_media | image_url: width: 533 }}"
-          sizes="(min-width: 1199px) calc((100vw - 4rem) / 4), (min-width: 990px) calc((100vw - 4rem) / 3), (min-width: 750px) calc((100vw - 4rem) / 2), calc(100vw - 4rem)"
-          alt="{{ featured_media.alt | escape }}"
-          class="absolute-fill fit-cover w-100 h-100 motion-reduce text-light"
-          {% unless lazy_load == false %}loading="lazy"{% endunless %}
-          width="{{ featured_media.width }}"
-          height="{{ featured_media.height }}"
-        >
+        <img srcset="{%- if featured_media.width >= 165 -%}{{ featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                                              {%- if featured_media.width >= 360 -%}{{ featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                                              {%- if featured_media.width >= 533 -%}{{ featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                                              {%- if featured_media.width >= 720 -%}{{ featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                                              {%- if featured_media.width >= 940 -%}{{ featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                                              {%- if featured_media.width >= 1066 -%}{{ featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                              {{ featured_media | image_url }} {{ featured_media.width }}w" src="{{ featured_media | image_url: width: 533 }}" sizes="(min-width: 1199px) calc((100vw - 4rem) / 4), (min-width: 990px) calc((100vw - 4rem) / 3), (min-width: 750px) calc((100vw - 4rem) / 2), calc(100vw - 4rem)" alt="{{ featured_media.alt | escape }}" class="absolute-fill fit-cover w-100 h-100 motion-reduce text-light" {% unless lazy_load == false %}loading="lazy"{% endunless %}
+          width="{{ featured_media.width }}" height="{{ featured_media.height }}">
         {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
         {%- if card_product.images[1] != nil and settings.card_show_secondary_image -%}
-          <img
-            srcset="{%- if card_product.images[1].width >= 165 -%}{{ card_product.images[1] | image_url: width: 165 }} 165w,{%- endif -%}
-                  {%- if card_product.images[1].width >= 360 -%}{{ card_product.images[1] | image_url: width: 360 }} 360w,{%- endif -%}
-                  {%- if card_product.images[1].width >= 533 -%}{{ card_product.images[1] | image_url: width: 533 }} 533w,{%- endif -%}
-                  {%- if card_product.images[1].width >= 720 -%}{{ card_product.images[1] | image_url: width: 720 }} 720w,{%- endif -%}
-                  {%- if card_product.images[1].width >= 940 -%}{{ card_product.images[1] | image_url: width: 940 }} 940w,{%- endif -%}
-                  {%- if card_product.images[1].width >= 1066 -%}{{ card_product.images[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
-                  {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
-            src="{{ card_product.images[1] | image_url: width: 533 }}"
-            sizes="(min-width: 1199px) calc((100vw - 4rem) / 4), (min-width: 990px) calc((100vw - 4rem) / 3), (min-width: 750px) calc((100vw - 4rem) / 2), calc(100vw - 4rem)"
-            alt=""
-            class="absolute-fill fit-cover w-100 h-100 motion-reduce"
-            loading="lazy"
-            width="{{ card_product.images[1].width }}"
-            height="{{ card_product.images[1].height }}"
-          >
+          <img srcset="{%- if card_product.images[1].width >= 165 -%}{{ card_product.images[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                                                      {%- if card_product.images[1].width >= 360 -%}{{ card_product.images[1] | image_url: width: 360 }} 360w,{%- endif -%}
+                                                      {%- if card_product.images[1].width >= 533 -%}{{ card_product.images[1] | image_url: width: 533 }} 533w,{%- endif -%}
+                                                      {%- if card_product.images[1].width >= 720 -%}{{ card_product.images[1] | image_url: width: 720 }} 720w,{%- endif -%}
+                                                      {%- if card_product.images[1].width >= 940 -%}{{ card_product.images[1] | image_url: width: 940 }} 940w,{%- endif -%}
+                                                      {%- if card_product.images[1].width >= 1066 -%}{{ card_product.images[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                                      {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w" src="{{ card_product.images[1] | image_url: width: 533 }}" sizes="(min-width: 1199px) calc((100vw - 4rem) / 4), (min-width: 990px) calc((100vw - 4rem) / 3), (min-width: 750px) calc((100vw - 4rem) / 2), calc(100vw - 4rem)" alt="" class="absolute-fill fit-cover w-100 h-100 motion-reduce" loading="lazy" width="{{ card_product.images[1].width }}" height="{{ card_product.images[1].height }}">
         {%- endif -%}
       </div>
     {% else %}
@@ -69,15 +50,11 @@
     {% endif %}
   </div>
   <div class="d-flex align-items-center justify-content-between mt-1">
-      <div class="d-flex flex-wrap">
-          <h3 class="mb-0 mr-0.5 text-primary text-0.875 lh-150{% unless card_product.available %} text-crossed{% endunless %}">
-              {{ card_product.title | escape }}
-          </h3>
-          {% if variant.title != blank and variant.title != 'Default Title' %}
-              <h4 class="mb-0 text-primary mr-0.5 text-0.875 lh-150 transparent-0.4">{{ variant.title | replace: " /", "," }}</h4>
-          {% endif %}
-
-      </div>
+    <div class="d-flex flex-wrap">
+      <h3 class="mb-0 mr-0.5 text-primary text-0.875 lh-150{% unless card_product.available %} text-crossed{% endunless %}">
+        {{ card_product.title | escape }}
+      </h3>
+    </div>
     <div class="text-right text-0.875 lh-150">
       {% if card_product.available %}
         {% if settings.currency_code_enabled %}
@@ -91,5 +68,5 @@
     </div>
   </div>
 
-  <a href="{{ variant.url }}" class="link--full z-stack"> </a>
+  <a href="{{ card_product.url }}" class="link--full z-stack d-block"></a>
 </div>

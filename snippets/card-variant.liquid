@@ -1,0 +1,64 @@
+{% comment %}
+  Renders a product card
+
+  Accepts:
+  - card_variant: {Object} Product Liquid object (optional)
+
+  Usage:
+  {% render 'card-product', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{%- liquid
+  assign ratio = 1
+  if settings.card_aspect_ratio == 'portrait'
+    assign ratio = 0.825
+  elsif settings.card_aspect_ratio == 'adapt'
+    assign ratio = card_variant.featured_media.aspect_ratio
+  endif
+-%}
+
+<div class="card-product pt-1 pb-1 pl-1 pr-1 position-relative border overflow-hidden active-state z-stack" data-aos="slide-up-product-card" style="--animation-delay: {{- anim_delay -}}ms">
+  <div class="card-product__media overflow-hidden">
+    {% assign featured_media = card_variant.featured_media %}
+    {% if featured_media != blank %}
+      <div class="position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%">
+        {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+        <img srcset="{%- if featured_media.width >= 165 -%}{{ featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                                                                                {%- if featured_media.width >= 360 -%}{{ featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                                                                                {%- if featured_media.width >= 533 -%}{{ featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                                                                                {%- if featured_media.width >= 720 -%}{{ featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                                                                                {%- if featured_media.width >= 940 -%}{{ featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                                                                                {%- if featured_media.width >= 1066 -%}{{ featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                                                                {{ featured_media | image_url }} {{ featured_media.width }}w" src="{{ featured_media | image_url: width: 533 }}" sizes="(min-width: 1199px) calc((100vw - 4rem) / 4), (min-width: 990px) calc((100vw - 4rem) / 3), (min-width: 750px) calc((100vw - 4rem) / 2), calc(100vw - 4rem)" alt="{{ featured_media.alt | escape }}" class="absolute-fill fit-cover w-100 h-100 motion-reduce text-light" {% unless lazy_load == false %}loading="lazy"{% endunless %}
+          width="{{ featured_media.width }}" height="{{ featured_media.height }}">
+      </div>
+    {% else %}
+      <div class="position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%">
+        {{ 'product-1' | placeholder_svg_tag: "absolute-fill w-100 h-100" }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="d-flex align-items-center justify-content-between mt-1">
+    <div class="d-flex flex-wrap{% unless card_variant.available %} text-crossed{% endunless %}">
+      <h3 class="mb-0 mr-0.5 text-primary text-0.875 lh-150">
+        {{ card_variant.product.title | escape }}
+      </h3>
+      {% if card_variant.title != blank and variant.title != 'Default Title' %}
+        <h4 class="mb-0 text-primary mr-0.5 text-0.875 lh-150 transparent-0.4">{{ card_variant.title | replace: " /", "," }}</h4>
+      {% endif %}
+    </div>
+    <div class="text-right text-0.875 lh-150">
+      {% if card_variant.available %}
+        {% if settings.currency_code_enabled %}
+          {{ card_variant.price | money_with_currency }}
+        {% else %}
+          {{ card_variant.price | money }}
+        {% endif %}
+      {% else %}
+        <span>Sold out</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <a href="{{ card_variant.url }}" class="link--full z-stack d-block"></a>
+</div>

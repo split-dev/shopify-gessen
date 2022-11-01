@@ -1,21 +1,33 @@
 {% liquid
   assign section_collection = section.settings.collection
   assign initail_count = 16
+  assign is_variants = section.settings.is_variants
 %}
 
 <div class="featured-collection container" id="shop">
 
   <div class="card-product__wrapper row" id="{{ section.id }}-{{ section_collection.handle }}">
-    {% for single_product in section_collection.products limit: initail_count %}
-      {% for variant in single_product.variants %}
+    {% if is_variants %}
+      {% for single_product in section_collection.products limit: initail_count %}
+        {% for variant in single_product.variants %}
+          <div class="col-12 col-md-6 col-lg-3">
+            {%- capture anim_delay -%}
+              {%- cycle '500', '600', '700', '800' -%}
+            {%- endcapture -%}
+            {% render 'card-variant' card_variant: variant, anim_delay: anim_delay %}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    {%  else %}
+      {% for single_product in section_collection.products limit: initail_count %}
         <div class="col-12 col-md-6 col-lg-3">
           {%- capture anim_delay -%}
             {%- cycle '500', '600', '700', '800' -%}
           {%- endcapture -%}
-          {% render 'card-product' card_product: single_product, anim_delay: anim_delay, variant: variant %}
+          {% render 'card-product' card_product: single_product, anim_delay: anim_delay %}
         </div>
       {% endfor %}
-    {% endfor %}
+    {% endif %}
   </div>
 
   {% if section_collection.products.size > initail_count %}
@@ -37,6 +49,12 @@
         "type": "collection",
         "id": "collection",
         "label": "Collection"
+      }, {
+        "type": "checkbox",
+        "id": "is_variants",
+        "label": "Display variants",
+        "info": "Does not support secondary image on hover.",
+        "default": false
       }, {
         "type": "checkbox",
         "id": "enable_dynamic_loading",

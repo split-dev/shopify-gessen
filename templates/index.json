@@ -3,7 +3,9 @@
     "1660285776a2a0e2a4": {
       "type": "featured-collection",
       "settings": {
-        "collection": "frontpage"
+        "collection": "frontpage",
+        "is_variants": true,
+        "enable_dynamic_loading": true
       }
     }
   },

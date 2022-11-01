@@ -839,13 +839,13 @@ document.addEventListener('DOMContentLoaded', () => {
             headerScroll.option.isFirstLoad = true;
           }
 
-          if (percent >= 1) {
+          if (percent >= 66) {
             headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
             headerScroll.selectors.navigation.classList.remove('header-animate', 'events-none')
             headerScroll.selectors.newLogo.classList.add('header__translate-animate')
             headerScroll.selectors.navigation.classList.add('header__translate-animate')
 
-          } else if (percent <= 1) {
+          } else if (percent <= 66) {
             headerScroll.selectors.newLogo.classList.add('header-animate', 'events-none')
             headerScroll.selectors.navigation.classList.add('header-animate', 'events-none')
             headerScroll.selectors.newLogo.classList.remove('header__translate-animate')
