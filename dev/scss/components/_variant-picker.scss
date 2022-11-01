@@ -1,17 +1,14 @@
 .option-color {
   width: 25px;
   height: 25px;
-
+  border: 1px solid transparent;
   cursor: pointer;
-  border-width: 1px !important;
-
-  // img {
-  //   margin: -1px;
-  //   width: calc(100% + 2px);
-  //   height: calc(100% + 2px);
-  // }
+  &:hover {
+    border-color: rgba(var(--color-dark), 0.5);
+  }
 }
 
-input:checked + .option-color {
-  border-width: 2px !important;
+input:checked + .option-color,
+.active-product .option-color {
+  border: 1.5px solid rgb(var(--color-dark));
 }

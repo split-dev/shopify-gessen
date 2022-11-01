@@ -122,7 +122,10 @@
     }
   }
 }
-
+.btn--underline {
+  color: rgba(var(--color-primary), 0.5);
+  transition: color 0.25s;
+}
 button[name="add"]:not(.loading) .btn-adding-name,
 button[name="add"].loading .btn-name {
   display: none !important;

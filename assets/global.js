@@ -636,12 +636,19 @@ class VariantSelects extends HTMLElement {
         if (price) price.classList.remove('visibility-hidden');
         this.toggleAddButton(!this.currentVariant.available, window.variantStrings.soldOut);
 
+        const newPrice = html.querySelector('.btn-name');
+        if (newPrice) {
+          document.querySelector('.btn-name').textContent = html.querySelector('.btn-name').textContent;
+        }
+
         const addButton = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[name="add"]');
         const notification = document.getElementById(`product-form-${this.dataset.section}`).querySelector('[data-notification]');
         if (!this.currentVariant.available) {
-          notification.classList.remove('d-none')
+          notification.classList.remove('d-none');
+          addButton.classList.add('d-none');
         } else {
           notification.classList.add('d-none');
+          addButton.classList.remove('d-none');
         }
       });
   }
@@ -655,10 +662,11 @@ class VariantSelects extends HTMLElement {
 
     if (disable) {
       addButton.setAttribute('disabled', 'disabled');
-      if (text) addButtonText.textContent = text;
+      // if (text) addButtonText.textContent = text;
     } else {
       addButton.removeAttribute('disabled');
-      addButtonText.textContent = window.variantStrings.addToCart;
+      // addButtonText.textContent = 'wtf';
+      // addButtonText.textContent = window.variantStrings.addToCart;
     }
   }
 
@@ -1049,6 +1057,8 @@ document.addEventListener('DOMContentLoaded', () => {
               notificationInput = document.querySelector('[data-notification-input]'),
               notificationSubmit = document.querySelector('[data-notification-submit]'),
               notificationStatus = document.querySelector('[data-notification-status]');
+
+        if(!notificationTrigger) return;
     
         
         notificationTrigger.addEventListener('click', () => {
@@ -1081,6 +1091,7 @@ document.addEventListener('DOMContentLoaded', () => {
             success: function(response){
               notificationWrapper.classList.add('d-none');
               notificationStatus.classList.remove('d-none');
+
               console.log(response) 
             }
           })
@@ -1121,7 +1132,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (response.redirected) {
             alert.classList.remove('d-none');
             form_inner.classList.add('d-none');
-            alert.innerHTML = alert_msg.error;
+            alert.innerHTML = alert_msg.success;
 
             window.location.href = response.url;
 
