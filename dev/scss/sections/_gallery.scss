@@ -1,4 +1,11 @@
 /* The Modal (background) */
+.section-gallery {
+  @include media-breakpoint-down(sm) {
+    .row--sm {
+      --bs-gutter-x: 1rem;
+    }
+  }
+}
 .modal-gallery {
   pointer-events: none;
   opacity: 0; /* Hidden by default */
@@ -15,16 +22,11 @@
   justify-content: center;
   align-items: center;
   transition: 300ms;
-  .carousel-cell {
-    img {
-      width: 100%;
-      height: auto;
-      max-width: 934px;
-      max-height: calc(100vh * 0.8);
-      object-fit: contain;
-      border-radius: 5px;
-      //border: 2px solid #1A1919;
-      z-index: 1;
+  &__slide {
+    @include media-breakpoint-down(sm) {
+      height: auto !important;
+      width: calc(100vw - 2rem) !important;
+      padding-bottom: calc(var(--aspect-ratio) * 1%);
     }
   }
   .btn--circle {
@@ -59,10 +61,8 @@
 .modal-gallery-content {
   background-color: transparent;
   border: none;
-  width: 80%; /* Could be more or less, depending on screen size */
-  max-width: 934px;
-  max-height: 934px;
   border-radius: 5px;
+  transition: 0.150s;
 }
 
 /* The Close Button */

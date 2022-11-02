@@ -938,6 +938,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
           let target = document.querySelector(`${link.getAttribute('href')}`);
 
+          if (link.hasAttribute('data-launch-animation')) {
+            let slideTransitionDelay = 750,
+              linkParent = link.closest('section');
+
+            linkParent.classList.add('animate--leave');
+
+            setTimeout(() => {
+              if (window.innerWidth > 768) {
+                window.scrollTo({
+                  top: target.getBoundingClientRect().top + window.pageYOffset,
+                }) 
+              } else {
+                scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
+                  let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
+                  window.scrollTo({
+                    top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
+                  }) 
+                })  
+              } 
+
+              linkParent.classList.remove('animate--leave');
+            }, slideTransitionDelay)
+
+            return;
+          }
+
           setTimeout(() => {
             if (window.innerWidth > 768) {
               window.scrollTo({

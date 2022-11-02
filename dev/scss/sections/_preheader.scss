@@ -23,4 +23,26 @@
       display: inline;
     }
   }
+  &.animate--leave {
+    [data-aos="slide-logo"] {
+      opacity: 0;
+      transform: translateY(-35px);
+    }
+    [data-aos="slide-up-hero-text"] {
+      opacity: 0;
+      transform: translateY(-35px);
+      transition-delay: 100ms;
+      &:nth-child(2) {
+        transition-delay: 200ms;
+      }
+      &:nth-child(3) {
+        transition-delay: 300ms;
+      }
+    }
+    [data-launch-animation] {
+      opacity: 0;
+      transform: translateY(-20px);
+      transition-delay: 400ms;
+    }
+  }
 }
