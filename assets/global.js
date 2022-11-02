@@ -939,7 +939,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let target = document.querySelector(`${link.getAttribute('href')}`);
 
           if (link.hasAttribute('data-launch-animation')) {
-            let slideTransitionDelay = 750,
+            let slideTransitionDelay = 800,
               linkParent = link.closest('section');
 
             linkParent.classList.add('animate--leave');
@@ -948,17 +948,21 @@ document.addEventListener('DOMContentLoaded', () => {
               if (window.innerWidth > 768) {
                 window.scrollTo({
                   top: target.getBoundingClientRect().top + window.pageYOffset,
+                  behavior: 'auto'
                 }) 
               } else {
                 scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
                   let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
                   window.scrollTo({
                     top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
+                    behavior: 'auto'
                   }) 
                 })  
               } 
 
-              linkParent.classList.remove('animate--leave');
+              setTimeout(() => {
+                linkParent.classList.remove('animate--leave');
+              }, 300);
             }, slideTransitionDelay)
 
             return;
@@ -1124,14 +1128,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Contact form submit
   (() => {
-    function formToJSON(elements) {
-      return [].reduce.call(elements, function (data, element) {
-        data[element.name] = element.value;
-        return data;
-      }, {});
-    }
-    
+
     function ajaxFormInit(form) {
+      console.log(form);
       var form_type = form.querySelector("[name=form_type]").value,
         form_inner = form.querySelector('[data-form-inner]'),
         alert = form.querySelector('[data-alert="status"]'),

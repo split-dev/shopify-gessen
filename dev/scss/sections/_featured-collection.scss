@@ -1,6 +1,9 @@
 section:first-child {
   .featured-collection {
     margin-top: calc(var(--header-height) * -1);
-    padding-top: calc(var(--header-height) * 1);
+    padding-top: calc(var(--header-height) * 1 + 1rem);
+    @include media-breakpoint-up(md) {
+      padding-top: calc(var(--header-height) * 1 + 2rem);
+    }
   }
 }
