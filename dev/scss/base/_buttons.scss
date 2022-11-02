@@ -12,7 +12,9 @@
   opacity: 1;
   transition: var(--transition-default);
   &:hover {
-    opacity: 0.5;
+    @include media-breakpoint-up(md) {
+      opacity: 0.5;
+    }
   }
   &--full {
     position: absolute;

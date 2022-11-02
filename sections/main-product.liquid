@@ -21,7 +21,7 @@
 >
   <div class="container">
     {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
-    <div class="d-none d-md-block mb-2">
+    <div class="mb-0.25 mb-md-1">
       {% render 'breadcrumbs' %}
     </div>
     <div class="row">
@@ -113,13 +113,11 @@
             {%- when 'accordion' -%}
                <div {% unless forloop.last %}class="mb-0.5" {% endunless %}{{ block.shopify_attributes }}>
                  <div class="accordion text-0.875 lh-150" data-accordion>
-                   <button class="accordion__button link d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
+                   <button class="accordion__button link active-state d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
                            data-accordion-toggle>
                      <span class="accordion__icon mr-0.5 position-relative">
-                       {% render 'icon' with 'plus', class: 'accordion__icon--plus transition-default absolute-center' %}
-                       {% render 'icon' with 'minus', class: 'accordion__icon--minus transition-default absolute-center' %}
+                      <svg class="transition-default absolute-center" width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.301.75a.75.75 0 1 0-1.5 0v3.142H.75a.75.75 0 0 0 0 1.5h3.051V8.25a.75.75 0 0 0 1.5 0V5.392H8.25a.75.75 0 1 0 0-1.5H5.301V.75Z" fill="#000"/></svg>
                      </span>
-
                      <span>
                        {{ block.settings.heading }}
                      </span>
@@ -187,9 +185,15 @@
                                 </label>
                               {% endif %}
                             {% else %}
+                              {% liquid
+                                assign value_name = value
+                                if option.name == 'Size'
+                                  assign value_name = value | slice: 0
+                                endif
+                              %}
                               <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
                                     class="btn--underline{% unless forloop.last %} mr-2{% endunless %} mb-1 font-regular text-0.875 lh-150">
-                                {{ value }}
+                                {{ value_name }}
                               </label>
                             {% endif %}
                           {%- endfor -%}
@@ -279,7 +283,7 @@
                 </product-form>
               </div>
             {%- when 'launch_ar_button' -%}
-              <button class="{% unless forloop.last %}mb-2 {% endunless %}btn btn--secondary d-md-none btn--launch light font-regular text-uppercase text-0.875 lh-130 w-100">
+              <button class="{% unless forloop.last %}mb-2 {% endunless %}btn btn--outline d-md-none btn--launch light font-regular text-uppercase text-0.875 lh-130 w-100">
                 <span>Launch AR</span>
                 <img
                   class="fit-contain ml-0.5"

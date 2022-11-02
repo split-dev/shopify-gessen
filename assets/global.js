@@ -1086,13 +1086,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 a: "U9irXF",
                 email: notificationInput.value,
                 variant: getActiveVariant,
-                platform: "api"
+                platform: "shopify"
             },
-            success: function(response){
+            success: function(){
               notificationWrapper.classList.add('d-none');
               notificationStatus.classList.remove('d-none');
-
-              console.log(response) 
             }
           })
         })
