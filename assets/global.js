@@ -1013,7 +1013,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
       AOS.refresh();
     })
-    new Headroom(document.querySelector('.header')).init();
+    // new Headroom(document.querySelector('.header')).init();
   })();
 
   // Custom load more
@@ -1134,7 +1134,8 @@ document.addEventListener('DOMContentLoaded', () => {
       var form_type = form.querySelector("[name=form_type]").value,
         form_inner = form.querySelector('[data-form-inner]'),
         alertDom = form.querySelector('[data-alert="status"]'),
-        alert_msgs = form.querySelector('.form-alerts');
+        alert_msgs = form.querySelector('.form-alerts'),
+        messageBox = document.querySelector('.main-password-section__message');
     
       form.addEventListener('submit', function(e){
         e.preventDefault();
@@ -1167,6 +1168,12 @@ document.addEventListener('DOMContentLoaded', () => {
           alertDom.classList.remove('d-none');
           form_inner.classList.add('d-none');
           alertDom.innerHTML = alert_msg.success;
+
+          if (messageBox) {
+            messageBox.classList.remove('d-none');
+            messageBox.classList.add('d-flex');
+          }
+
         }).catch(function(err) {
           console.error(err);
 
