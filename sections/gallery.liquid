@@ -21,12 +21,12 @@
             <div data-aos>
               <div data-open-modal data-index="{{ forloop.index0 }}" class="border position-relative overflow-hidden" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
                 <img srcset="{%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {%- if image.width >= 360 -%}{{ image | image_url: width: 360 }} 360w,{%- endif -%}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {%- if image.width >= 533 -%}{{ image | image_url: width: 533 }} 533w,{%- endif -%}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {%- if image.width >= 720 -%}{{ image | image_url: width: 720 }} 720w,{%- endif -%}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {%- if image.width >= 940 -%}{{ image | image_url: width: 940 }} 940w,{%- endif -%}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {%- if image.width >= 1066 -%}{{ image | image_url: width: 1066 }} 1066w,{%- endif -%}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {{ image | image_url }} {{ image.width }}w" sizes="(min-width: 991px) calc((100vw - 2rem) / 3), calc(100vw - 2rem)" src="{{ image | image_url: width: 533 }}" class="absolute-fill w-100 h-100 fit-cover motion-reduce text-light" loading="lazy" width="100" height="100" alt="{{ image.alt }}">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {%- if image.width >= 360 -%}{{ image | image_url: width: 360 }} 360w,{%- endif -%}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {%- if image.width >= 533 -%}{{ image | image_url: width: 533 }} 533w,{%- endif -%}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {%- if image.width >= 720 -%}{{ image | image_url: width: 720 }} 720w,{%- endif -%}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {%- if image.width >= 940 -%}{{ image | image_url: width: 940 }} 940w,{%- endif -%}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {%- if image.width >= 1066 -%}{{ image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {{ image | image_url }} {{ image.width }}w" sizes="(min-width: 991px) calc((100vw - 2rem) / 3), calc(100vw - 2rem)" src="{{ image | image_url: width: 533 }}" class="absolute-fill w-100 h-100 fit-cover motion-reduce text-light" loading="lazy" width="100" height="100" alt="{{ image.alt }}">
               </div>
             </div>
           {% endif %}
@@ -48,8 +48,8 @@
           {% assign block_image = block.settings.image %}
 
           <div class="carousel-cell">
-            <div class="modal-gallery__slide position-relative" style="height: calc(100 * var(--vh) * 0.8); width: calc((100 * var(--vh) * 0.8) / {{ 1 | divided_by: block_image.aspect_ratio }}); --aspect-ratio: {{ 1 | divided_by: block_image.aspect_ratio | times: 100 }}">
-              <img class="d-block absolute-fill w-100 h-100 fit-contain" src="{{ block_image | img_url: '934x' }}" width="934" height="{{ block_image.height }}" loading="lazy" alt="{{ block_image.alt }}">
+            <div class="modal-gallery__slide position-relative" style="height: calc(100 * var(--vh) * 0.8); width: calc((100 * var(--vh) * 0.8) / {{ 1 | divided_by: block_image.aspect_ratio }}); --aspect-ratio: {{ 1 | divided_by: block_image.aspect_ratio | times: 100 }}" data-modal-slide>
+              <img class="d-block absolute-fill w-100 h-100 fit-contain" src="{{ block_image | image_url: width: 934 }}" width="934" height="{{ block_image.height }}" loading="lazy" alt="{{ block_image.alt }}">
             </div>
           </div>
         {% endfor %}
@@ -75,10 +75,22 @@
 <script src="{{ 'flickity.pkgd.min.js' | asset_url }}"></script>
 <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
 <script>
-  const modal = document.getElementById("ModalGallery"),
-    modalTriggers = document.querySelectorAll('[data-open-modal]'),
-    modalClose = document.querySelector('[data-modal-close]'),
-    wrapper = document.querySelector('[data-slider-wrapper]');
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById("ModalGallery"),
+      modalTriggers = document.querySelectorAll('[data-open-modal]'),
+      modalClose = document.querySelector('[data-modal-close]'),
+      wrapper = document.querySelector('[data-slider-wrapper]');
+
+
+    function modalSlidesAdjustment(image) {
+      let slides = document.querySelectorAll('[data-modal-slide]')
+
+      slides.forEach(slide => {
+        ((window.innerWidth - 32) < slide.offsetWidth)
+          ? slide.classList.add('based-on-width')
+          : slide.classList.remove('based-on-width');
+      })
+    }
 
   modalTriggers.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -100,6 +112,8 @@
       modal.style.zIndex = -1;
     }
   };
+
+  modalSlidesAdjustment();
   let sliderGallery = new Flickity('.main-carousel', {
     cellAlign: "left",
     contain: true,
@@ -116,17 +130,16 @@
 
   window.sliderGallery = sliderGallery;
 
-  sliderGallery.on('ready', () => {
+  {% comment %} sliderGallery.on('ready', () => {
     setTimeout(() => {
       sliderGallery.resize();
     }, 300);
-  });
+  }); {% endcomment %}
 
   sliderGallery.on('select', (index) => {
     wrapper.removeAttribute('style');
 
     let currentImage = wrapper.querySelectorAll('img')[index];
-
     wrapper.style.width = `${
       currentImage.offsetWidth
     }px`;
@@ -165,6 +178,7 @@ document
 .addEventListener('click', function() {
   sliderGallery.next();
 })
+  })
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
@@ -183,47 +197,49 @@ document
 </script>
 
 {% schema %}
-  {
-    "name": "Gallery",
-    "class": "section-gallery",
-    "settings": [
-      {
-        "type": "select",
-        "id": "gallery_layout",
-        "options": [
-          {
-            "value": "fixed",
-            "label": "Fixed"
-          }, {
-            "value": "masonry",
-            "label": "Masonry"
-          }
-        ],
-        "default": "fixed",
-        "label": "Layout"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "image",
-        "name": "Image",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-          }, {
-            "type": "checkbox",
-            "id": "hide_on_mobile",
-            "label": "Hide on mobile"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Gallery"
-      }
-    ]
-  }
+{
+  "name": "Gallery",
+  "class": "section-gallery",
+  "settings": [
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "masonry",
+          "label": "Masonry"
+        }
+      ],
+      "default": "fixed",
+      "label": "Layout"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_on_mobile",
+          "label": "Hide on mobile"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery"
+    }
+  ]
+}
 {% endschema %}

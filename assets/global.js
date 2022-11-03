@@ -1133,7 +1133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(form);
       var form_type = form.querySelector("[name=form_type]").value,
         form_inner = form.querySelector('[data-form-inner]'),
-        alert = form.querySelector('[data-alert="status"]'),
+        alertDom = form.querySelector('[data-alert="status"]'),
         alert_msgs = form.querySelector('.form-alerts');
     
       form.addEventListener('submit', function(e){
@@ -1152,25 +1152,27 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log(response);
           console.log(response.status);
     
-          if (response.redirected) {
-            alert.classList.remove('d-none');
-            form_inner.classList.add('d-none');
-            alert.innerHTML = alert_msg.success;
+          // if (response.redirected) {
+          //   alertDom.classList.remove('d-none');
+          //   form_inner.classList.add('d-none');
+          //   alertDom.innerHTML = 'Redirecting...';
 
-            window.location.href = response.url;
+          //   alert('Redirect')
 
-            return;
-          }
+          //   window.location.href = response.url;
 
-          alert.classList.remove('d-none');
+          //   return;
+          // }
+
+          alertDom.classList.remove('d-none');
           form_inner.classList.add('d-none');
-          alert.innerHTML = alert_msg.success;
+          alertDom.innerHTML = alert_msg.success;
         }).catch(function(err) {
           console.error(err);
 
-          alert.classList.remove('d-none');
+          alertDom.classList.remove('d-none');
           form_inner.classList.add('d-none');
-          alert.innerHTML = alert_msg.error;
+          alertDom.innerHTML = alert_msg.error;
         });
       });
     }
