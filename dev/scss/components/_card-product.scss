@@ -1,7 +1,9 @@
 .card-product {
   height: 100%;
   &__media {
-    border-radius: 5px;
+    @include media-breakpoint-down(sm) {
+      border-color: transparent;
+    }
     img {
       transition: var(--transition-default);
       + img {

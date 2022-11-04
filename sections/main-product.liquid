@@ -220,7 +220,7 @@
                         <button
                           type="submit"
                           name="add"
-                          class="btn btn--primary product__form__submit font-regular text-uppercase text-0.875 lh-130 w-100"
+                          class="btn btn--primary product__form__submit font-regular text-uppercase text-0.875 lh-130 w-100{% unless product.selected_or_first_available_variant.available %} d-none{% endunless %}"
                           {% if product.selected_or_first_available_variant.available == false %}
                             disabled
                           {% endif %}
@@ -350,6 +350,9 @@
         watchCSS: true,
         on: {
           change: (index) => {
+
+            if (!modelViewer) return;
+
             let modelViewer = document.querySelector(`[data-product-media-slide="${index}"]`).querySelector('model-viewer');
             slider.isDraggable = modelViewer === null;
           }
@@ -436,6 +439,8 @@
   (() => {
     document.addEventListener('DOMContentLoaded', () => {
       const modelViewer = document.querySelector('model-viewer');
+
+      if (!modelViewer) return;
 
       modelViewer.addEventListener('load', () => {
         // Support AR?
