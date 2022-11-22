@@ -26,7 +26,7 @@
               {%- when 'newsletter' -%}
                 <div class="form-section__title pt-2 mt-auto w-100">
                   {% form 'customer' %}
-                    <h3 class="text-0.875 mb-0 d-none" data-alert="status" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus></h3>
+                    <h3 class="text-0.875 mb-0 d-none" data-alert="status" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
                     <!-- 2019 Honeypot / Checkbox Placeholder -->
                     <div class="checkbox captcha"><input type="text" class="honeypot" autocomplete="off" style="display:none;"></div>
 
