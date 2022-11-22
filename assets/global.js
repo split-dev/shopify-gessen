@@ -16,7 +16,7 @@ document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');
   summary.setAttribute('aria-expanded', summary.parentNode.hasAttribute('open'));
 
-  if(summary.nextElementSibling.getAttribute('id')) {
+  if (summary.nextElementSibling.getAttribute('id')) {
     summary.setAttribute('aria-controls', summary.nextElementSibling.id);
   }
 
@@ -48,11 +48,11 @@ function trapFocus(container, elementToFocus = container) {
     document.addEventListener('keydown', trapFocusHandlers.keydown);
   };
 
-  trapFocusHandlers.focusout = function() {
+  trapFocusHandlers.focusout = function () {
     document.removeEventListener('keydown', trapFocusHandlers.keydown);
   };
 
-  trapFocusHandlers.keydown = function(event) {
+  trapFocusHandlers.keydown = function (event) {
     if (event.code.toUpperCase() !== 'TAB') return; // If not TAB key
     // On the last focusable element and tab forward, focus the first element.
     if (event.target === last && !event.shiftKey) {
@@ -79,7 +79,7 @@ function trapFocus(container, elementToFocus = container) {
 // Here run the querySelector to figure out if the browser supports :focus-visible or not and run code based on it.
 try {
   document.querySelector(":focus-visible");
-} catch(e) {
+} catch (e) {
   focusVisiblePolyfill();
 }
 
@@ -89,7 +89,7 @@ function focusVisiblePolyfill() {
   let mouseClick = null;
 
   window.addEventListener('keydown', (event) => {
-    if(navKeys.includes(event.code.toUpperCase())) {
+    if (navKeys.includes(event.code.toUpperCase())) {
       mouseClick = false;
     }
   });
@@ -187,13 +187,13 @@ if ((typeof window.Shopify) == 'undefined') {
   window.Shopify = {};
 }
 
-Shopify.bind = function(fn, scope) {
-  return function() {
+Shopify.bind = function (fn, scope) {
+  return function () {
     return fn.apply(scope, arguments);
   }
 };
 
-Shopify.setSelectorByValue = function(selector, value) {
+Shopify.setSelectorByValue = function (selector, value) {
   for (var i = 0, count = selector.options.length; i < count; i++) {
     var option = selector.options[i];
     if (value == option.value || value == option.innerHTML) {
@@ -203,11 +203,11 @@ Shopify.setSelectorByValue = function(selector, value) {
   }
 };
 
-Shopify.addListener = function(target, eventName, callback) {
-  target.addEventListener ? target.addEventListener(eventName, callback, false) : target.attachEvent('on'+eventName, callback);
+Shopify.addListener = function (target, eventName, callback) {
+  target.addEventListener ? target.addEventListener(eventName, callback, false) : target.attachEvent('on' + eventName, callback);
 };
 
-Shopify.postLink = function(path, options) {
+Shopify.postLink = function (path, options) {
   options = options || {};
   var method = options['method'] || 'post';
   var params = options['parameters'] || {};
@@ -216,7 +216,7 @@ Shopify.postLink = function(path, options) {
   form.setAttribute("method", method);
   form.setAttribute("action", path);
 
-  for(var key in params) {
+  for (var key in params) {
     var hiddenField = document.createElement("input");
     hiddenField.setAttribute("type", "hidden");
     hiddenField.setAttribute("name", key);
@@ -228,34 +228,34 @@ Shopify.postLink = function(path, options) {
   document.body.removeChild(form);
 };
 
-Shopify.CountryProvinceSelector = function(country_domid, province_domid, options) {
-  this.countryEl         = document.getElementById(country_domid);
-  this.provinceEl        = document.getElementById(province_domid);
+Shopify.CountryProvinceSelector = function (country_domid, province_domid, options) {
+  this.countryEl = document.getElementById(country_domid);
+  this.provinceEl = document.getElementById(province_domid);
   this.provinceContainer = document.getElementById(options['hideElement'] || province_domid);
 
-  Shopify.addListener(this.countryEl, 'change', Shopify.bind(this.countryHandler,this));
+  Shopify.addListener(this.countryEl, 'change', Shopify.bind(this.countryHandler, this));
 
   this.initCountry();
   this.initProvince();
 };
 
 Shopify.CountryProvinceSelector.prototype = {
-  initCountry: function() {
+  initCountry: function () {
     var value = this.countryEl.getAttribute('data-default');
     Shopify.setSelectorByValue(this.countryEl, value);
     this.countryHandler();
   },
 
-  initProvince: function() {
+  initProvince: function () {
     var value = this.provinceEl.getAttribute('data-default');
     if (value && this.provinceEl.options.length > 0) {
       Shopify.setSelectorByValue(this.provinceEl, value);
     }
   },
 
-  countryHandler: function(e) {
-    var opt       = this.countryEl.options[this.countryEl.selectedIndex];
-    var raw       = opt.getAttribute('data-provinces');
+  countryHandler: function (e) {
+    var opt = this.countryEl.options[this.countryEl.selectedIndex];
+    var raw = opt.getAttribute('data-provinces');
     var provinces = JSON.parse(raw);
 
     this.clearOptions(this.provinceEl);
@@ -273,13 +273,13 @@ Shopify.CountryProvinceSelector.prototype = {
     }
   },
 
-  clearOptions: function(selector) {
+  clearOptions: function (selector) {
     while (selector.firstChild) {
       selector.removeChild(selector.firstChild);
     }
   },
 
-  setOptions: function(selector, values) {
+  setOptions: function (selector, values) {
     for (var i = 0, count = values.length; i < values.length; i++) {
       var opt = document.createElement('option');
       opt.value = values[i];
@@ -308,10 +308,10 @@ class MenuDrawer extends HTMLElement {
   }
 
   onKeyUp(event) {
-    if(event.code.toUpperCase() !== 'ESCAPE') return;
+    if (event.code.toUpperCase() !== 'ESCAPE') return;
 
     const openDetailsElement = event.target.closest('details[open]');
-    if(!openDetailsElement) return;
+    if (!openDetailsElement) return;
 
     openDetailsElement === this.mainDetailsToggle ? this.closeMenuDrawer(event, this.mainDetailsToggle.querySelector('summary')) : this.closeSubmenu(openDetailsElement);
   }
@@ -329,7 +329,7 @@ class MenuDrawer extends HTMLElement {
     }
 
     if (detailsElement === this.mainDetailsToggle) {
-      if(isOpen) event.preventDefault();
+      if (isOpen) event.preventDefault();
       isOpen ? this.closeMenuDrawer(event, summaryElement) : this.openMenuDrawer(summaryElement);
     } else {
       setTimeout(() => {
@@ -591,7 +591,7 @@ class VariantSelects extends HTMLElement {
 
   updateURL() {
     if (!this.currentVariant || this.dataset.updateUrl === 'false') return;
-    window.history.replaceState({ }, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+    window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
     // document.querySelector('[data-notification-product]').value = window.location.href;
   }
 
@@ -753,28 +753,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (btn.classList.contains('header__burger--cart')) {
           // setTimeout(() => {
-            btn.querySelector('.header__burger__open').classList.toggle('d-none')
+          btn.querySelector('.header__burger__open').classList.toggle('d-none')
           // });
-          
+
         }
       }
 
-      btn.addEventListener('click',() => {
+      btn.addEventListener('click', () => {
         let isOpened = btnWrapper.classList.contains('open');
         header.classList.remove('headroom--unpinned');
-        
-        !isOpened 
-          ? header.classList.add('header--fixed') 
+
+        !isOpened
+          ? header.classList.add('header--fixed')
           : btnWrapper.classList.toggle('open');
 
         setTimeout(() => {
-          isOpened 
-            ? header.classList.remove('header--fixed') 
+          isOpened
+            ? header.classList.remove('header--fixed')
             : btnWrapper.classList.toggle('open');
 
           isOpened
             ? setTimeout(() => {
-            toggleBtns(btn)
+              toggleBtns(btn)
             }, 400)
             : toggleBtns(btn);
         });
@@ -791,9 +791,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     calcVh();
     window.addEventListener('resize', calcVh);
-    
+
     const preheader = document.querySelector('.preheader__inner');
-    if (preheader) preheader.style.height = `${vh * 100 }px`
+    if (preheader) preheader.style.height = `${vh * 100}px`
   })();
 
   // Header desktop
@@ -808,54 +808,54 @@ document.addEventListener('DOMContentLoaded', () => {
         newLogo: document.querySelector('.header__logo')
       },
       handle: () => {
-          let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00),
-              width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent),
-              isBreak = window.pageYOffset > window.innerHeight;
+        let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00),
+          width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent),
+          isBreak = window.pageYOffset > window.innerHeight;
 
-          if (percent >= 1) {
+        if (percent >= 1) {
 
-            if (isBreak) return;
+          if (isBreak) return;
 
-            requestAnimationFrame(() => {
-              if (width < headerScroll.option.minMobile) width = headerScroll.option.minMobile;
-              document.querySelector('[data-header-logo]').style.width = `${width}px`;
-            })
-          } 
+          requestAnimationFrame(() => {
+            if (width < headerScroll.option.minMobile) width = headerScroll.option.minMobile;
+            document.querySelector('[data-header-logo]').style.width = `${width}px`;
+          })
+        }
 
-          // On page redirect logo HACK FIX
-          if (window.firstLoad) {
-            setTimeout(() => {
-              percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
-              width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
+        // On page redirect logo HACK FIX
+        if (window.firstLoad) {
+          setTimeout(() => {
+            percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
+            width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
 
-              document.querySelector('[data-header-logo]').style.width = `${width}px`;
-            }, 100)
-          }
+            document.querySelector('[data-header-logo]').style.width = `${width}px`;
+          }, 100)
+        }
 
-          if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
-            document.querySelector('[href="#shop"]').click();
-            headerScroll.option.isFirstLoad = false;
-          } else if (parseInt(percent) > 99) {
-            headerScroll.option.isFirstLoad = true;
-          }
+        if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
+          document.querySelector('[href="#shop"]').click();
+          headerScroll.option.isFirstLoad = false;
+        } else if (parseInt(percent) > 99) {
+          headerScroll.option.isFirstLoad = true;
+        }
 
-          if (percent >= 66) {
-            headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
-            headerScroll.selectors.navigation.classList.remove('header-animate', 'events-none')
-            headerScroll.selectors.newLogo.classList.add('header__translate-animate')
-            headerScroll.selectors.navigation.classList.add('header__translate-animate')
+        if (percent >= 66) {
+          headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
+          headerScroll.selectors.navigation.classList.remove('header-animate', 'events-none')
+          headerScroll.selectors.newLogo.classList.add('header__translate-animate')
+          headerScroll.selectors.navigation.classList.add('header__translate-animate')
 
-          } else if (percent <= 66) {
-            headerScroll.selectors.newLogo.classList.add('header-animate', 'events-none')
-            headerScroll.selectors.navigation.classList.add('header-animate', 'events-none')
-            headerScroll.selectors.newLogo.classList.remove('header__translate-animate')
-            headerScroll.selectors.navigation.classList.remove('header__translate-animate')
+        } else if (percent <= 66) {
+          headerScroll.selectors.newLogo.classList.add('header-animate', 'events-none')
+          headerScroll.selectors.navigation.classList.add('header-animate', 'events-none')
+          headerScroll.selectors.newLogo.classList.remove('header__translate-animate')
+          headerScroll.selectors.navigation.classList.remove('header__translate-animate')
 
-          }
+        }
 
-          (headerScroll.selectors.header.offsetTop + 10) > window.innerHeight 
-            ? document.querySelector('.header').classList.remove('header--fixed')
-            : document.querySelector('.header').classList.add('header--fixed');
+        (headerScroll.selectors.header.offsetTop + 10) > window.innerHeight
+          ? document.querySelector('.header').classList.remove('header--fixed')
+          : document.querySelector('.header').classList.add('header--fixed');
 
       },
       eventListeners: () => {
@@ -903,20 +903,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function scrollTo(offset, callback) {
-        const fixedOffset = offset.toFixed();
-        const onScroll = function () {
-                if (window.pageYOffset.toFixed() === fixedOffset) {
-                    window.removeEventListener('scroll', onScroll)
-                    callback()
-                }
-            }
-    
-        window.addEventListener('scroll', onScroll)
-        onScroll()
-        window.scrollTo({
-            top: offset,
-            behavior: 'smooth'
-        })
+      const fixedOffset = offset.toFixed();
+      const onScroll = function () {
+        if (window.pageYOffset.toFixed() === fixedOffset) {
+          window.removeEventListener('scroll', onScroll)
+          callback()
+        }
+      }
+
+      window.addEventListener('scroll', onScroll)
+      onScroll()
+      window.scrollTo({
+        top: offset,
+        behavior: 'smooth'
+      })
     }
 
     links.forEach(link => {
@@ -949,16 +949,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.scrollTo({
                   top: target.getBoundingClientRect().top + window.pageYOffset,
                   behavior: 'auto'
-                }) 
+                })
               } else {
                 scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
                   let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
                   window.scrollTo({
                     top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
                     behavior: 'auto'
-                  }) 
-                })  
-              } 
+                  })
+                })
+              }
 
               setTimeout(() => {
                 linkParent.classList.remove('animate--leave');
@@ -973,16 +973,16 @@ document.addEventListener('DOMContentLoaded', () => {
               window.scrollTo({
                 top: target.getBoundingClientRect().top + window.pageYOffset,
                 behavior: 'smooth'
-              }) 
+              })
             } else {
               scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
                 let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
                 window.scrollTo({
                   top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
                   behavior: 'smooth'
-                }) 
-              })  
-            }       
+                })
+              })
+            }
           });
         });
       }
@@ -992,7 +992,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // PDP Media
   (() => {
     const btns = document.querySelectorAll('[data-product-media-nav]'),
-          slideDOM = document.querySelector('[data-product-media]');
+      slideDOM = document.querySelector('[data-product-media]');
 
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1064,7 +1064,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     accordions.forEach(accordion => {
       let btn = accordion.querySelector('[data-accordion-toggle]'),
-          content = accordion.querySelector('[data-accordion-content]');
+        content = accordion.querySelector('[data-accordion-content]');
 
       btn.addEventListener('click', () => {
         let active = document.querySelector('.accordion [aria-expanded="true"]');
@@ -1074,57 +1074,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         content.style.maxHeight
-            ? (content.style.maxHeight = null, btn.setAttribute('aria-expanded', 'false'))
-            : (content.style.maxHeight = content.scrollHeight + 'px', btn.setAttribute('aria-expanded', 'true'));
+          ? (content.style.maxHeight = null, btn.setAttribute('aria-expanded', 'false'))
+          : (content.style.maxHeight = content.scrollHeight + 'px', btn.setAttribute('aria-expanded', 'true'));
       });
     });
   })();
 
-     // Notification
-     (() => {
-        const notificationTrigger = document.querySelector('[data-notification-trigger]'),
-              notificationWrapper = document.querySelector('[data-notification-wrapper]'),
-              notificationInput = document.querySelector('[data-notification-input]'),
-              notificationSubmit = document.querySelector('[data-notification-submit]'),
-              notificationStatus = document.querySelector('[data-notification-status]');
+  // Notification
+  (() => {
+    const notificationTrigger = document.querySelector('[data-notification-trigger]'),
+      notificationWrapper = document.querySelector('[data-notification-wrapper]'),
+      notificationInput = document.querySelector('[data-notification-input]'),
+      notificationSubmit = document.querySelector('[data-notification-submit]'),
+      notificationStatus = document.querySelector('[data-notification-status]');
 
-        if(!notificationTrigger) return;
-    
-        
-        notificationTrigger.addEventListener('click', () => {
-          notificationTrigger.classList.toggle('d-none');
-          notificationWrapper.classList.toggle('d-none');
+    if (!notificationTrigger) return;
 
-          // Load jQuery
-          (() => {
-            let jqueryScript = document.createElement('script');
-            jqueryScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
-            jqueryScript.crossorigin = 'anonymous';
-            // jqueryScript.onload = () => {
-            //   console.log('Loaded');
-            // }
-            document.head.prepend(jqueryScript);
-          })();
-        });
 
-        notificationSubmit.addEventListener('click', () => {
-          let getActiveVariant = notificationTrigger.closest('form').querySelector('[name="id"]').value;
-          $.ajax({
-            type: "POST",
-            url: "https://a.klaviyo.com/onsite/components/back-in-stock/subscribe",
-            data: {
-                a: "U9irXF",
-                email: notificationInput.value,
-                variant: getActiveVariant,
-                platform: "shopify"
-            },
-            success: function(){
-              notificationWrapper.classList.add('d-none');
-              notificationStatus.classList.remove('d-none');
-            }
-          })
-        })
+    notificationTrigger.addEventListener('click', () => {
+      notificationTrigger.classList.toggle('d-none');
+      notificationWrapper.classList.toggle('d-none');
+
+      // Load jQuery
+      (() => {
+        let jqueryScript = document.createElement('script');
+        jqueryScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js';
+        jqueryScript.crossorigin = 'anonymous';
+        // jqueryScript.onload = () => {
+        //   console.log('Loaded');
+        // }
+        document.head.prepend(jqueryScript);
       })();
+    });
+
+    notificationSubmit.addEventListener('click', () => {
+      let getActiveVariant = notificationTrigger.closest('form').querySelector('[name="id"]').value;
+      $.ajax({
+        type: "POST",
+        url: "https://a.klaviyo.com/onsite/components/back-in-stock/subscribe",
+        data: {
+          a: "U9irXF",
+          email: notificationInput.value,
+          variant: getActiveVariant,
+          platform: "shopify"
+        },
+        success: function () {
+          notificationWrapper.classList.add('d-none');
+          notificationStatus.classList.remove('d-none');
+        }
+      })
+    })
+  })();
 
   // Contact form submit
   (() => {
@@ -1136,23 +1136,23 @@ document.addEventListener('DOMContentLoaded', () => {
         alertDom = form.querySelector('[data-alert="status"]'),
         alert_msgs = form.querySelector('.form-alerts'),
         messageBox = document.querySelector('.main-password-section__message');
-    
-      form.addEventListener('submit', function(e){
+
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
-    
+
         var action = form.getAttribute("action");
-    
+
         if (alert_msgs) {
           var alert_msg = JSON.parse(alert_msgs.innerHTML)
         }
-    
+
         fetch(action, {
           method: 'POST',
           body: new FormData(form)
-        }).then(function(response) {
+        }).then(function (response) {
           console.log(response);
           console.log(response.status);
-    
+
           // if (response.redirected) {
           //   alertDom.classList.remove('d-none');
           //   form_inner.classList.add('d-none');
@@ -1166,26 +1166,25 @@ document.addEventListener('DOMContentLoaded', () => {
           // }
 
           alertDom.classList.remove('d-none');
-          form_inner.classList.add('d-none');
+          form_inner.classList.add('transition--hide');
           alertDom.innerHTML = alert_msg.success;
 
           if (messageBox) {
-            messageBox.classList.remove('d-none');
-            messageBox.classList.add('d-flex');
+            messageBox.classList.add('reveal');
           }
 
-        }).catch(function(err) {
+        }).catch(function (err) {
           console.error(err);
 
           alertDom.classList.remove('d-none');
-          form_inner.classList.add('d-none');
+          form_inner.classList.add('transition--hide');
           alertDom.innerHTML = alert_msg.error;
         });
       });
     }
-    
+
     // Init Shopify Forms
-    document.querySelectorAll("[name=form_type]").forEach(function(el) {
+    document.querySelectorAll("[name=form_type]").forEach(function (el) {
       if (el.value !== 'customer') return;
 
       ajaxFormInit(el.closest("form"));

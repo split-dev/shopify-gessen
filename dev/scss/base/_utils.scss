@@ -31,3 +31,7 @@
 .border-none {
   border: none !important;
 }
+.transition--hide {
+  opacity: 0;
+  transition: 0.2s;
+}
