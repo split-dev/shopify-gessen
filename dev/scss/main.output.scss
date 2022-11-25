@@ -1,7 +1,7 @@
 // --------------------------------------------------
 // Variables (replace Bootstrap variable defaults)
 @import "base/functions";
-@import 'variables';
+@import "variables";
 
 // --------------------------------------------------
 // Bootstrap
@@ -9,7 +9,6 @@
 @import "../node_modules/bootstrap-scss/functions";
 @import "../node_modules/bootstrap-scss/variables";
 @import "../node_modules/bootstrap-scss/mixins";
-
 
 // --------------------------------------------------
 // Mixins
@@ -59,5 +58,3 @@
 @import "sections/featured-collection";
 @import "sections/main-password";
 @import "sections/gallery";
-
-

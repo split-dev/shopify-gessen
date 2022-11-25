@@ -25,8 +25,11 @@
                 {% endif %}
               {%- when 'newsletter' -%}
                 <div class="form-section__title pt-2 mt-auto w-100">
-                  {% form 'customer' %}
-                    <h3 class="text-0.875 mb-0 d-none" data-alert="status" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
+                  {% form 'customer', class: 'position-relative' %}
+                    <div class="main-password-section__message">
+                      <h3 class="text-0.875 mb-0" data-alert="status" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>{{ 'newsletter.success' | t }}</h3>
+                    </div>
+                    
                     <!-- 2019 Honeypot / Checkbox Placeholder -->
                     <div class="checkbox captcha"><input type="text" class="honeypot" autocomplete="off" style="display:none;"></div>
 
@@ -61,7 +64,7 @@
                           </button>
                         </div>
                         {%- if form.errors -%}
-                          <p class="text-0.875 mb-0" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+                          <p class="text-0.875 mb-0" id="Newsletter-error--{{ section.id }}">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
                         {%- endif -%}
                       </div>
                     </div>
@@ -88,7 +91,7 @@
 
           <div class="mt-2">
             <div class="row">
-              <div class="col-6 d-flex align-items-end">
+              <div class="col-6 col-lg-3 d-flex align-items-end">
                 {% if section.settings.show_social %}
                   <div class="mt-2 mt-md-1">
                     {% render 'social-list', spacing: 'mr-1' %}
@@ -107,7 +110,7 @@
                 </div>
               {% endif %}
               {% if section.settings.menu_secondary != blank %}
-                <div class="d-flex justify-content-end align-items-end col-6{% if section.settings.menu_secondary_hide %} d-none d-lg-block{% endif %}">
+                <div class="d-flex justify-content-end align-items-end col-6 col-lg-9{% if section.settings.menu_secondary_hide %} d-none d-lg-block{% endif %}">
                   <ul class="footer__nav-list list-unstyled rte d-flex flex-wrap justify-content-lg-end mb-0">
                     {% for link in section.settings.menu_secondary.links %}
                       <li class="mt-1 ml-1">

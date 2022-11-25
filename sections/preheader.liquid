@@ -1,7 +1,7 @@
 <div class="container">
   <div class="preheader__inner d-flex flex-column justify-content-between pt-1">
     <div class="preheader__inner-logo">
-      <a class="d-block" data-aos="slide-logo" href="{{ routes.root_url }}">
+      <div data-aos="slide-logo">
         {% if section.settings.logo != blank %}
           {% if request.page_type == 'index' %}
             {{ section.settings.logo }}
@@ -11,10 +11,10 @@
         {% else %}
           <span class="h2">{{ shop.name }}</span>
         {% endif %}
-      </a>
+      </div>
     </div>
     <div>
-      <div class="preheader__inner__content rte text-1.25 lh-120 text-md-1.5">
+      <div class="preheader__inner__content rte">
         {% for block in section.blocks %}
           <p data-aos="slide-up-hero-text" class="preheader__inner--line">{{ block.settings.text }}</p>
         {% endfor %}
@@ -22,7 +22,7 @@
           <a href="{{ section.settings.anchor_url }}" class="d-flex align-items-center rte no-underline active-state" data-launch-animation>
             <span data-aos="slide-left-hero-text" class="mr-1">
               <span class="btn--outline btn--outline--dark flex-center flex-shrink-0 border-2 rounded-circle" style="width: 25px; height: 25px; padding-top: 2px">
-                <svg width="13" height="8" viewBox="0 0 13 8" fill="none" {{ default_attributes }}><path d="m1 1 5.5 5.5L12 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="13" height="8" viewBox="0 0 13 8" fill="none"><path d="m1 1 5.5 5.5L12 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </span>
             <span data-aos="slide-left-hero-text" class="text-dark">{{ section.settings.anchor_label }}</span>

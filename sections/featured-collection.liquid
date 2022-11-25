@@ -5,12 +5,11 @@
 %}
 
 <div class="featured-collection container" id="shop">
-
   <div class="card-product__wrapper row row--sm" id="{{ section.id }}-{{ section_collection.handle }}">
     {% if is_variants %}
       {% for single_product in section_collection.products limit: initail_count %}
         {% for variant in single_product.variants %}
-          <div class="col-12 col-md-6 col-lg-3">
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3">
             {%- capture anim_delay -%}
               {%- cycle '500', '600', '700', '800' -%}
             {%- endcapture -%}

@@ -20,7 +20,7 @@
   //transform: translateY(75px) scale(0);
   //border-radius: 50%;
   opacity: 0;
-  transition: var(--transition-default);
+  transition: var(--transition-long);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
 
   @include media-breakpoint-up(md) {
@@ -35,7 +35,7 @@
     //animation-duration: 400ms;
     //animation-fill-mode: forwards;
 
-    //transition-delay: var(--transition-default);
+    //transition-delay: var(--transition-long);
     @include media-breakpoint-up(lg) {
       opacity: 1;
     }
@@ -73,7 +73,7 @@
 [data-aos="slide-logo"] {
   transform: translate3d(0, -35px, 0);
   opacity: 0;
-  transition: var(--transition-default);
+  transition: var(--transition-long);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
   &.aos-animate {
     transform: translate3d(0, 0, 0);
@@ -84,7 +84,7 @@
 [data-aos="slide-up-hero-text"] {
   transform: translate3d(0, 12px, 0);
   opacity: 0;
-  transition: var(--transition-default);
+  transition: var(--transition-long);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
   transition-delay: 450ms;
   @include media-breakpoint-down(md) {
@@ -120,7 +120,7 @@
 [data-aos="slide-up-header"] {
   transform: translate3d(0, 10px, 0);
   opacity: 0;
-  transition: var(--transition-default);
+  transition: var(--transition-long);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
   transition-delay: 600ms;
   @include media-breakpoint-down(md) {
@@ -131,7 +131,7 @@
 [data-aos="slide-left-hero-text"] {
   transform: translate3d(10px, 0, 0);
   opacity: 0;
-  transition: var(--transition-default);
+  transition: var(--transition-long);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
   transition-delay: 1300ms;
   @include media-breakpoint-down(md) {
@@ -150,7 +150,7 @@
   .header__nav-ul li {
     transform: translate3d(0, 100px, 0);
     opacity: 0;
-    transition: var(--transition-default);
+    transition: var(--transition-long);
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
     transition-delay: 400ms;
     &:nth-child(2) {
@@ -183,7 +183,7 @@
 [data-aos="slide-up-product-card"] {
   transform: translate3d(0, 35px, 0);
   opacity: 0;
-  transition: var(--transition-default);
+  transition: var(--transition-long);
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
   @include media-breakpoint-up(md) {
     transition-delay: var(--animation-delay);

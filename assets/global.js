@@ -788,12 +788,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function calcVh() {
       vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+      const preheader = document.querySelector('.preheader__inner');
+      if (preheader) preheader.style.height = `${vh * 100}px`;
     }
     calcVh();
     window.addEventListener('resize', calcVh);
-
-    const preheader = document.querySelector('.preheader__inner');
-    if (preheader) preheader.style.height = `${vh * 100}px`
   })();
 
   // Header desktop

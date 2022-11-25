@@ -80,8 +80,9 @@
     height: 40px;
     border: 2px solid currentColor;
     border-radius: 20px;
+    transition: $btn-transition;
     transition-delay: 0.15s;
-    
+
     > * {
       opacity: 0;
       transition: 0.35s;
@@ -176,9 +177,9 @@
     }
   }
   &.header__cart-wrapper {
-    @include media-breakpoint-up(lg) {
-      margin-right: 0;
-    }
+    // @include media-breakpoint-up(lg) {
+    //   margin-right: 0;
+    // }
     .header__burger__open {
       transition-delay: 0s;
     }
@@ -219,7 +220,7 @@
   .header__logo {
     opacity: 0;
     transition: var(--transition-default);
-    transition-timing-function: cubic-bezier(0.25,0.1,0.2,1) !important;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
     pointer-events: none;
     &.header-animate {
       opacity: 1;
