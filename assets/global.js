@@ -1011,9 +1011,9 @@ document.addEventListener('DOMContentLoaded', () => {
       once: false
     });
     window.addEventListener('resize', () => {
-      AOS.refresh();
+      const debouncedAOSrefresh = debounce(AOS.refresh, 1200);
+      debouncedAOSrefresh();
     })
-    // new Headroom(document.querySelector('.header')).init();
   })();
 
   // Custom load more
@@ -1130,7 +1130,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (() => {
 
     function ajaxFormInit(form) {
-      console.log(form);
       var form_type = form.querySelector("[name=form_type]").value,
         form_inner = form.querySelector('[data-form-inner]'),
         alertDom = form.querySelector('[data-alert="status"]'),

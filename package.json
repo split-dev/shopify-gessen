@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "serve": "shopify theme dev -s gessen-4241 -t 121352159365",
+    "pull": "shopify theme pull",
     "dev": "cd dev && gulp"
   },
   "repository": "git@github.com:split-dev/shopify-gessen.git",

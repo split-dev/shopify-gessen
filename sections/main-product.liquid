@@ -116,7 +116,8 @@
                    <button class="accordion__button link active-state d-flex align-items-center bg-transparent border-none pl-0 pr-0 text-0.875 active-state" id="button_{{ forloop.index }}" aria-expanded="false" aria-controls="content_{{ forloop.index }}"
                            data-accordion-toggle>
                      <span class="accordion__icon mr-0.5 position-relative">
-                      <svg class="transition-default absolute-center" width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.301.75a.75.75 0 1 0-1.5 0v3.142H.75a.75.75 0 0 0 0 1.5h3.051V8.25a.75.75 0 0 0 1.5 0V5.392H8.25a.75.75 0 1 0 0-1.5H5.301V.75Z" fill="#000"/></svg>
+                      <svg class="accordion__icon--plus transition-default absolute-center" width="9" height="9" viewBox="0 0 9 9" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.301.75a.75.75 0 1 0-1.5 0v3.142H.75a.75.75 0 0 0 0 1.5h3.051V8.25a.75.75 0 0 0 1.5 0V5.392H8.25a.75.75 0 1 0 0-1.5H5.301V.75Z" fill="rgb(var(--color-primary))"/></svg>
+                      <svg class="accordion__icon--minus transition-default absolute-center" fill="none" width="9" viewBox="0 0 9 3"><path fill="rgb(var(--color-primary))" fill-rule="evenodd" d="M9 1.64185c0 .41421-.33579.75-.75.75H.75c-.414213 0-.75000004-.33579-.75-.75C4e-8 1.22763.335787.891846.75.891846h7.5c.41421 0 .75.335784.75.750004Z" clip-rule="evenodd"/></svg>
                      </span>
                      <span>
                        {{ block.settings.heading }}
