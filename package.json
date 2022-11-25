@@ -2,10 +2,8 @@
   "name": "gessen-theme",
   "version": "1.0.0",
   "scripts": {
-    "serve": "shopify theme serve --theme-editor-sync",
-    "dev": "cd dev && gulp",
-    "push": "shopify theme push -l",
-    "pull": "shopify theme pull -d"
+    "serve": "shopify theme dev -s gessen-4241 -t 121352159365",
+    "dev": "cd dev && gulp"
   },
   "repository": "git@github.com:split-dev/shopify-gessen.git",
   "author": "vlad <vkravchenko@splitdev.pro>"
