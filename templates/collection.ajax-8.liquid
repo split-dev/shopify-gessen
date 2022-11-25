@@ -5,7 +5,7 @@
       {% capture anim_delay %}
         {% cycle '0', '100', '200', '300' %}
       {% endcapture %}
-      {% render 'card-product' card_product:product, anim_delay: anim_delay %}
+      {% render 'card-product' card_product: product, anim_delay: anim_delay %}
     </div>
   {% endfor %}
 
