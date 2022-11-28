@@ -1,3 +1,6 @@
+setTimeout(() => {
+  window.scroll(0, 0);
+}, 300);
 function getFocusableElements(container) {
   return Array.from(
     container.querySelectorAll(
@@ -832,8 +835,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 100)
         }
 
-        if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
-          document.querySelector('[href="#shop"]').click();
+        if (headerScroll.option.isFirstLoad && (parseInt(percent) < 99)) {
+          // document.querySelector('[href="#shop"]').click();
           headerScroll.option.isFirstLoad = false;
         } else if (parseInt(percent) > 99) {
           headerScroll.option.isFirstLoad = true;
@@ -925,6 +928,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (href[0] === '#' && href.length > 1) {
         link.addEventListener('click', e => {
           e.preventDefault();
+          document.querySelector('.preheader').classList.add('d-none');
 
           document.body.classList.remove('overflow-hidden');
           let wrapper = link.closest('[data-header-nav]');
@@ -962,6 +966,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               setTimeout(() => {
                 linkParent.classList.remove('animate--leave');
+                AOS.refresh();
               }, 300);
             }, slideTransitionDelay)
 
