@@ -11,7 +11,7 @@
         {% for variant in single_product.variants %}
           <div class="col-12 col-md-6 col-lg-4 col-xl-3">
             {%- capture anim_delay -%}
-              {%- cycle '300', '400', '500', '600' -%}
+              {%- cycle '300', '400', '500', '600', '700', '800', '900', '1000' -%}
             {%- endcapture -%}
             {% render 'card-variant' card_variant: variant, anim_delay: anim_delay %}
           </div>
@@ -21,7 +21,7 @@
       {% for single_product in section_collection.products limit: initail_count %}
         <div class="col-12 col-md-6 col-lg-3">
           {%- capture anim_delay -%}
-            {%- cycle '300', '400', '500', '600' -%}
+            {%- cycle '300', '400', '500', '600', '700', '800', '900', '1000' -%}
           {%- endcapture -%}
           {% render 'card-product' card_product: single_product, anim_delay: anim_delay %}
         </div>

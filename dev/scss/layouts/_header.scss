@@ -80,13 +80,33 @@
     height: 40px;
     border: 2px solid currentColor;
     border-radius: 20px;
-    transition: $btn-transition;
+    transition: border-radius 0.2s, opacity 0.3s, width 0.3s, height 0.3s;
     transition-delay: 0.15s;
 
     > * {
       opacity: 0;
-      transition: 0.35s;
-      transition-delay: 0s;
+      transition: 0.4s;
+      transition-delay: 0.1s;
+    }
+    li {
+      opacity: 0;
+      transform: translate(15px, -15px);
+      transition: 0.4s 0.1s;
+      &:nth-child(2) {
+        transition-delay: 0.13s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.16s;
+      }
+      &:nth-child(4) {
+        transition-delay: 0.19s;
+      }
+      &:nth-child(5) {
+        transition-delay: 0.21s;
+      }
+      &:nth-child(5) {
+        transition-delay: 0.23s;
+      }
     }
 
     h5 {
@@ -171,9 +191,13 @@
       max-height: 810px;
       right: 0;
     }
+
+    li {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
     > * {
       opacity: 1;
-      transition-delay: 0.15s;
     }
   }
   &.header__cart-wrapper {
@@ -199,21 +223,7 @@
       }
     }
   }
-  // + div {
-  //   z-index: 0;
-  // }
 }
-
-// .headroom {
-//   // will-change: transform;
-//   transition: transform 200ms linear;
-// }
-// .headroom--pinned {
-//   transform: translateY(0%);
-// }
-// .headroom--unpinned {
-//   transform: translateY(-100%);
-// }
 
 .template-index {
   .header__buttons,
@@ -221,9 +231,7 @@
     transform: translateY(40px);
     opacity: 0;
     transition: 0.7s;
-    transition-timing-function: cubic-bezier(
-      0.33, 1, 0.68, 1
-      ) !important;
+    transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
     pointer-events: none;
     &.header-animate {
       transform: translateY(0);
