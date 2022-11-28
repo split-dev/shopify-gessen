@@ -1,7 +1,3 @@
-function hideWelcome() {
-  const welcome = document.querySelector('.preheader');
-  welcome.classList.add('hide')
-}
 function getFocusableElements(container) {
   return Array.from(
     container.querySelectorAll(
@@ -741,6 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.style
         .setProperty('--header-height', `${headerTemp.scrollHeight}px`)
     }
+    window.setHeaderHeight = headerHeight;
     headerHeight();
     window.addEventListener('resize', headerHeight);
 
@@ -837,7 +834,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
-          document.querySelector('[href="#shop"]').click();
+          // document.querySelector('[href="#shop"]').click();
           headerScroll.option.isFirstLoad = false;
         } else if (parseInt(percent) > 99) {
           headerScroll.option.isFirstLoad = true;
@@ -930,6 +927,8 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', e => {
           e.preventDefault();
 
+          window.setHeaderHeight()
+
           document.body.classList.remove('overflow-hidden');
           let wrapper = link.closest('[data-header-nav]');
           if (wrapper) {
@@ -943,24 +942,23 @@ document.addEventListener('DOMContentLoaded', () => {
           let target = document.querySelector(`${link.getAttribute('href')}`);
 
           if (link.hasAttribute('data-launch-animation')) {
-            let slideTransitionDelay = 800,
+            let slideTransitionDelay = 650,
               linkParent = link.closest('section');
 
             linkParent.classList.add('animate--leave');
 
             setTimeout(() => {
+              let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
+
               if (window.innerWidth > 768) {
+                console.log('This scroll');
                 window.scrollTo({
-                  top: target.getBoundingClientRect().top + window.pageYOffset,
+                  top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
                   behavior: 'auto'
                 })
               } else {
                 scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
-                  let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
-                  window.scrollTo({
-                    top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
-                    behavior: 'auto'
-                  })
+                  window.scroll(0, (targetUpdated.getBoundingClientRect().top + window.pageYOffset))
                 })
               }
 

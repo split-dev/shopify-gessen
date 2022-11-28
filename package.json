@@ -2,8 +2,9 @@
   "name": "gessen-theme",
   "version": "1.0.0",
   "scripts": {
-    "serve-prod": "shopify theme dev -s gessen-4241 -t 122435338373",
+    "serve-prod": "shopify theme dev -s gessen-4241 -t 121352159365",
     "serve-dev": "shopify theme dev -s gessen-4241",
+    "push": "shopify theme push",
     "pull": "shopify theme pull",
     "dev": "cd dev && gulp"
   },

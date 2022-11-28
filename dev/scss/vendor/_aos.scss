@@ -71,10 +71,10 @@
 }
 
 [data-aos="slide-logo"] {
-  transform: translate3d(0, -35px, 0);
+  transform: translate3d(0, -60px, 0);
   opacity: 0;
-  transition: var(--transition-long);
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
+  transition: 0.7s 0.4s;
+  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important;
   &.aos-animate {
     transform: translate3d(0, 0, 0);
     opacity: 1;
@@ -82,34 +82,28 @@
 }
 
 [data-aos="slide-up-hero-text"] {
-  transform: translate3d(0, 12px, 0);
+  transform: translate3d(0, 40px, 0);
   opacity: 0;
   transition: var(--transition-long);
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
-  transition-delay: 450ms;
+  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
+  transition-delay: 0.6s;
   @include media-breakpoint-down(md) {
     transform: translate3d(0, 0, 0);
   }
   &:nth-child(2) {
-    transition-delay: 700ms;
+    transition-delay: 0.8s;
   }
   &:nth-child(3) {
-    transition-delay: 950ms;
+    transition-delay: 1s;
   }
   &:nth-child(4) {
-    transition-delay: 1200ms;
+    transition-delay: 1.2s;
   }
   &:nth-child(5) {
-    transition-delay: 1450ms;
+    transition-delay: 1.4s;
   }
   &:nth-child(6) {
-    transition-delay: 1700ms;
-  }
-  &:nth-child(7) {
-    transition-delay: 1950ms;
-  }
-  &:last-child {
-    transform: translate3d(0, 10px, 0);
+    transition-delay: 1.6s;
   }
   &.aos-animate {
     transform: translate3d(0, 0, 0);
@@ -129,16 +123,15 @@
 }
 
 [data-aos="slide-left-hero-text"] {
-  transform: translate3d(10px, 0, 0);
+  transform: translate3d(40px, 0, 0);
   opacity: 0;
-  transition: var(--transition-long);
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
-  transition-delay: 1300ms;
+  transition: 0.7s 1.2s;
+  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
   @include media-breakpoint-down(md) {
     transform: translate3d(0, 0, 0);
   }
   &:nth-child(2) {
-    transition-delay: 1600ms;
+    transition-delay: 1.4s;
   }
   &.aos-animate {
     transform: translate3d(0, 0, 0);
@@ -181,10 +174,10 @@
 }
 
 [data-aos="slide-up-product-card"] {
-  transform: translate3d(0, 35px, 0);
+  transform: translate3d(0, 20px, 0);
   opacity: 0;
-  transition: var(--transition-long);
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
+  transition: 0.7s;
+  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
   @include media-breakpoint-up(md) {
     transition-delay: var(--animation-delay);
   }

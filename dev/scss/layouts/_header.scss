@@ -218,11 +218,15 @@
 .template-index {
   .header__buttons,
   .header__logo {
+    transform: translateY(40px);
     opacity: 0;
-    transition: var(--transition-default);
-    transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
+    transition: 0.7s;
+    transition-timing-function: cubic-bezier(
+      0.33, 1, 0.68, 1
+      ) !important;
     pointer-events: none;
     &.header-animate {
+      transform: translateY(0);
       opacity: 1;
       pointer-events: auto;
     }

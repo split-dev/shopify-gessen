@@ -5,7 +5,7 @@
       border-color: transparent;
     }
     img {
-      transition: var(--transition-default);
+      transition: 0.3s;
       + img {
         opacity: 0;
       }
