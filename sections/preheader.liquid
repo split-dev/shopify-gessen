@@ -36,39 +36,41 @@
 
 
 {% schema %}
-  {
-    "name": "Homepage pre-header",
-    "tag": "section",
-    "class": "preheader",
-    "blocks": [
-      {
-        "name": "Line Item",
-        "type": "text",
-        "limit": 6,
-        "settings": [
-          {
-            "type": "text",
-            "id": "text",
-            "label": "Text"
-          }
-        ]
-      }
-    ],
-    "settings": [
-      {
-        "type": "text",
-        "id": "logo",
-        "label": "Vector image SVG code",
-        "info": "Add SVG code starting with <svg..."
-      }, {
-        "type": "text",
-        "id": "anchor_url",
-        "label": "Anchor URL"
-      }, {
-        "type": "text",
-        "id": "anchor_label",
-        "label": "Anchor label"
-      }
-    ]
-  }
+{
+  "name": "Homepage pre-header",
+  "tag": "section",
+  "class": "preheader",
+  "blocks": [
+    {
+      "name": "Line Item",
+      "type": "text",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo",
+      "label": "Vector image SVG code",
+      "info": "Add SVG code starting with <svg..."
+    },
+    {
+      "type": "text",
+      "id": "anchor_url",
+      "label": "Anchor URL"
+    },
+    {
+      "type": "text",
+      "id": "anchor_label",
+      "label": "Anchor label"
+    }
+  ]
+}
 {% endschema %}
