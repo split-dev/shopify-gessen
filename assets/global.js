@@ -1,3 +1,12 @@
+(() => {
+  if (window.location.hash === '#shop' || (sessionStorage.getItem('liveSession') === 'true')) {
+    let welcomeSection = document.querySelector('.preheader');
+    if (!welcomeSection) return;
+    welcomeSection.classList.add('d-none');
+    document.body.classList.remove('overflow-hidden');
+  }
+})();
+
 function getFocusableElements(container) {
   return Array.from(
     container.querySelectorAll(
@@ -707,6 +716,9 @@ class VariantRadios extends VariantSelects {
 customElements.define('variant-radios', VariantRadios);
 
 document.addEventListener('DOMContentLoaded', () => {
+  // (() => {
+  //   window.scroll(0,0);
+  // })();
   (() => {
     window.iosTapIndicator = () => {
       if (detectBrowser() === 'safari') {
@@ -809,36 +821,16 @@ document.addEventListener('DOMContentLoaded', () => {
         newLogo: document.querySelector('.header__logo')
       },
       handle: () => {
-        let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00),
-          width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent),
-          isBreak = window.pageYOffset > window.innerHeight;
+        let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
 
-        if (percent >= 1) {
+        if (Number.isNaN(percent)) percent = 0;
 
-          if (isBreak) return;
-
-          requestAnimationFrame(() => {
-            if (width < headerScroll.option.minMobile) width = headerScroll.option.minMobile;
-            document.querySelector('[data-header-logo]').style.width = `${width}px`;
-          })
-        }
-
-        // On page redirect logo HACK FIX
-        if (window.firstLoad) {
-          setTimeout(() => {
-            percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
-            width = headerScroll.vars.headerWidth + (headerScroll.vars.step * percent);
-
-            document.querySelector('[data-header-logo]').style.width = `${width}px`;
-          }, 100)
-        }
-
-        if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
-          // document.querySelector('[href="#shop"]').click();
-          headerScroll.option.isFirstLoad = false;
-        } else if (parseInt(percent) > 99) {
-          headerScroll.option.isFirstLoad = true;
-        }
+        // if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
+        //   // document.querySelector('[href="#shop"]').click();
+        //   headerScroll.option.isFirstLoad = false;
+        // } else if (parseInt(percent) > 99) {
+        //   headerScroll.option.isFirstLoad = true;
+        // }
 
         if (percent >= 66) {
           headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
@@ -851,7 +843,6 @@ document.addEventListener('DOMContentLoaded', () => {
           headerScroll.selectors.navigation.classList.add('header-animate', 'events-none')
           headerScroll.selectors.newLogo.classList.remove('header__translate-animate')
           headerScroll.selectors.navigation.classList.remove('header__translate-animate')
-
         }
 
         (headerScroll.selectors.header.offsetTop + 10) > window.innerHeight
@@ -861,18 +852,34 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       eventListeners: () => {
         document.addEventListener('scroll', debounce(headerScroll.handle, 15));
+        const wheelHandle = (e) => {
+          if (window.location.hash === '#shop' || (sessionStorage.getItem('liveSession') === 'true')) return;
+          
+          if (e.wheelDelta < 0 || (e?.touches?.length > 0)) {
+            document.querySelector('[data-launch-animation]').click();
+            sessionStorage.setItem('liveSession', 'true');
+          }
+          document.removeEventListener('wheel', wheelHandle);
+          document.removeEventListener('touchmove', wheelHandle);
+        }
+        document.addEventListener('wheel', wheelHandle);
+        document.addEventListener('touchmove', wheelHandle);
       },
       init: () => {
+        setTimeout(() => {
+          if (window.location.hash === '#shop') return;
+          window.scroll(0, 0);
+        }, 200);
         headerScroll.option = {
           isFirstLoad: true,
           isSafari: window.detectBrowser() === 'safari',
           minMobile: parseInt(headerScroll.selectors.logo.dataset.widthMobile)
         };
-        headerScroll.vars = {
-          headerWidth: headerScroll.selectors.logo.scrollWidth,
-          // 32 - 2rem container margin + 4px*2 gaps
-          step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
-        };
+        // headerScroll.vars = {
+        // headerWidth: headerScroll.selectors.logo.scrollWidth,
+        // 32 - 2rem container margin + 4px*2 gaps
+        // step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
+        // };
         headerScroll.handle();
         headerScroll.eventListeners();
       }
@@ -914,10 +921,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       window.addEventListener('scroll', onScroll)
       onScroll()
-      window.scrollTo({
-        top: offset,
-        behavior: 'smooth'
-      })
+      // window.scrollTo({
+      //   top: offset,
+      //   behavior: 'smooth'
+      // })
     }
 
     links.forEach(link => {
@@ -927,9 +934,8 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', e => {
           e.preventDefault();
 
-          window.setHeaderHeight()
+          window.setHeaderHeight();
 
-          document.body.classList.remove('overflow-hidden');
           let wrapper = link.closest('[data-header-nav]');
           if (wrapper) {
             let toggle = wrapper.querySelector('[data-header-toggle]');
@@ -948,19 +954,14 @@ document.addEventListener('DOMContentLoaded', () => {
             linkParent.classList.add('animate--leave');
 
             setTimeout(() => {
-              let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
+              document.querySelector('.preheader').classList.add('d-none');
+              window.headerScroll.handle();
+              AOS.refresh();
 
-              if (window.innerWidth > 768) {
-                console.log('This scroll');
-                window.scrollTo({
-                  top: targetUpdated.getBoundingClientRect().top + window.pageYOffset,
-                  behavior: 'auto'
-                })
-              } else {
-                scrollTo(target.getBoundingClientRect().top + window.pageYOffset, () => {
-                  window.scroll(0, (targetUpdated.getBoundingClientRect().top + window.pageYOffset))
-                })
-              }
+              document.body.classList.remove('overflow-hidden');
+
+              let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
+              window.scroll(0, (targetUpdated.getBoundingClientRect().top + window.pageYOffset));
 
               setTimeout(() => {
                 linkParent.classList.remove('animate--leave');
@@ -985,6 +986,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
               })
             }
+            document.body.classList.remove('overflow-hidden');
           });
         });
       }
