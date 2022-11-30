@@ -40,10 +40,6 @@
       background-color: currentColor;
       transition: 0.3s;
 
-      // @include media-breakpoint-down(md) {
-      //   transition-delay: 0.25s;
-      // }
-
       &:nth-child(1) {
         top: 0px;
       }

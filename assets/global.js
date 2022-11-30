@@ -576,6 +576,8 @@ class VariantSelects extends HTMLElement {
       this.renderProductInfo();
       this.updateShareUrl();
     }
+    // Update option color label
+    this.updateOptionColor();
   }
 
   updateOptions() {
@@ -601,7 +603,6 @@ class VariantSelects extends HTMLElement {
   updateURL() {
     if (!this.currentVariant || this.dataset.updateUrl === 'false') return;
     window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
-    // document.querySelector('[data-notification-product]').value = window.location.href;
   }
 
   updateShareUrl() {
@@ -609,7 +610,11 @@ class VariantSelects extends HTMLElement {
     if (!shareButton || !shareButton.updateUrl) return;
     shareButton.updateUrl(`${window.shopUrl}${this.dataset.url}?variant=${this.currentVariant.id}`);
   }
-
+  updateOptionColor() {
+    this.options.forEach((option, index) => {
+      document.querySelector(`[data-option-label="${index}"]`).textContent = option;
+    });
+  }
   updateVariantInput() {
     const productForms = document.querySelectorAll(`#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`);
     productForms.forEach((productForm) => {
@@ -854,7 +859,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('scroll', debounce(headerScroll.handle, 15));
         const wheelHandle = (e) => {
           if (window.location.hash === '#shop' || (sessionStorage.getItem('liveSession') === 'true')) return;
-          
+
           if (e.wheelDelta < 0 || (e?.touches?.length > 0)) {
             document.querySelector('[data-launch-animation]').click();
             sessionStorage.setItem('liveSession', 'true');

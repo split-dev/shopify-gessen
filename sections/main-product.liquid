@@ -135,7 +135,7 @@
             {%- when 'related_products' -%}
                {%- if product.metafields.product.related_products != blank -%}
                 <div class="product__option-name text-0.875 lh-150">
-                  <span>Color </span><span class="transparent-0.4">{{ product.title }}</span>
+                  <span>Color </span><span class="transparent-0.4" data-option-color>{{ product.title }}</span>
                 </div>
                 <div class="product__related mb-1">
                   {%- for item in product.metafields.product.related_products.value -%}
@@ -158,7 +158,7 @@
                   {%- for option in product.options_with_values -%}
                       <fieldset class="js border-none pt-0 pr-0 pb-0 pl-0 mt-0 mr-0 mb-0 ml-0{% unless forloop.last %} mb-2{% endunless %}">
                         <div class="product__option-name text-0.875 lh-150">
-                          <span>{{ option.name }} </span><span class="transparent-0.4">{%- for value in option.values -%}{% if option.selected_value == value %}{{ value | escape }}{% endif %}{%- endfor -%}</span>
+                          <span>{{ option.name }} </span><span class="transparent-0.4" data-option-label="{{ option.position | minus: 1 }}" >{%- for value in option.values -%}{% if option.selected_value == value %}{{ value | escape }}{% endif %}{%- endfor -%}</span>
                         </div>
                         <div class="d-flex flex-wrap mb-n1">
                           {%- for value in option.values -%}
