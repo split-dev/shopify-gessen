@@ -99,6 +99,7 @@
   .link,
   .btn,
   .btn--outline,
+  .btn--underline,
   .btn--primary {
     &:active {
       opacity: 0.5 !important;
@@ -125,8 +126,13 @@
   }
 }
 .btn--underline {
-  color: rgba(var(--color-primary), 0.5);
+  color: rgb(var(--color-primary));
   transition: color 0.25s;
+  &:hover:not([disabled]) {
+    @include media-breakpoint-up(md) {
+      color: rgba(var(--color-primary), 0.5);
+    }
+  }
 }
 button[name="add"]:not(.loading) .btn-adding-name,
 button[name="add"].loading .btn-name {

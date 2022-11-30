@@ -1,10 +1,11 @@
 .social-list {
-  &__link {
-    width: 2.25rem;
-    height: 2.25rem;
-    @include media-breakpoint-up(md) {
-      width: 1.5rem;
-      height: 1.5rem;
+  &--light {
+    .social-list__link {
+      border-width: 1px;
     }
+  }
+  &__link {
+    width: 2.3em;
+    height: 2.3em;
   }
 }

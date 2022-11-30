@@ -38,6 +38,7 @@
       border-radius: 4px;
       transform: rotate(0deg);
       background-color: currentColor;
+      transition: 0.3s;
 
       // @include media-breakpoint-down(md) {
       //   transition-delay: 0.25s;
@@ -77,45 +78,57 @@
     right: 0;
     top: 0;
     width: 40px;
-    height: 40px;
+    height: 100%;
     border: 2px solid currentColor;
     border-radius: 20px;
-    transition: border-radius 0.2s, opacity 0.3s, width 0.3s, height 0.3s;
+    transition: border-radius 0.2s, opacity 0.3s, width 0.3s, height 0.3s, max-height 0.3s, right 0.3s;
     transition-delay: 0.15s;
 
-    > * {
-      opacity: 0;
-      transition: 0.4s;
-      transition-delay: 0.1s;
-    }
-    li {
-      opacity: 0;
-      transform: translate(15px, -15px);
-      transition: 0.4s 0.1s;
-      &:nth-child(2) {
-        transition-delay: 0.13s;
-      }
-      &:nth-child(3) {
-        transition-delay: 0.16s;
-      }
-      &:nth-child(4) {
-        transition-delay: 0.19s;
-      }
-      &:nth-child(5) {
-        transition-delay: 0.21s;
-      }
-      &:nth-child(5) {
-        transition-delay: 0.23s;
-      }
+    @include media-breakpoint-up(md) {
+      max-height: 40px;
     }
 
-    h5 {
-      margin-bottom: 27px;
+    &--content {
+      top: 0;
+      right: -4px;
+      width: calc(100vw - 2rem);
+      height: calc(var(--vh, 1vh) * 100 - 2rem);
+      border-radius: 5px 20px 5px 5px;
+      pointer-events: none;
+      opacity: 0;
+      transition: 0.4s;
+      transition-delay: 0s;
+
+      @include media-breakpoint-up(lg) {
+        width: 358px;
+        max-height: 810px;
+        // height: 100%;
+        right: 0;
+      }
+      h5 {
+        margin-bottom: 27px;
+      }
+      .cart__item,
+      h5,
+      .social-list li,
+      .header__nav-ul li,
+      .cart__footer__shipping,
+      .cart__footer__submit,
+      .cart__footer__bottom {
+        opacity: 0;
+        transform: translate(15px, -15px);
+        transition: 0.4s;
+      }
     }
   }
   &__cart-wrapper {
     margin-right: 1rem;
     transition: var(--transition-default);
+    @include media-breakpoint-down(md) {
+      .header__nav--content {
+        right: calc(-1rem - 40px - 4px);
+      }
+    }
   }
 }
 [data-header-logo] {
@@ -191,19 +204,83 @@
       max-height: 810px;
       right: 0;
     }
-
-    li {
+    &--content {
+      pointer-events: all;
       opacity: 1;
-      transform: translate(0, 0);
-    }
-    > * {
-      opacity: 1;
+      .cart__item,
+      h5,
+      .social-list li,
+      .header__nav-ul li,
+      .cart__footer__shipping,
+      .cart__footer__submit,
+      .cart__footer__bottom {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+      > * {
+        opacity: 1;
+      }
+      h5 {
+        transition-delay: 0.1s;
+      }
+      .cart__item {
+        transition-delay: 0.13s;
+        &:nth-child(2) {
+          transition-delay: 0.16s;
+        }
+        &:nth-child(3) {
+          transition-delay: 0.19s;
+        }
+        &:nth-child(4) {
+          transition-delay: 0.21s;
+        }
+        &:nth-child(5) {
+          transition-delay: 0.24s;
+        }
+        &:nth-child(6) {
+          transition-delay: 0.27s;
+        }
+        .cart__footer__shipping {
+          transition-delay: 0.19s;
+        }
+        .cart__footer__submit {
+          transition-delay: 0.22s;
+        }
+        .cart__footer__bottom {
+          transition-delay: 0.25s;
+        }
+      }
+      .header__nav-ul {
+        li {
+          transition: 0.4s 0.1s;
+          &:nth-child(2) {
+            transition-delay: 0.13s;
+          }
+          &:nth-child(3) {
+            transition-delay: 0.16s;
+          }
+          &:nth-child(4) {
+            transition-delay: 0.19s;
+          }
+          &:nth-child(5) {
+            transition-delay: 0.21s;
+          }
+          &:nth-child(5) {
+            transition-delay: 0.23s;
+          }
+        }
+      }
+      .social-list {
+        li {
+          transition: 0.4s 0.22s;
+          &:nth-child(2) {
+            transition-delay: 0.25s;
+          }
+        }
+      }
     }
   }
   &.header__cart-wrapper {
-    // @include media-breakpoint-up(lg) {
-    //   margin-right: 0;
-    // }
     .header__burger__open {
       transition-delay: 0s;
     }
@@ -234,7 +311,7 @@
     transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
     pointer-events: none;
     &.header-animate {
-      transform: translateY(0);
+      transform: none;
       opacity: 1;
       pointer-events: auto;
     }

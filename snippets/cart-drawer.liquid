@@ -160,8 +160,8 @@
     </div>
     <div id="CartDrawer-CartErrors" class="mt-1" role="alert"></div>
 
-    <div class="mt-auto">
-      <div class="mt-1">
+    <div class="cart__footer mt-auto">
+      <div class="cart__footer__shipping mt-1">
         <h6 class="mb-0.5 d-flex justify-content-between font-bold">
           Subtotal
           <span>
@@ -175,11 +175,11 @@
         <p class="mt-0 mb-0 text-dark transparent-0.4 text-0.75 lh-150">Shipping and Taxes are caculated at checkout</p>
       </div>
 
-      <button type="submit" id="checkout" name="checkout" class="btn btn--primary mt-1 w-100 text-1.125 font-regular lh-120 text-uppercase active-state">
+      <button type="submit" id="checkout" name="checkout" class="cart__footer__submit btn btn--primary mt-1 w-100 text-1.125 font-regular lh-120 text-uppercase active-state">
         Checkout
       </button>
 
-      <div class="mt-0.5 d-flex align-items-center justify-content-between">
+      <div class="cart__footer__bottom mt-0.5 d-flex align-items-center justify-content-between">
         <a href="{{ section.settings.footer_link_1_url }}" class="mr-1 link text-dark  text-0.75 lh-150">{{ section.settings.footer_link_1_label }}
         </a>
         <a href="{{ section.settings.footer_link_2_url }}" class="link text-dark  text-0.75 lh-150 text-right">{{ section.settings.footer_link_2_label }}
