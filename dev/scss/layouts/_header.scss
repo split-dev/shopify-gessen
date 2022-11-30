@@ -80,7 +80,7 @@
     transition: border-radius 0.2s, opacity 0.3s, width 0.3s, height 0.3s, max-height 0.3s, right 0.3s;
     transition-delay: 0.15s;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       max-height: 40px;
     }
 
