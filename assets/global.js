@@ -959,6 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
             linkParent.classList.add('animate--leave');
 
             setTimeout(() => {
+              sessionStorage.setItem('liveSession', 'true');
               document.querySelector('.preheader').classList.add('d-none');
               window.headerScroll.handle();
               AOS.refresh();
