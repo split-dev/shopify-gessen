@@ -172,7 +172,7 @@ input:checked + label.btn--underline {
     left: 0;
     height: 2px;
     background-color: rgb(var(--color-primary));
-    content: '';
+    content: "";
     @include media-breakpoint-up(md) {
       right: -4px;
       left: -4px;
@@ -186,4 +186,7 @@ model-viewer::part(default-ar-button) {
   .btn--launch {
     display: none !important;
   }
+}
+[data-notification-trigger] {
+  margin-top: -1px;
 }

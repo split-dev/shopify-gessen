@@ -135,13 +135,21 @@
             {%- when 'related_products' -%}
                {%- if product.metafields.product.related_products != blank -%}
                 <div class="product__option-name text-0.875 lh-150">
-                  <span>Color </span><span class="transparent-0.4" data-option-color>{{ product.title }}</span>
+                  <span>Color </span><span class="transparent-0.4" data-option-color>{{ product.options_by_name['Color'].selected_value }}</span>
                 </div>
                 <div class="product__related mb-1">
                   {%- for item in product.metafields.product.related_products.value -%}
-                    {%- assign swatch_image = item.metafields.product.swatch_image -%}
-                    {%- assign swatch_color = item.metafields.product.swatch_color -%}
-                    <a href="{{ item.url }}" class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1{% if item.url == product.url %} active-product{% endif %}">
+                    {%- liquid
+                      assign swatch_image = item.metafields.product.swatch_image
+                      assign swatch_color = item.metafields.product.swatch_color
+                      assign current_product = false
+                      
+                      if item.url == product.url
+                        assign current_product = true
+                      endif
+                    -%}
+
+                    <a href="{{ item.url }}" class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1{% if current_product %} active-product{% endif %}">
                       <span aria-hidden="true" class="option-color a d-block rounded-circle border-hover transition-default position-relative overflow-hidden active-state" style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"></span>
                     </a>
                   {%- endfor -%}
