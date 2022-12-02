@@ -4,7 +4,7 @@
       "type": "featured-collection",
       "settings": {
         "collection": "frontpage",
-        "is_variants": true,
+        "is_variants": false,
         "enable_dynamic_loading": true
       }
     }

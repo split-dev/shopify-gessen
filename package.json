@@ -2,11 +2,11 @@
   "name": "gessen-theme",
   "version": "1.0.0",
   "scripts": {
-    "serve-prod": "shopify theme dev -s gessen-4241 -t 121352159365",
-    "serve-dev": "shopify theme dev -s gessen-4241",
-    "push": "shopify theme push",
-    "pull": "shopify theme pull",
-    "dev": "cd dev && gulp"
+    "serve-prod": "shopify theme dev -s `cat var.store.env` -t `cat var.theme.env`",
+    "dev": "shopify theme dev -s `cat var.store.env`",
+    "push": "shopify theme push -s `cat var.store.env`",
+    "pull": "shopify theme pull -s `cat var.store.env`",
+    "gulp": "cd dev && gulp"
   },
   "repository": "git@github.com:split-dev/shopify-gessen.git",
   "author": "vlad <vkravchenko@splitdev.pro>"
