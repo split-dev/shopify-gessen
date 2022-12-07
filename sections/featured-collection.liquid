@@ -2,6 +2,7 @@
   assign section_collection = section.settings.collection
   assign initail_count = 16
   assign is_variants = section.settings.is_variants
+  assign display_metafield_values = section.settings.display_metafield_values
 %}
 
 <div class="featured-collection container" id="shop">
@@ -13,7 +14,7 @@
             {%- capture anim_delay -%}
               {%- cycle '300', '400', '500', '600', '700', '800', '900', '1000' -%}
             {%- endcapture -%}
-            {% render 'card-variant' card_variant: variant, anim_delay: anim_delay %}
+            {% render 'card-variant' card_variant: variant, anim_delay: anim_delay, display_metafield_values: display_metafield_values %}
           </div>
         {% endfor %}
       {% endfor %}
@@ -60,7 +61,14 @@
       "label": "Enable dynamic loading",
       "default": true,
       "info": "Works if collection contains more products then initial count. Button will load 8 more products, if available."
-    }
+    },
+    {
+      "type": "checkbox",
+      "id": "display_metafield_values",
+      "label": "",
+      "default": false,
+      "info": ""
+    },
   ],
   "presets": [
     {

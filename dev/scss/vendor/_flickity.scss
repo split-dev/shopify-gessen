@@ -1,7 +1,3 @@
-/*! Flickity v2.3.0
-https://flickity.metafizzy.co
----------------------------------------------- */
-
 .flickity-enabled {
   position: relative;
 }
@@ -21,8 +17,6 @@ https://flickity.metafizzy.co
   height: 100%;
 }
 
-/* draggable */
-
 .flickity-enabled.is-draggable {
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
@@ -41,8 +35,6 @@ https://flickity.metafizzy.co
   cursor: -webkit-grabbing;
   cursor: grabbing;
 }
-
-/* ---- flickity-button ---- */
 
 .flickity-button {
   position: absolute;
@@ -68,7 +60,6 @@ https://flickity.metafizzy.co
 .flickity-button:disabled {
   opacity: 0.3;
   cursor: auto;
-  /* prevent disabled button from capturing pointer up event. #716 */
   pointer-events: none;
 }
 
@@ -76,20 +67,16 @@ https://flickity.metafizzy.co
   fill: currentColor;
 }
 
-/* ---- previous/next buttons ---- */
-
 .flickity-prev-next-button {
   top: 50%;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  /* vertically center */
   transform: translateY(-50%);
 }
 
 .flickity-prev-next-button.previous { left: 10px; }
 .flickity-prev-next-button.next { right: 10px; }
-/* right to left */
 .flickity-rtl .flickity-prev-next-button.previous {
   left: auto;
   right: 10px;
@@ -106,8 +93,6 @@ https://flickity.metafizzy.co
   width: 60%;
   height: 60%;
 }
-
-/* flickity-fade */
 .flickity-enabled.is-fade .flickity-slider > * {
   pointer-events: none;
   z-index: 0;

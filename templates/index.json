@@ -3,7 +3,7 @@
     "1660285776a2a0e2a4": {
       "type": "featured-collection",
       "settings": {
-        "collection": "frontpage",
+        "collection": "shop-all",
         "is_variants": false,
         "enable_dynamic_loading": true
       }

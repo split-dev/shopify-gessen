@@ -48,7 +48,7 @@
           "type": "accordion",
           "settings": {
             "heading": "Dimensions",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur sit amet leo a malesuada. Maecenas nec consectetur lectus, a fringilla lacus learn more.<\/p>",
+            "content": "<p>{{ product.metafields.accordion.dimensions | metafield_tag }}<\/p>",
             "content_page": ""
           }
         },
