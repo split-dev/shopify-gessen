@@ -40,7 +40,7 @@
           "type": "accordion",
           "settings": {
             "heading": "Shipping",
-            "content": "",
+            "content": "<p><\/p>",
             "content_page": "shipping"
           }
         },
@@ -64,7 +64,7 @@
           "type": "accordion",
           "settings": {
             "heading": "Images",
-            "content": "",
+            "content": "<p><\/p>",
             "content_page": "accordion-images"
           }
         }
