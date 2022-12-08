@@ -2,7 +2,7 @@
   "name": "gessen-theme",
   "version": "1.0.0",
   "scripts": {
-    "serve-prod": "shopify theme dev -s `cat var.store.env` -t `cat var.theme.env` -e",
+    "serve-prod": "shopify theme dev -s `cat var.store.env` -t `cat var.theme.env`",
     "dev": "shopify theme dev -s `cat var.store.env` -e",
     "push": "shopify theme push -s `cat var.store.env`",
     "pull": "shopify theme pull -s `cat var.store.env`",

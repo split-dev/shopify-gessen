@@ -1,7 +1,9 @@
 .option-color {
-  width: 25px;
-  height: 25px;
+  width: 29px;
+  height: 29px;
   border: 1px solid transparent;
+  padding: 2px;
+  background-clip: content-box;
   cursor: pointer;
   &:hover {
     border-color: rgba(var(--color-dark), 0.5);
@@ -10,5 +12,5 @@
 
 input:checked + .option-color,
 .active-product .option-color {
-  border: 1.5px solid rgb(var(--color-dark));
+  border: 1px solid rgb(var(--color-dark));
 }

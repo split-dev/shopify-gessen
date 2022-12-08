@@ -189,13 +189,12 @@
                     <div class="product__option-name text-0.875 lh-150">
                       <span>Color </span>
                       <span class="transparent-0.4" data-option-color>
-                        {{- product.options_by_name.Color.selected_value -}}
+                        {{- product.metafields.product.swatch_color_name -}}
                       </span>
                     </div>
                     <div class="product__related mb-1">
                       {%- for item in product.metafields.product.related_products.value -%}
                         {%- liquid
-                          assign swatch_image = item.metafields.product.swatch_image
                           assign swatch_color = item.metafields.product.swatch_color
                           assign current_product = false
 
@@ -212,11 +211,16 @@
                             <span
                               aria-hidden="true"
                               class="option-color a d-block rounded-circle border-hover transition-default position-relative overflow-hidden active-state"
-                              style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"
+                              style="background-color: {{ swatch_color }}"
                             ></span>
                           </a>
                           <script>
-                            document.querySelectorAll('[data-visible-if-not-empty]')[0].classList.remove('d-none');
+                              if (
+                                document
+                                  .querySelectorAll('[data-visible-if-not-empty]')[0]
+                                  .querySelectorAll('.product__related a').length > 1
+                              )
+                                document.querySelectorAll('[data-visible-if-not-empty]')[0].classList.remove('d-none');
                           </script>
                         {% endif %}
                       {%- endfor -%}
@@ -226,7 +230,7 @@
                     <div class="product__option-name text-0.875 lh-150">
                       <span>Size </span
                       ><span class="transparent-0.4" data-option-color>
-                        {{- product.options_by_name.Size.selected_value -}}
+                        {{- product.metafields.product.swatch_size -}}
                       </span>
                     </div>
                     <div class="product__related mb-1">
@@ -245,10 +249,15 @@
                             href="{{ item.url }}"
                             class="{% if current_product %}input--dummy {% endif %}btn--underline mb-1 font-regular text-0.875 lh-150 no-underline{% unless forloop.last %} mr-2{% endunless %}"
                           >
-                            {{ size_value }}
+                            {{ size_value | slice: 0 }}
                           </a>
                           <script>
-                            document.querySelectorAll('[data-visible-if-not-empty]')[1].classList.remove('d-none');
+                              if (
+                                document
+                                  .querySelectorAll('[data-visible-if-not-empty]')[1]
+                                  .querySelectorAll('.product__related a').length > 1
+                              )
+                                document.querySelectorAll('[data-visible-if-not-empty]')[1].classList.remove('d-none');
                           </script>
                         {% endif %}
                       {%- endfor -%}
