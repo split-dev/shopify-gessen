@@ -185,60 +185,74 @@
                 </div>
               {%- when 'related_products' -%}
                 {%- if product.metafields.product.related_products != blank -%}
-                  <div class="product__option-name text-0.875 lh-150">
-                    <span>Color </span>
-                    <span class="transparent-0.4" data-option-color>
-                      {{- product.options_by_name.Color.selected_value -}}
-                    </span>
+                  <div class="d-none" data-visible-if-not-empty>
+                    <div class="product__option-name text-0.875 lh-150">
+                      <span>Color </span>
+                      <span class="transparent-0.4" data-option-color>
+                        {{- product.options_by_name.Color.selected_value -}}
+                      </span>
+                    </div>
+                    <div class="product__related mb-1">
+                      {%- for item in product.metafields.product.related_products.value -%}
+                        {%- liquid
+                          assign swatch_image = item.metafields.product.swatch_image
+                          assign swatch_color = item.metafields.product.swatch_color
+                          assign current_product = false
+
+                          if item.url == product.url
+                            assign current_product = true
+                          endif
+                        -%}
+
+                        {% if swatch_color != blank %}
+                          <a
+                            href="{{ item.url }}"
+                            class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1{% if current_product %} active-product{% endif %}"
+                          >
+                            <span
+                              aria-hidden="true"
+                              class="option-color a d-block rounded-circle border-hover transition-default position-relative overflow-hidden active-state"
+                              style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"
+                            ></span>
+                          </a>
+                          <script>
+                            document.querySelectorAll('[data-visible-if-not-empty]')[0].classList.remove('d-none');
+                          </script>
+                        {% endif %}
+                      {%- endfor -%}
+                    </div>
                   </div>
-                  <div class="product__related mb-1">
-                    {%- for item in product.metafields.product.related_products.value -%}
-                      {%- liquid
-                        assign swatch_image = item.metafields.product.swatch_image
-                        assign swatch_color = item.metafields.product.swatch_color
-                        assign current_product = false
+                  <div class="d-none" data-visible-if-not-empty>
+                    <div class="product__option-name text-0.875 lh-150">
+                      <span>Size </span
+                      ><span class="transparent-0.4" data-option-color>
+                        {{- product.options_by_name.Size.selected_value -}}
+                      </span>
+                    </div>
+                    <div class="product__related mb-1">
+                      {%- for item in product.metafields.product.related_products.value -%}
+                        {%- liquid
+                          assign size_value = item.metafields.product.swatch_size
+                          assign current_product = false
 
-                        if item.url == product.url
-                          assign current_product = true
-                        endif
-                      -%}
+                          if item.url == product.url
+                            assign current_product = true
+                          endif
+                        -%}
 
-                      <a
-                        href="{{ item.url }}"
-                        class="{% unless forloop.last %} mr-0.75{% endunless %} mb-1{% if current_product %} active-product{% endif %}"
-                      >
-                        <span
-                          aria-hidden="true"
-                          class="option-color a d-block rounded-circle border-hover transition-default position-relative overflow-hidden active-state"
-                          style="{% if swatch_image != blank %} background-image: url({{ swatch_image | image_url: width: 25, height: 25 }} {% else %} background-color: {{ swatch_color }}{% endif %}"
-                        ></span>
-                      </a>
-                    {%- endfor -%}
-                  </div>
-                  <div class="product__option-name text-0.875 lh-150">
-                    <span>Size </span
-                    ><span class="transparent-0.4" data-option-color>
-                      {{- product.options_by_name.Size.selected_value -}}
-                    </span>
-                  </div>
-                  <div class="product__related mb-1">
-                    {%- for item in product.metafields.product.related_products.value -%}
-                      {%- liquid
-                        assign size_value = item.metafields.product.swatch_size
-                        assign current_product = false
-
-                        if item.url == product.url
-                          assign current_product = true
-                        endif
-                      -%}
-
-                      <a
-                        href="{{ item.url }}"
-                        class="btn--underline mb-1 font-regular text-0.875 lh-150{% unless forloop.last %} mr-2{% endunless %}"
-                      >
-                        {{ size_value }}
-                      </a>
-                    {%- endfor -%}
+                        {% if size_value != blank %}
+                          <a
+                            href="{{ item.url }}"
+                            class="{% if current_product %}input--dummy {% endif %}btn--underline mb-1 font-regular text-0.875 lh-150 no-underline{% unless forloop.last %} mr-2{% endunless %}"
+                          >
+                            {{ size_value }}
+                          </a>
+                          <script>
+                            document.querySelectorAll('[data-visible-if-not-empty]')[1].classList.remove('d-none');
+                          </script>
+                        {% endif %}
+                      {%- endfor -%}
+                    </div>
                   </div>
                 {%- endif -%}
               {%- when 'variant_picker' -%}

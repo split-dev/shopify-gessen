@@ -20,6 +20,7 @@
         },
         "994d1c7f-8f65-449f-9152-9fee08cf5f78": {
           "type": "variant_picker",
+          "disabled": true,
           "settings": {
           }
         },

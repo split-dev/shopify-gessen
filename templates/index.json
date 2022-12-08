@@ -4,7 +4,7 @@
       "type": "featured-collection",
       "settings": {
         "collection": "shop-all",
-        "is_variants": false,
+        "is_variants": true,
         "enable_dynamic_loading": true
       }
     }

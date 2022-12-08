@@ -14,17 +14,21 @@
             {%- capture anim_delay -%}
               {%- cycle '300', '400', '500', '600', '700', '800', '900', '1000' -%}
             {%- endcapture -%}
-            {% render 'card-variant' card_variant: variant, anim_delay: anim_delay, display_metafield_values: display_metafield_values %}
+            {%
+              render 'card-variant',
+              card_variant: variant,
+              anim_delay: anim_delay,
+            %}
           </div>
         {% endfor %}
       {% endfor %}
-    {%  else %}
+    {% else %}
       {% for single_product in section_collection.products limit: initail_count %}
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
           {%- capture anim_delay -%}
             {%- cycle '300', '400', '500', '600', '700', '800', '900', '1000' -%}
           {%- endcapture -%}
-          {% render 'card-product' card_product: single_product, anim_delay: anim_delay %}
+          {% render 'card-product', card_product: single_product, anim_delay: anim_delay %}
         </div>
       {% endfor %}
     {% endif %}
@@ -32,7 +36,12 @@
 
   {% if section_collection.products.size > initail_count %}
     <div class="text-center mt-5 mb-5 mt-md-7.5 mb-md-7.5">
-      <load-more class="btn btn--outline text-uppercase position-relative" data-paginate="{{ section_collection.handle }}" data-paginate-collection-container="#{{ section.id }}-{{ section_collection.handle }}" tabindex="0">
+      <load-more
+        class="btn btn--outline text-uppercase position-relative"
+        data-paginate="{{ section_collection.handle }}"
+        data-paginate-collection-container="#{{ section.id }}-{{ section_collection.handle }}"
+        tabindex="0"
+      >
         <span>Load more</span>
         <span class="absolute-center loading-overlay__spinner spinner"></span>
       </load-more>
@@ -49,26 +58,21 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
-    }, {
+    },
+    {
       "type": "checkbox",
       "id": "is_variants",
       "label": "Display variants",
       "info": "Does not support secondary image on hover.",
       "default": false
-    }, {
+    },
+    {
       "type": "checkbox",
       "id": "enable_dynamic_loading",
       "label": "Enable dynamic loading",
       "default": true,
       "info": "Works if collection contains more products then initial count. Button will load 8 more products, if available."
-    },
-    {
-      "type": "checkbox",
-      "id": "display_metafield_values",
-      "label": "",
-      "default": false,
-      "info": ""
-    },
+    }
   ],
   "presets": [
     {
