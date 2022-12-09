@@ -1162,18 +1162,6 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log(response);
           console.log(response.status);
 
-          // if (response.redirected) {
-          //   alertDom.classList.remove('d-none');
-          //   form_inner.classList.add('d-none');
-          //   alertDom.innerHTML = 'Redirecting...';
-
-          //   alert('Redirect')
-
-          //   window.location.href = response.url;
-
-          //   return;
-          // }
-
           alertDom.classList.remove('d-none');
           form_inner.classList.add('transition--hide');
           alertDom.innerHTML = alert_msg.success;
@@ -1199,6 +1187,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ajaxFormInit(el.closest("form"));
     });
   })();
+  
   class RelatedProducts extends HTMLElement {
     constructor() {
       super();
