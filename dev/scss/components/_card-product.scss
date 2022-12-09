@@ -16,4 +16,12 @@
       opacity: 1;
     }
   }
+  &__meta {
+    &__separator {
+      &:first-child,
+      &:last-child {
+        display: none;
+      }
+    }
+  }
 }

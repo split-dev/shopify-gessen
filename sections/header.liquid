@@ -85,8 +85,8 @@
                       assign url = url | remove: '/'
                     endif
                   -%}
-                  <li>
-                    <a href="{{ url }}" class="link d-block h4 text-dark font-bold lh-130">{{ link.title }}</a>
+                  <li class="mb-1">
+                    <a href="{{ url }}" class="link d-block text-1.125 text-dark font-bold lh-120">{{ link.title }}</a>
                   </li>
                 {% endfor %}
               </ul>

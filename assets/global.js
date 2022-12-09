@@ -1199,6 +1199,56 @@ document.addEventListener('DOMContentLoaded', () => {
       ajaxFormInit(el.closest("form"));
     });
   })();
+  class RelatedProducts extends HTMLElement {
+    constructor() {
+      super();
+
+      const OPTION_ACTIVE = 'data-option-active',
+        COLOR_ACTIVE_CLASS = 'active-product',
+        SIZE_ACTIVE_CLASS = 'input--dummy';
+
+      this.selectors = this.querySelectorAll('[data-related-product]');
+
+      this.selectors.forEach(btn => {
+        btn.addEventListener('click', () => {
+          let oldActive = btn.parentElement.querySelector(`[${OPTION_ACTIVE}="true"]`);
+          oldActive.setAttribute(OPTION_ACTIVE, 'false');
+          oldActive.classList.remove(COLOR_ACTIVE_CLASS);
+          oldActive.classList.remove(SIZE_ACTIVE_CLASS);
+
+          btn.setAttribute(OPTION_ACTIVE, 'true');
+          btn.dataset.color 
+            ? btn.classList.add(COLOR_ACTIVE_CLASS) 
+            : btn.classList.add(SIZE_ACTIVE_CLASS);
+
+          this.handleRedirect();
+        })
+      })
+    }
+    handleRedirect() {
+      this.activeParams = {
+        color: this.querySelector('[data-color][data-option-active="true"]')?.dataset.color,
+        size: this.querySelector('[data-size][data-option-active="true"]')?.dataset.size
+      }
+      let elToRedirect = window.relatedProducts.find((el) => {
+        if (!this.activeParams.color) 
+          return el.size === this.activeParams.size;
+
+        if (!this.activeParams.size) 
+          return el.color === this.activeParams.color;
+
+        return el.color === this.activeParams.color && el.size === this.activeParams.size;
+      });
+
+      if (!elToRedirect) {
+        console.log('No matching results');
+
+        return;
+      }
+      window.location.href = elToRedirect.url;
+    }
+  }
+  customElements.define('related-products', RelatedProducts);
 
   window.firstLoad = false;
 });
