@@ -21,7 +21,7 @@
   //border-radius: 50%;
   opacity: 0;
   transition: var(--transition-long);
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
+  // transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1);
 
   @include media-breakpoint-up(md) {
     transition-delay: var(--animation-delay);
@@ -73,8 +73,8 @@
 [data-aos="slide-logo"] {
   transform: translate3d(0, -60px, 0);
   opacity: 0;
-  transition: 0.7s 0.4s;
-  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important;
+  transition: opacity 0.7s cubic-bezier(0.65, 0, 0.35, 1), transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+  transition-delay: 0.4s;
   &.aos-animate {
     transform: translate3d(0, 0, 0);
     opacity: 1;
@@ -84,8 +84,7 @@
 [data-aos="slide-up-hero-text"] {
   transform: translate3d(0, 40px, 0);
   opacity: 0;
-  transition: var(--transition-long);
-  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
+  transition: opacity 0.7s cubic-bezier(0.65, 0, 0.35, 1), transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
   transition-delay: 0.6s;
   @include media-breakpoint-down(md) {
     transform: translate3d(0, 0, 0);
@@ -114,8 +113,8 @@
 [data-aos="slide-up-header"] {
   transform: translate3d(0, 10px, 0);
   opacity: 0;
-  transition: var(--transition-long);
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1) !important;
+  transition: 0.7s;
+  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
   transition-delay: 600ms;
   @include media-breakpoint-down(md) {
     transform: translate3d(0, 0, 0);
@@ -125,8 +124,8 @@
 [data-aos="slide-left-hero-text"] {
   transform: translate3d(40px, 0, 0);
   opacity: 0;
-  transition: 0.7s 1.2s;
-  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1) !important;
+  transition: opacity 0.7s cubic-bezier(0.65, 0, 0.35, 1), transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
+  transition-delay: 1.2s;
   @include media-breakpoint-down(md) {
     transform: translate3d(0, 0, 0);
   }

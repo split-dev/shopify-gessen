@@ -1,7 +1,32 @@
 (() => {
+  document.addEventListener('scroll', e => {
+    console.log(e);
+  })
+  // If password - no welcome section settings
+  if (window.location.pathname === window.routes.password) return;
+
+  if (window.location.pathname === window.routes.root) {
+    sessionStorage.removeItem('liveSession');
+    window.scroll(0, 0);
+    console.log('Session disabled');
+    // window.addEventListener("pagehide", () => {
+    //   sessionStorage.removeItem('liveSession');
+    //   document.body.style.opacity = '0';
+    //   // setTimeout(() => {
+    //   window.scroll(0, 0);
+    //   // }, 150);
+    // });
+  } else {
+    // console.log('Session enabled');
+    sessionStorage.setItem('liveSession', 'true');
+  }
+
+  // if shop - remove hash
   if (window.location.hash === '#shop' || (sessionStorage.getItem('liveSession') === 'true')) {
+    history.replaceState(null, null, ' ');
     let welcomeSection = document.querySelector('.preheader');
     if (!welcomeSection) return;
+    console.log('This function #10');
     welcomeSection.classList.add('d-none');
     document.body.classList.remove('overflow-hidden');
   }
@@ -828,14 +853,7 @@ document.addEventListener('DOMContentLoaded', () => {
       handle: () => {
         let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
 
-        if (Number.isNaN(percent)) percent = 0;
-
-        // if (headerScroll.option.isFirstLoad && parseInt(percent) < 99) {
-        //   // document.querySelector('[href="#shop"]').click();
-        //   headerScroll.option.isFirstLoad = false;
-        // } else if (parseInt(percent) > 99) {
-        //   headerScroll.option.isFirstLoad = true;
-        // }
+        if (Number.isNaN(percent) || percent === Infinity) percent = 0;
 
         if (percent >= 66) {
           headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
@@ -964,14 +982,15 @@ document.addEventListener('DOMContentLoaded', () => {
               window.headerScroll.handle();
               AOS.refresh();
 
-              document.body.classList.remove('overflow-hidden');
-
               let targetUpdated = document.querySelector(`${link.getAttribute('href')}`);
-              window.scroll(0, (targetUpdated.getBoundingClientRect().top + window.pageYOffset));
+              // window.scroll(0, (targetUpdated.getBoundingClientRect().top + window.pageYOffset));
 
               setTimeout(() => {
                 linkParent.classList.remove('animate--leave');
               }, 300);
+              setTimeout(() => {
+                document.body.classList.remove('overflow-hidden');
+              }, 500);
             }, slideTransitionDelay)
 
             return;
@@ -1018,6 +1037,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   (() => {
     AOS.init({
+      offset: 60,
       once: false
     });
     window.addEventListener('resize', () => {
@@ -1187,7 +1207,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ajaxFormInit(el.closest("form"));
     });
   })();
-  
+
   class RelatedProducts extends HTMLElement {
     constructor() {
       super();
@@ -1206,8 +1226,8 @@ document.addEventListener('DOMContentLoaded', () => {
           oldActive.classList.remove(SIZE_ACTIVE_CLASS);
 
           btn.setAttribute(OPTION_ACTIVE, 'true');
-          btn.dataset.color 
-            ? btn.classList.add(COLOR_ACTIVE_CLASS) 
+          btn.dataset.color
+            ? btn.classList.add(COLOR_ACTIVE_CLASS)
             : btn.classList.add(SIZE_ACTIVE_CLASS);
 
           this.handleRedirect();
@@ -1220,10 +1240,10 @@ document.addEventListener('DOMContentLoaded', () => {
         size: this.querySelector('[data-size][data-option-active="true"]')?.dataset.size
       }
       let elToRedirect = window.relatedProducts.find((el) => {
-        if (!this.activeParams.color) 
+        if (!this.activeParams.color)
           return el.size === this.activeParams.size;
 
-        if (!this.activeParams.size) 
+        if (!this.activeParams.size)
           return el.color === this.activeParams.color;
 
         return el.color === this.activeParams.color && el.size === this.activeParams.size;
