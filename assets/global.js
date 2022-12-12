@@ -1,23 +1,11 @@
 (() => {
-  document.addEventListener('scroll', e => {
-    console.log(e);
-  })
   // If password - no welcome section settings
   if (window.location.pathname === window.routes.password) return;
 
   if (window.location.pathname === window.routes.root) {
     sessionStorage.removeItem('liveSession');
     window.scroll(0, 0);
-    console.log('Session disabled');
-    // window.addEventListener("pagehide", () => {
-    //   sessionStorage.removeItem('liveSession');
-    //   document.body.style.opacity = '0';
-    //   // setTimeout(() => {
-    //   window.scroll(0, 0);
-    //   // }, 150);
-    // });
   } else {
-    // console.log('Session enabled');
     sessionStorage.setItem('liveSession', 'true');
   }
 
@@ -26,7 +14,6 @@
     history.replaceState(null, null, ' ');
     let welcomeSection = document.querySelector('.preheader');
     if (!welcomeSection) return;
-    console.log('This function #10');
     welcomeSection.classList.add('d-none');
     document.body.classList.remove('overflow-hidden');
   }

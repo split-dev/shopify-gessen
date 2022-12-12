@@ -183,6 +183,13 @@
                         </div>
                       {% else %}
                         <div class="mt-0.25 mt-md-1 rte">{{ block.settings.content }}</div>
+                      {%- endif -%}
+
+                      {% if product.metafields.custom[heading_string] != blank %}
+                        <div class="mt-0.25 mt-md-1 rte">
+                          {{ product.metafields.custom[heading_string].value.content }}
+                        </div>
+                      {% else %}
                         {%- if block.settings.content_page != blank -%}
                           <div class="mt-0.25 mt-md-1 rte page-content">{{ block.settings.content_page.content }}</div>
                         {%- endif -%}
