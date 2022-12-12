@@ -46,6 +46,7 @@
         if (isOpenCart) {
           document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('overflow-hidden');
+
             setTimeout(() => {
               document.querySelector('[data-header-toggle].header__burger--cart').click();
               window.sessionStorage.removeItem('open_cart');

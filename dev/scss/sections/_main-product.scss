@@ -28,9 +28,16 @@
       }
     }
     &-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-gap: 12px;
+      display: flex;
+      > div {
+        width: 100%;
+        flex-shrink: 0;
+      }
+      @include media-breakpoint-up(md) {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 12px;
+      }
     }
   }
   &__media-wrapper {
