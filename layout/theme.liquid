@@ -59,7 +59,7 @@
 
   <body
     class="transition-default template-{{ template }}{% if request.page_type == 'index' %} overflow-hidden{% endif %}"
-    style="opacity: 0;"
+    {% comment %} style="opacity: 0;" {% endcomment %}
   >
     <a class="skip-to-content-link visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}

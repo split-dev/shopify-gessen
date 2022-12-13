@@ -35,12 +35,12 @@
           >
             {% for media in product.media %}
               <div class="w-100" data-product-media-slide="{{ forloop.index0 }}">
-                <div>
+                <div class="border overflow-hidden">
                   {%- case media.media_type -%}
                     {%- when 'model' -%}
                       {%- assign model_src = media.sources[0] -%}
                       <div
-                        class="position-relative border overflow-hidden"
+                        class="position-relative"
                         style="padding-bottom: {{ 1 | divided_by: first_3d_model.preview_image.aspect_ratio | times: 100 }}%"
                       >
                         <model-viewer
@@ -61,7 +61,7 @@
                       </div>
                     {%- when 'image' -%}
                       <div
-                        class="position-relative border overflow-hidden"
+                        class="position-relative"
                         style="padding-bottom: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%"
                       >
                         <img

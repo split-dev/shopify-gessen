@@ -840,7 +840,7 @@ document.addEventListener('DOMContentLoaded', () => {
       handle: () => {
         let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
 
-        if (Number.isNaN(percent) || percent === Infinity) percent = 0;
+        if (Number.isNaN(percent) || (percent === Infinity) || (percent < 0)) percent = 0;
 
         if (percent >= 66) {
           headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
