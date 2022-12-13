@@ -2,18 +2,12 @@
   // If password - no welcome section settings
   if (window.location.pathname === window.routes.password) return;
 
-  if (window.location.pathname === window.routes.root) {
-    sessionStorage.removeItem('liveSession');
-    window.scroll(0, 0);
-  } else {
-    sessionStorage.setItem('liveSession', 'true');
-  }
-
   // if shop - remove hash
-  if (window.location.hash === '#shop' || (sessionStorage.getItem('liveSession') === 'true')) {
+  if ((window.location.hash === '#shop') || (sessionStorage.getItem('liveSession') === 'true')) {
     history.replaceState(null, null, ' ');
     let welcomeSection = document.querySelector('.preheader');
     if (!welcomeSection) return;
+    console.log('Is this?');
     welcomeSection.classList.add('d-none');
     document.body.classList.remove('overflow-hidden');
   }
@@ -867,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (e.wheelDelta < 0 || (e?.touches?.length > 0)) {
             document.querySelector('[data-launch-animation]').click();
-            sessionStorage.setItem('liveSession', 'true');
+            // sessionStorage.setItem('liveSession', 'true');
           }
           document.removeEventListener('wheel', wheelHandle);
           document.removeEventListener('touchmove', wheelHandle);
@@ -895,6 +889,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
     headerScroll.init();
+
+    if (window.location.pathname === window.routes.root) {
+      if (sessionStorage.getItem('liveSession') === 'true') {
+        window.scroll(0, 0);
+      }
+
+      console.log('Removed');
+      sessionStorage.removeItem('liveSession');
+    } else {
+      sessionStorage.setItem('liveSession', 'true');
+    }
 
     window.headerScroll = headerScroll;
   })();
@@ -964,7 +969,7 @@ document.addEventListener('DOMContentLoaded', () => {
             linkParent.classList.add('animate--leave');
 
             setTimeout(() => {
-              sessionStorage.setItem('liveSession', 'true');
+              // sessionStorage.setItem('liveSession', 'true');
               document.querySelector('.preheader').classList.add('d-none');
               window.headerScroll.handle();
               AOS.refresh();
