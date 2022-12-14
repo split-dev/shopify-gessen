@@ -3,11 +3,11 @@
   if (window.location.pathname === window.routes.password) return;
 
   // if shop - remove hash
+  window.scroll(0, 0);
   if ((window.location.hash === '#shop') || (sessionStorage.getItem('liveSession') === 'true')) {
     history.replaceState(null, null, ' ');
     let welcomeSection = document.querySelector('.preheader');
     if (!welcomeSection) return;
-    console.log('Is this?');
     welcomeSection.classList.add('d-none');
     document.body.classList.remove('overflow-hidden');
   }
@@ -822,86 +822,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Header desktop
   (() => {
-    if (document.querySelector('.preheader') === null) return;
+    if (document.querySelector('.preheader') !== null) {
+      const headerScroll = {
+        selectors: {
+          header: document.querySelector('.header'),
+          logo: document.querySelector('[data-header-logo]'),
+          navigation: document.querySelector('.header__buttons'),
+          newLogo: document.querySelector('.header__logo')
+        },
+        handle: () => {
+          let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
 
-    const headerScroll = {
-      selectors: {
-        header: document.querySelector('.header'),
-        logo: document.querySelector('[data-header-logo]'),
-        navigation: document.querySelector('.header__buttons'),
-        newLogo: document.querySelector('.header__logo')
-      },
-      handle: () => {
-        let percent = 100.0 - (window.pageYOffset / headerScroll.selectors.header.offsetTop * 100.00);
+          if (Number.isNaN(percent) || (percent === Infinity) || (percent < 0)) percent = 0;
 
-        if (Number.isNaN(percent) || (percent === Infinity) || (percent < 0)) percent = 0;
+          if (percent >= 66) {
+            headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
+            headerScroll.selectors.navigation.classList.remove('header-animate', 'events-none')
+            headerScroll.selectors.newLogo.classList.add('header__translate-animate')
+            headerScroll.selectors.navigation.classList.add('header__translate-animate')
 
-        if (percent >= 66) {
-          headerScroll.selectors.newLogo.classList.remove('header-animate', 'events-none')
-          headerScroll.selectors.navigation.classList.remove('header-animate', 'events-none')
-          headerScroll.selectors.newLogo.classList.add('header__translate-animate')
-          headerScroll.selectors.navigation.classList.add('header__translate-animate')
-
-        } else if (percent <= 66) {
-          headerScroll.selectors.newLogo.classList.add('header-animate', 'events-none')
-          headerScroll.selectors.navigation.classList.add('header-animate', 'events-none')
-          headerScroll.selectors.newLogo.classList.remove('header__translate-animate')
-          headerScroll.selectors.navigation.classList.remove('header__translate-animate')
-        }
-
-        (headerScroll.selectors.header.offsetTop + 10) > window.innerHeight
-          ? document.querySelector('.header').classList.remove('header--fixed')
-          : document.querySelector('.header').classList.add('header--fixed');
-
-      },
-      eventListeners: () => {
-        document.addEventListener('scroll', debounce(headerScroll.handle, 15));
-        const wheelHandle = (e) => {
-          if (window.location.hash === '#shop' || (sessionStorage.getItem('liveSession') === 'true')) return;
-
-          if (e.wheelDelta < 0 || (e?.touches?.length > 0)) {
-            document.querySelector('[data-launch-animation]').click();
-            // sessionStorage.setItem('liveSession', 'true');
+          } else if (percent <= 66) {
+            headerScroll.selectors.newLogo.classList.add('header-animate', 'events-none')
+            headerScroll.selectors.navigation.classList.add('header-animate', 'events-none')
+            headerScroll.selectors.newLogo.classList.remove('header__translate-animate')
+            headerScroll.selectors.navigation.classList.remove('header__translate-animate')
           }
-          document.removeEventListener('wheel', wheelHandle);
-          document.removeEventListener('touchmove', wheelHandle);
+
+          (headerScroll.selectors.header.offsetTop + 10) > window.innerHeight
+            ? document.querySelector('.header').classList.remove('header--fixed')
+            : document.querySelector('.header').classList.add('header--fixed');
+
+        },
+        eventListeners: () => {
+          document.addEventListener('scroll', debounce(headerScroll.handle, 15));
+          const wheelHandle = (e) => {
+            if (window.location.hash === '#shop' || (sessionStorage.getItem('liveSession') === 'true')) return;
+
+            if (e.wheelDelta < 0 || (e?.touches?.length > 0)) {
+              document.querySelector('[data-launch-animation]').click();
+              // sessionStorage.setItem('liveSession', 'true');
+            }
+            document.removeEventListener('wheel', wheelHandle);
+            document.removeEventListener('touchmove', wheelHandle);
+          }
+          document.addEventListener('wheel', wheelHandle);
+          document.addEventListener('touchmove', wheelHandle);
+        },
+        init: () => {
+          setTimeout(() => {
+            // if (window.location.hash === '#shop') return;
+            window.scroll(0, 0);
+          }, 200);
+          headerScroll.option = {
+            isFirstLoad: true,
+            isSafari: window.detectBrowser() === 'safari',
+            minMobile: parseInt(headerScroll.selectors.logo.dataset.widthMobile)
+          };
+          // headerScroll.vars = {
+          // headerWidth: headerScroll.selectors.logo.scrollWidth,
+          // 32 - 2rem container margin + 4px*2 gaps
+          // step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
+          // };
+          headerScroll.handle();
+          headerScroll.eventListeners();
         }
-        document.addEventListener('wheel', wheelHandle);
-        document.addEventListener('touchmove', wheelHandle);
-      },
-      init: () => {
-        setTimeout(() => {
-          if (window.location.hash === '#shop') return;
-          window.scroll(0, 0);
-        }, 200);
-        headerScroll.option = {
-          isFirstLoad: true,
-          isSafari: window.detectBrowser() === 'safari',
-          minMobile: parseInt(headerScroll.selectors.logo.dataset.widthMobile)
-        };
-        // headerScroll.vars = {
-        // headerWidth: headerScroll.selectors.logo.scrollWidth,
-        // 32 - 2rem container margin + 4px*2 gaps
-        // step: (window.innerWidth - 40 - headerScroll.selectors.logo.scrollWidth) / 100
-        // };
-        headerScroll.handle();
-        headerScroll.eventListeners();
-      }
-    };
-    headerScroll.init();
+      };
+      headerScroll.init();
+      window.headerScroll = headerScroll;
+    }
 
     if (window.location.pathname === window.routes.root) {
       if (sessionStorage.getItem('liveSession') === 'true') {
         window.scroll(0, 0);
       }
-
-      console.log('Removed');
       sessionStorage.removeItem('liveSession');
     } else {
+      console.log('Added');
       sessionStorage.setItem('liveSession', 'true');
     }
-
-    window.headerScroll = headerScroll;
   })();
 
   // FadeIn on content load
