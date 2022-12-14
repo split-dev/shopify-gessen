@@ -733,7 +733,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (() => {
     window.iosTapIndicator = () => {
       if (detectBrowser() === 'safari') {
-        console.log('Init');
         document.documentElement.classList.add('isSafari');
         document.querySelectorAll('.active-state, .link, .btn, .btn--outline, .btn--primary').forEach(el => {
           el.addEventListener('touchstart', () => {
@@ -897,7 +896,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       sessionStorage.removeItem('liveSession');
     } else {
-      console.log('Added');
       sessionStorage.setItem('liveSession', 'true');
     }
   })();
@@ -1169,8 +1167,8 @@ document.addEventListener('DOMContentLoaded', () => {
           method: 'POST',
           body: new FormData(form)
         }).then(function (response) {
-          console.log(response);
-          console.log(response.status);
+          // console.log(response);
+          // console.log(response.status);
 
           alertDom.classList.remove('d-none');
           form_inner.classList.add('transition--hide');
