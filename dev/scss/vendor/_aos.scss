@@ -86,9 +86,9 @@
   opacity: 0;
   transition: opacity 0.7s cubic-bezier(0.65, 0, 0.35, 1), transform 0.7s cubic-bezier(0.33, 1, 0.68, 1);
   transition-delay: 0.6s;
-  @include media-breakpoint-down(md) {
-    transform: translate3d(0, 0, 0);
-  }
+  // @include media-breakpoint-down(md) {
+  //   transform: translate3d(0, 0, 0);
+  // }
   &:nth-child(2) {
     transition-delay: 0.8s;
   }
