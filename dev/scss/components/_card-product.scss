@@ -4,6 +4,7 @@
     @include media-breakpoint-down(sm) {
       border-color: transparent;
     }
+
     img {
       transition: 0.3s;
       + img {
@@ -11,9 +12,11 @@
       }
     }
   }
-  &:hover {
-    img + img {
-      opacity: 1;
+  @media (hover: hover) {
+    &:hover {
+      img + img {
+        opacity: 1;
+      }
     }
   }
   &__meta {

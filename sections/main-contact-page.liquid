@@ -10,7 +10,7 @@
 
         if section.settings.size == 'large'
           assign col_left = 'col-lg-7'
-          assign col_right = 'col-lg-5'
+          assign col_right = 'col-lg-4'
         endif
       %}
 
@@ -43,7 +43,7 @@
       </div>
     {% endif %}
     <div class="col-12 {{ col_right }}">
-      <div class="main-contact__blocks mb-n1">
+      <div class="mb-n1">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'richtext' %}

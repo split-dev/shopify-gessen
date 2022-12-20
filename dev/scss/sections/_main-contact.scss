@@ -1,8 +1,0 @@
-.main-contact {
-  &__blocks {
-    @include media-breakpoint-up(lg) {
-      min-width: 448px;
-      max-width: 48.2%;
-    }
-  }
-}

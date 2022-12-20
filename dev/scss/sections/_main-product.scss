@@ -1,10 +1,6 @@
 .product {
   &__title {
-    font-weight: 700 !important;
     margin-bottom: 6px !important;
-    @include media-breakpoint-up(md) {
-      font-weight: 400 !important;
-    }
   }
   &__media {
     &__badge {
@@ -45,31 +41,11 @@
       }
     }
   }
-  &__media-wrapper {
-    &.media-xl-larger {
-      @include media-breakpoint-up(xl) {
-        width: 58.6vw;
-      }
-    }
-  }
-  &__info-wrapper {
-    &.media-xl-larger {
-      @include media-breakpoint-up(xl) {
-        width: 41.4vw;
-      }
-    }
-  }
   &__info {
-    &.media-xl-larger {
-      @include media-breakpoint-up(xl) {
-        max-width: 450px;
-      }
-    }
     &.md-sticky {
       @include media-breakpoint-up(md) {
-        position: -webkit-sticky;
         position: sticky;
-        top: 9.3vw;
+        top: calc(var(--header-height) + 1rem);
       }
     }
 
@@ -83,7 +59,6 @@
   &__info {
     @include media-breakpoint-up(lg) {
       top: 1rem;
-      max-width: 450px;
     }
   }
   &__form {

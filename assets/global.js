@@ -733,6 +733,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (() => {
     window.iosTapIndicator = () => {
       if (detectBrowser() === 'safari') {
+        console.log('Init');
         document.documentElement.classList.add('isSafari');
         document.querySelectorAll('.active-state, .link, .btn, .btn--outline, .btn--primary').forEach(el => {
           el.addEventListener('touchstart', () => {
@@ -754,10 +755,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (header === null) return;
 
     function headerHeight() {
-      let headerTemp = document.querySelector('.header');
-      window.headerHeight = headerTemp.scrollHeight;
+      let headerTemp = document.querySelector('header.header');
+      window.headerHeight = headerTemp.offsetHeight;
       document.documentElement.style
-        .setProperty('--header-height', `${headerTemp.scrollHeight}px`)
+        .setProperty('--header-height', `${window.headerHeight}px`)
     }
     window.setHeaderHeight = headerHeight;
     headerHeight();
@@ -896,6 +897,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       sessionStorage.removeItem('liveSession');
     } else {
+      console.log('Added');
       sessionStorage.setItem('liveSession', 'true');
     }
   })();
@@ -1026,8 +1028,9 @@ document.addEventListener('DOMContentLoaded', () => {
   (() => {
     AOS.init({
       offset: 60,
-      once: false
+      once: true
     });
+
     window.addEventListener('resize', () => {
       const debouncedAOSrefresh = debounce(AOS.refresh, 1200);
       debouncedAOSrefresh();
@@ -1125,8 +1128,12 @@ document.addEventListener('DOMContentLoaded', () => {
       })();
     });
 
-    notificationSubmit.addEventListener('click', () => {
-      let getActiveVariant = notificationTrigger.closest('form').querySelector('[name="id"]').value;
+    const notificationFormSubmit = () => {
+      let parentForm = notificationTrigger.closest('form'),
+        getActiveVariant = notificationTrigger.closest('form').querySelector('[name="id"]').value;
+
+      if (!parentForm.reportValidity()) return;
+
       $.ajax({
         type: "POST",
         url: "https://a.klaviyo.com/onsite/components/back-in-stock/subscribe",
@@ -1137,11 +1144,15 @@ document.addEventListener('DOMContentLoaded', () => {
           platform: "shopify"
         },
         success: function () {
-          notificationWrapper.classList.add('d-none');
+          notificationWrapper.classList.add('transparent-0', 'events-none');
           notificationStatus.classList.remove('d-none');
         }
       })
-    })
+    }
+    notificationInput.addEventListener('keydown', (e) => {
+      if (e.code === 'Enter') notificationFormSubmit();
+    });
+    notificationSubmit.addEventListener('click', notificationFormSubmit);
   })();
 
   // Contact form submit
@@ -1167,8 +1178,8 @@ document.addEventListener('DOMContentLoaded', () => {
           method: 'POST',
           body: new FormData(form)
         }).then(function (response) {
-          // console.log(response);
-          // console.log(response.status);
+          console.log(response);
+          console.log(response.status);
 
           alertDom.classList.remove('d-none');
           form_inner.classList.add('transition--hide');
@@ -1248,6 +1259,10 @@ document.addEventListener('DOMContentLoaded', () => {
   customElements.define('related-products', RelatedProducts);
 
   window.firstLoad = false;
+
+  if (window.routes.password) {
+    sessionStorage.removeItem('liveSession');
+  }
 });
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
