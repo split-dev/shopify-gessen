@@ -11,7 +11,6 @@ a {
 a:empty,
 ul:empty,
 dl:empty,
-div:empty,
 section:empty,
 article:empty,
 p:empty,
@@ -26,7 +25,7 @@ h6:empty {
 
 a,
 button {
-  text-decoration-color: rgb(var(--color-primary)) ;
+  text-decoration-color: rgb(var(--color-primary));
 }
 button {
   font-family: inherit;
