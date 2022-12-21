@@ -1,3 +1,48 @@
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// (async () => {
+//   let textDom = document.querySelector('[data-welcome-content]');
+
+//   if (!textDom) return;
+
+//   let textNode = textDom.textContent,
+//     targetWidth = textDom.offsetWidth,
+//     fit = textNode.length;
+
+//   textDom.textContent = '';
+//   textDom.style.display = 'inline';
+
+
+
+
+//   // Get number of chars per line
+//   for (let i = 0; i < fit; ++i) {
+//     await sleep(1000);
+//     textDom.textContent += textNode[i];
+//     if (textDom.getBoundingClientRect().width > targetWidth) {
+//       console.log('Loop condition');
+//       fit = i - 1;
+//       break;
+//     }
+//   }
+//   let linesCount = Math.ceil(textNode.length / fit);
+//   textDom.removeAttribute('style');
+
+
+//   // Render text & wrap each line in <span>
+//   let newTextDom = '';
+//   for (let i = 0; i < linesCount; ++i) {
+//     newTextDom += `
+//       <span>
+//         ${textNode.replace(/(\r\n|\n|\r)/gm, ' ').slice((i * fit), ((i + 1) * fit))}
+//         ${i < linesCount ? '- ' : ''} 
+//       </span>`
+//   }
+//   textDom.innerHTML = newTextDom;
+// })();
+
 (() => {
   // If password - no welcome section settings
   if (window.location.pathname === window.routes.password) return;
