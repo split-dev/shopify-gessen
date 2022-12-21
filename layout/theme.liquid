@@ -59,10 +59,7 @@
     </script>
   </head>
 
-  <body
-    class="transition-default template-{{ template }}{% if request.page_type == 'index' %} overflow-hidden{% endif %}"
-    style="opacity: 0;"
-  >
+  <body class="transition-default template-{{ template }}{% if request.page_type == 'index' %} overflow-hidden{% endif %}">
     <a class="skip-to-content-link visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
