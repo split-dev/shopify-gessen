@@ -6,35 +6,35 @@
         "02fdc3bb-8c02-4e49-ab37-7e4fe74c7482": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Wave_Tumbler_1.jpg",
+            "image": "shopify:\/\/shop_images\/misc_5.png",
             "hide_on_mobile": false
           }
         },
         "815c77dc-1913-436e-aac7-d26a26557ecf": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Wave_Tumbler_1-1.jpg",
+            "image": "shopify:\/\/shop_images\/Wave_Tumbler_3.jpg",
             "hide_on_mobile": false
           }
         },
         "e381c993-c5c5-4e1e-8b83-008f97ce1333": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/8A-scaled.jpg",
+            "image": "shopify:\/\/shop_images\/Red_M.png",
             "hide_on_mobile": false
           }
         },
         "95509c58-c6cc-4ea1-ad19-67dc875fdf22": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Wave_Tumbler_1-5.jpg",
+            "image": "shopify:\/\/shop_images\/Frame_12.png",
             "hide_on_mobile": false
           }
         },
         "374a5483-6313-438c-adbd-ad4353cf677b": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/8B-scaled-1.jpg",
+            "image": "shopify:\/\/shop_images\/Frame_12bigger.png",
             "hide_on_mobile": false
           }
         },
@@ -114,6 +114,13 @@
             "image": "shopify:\/\/shop_images\/4A-scaled-3.jpg",
             "hide_on_mobile": false
           }
+        },
+        "ce89f2b8-5b52-4acf-acf2-98b47be49be9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/misc_3.png",
+            "hide_on_mobile": false
+          }
         }
       },
       "block_order": [
@@ -132,7 +139,8 @@
         "b8d94120-3471-4f4e-9653-fb0ecbaf603a",
         "50506946-d778-426a-8056-9d9455e65631",
         "b6b4b933-d0c9-4197-9752-1f6fe1618f55",
-        "65a3dc39-ff96-4d64-8fdb-4734c50892f9"
+        "65a3dc39-ff96-4d64-8fdb-4734c50892f9",
+        "ce89f2b8-5b52-4acf-acf2-98b47be49be9"
       ],
       "settings": {
         "gallery_layout": "masonry"

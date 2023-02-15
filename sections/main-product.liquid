@@ -4,6 +4,9 @@
     content: 'flickity';
     display: none;
   }
+  [data-product-media-nav][disabled] {
+    opacity: 0.5;
+  }
   {%- if section.settings.media_desktop_view == 'list' -%}
     @media screen and (min-width: 768px) {
       /* disable Flickity for large devices */
@@ -92,14 +95,15 @@
           {% if product.media.size > 1 %}
             <div class="product__media__nav d-flex position-absolute{% if section.settings.media_desktop_view == 'list' %} d-md-none{% endif %}">
               <button
-                class="mr-0.75 mr-md-1 btn--circle border-2 btn--outline btn--outline--dark"
+                class="mr-0.75 mr-md-1 btn--circle border-2 btn--outline btn--outline--dark active-state"
                 data-product-media-nav="prev"
                 aria-controls="Previous slide"
+                disabled
               >
                 {% render 'icon' with 'arrow-left' %}
               </button>
               <button
-                class="btn--circle border-2 btn--outline btn--outline--dark"
+                class="btn--circle border-2 btn--outline btn--outline--dark active-state"
                 data-product-media-nav="next"
                 aria-controls="Next slide"
               >
@@ -497,6 +501,26 @@
   <script src="https://unpkg.com/flickity-fade@1/flickity-fade.js"></script>
 
   <script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     (() => {
       // Check if first slide item is ModelVier
       let firstSlide = document.querySelector(`[data-product-media-slide="0"]`);
@@ -504,28 +528,64 @@
 
       let modelViewer = firstSlide.querySelector('model-viewer');
 
-      var slider = new Flickity('[data-product-media]', {
+      var slider = new Flickity(document.querySelector('[data-product-media]'), {
         cellAlign: 'left',
         contain: true,
         pageDots: false,
         prevNextButtons: false,
         adaptiveHeight: true,
-        wrapAround: true,
+        {% comment %} wrapAround: true, {% endcomment %}
         fade: true,
         draggable: modelViewer === null,
         watchCSS: true,
         on: {
           change: (index) => {
-            if (!modelViewer) return;
-
-            let modelViewer = document
+            let modelViewer2 = document
               .querySelector(`[data-product-media-slide="${index}"]`)
-              .querySelector('model-viewer');
-            slider.isDraggable = modelViewer === null;
+              .querySelector('model-viewer'),
+              PRODUCT_MEDIA = document.querySelector('.product__media__nav');
+
+            
+            if (PRODUCT_MEDIA.querySelectorAll('[data-product-media-nav]').length > 1 ) {
+              if (index === 0) {
+                PRODUCT_MEDIA.querySelector('[data-product-media-nav="prev"]').setAttribute('disabled', '');
+                PRODUCT_MEDIA.querySelector('[data-product-media-nav="next"]').removeAttribute('disabled');
+              } else if (index === (slider.cells.length - 1)) {
+                PRODUCT_MEDIA.querySelector('[data-product-media-nav="prev"]').removeAttribute('disabled');
+                PRODUCT_MEDIA.querySelector('[data-product-media-nav="next"]').setAttribute('disabled', '');
+              } else {
+                PRODUCT_MEDIA.querySelector('[data-product-media-nav="prev"]').removeAttribute('disabled');
+                PRODUCT_MEDIA.querySelector('[data-product-media-nav="next"]').removeAttribute('disabled');
+              }
+            }
+
+            if (!modelViewer2) return;
+
+            slider.isDraggable = modelViewer2 === null;
           },
         },
       });
     })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </script>
 
   <script>

@@ -783,6 +783,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.active-state, .link, .btn, .btn--outline, .btn--primary').forEach(el => {
           el.addEventListener('touchstart', () => {
             el.classList.add('active-state--active')
+            setTimeout(() => {
+              el.classList.remove('active-state--active')
+            }, 400);
           })
           el.addEventListener('touchend', () => {
             el.classList.remove('active-state--active')
